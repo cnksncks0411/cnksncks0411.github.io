@@ -100,13 +100,14 @@
 }
 
 %sidebar-links {
-  color: rgba(117, 117, 117, 0.9);
+  // color: rgba(117, 117, 117, 0.9);
+  color: rgba(15, 74, 132, 0.9);
   user-select: none;
 }
 
-.sidebar-bottom>a{
-  color: rgba(15, 74, 132);
-}
+// .sidebar-bottom>a{
+//   color: rgba(15, 74, 132);
+// }
 
 
 /* ---------- scss mixin --------- */
