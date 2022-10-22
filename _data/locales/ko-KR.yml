@@ -4,14 +4,14 @@
 
 layout:
   post: 포스트
-  category: 카테고리
+  category: 목록
   tag: 태그
 
 # The tabs of sidebar
 tabs:
   # format: <filename_without_extension>: <value>
   home: 홈
-  categories: 카테고리
+  categories: 게시글
   tags: 태그
   archives: 아카이브
   about: 정보
@@ -30,7 +30,7 @@ panel:
 copyright:
   # Shown at the bottom of the post
   license:
-    template: 이 기사는 저작권자의 :LICENSE_NAME 라이센스를 따릅니다.
+    template: 이 포스팅은 저작권자의 :LICENSE_NAME 라이센스를 따릅니다.
     name: CC BY 4.0
     link: https://creativecommons.org/licenses/by/4.0/
 

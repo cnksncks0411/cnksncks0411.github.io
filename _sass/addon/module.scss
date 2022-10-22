@@ -104,6 +104,11 @@
   user-select: none;
 }
 
+.sidebar-bottom>a{
+  color: rgba(15, 74, 132);
+}
+
+
 /* ---------- scss mixin --------- */
 
 @mixin no-text-decoration {
