@@ -1420,7 +1420,8 @@ $sidebar-display: "sidebar-display";
 /* Compact icons in sidebar & panel hidden */
 @media all and (min-width: 850px) and (max-width: 1199px) {
   #sidebar {
-    width: $sidebar-width-small;
+    // width: $sidebar-width-small;
+    width: 260px;
 
     .site-subtitle {
       margin-left: 1rem;
@@ -1440,7 +1441,8 @@ $sidebar-display: "sidebar-display";
   }
 
   #topbar-wrapper {
-    left: $sidebar-width-small;
+    // left: $sidebar-width-small;
+    left: 260px;
   }
 
   #search-results > div {
@@ -1459,7 +1461,8 @@ $sidebar-display: "sidebar-display";
   }
 
   #main-wrapper, footer {
-    margin-left: $sidebar-width-small;
+    // margin-left: $sidebar-width-small;
+    margin-left: 260px;
   }
 
   #breadcrumb {
