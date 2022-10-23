@@ -4,7 +4,7 @@ title: 개인 블로그의 시작
 # author: Hee
 description: 깃허브 블로그를 만들어 Jekyll 테마를 적용하고 블로그를 시작해 봅니다.
 tags: [jekyll, 깃허브, 블로그]
-categories: [일상]
+categories: [일상, 블로그 관련]
 date: '2022-10-23'
 image:
     path: /assets/img/thum/post_hangang.jpg
