@@ -21,9 +21,9 @@ timezone: Asia/Seoul
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Hee블로그                          # the main title
+title: Developer Hee                          # the main title
 
-tagline: Hee의 개발 블로그   # it will display as the sub-title
+tagline: Hee의 개발 및 개인 블로그   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
@@ -73,7 +73,7 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode: dark   # [light|dark]
+theme_mode: light   # [light|dark]
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url

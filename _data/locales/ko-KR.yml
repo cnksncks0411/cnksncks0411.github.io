@@ -13,8 +13,8 @@ tabs:
   home: 홈
   categories: 게시글
   tags: 태그
-  archives: 아카이브
-  about: 정보
+  archives: Hee Story
+  about: Hee의 정보
 
 # the text displayed in the search bar & search results
 search:
@@ -59,7 +59,7 @@ post:
   pageview_measure: 조회
   read_time:
     unit: 분
-    prompt: 읽는 시간
+    prompt: 짜리 컨텐츠
   relate_posts: 관련된 글
   share: 공유하기
   button:

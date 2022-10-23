@@ -921,7 +921,7 @@ $sidebar-display: "sidebar-display";
 
 #search-wrapper {
   display: flex;
-  width: 100%;
+  width: 89%;
   border-radius: 1rem;
   border: 1px solid var(--search-wrapper-border-color);
   background: var(--search-wrapper-bg);
@@ -1466,7 +1466,7 @@ $sidebar-display: "sidebar-display";
   }
 
   #breadcrumb {
-    width: 65%;
+    width: 50%;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: keep-all;
