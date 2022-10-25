@@ -26,7 +26,7 @@ title: Developer Hee                          # the main title
 tagline: Hee의 개발 및 개인 블로그   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
+  개인적으로 운영하는 개발 지식 및 생활 정보를 공유하는 블로그입니다.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://cnksncks0411.github.io'
