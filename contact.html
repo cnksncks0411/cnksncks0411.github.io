@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문의하기 - 나만의 웹사이트 클래스</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">나만의 웹사이트</div>
+            <div class="hamburger"><div></div><div></div><div></div></div>
+            <ul class="nav-links">
+                <li><a href="/">홈</a></li>
+                <li><a href="oneday.html">원데이 클래스</a></li>
+                <li><a href="intensive.html">4회 심화 수업</a></li>
+                <li><a href="apply.html">수강 신청</a></li>
+                <li><a href="contact.html">문의하기</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="section">
+        
+<h2>문의하기</h2>
+<p>궁금하신 점이 있다면 편하게 오픈채팅으로 문의 주세요.<br>최대한 빠르게 답변 드리겠습니다!</p>
+
+<a class="button" href="https://open.kakao.com/o/" target="_blank">오픈채팅 바로가기</a>
+
+    </main>
+    <footer>
+        <p>&copy; 2025 나만의 웹사이트 클래스</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

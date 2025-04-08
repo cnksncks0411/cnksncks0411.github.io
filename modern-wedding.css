@@ -1,0 +1,81 @@
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.hero {
+  background-size: cover;
+  background-position: center;
+  padding: 5rem 1rem;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.hero-text h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-text h2 {
+  font-size: 1.4rem;
+  margin-top: 1.2rem;
+}
+
+section {
+  padding: 2rem 1rem;
+}
+
+.greeting, .info, .gallery {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+h3 {
+  font-size: 1.4rem;
+  color: #b46f6f;
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.button {
+  display: inline-block;
+  background: #b46f6f;
+  color: white;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #a04545;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.footer {
+  background-color: #f8f8f8;
+  padding: 2rem 1rem;
+  font-size: 0.95rem;
+  color: #666;
+}

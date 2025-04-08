@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>홈 - 나만의 웹사이트 클래스</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">나만의 웹사이트</div>
+            <div class="hamburger"><div></div><div></div><div></div></div>
+            <ul class="nav-links">
+                <li><a href="/">홈</a></li>
+                <li><a href="oneday.html">원데이 클래스</a></li>
+                <li><a href="intensive.html">심화 수업</a></li>
+                <li><a href="apply.html">수강 신청</a></li>
+                <li><a href="contact.html">문의하기</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="section">
+        
+<h1>코딩 몰라도 만드는 나만의 웹사이트</h1>
+<p>웹사이트 제작, 아직도 어렵고 복잡하다고 느끼시나요?</p>
+<p><strong>이제는 ChatGPT와 함께 누구나 2시간 안에 나만의 웹페이지를 직접 만들 수 있습니다.</strong></p>
+<p><strong>지금 보시는 이 페이지 역시 그렇게 만들어진 페이지입니다.</strong></p>
+
+<div class="feature-boxes">
+    <div class="feature">
+        <h3>👩‍💻 누구나 쉽게</h3>
+        <p>개발 지식 없이도 따라할 수 있는 직관적인 수업으로 구성했습니다.</p>
+    </div>
+    <div class="feature">
+        <h3>⚡ 최소 2시간 완성</h3>
+        <p>실시간으로 나만의 웹사이트 제작 및 배포까지 완료</p>
+    </div>
+    <div class="feature">
+        <h3>📦 결과물 소유</h3>
+        <p>수업 이후에도 원하는 만큼 웹사이트 수정·확장 가능</p>
+    </div>
+</div>
+
+<h2 style="margin-top: 4rem;">이런 웹페이지를 만들 수 있어요!</h2>
+<div class="sample-pages">
+    <div class="sample-card">
+        <img src="portfolio.png" alt="포트폴리오 예시" />
+        <h3>포트폴리오 페이지</h3>
+        <p>이력서 대신 웹사이트로 나를 소개해 보세요.</p>
+        <a class="button" href="portfolio.html" target="_blank">예시 보기</a>
+    </div>
+    <div class="sample-card">
+        <img src="wedding.png" alt="청첩장 예시" />
+        <h3>셀프 청첩장</h3>
+        <p>디지털로 깔끔하게, 감성 가득한 청첩장 제작!</p>
+        <a class="button" href="wedding.html" target="_blank">예시 보기</a>
+    </div>
+    <div class="sample-card">
+        <img src="brand.png" alt="브랜드 소개 예시" />
+        <h3>브랜드 소개 페이지</h3>
+        <p>작은 브랜드도 멋지게 보여줄 수 있어요.</p>
+        <a class="button" href="brand.html" target="_blank">예시 보기</a>
+    </div>
+    <div class="sample-card">
+        <img src="product.png" alt="상품 소개 예시" />
+        <h3>상품 소개 페이지</h3>
+        <p>제품 특징과 가격을 깔끔하게 정리해 보세요.</p>
+        <a class="button" href="product.html" target="_blank">예시 보기</a>
+    </div>
+    <div class="sample-card">
+        <img src="recipe.png" alt="레시피 모음 예시" />
+        <h3>요리 레시피 모음 페이지</h3>
+        <p>자주 요리하는 레시피를 검색해 보세요.</p>
+        <a class="button" href="https://heetae-jiyun.github.io/cook" target="_blank">예시 보기</a>
+    </div>
+    <div class="sample-card">
+        <img src="event.png" alt="이벤트 홍보보 예시" />
+        <h3>이벤트 홍보 페이지</h3>
+        <p>진행중인 이벤트를 홍보해 보세요.</p>
+        <a class="button" href="event.html" target="_blank">예시 보기</a>
+    </div>
+</div>
+
+    </main>
+    <footer>
+        <p>&copy; 2025 나만의 웹사이트 클래스</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

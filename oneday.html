@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>원데이 클래스 - 나만의 웹사이트 클래스</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">나만의 웹사이트</div>
+            <div class="hamburger"><div></div><div></div><div></div></div>
+            <ul class="nav-links">
+                <li><a href="/">홈</a></li>
+                <li><a href="oneday.html">원데이 클래스</a></li>
+                <li><a href="intensive.html">심화 수업</a></li>
+                <li><a href="apply.html">수강 신청</a></li>
+                <li><a href="contact.html">문의하기</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="section">
+        
+<h2>2시간 원데이 클래스</h2>
+<hr />
+<p>“코딩 1도 몰라도 괜찮습니다!”</p>
+<p>가게 홍보, 포트폴리오, 브랜드 소개 페이지를<br>직접 만들어 세상에 공개해보세요!</p>
+<p>챗GPT 무료 사용자여도 가능합니다<br>물론, 유료 사용자시면 더 좋은 결과물이 나옵니다.</p>
+
+<div class="feature-boxes">
+    <div class="feature">
+        <h3>⏱️ 수업 시간</h3>
+        <p>2시간 집중 실습 수업, 소규모 오프라인 진행</p>
+    </div>
+    <div class="feature">
+        <h3>💡 준비물</h3>
+        <p>노트북 + 크롬 브라우저</p>
+    </div>
+    <div class="feature">
+        <h3>📍 결과물</h3>
+        <p>실시간 배포된 나만의 웹사이트 1개</p>
+    </div>
+    <div class="feature">
+        <h3>👌 비용</h3>
+        <p>일반 가격 : <del>50,000원</del> <strong>30,000원</strong></br>1:1 및 단체 수업 별도 문의 필요
+        </p>
+    </div>
+</div>
+
+<h3 style="margin-top:2rem;">수업 구성</h3>
+<ul>
+    <li>웹사이트가 어떻게 생겼는지 감각적으로 이해</li>
+    <li>ChatGPT로 코드 받아 실제 사이트 화면 확인</li>
+    <li>ChatGPT로 원하는 대로 수정해보고 나만의 무료 서버로 배포!</li>
+</ul>
+
+<a class="applyButton" href="https://forms.gle/" target="_blank">📌 지금 원데이 클래스 수강 신청하기</a>
+
+<h2 style="margin-top: 4rem;">수강생 후기</h2>
+<div class="reviews">
+    <div class="review-card">
+        <p>“여러분들의 후기를 기다리는 중이에요 😊”</p>
+        <span>-</span>
+    </div>
+</div>
+
+    </main>
+    <footer>
+        <p>&copy; 2025 나만의 웹사이트 클래스</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
