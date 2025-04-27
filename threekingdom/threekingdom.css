@@ -1,0 +1,386 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background-color: #f5f5dc;
+    color: #333;
+    overflow-x: hidden;
+}
+
+ul li {
+    margin-left: 20px;
+    list-style: none;
+}
+
+.turnDesc {
+    margin-left: 40px;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #8b0000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.game-board {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.status-area {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e0e0a0;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.game-info {
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: #8b0000;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stage-info {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.player-status {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.active-player {
+    background-color: rgba(255, 255, 150, 0.7);
+    box-shadow: 0 0 10px gold;
+}
+
+.player-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.player-castles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 5px;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.castle {
+    margin: 0 2px;
+}
+
+.castle-count {
+    font-weight: bold;
+    font-size: 16px;
+    color: #8b0000;
+    margin-top: 5px;
+}
+
+.battle-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d0c0a0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.player-hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+.card {
+    width: 80px;
+    height: 120px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+    user-select: none;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card.selected {
+    transform: translateY(-15px);
+    box-shadow: 0 0 0 2px gold, 0 0 10px gold;
+}
+
+.card-number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-type {
+    font-size: 28px;
+    margin-top: 5px;
+}
+
+.battle-cards {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.player-battle-cards, .opponent-battle-cards {
+    display: flex;
+    gap: 5px;
+}
+
+.battle-card {
+    width: 60px;
+    height: 90px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.battle-vs {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 10px;
+    align-self: center;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #a00000;
+}
+
+button:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+.used {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #f5f5dc;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #8b0000;
+    padding: 0;
+    margin: 0;
+}
+
+.result-display {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.combination-display {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.log-area {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.help-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #8b0000;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    display: none;
+    z-index: 10;
+}
+
+.card:hover .tooltip {
+    display: block;
+}
+
+.rules-modal {
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.rules-modal::-webkit-scrollbar {
+    display: none;
+}
+
+.rules-content {
+    text-align: left;
+}
+
+.rules-content h3 {
+    margin-top: 15px;
+    color: #8b0000;
+}
+
+.rules-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.rules-content th, .rules-content td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.rules-content th {
+    background-color: #e0e0a0;
+}
+
+/* 카드 하이라이트 스타일 */
+.highlight-card {
+    border: 2px solid #7cfc00 !important; /* 연두색 테두리 */
+    box-shadow: 0 0 10px rgba(124, 252, 0, 0.5); /* 연두색 그림자 */
+}
+
+/* 총력전 합계 표시 스타일 */
+.total-sum {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffcc00;
+    color: #8b0000;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* 카드 컨테이너에 상대적 위치 지정 */
+.battle-cards-container {
+    position: relative;
+}
+
+#player-battle-cards, #opponent-battle-cards {
+    position: relative;
+}

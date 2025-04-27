@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삼국지 카드 게임</title>
+    <link rel="stylesheet" href="threekingdom.css" />
+    
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="title">삼국지 카드 게임</h1>
+        
+        <div class="game-board">
+            <div class="game-info">
+                <div class="stage-info">스테이지 <span id="current-stage">1</span></div>
+            </div>
+            
+            <div class="status-area">
+                <div class="player-status" id="player1-status">
+                    <div class="player-name">플레이어 1</div>
+                    <div class="player-castles" id="player1-castles"></div>
+                    <div class="castle-count">성: <span id="player1-castles-count">10</span>개</div>
+                    <div class="cards-left">남은 카드: <span id="player1-cards-count">15</span></div>
+                </div>
+                <div class="player-status" id="player2-status">
+                    <div class="player-name">플레이어 2 (AI)</div>
+                    <div class="player-castles" id="player2-castles"></div>
+                    <div class="castle-count">성: <span id="player2-castles-count">10</span>개</div>
+                    <div class="cards-left">남은 카드: <span id="player2-cards-count">15</span></div>
+                </div>
+            </div>
+            
+            <div class="battle-area">
+                <div class="battle-cards">
+                    <div class="player-battle-cards" id="player-battle-cards"></div>
+                    <div class="battle-vs">VS</div>
+                    <div class="opponent-battle-cards" id="opponent-battle-cards"></div>
+                </div>
+                
+                <div class="combination-display" id="combination-display"></div>
+                
+                <div class="controls">
+                    <button id="play-btn" disabled>카드 내기</button>
+                    <button id="pass-btn">패스</button>
+                </div>
+                
+                <div class="log-area" id="log-area">
+                    <div class="log-entry">게임이 시작되었습니다.</div>
+                </div>
+            </div>
+            
+            <div class="modal" id="result-modal">
+                <div class="modal-content">
+                    <h2>결과</h2>
+                    <button class="close-btn" id="close-result-x">&times;</button>
+                    <div class="result-display" id="result-display"></div>
+                    <button id="next-round-btn">다음 라운드</button>
+                </div>
+            </div>
+            
+            <div class="player-hand" id="player-hand"></div>
+        </div>
+    </div>
+    
+    <div class="modal" id="result-modal">
+        <div class="modal-content">
+            <h2>결과</h2>
+            <div class="result-display" id="result-display"></div>
+            <button id="next-round-btn">다음 라운드</button>
+        </div>
+    </div>
+    
+    <div class="modal" id="rules-modal">
+        <div class="modal-content rules-modal">
+            <button class="close-btn" id="close-rules-x">&times;</button>
+            <h2>게임 규칙</h2>
+            <div class="rules-content">
+                <h3>1. 게임 개요</h3>
+                <ul>
+                    <li><strong>플레이어 수</strong>: 2~4인</li>
+                    <li><strong>게임 방식</strong>: 병력 카드를 조합하여 전투를 진행하며, 손패를 먼저 소진하는 플레이어가 승리를 선언</li>
+                    <li><strong>승리 조건</strong>: 전체 성(세력)을 차지한 플레이어가 최종 승리</li>
+                </ul>
+                
+                <h3>2. 구성 요소</h3>
+                <p><strong>병력 카드 (숫자 1~20 + 병과 4종류)</strong></p>
+                <ul>
+                    <li>보병 (⚔️)</li>
+                    <li>기병 (🐎)</li>
+                    <li>궁병 (🏹)</li>
+                    <li>책사 (📜)</li>
+                </ul>
+
+                <h3>3. 조합 방식 (4가지 전투 조합)</h3>
+                <table>
+                    <tr>
+                        <th>조합 유형</th>
+                        <th>설명</th>
+                        <th>승리 조건</th>
+                    </tr>
+                    <tr>
+                        <td><strong>단일 병력</strong></td>
+                        <td>숫자 하나로 단독 공격</td>
+                        <td>숫자가 높은 쪽이 승리<br>숫자가 같으면 책사, 기병, 궁병, 보병 순으로 강함</td>
+                    </tr>
+                    <tr>
+                        <td><strong>확대 병력</strong></td>
+                        <td>같은 병과 2장 조합</td>
+                        <td>2장 중 1장의 숫자가 높은 쪽이 승리<br>숫자가 같으면 책사, 기병, 궁병, 보병 순으로 강함</td>
+                    </tr>
+                    <tr>
+                        <td><strong>진법</strong></td>
+                        <td>서로 다른 병과 3장 조합<br>단, 책사 필수</td>
+                        <td>책사의 숫자가 높은 쪽이 승리</td>
+                    </tr>
+                    <tr>
+                        <td><strong>총력전</strong></td>
+                        <td>서로 다른 병과 4개 조합</td>
+                        <td>총합이 높은 쪽이 승리</td>
+                    </tr>
+                </table>
+                
+                <h3>4. 게임 진행 방법</h3>
+                <p><strong>1) 게임 시작</strong></p>
+                <ul>
+                    <li>각 플레이어는 <strong>초기 성(10개)</strong>를 받고, <strong>병력 카드 15장</strong>을 지급 받음</li>
+                    <li>가장 낮은 숫자의 보병 카드를 가진 플레이어가 선공</li>
+                </ul>
+                
+                <p><strong>2) 턴 진행</strong></p>
+                <ol class="turnDesc">
+                    <li><strong>턴이 오면 4가지 조합 중 하나를 선택하여 공격</strong></li>
+                    <li><strong>이전 플레이어가 낸 같은 유형의 조합만 낼 수 있음</strong></li>
+                    <li><strong>같은 유형 내에서 더 높은 값을 내거나 패스 가능</strong></li>
+                    <li><strong>모든 플레이어가 패스하면 라운드가 종료되고, 마지막에 카드를 낸 플레이어가 다음 라운드의 선</strong></li>
+                    <li><strong>새 라운드에서는 어떤 조합이든 낼 수 있음</strong></li>
+                    <li><strong>한 명이 모든 손패를 소진하면 스테이지 종료</strong></li>
+                </ol>
+
+                <p><strong>3) 스테이지 종료 후 패 재분배</strong></p>
+                <ul>
+                    <li>스테이지가 끝나면 손패를 모두 버림</li>
+                    <li>병력 카드 15장을 다시 뽑음</li>
+                </ul>
+                
+                <h3>5. 승리 조건 및 점수 계산</h3>
+                <p><strong>1) 승전보</strong></p>
+                <ul>
+                    <li>가장 먼저 손패를 소진한 플레이어가 승리를 선언하고 즉시 스테이지 종료</li>
+                </ul>
+                
+                <p><strong>2) 천하통일</strong></p>
+                <ul>
+                    <li>패배한 플레이어의 성 1개를 승리한 플레이어의 성으로 교체</li>
+                    <li>절반 이상의 카드를 사용하지 않은 플레이어의 경우 성 2개를 교체</li>
+                    <li>성의 개수가 0이 된 플레이어는 즉시 탈락</li>
+                    <li>모든 성을 차지한 플레이어가 최종 승리</li>
+                </ul>
+            </div>
+            <button id="close-rules-btn">닫기</button>
+        </div>
+    </div>
+    
+    <div class="help-btn" id="help-btn">?</div>
+</body>
+<script src="threekingdom.js"></script>
+</html>
