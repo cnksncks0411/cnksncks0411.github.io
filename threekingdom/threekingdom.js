@@ -115,69 +115,7 @@ function addAIDifficultyModal() {
     modalContainer.innerHTML = modalHTML;
     document.body.appendChild(modalContainer.firstElementChild);
     
-    // 모달 스타일 추가
-    const styleElement = document.createElement('style');
-    styleElement.textContent = `
-        .difficulty-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .difficulty-btn {
-            padding: 12px 24px;
-            font-size: 16px;
-            background-color: #f0d0a0;
-            border: 2px solid #8b0000;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .difficulty-btn:hover {
-            background-color: #e0c090;
-            transform: translateY(-3px);
-        }
-        
-        .difficulty-btn.selected {
-            background-color: #8b0000;
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
-        }
-        
-        .difficulty-desc {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f8f0e0;
-            border-radius: 5px;
-            text-align: center;
-        }
-        
-        .start-btn {
-            display: block;
-            margin: 20px auto;
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #8b0000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .start-btn:hover {
-            background-color: #a00000;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-    `;
-    document.head.appendChild(styleElement);
-    
     // 버튼 이벤트 리스너 추가
-    console.log("???");
     document.getElementById('easy-btn').addEventListener('click', () => selectDifficulty('쉬움'));
     document.getElementById('normal-btn').addEventListener('click', () => selectDifficulty('보통'));
     document.getElementById('hard-btn').addEventListener('click', () => selectDifficulty('어려움'));
