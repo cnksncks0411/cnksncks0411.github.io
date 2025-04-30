@@ -28,7 +28,8 @@ const gameState = {
     },
     round: 1,
     stage: 1,
-    lastPlayerId: null
+    lastPlayerId: null,
+    aiDifficulty: "보통", // 추가: AI 난이도 (쉬움, 보통, 어려움)
 };
 
 // 병력 카드와 무장 카드 정의
@@ -82,6 +83,620 @@ function initGame() {
     if (gameState.players[gameState.currentPlayerIndex].isAI) {
         setTimeout(playAITurn, 1000);
     }
+}
+
+// AI 난이도 선택 모달 추가 (HTML)
+function addAIDifficultyModal() {
+    // 이미 모달이 존재하는지 확인
+    if (document.getElementById('difficulty-modal')) {
+        return;
+    }
+    
+    const modalHTML = `
+    <div id="difficulty-modal" class="modal">
+        <div class="modal-content">
+            <h2>AI 난이도 선택</h2>
+            <p>게임을 시작하기 전에 AI의 난이도를 선택해주세요.</p>
+            <div class="difficulty-buttons">
+                <button id="easy-btn" class="difficulty-btn">쉬움</button>
+                <button id="normal-btn" class="difficulty-btn selected">보통</button>
+                <button id="hard-btn" class="difficulty-btn">어려움</button>
+            </div>
+            <div class="difficulty-desc" id="difficulty-desc">
+                <p><strong>보통:</strong> 기본적인 전략을 사용하는 AI입니다. 대부분의 플레이어에게 적합합니다.</p>
+            </div>
+            <button id="start-game-btn" class="start-btn">게임 시작</button>
+        </div>
+    </div>
+    `;
+    
+    // 모달 HTML 추가
+    const modalContainer = document.createElement('div');
+    modalContainer.innerHTML = modalHTML;
+    document.body.appendChild(modalContainer.firstElementChild);
+    
+    // 모달 스타일 추가
+    const styleElement = document.createElement('style');
+    styleElement.textContent = `
+        .difficulty-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .difficulty-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #f0d0a0;
+            border: 2px solid #8b0000;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .difficulty-btn:hover {
+            background-color: #e0c090;
+            transform: translateY(-3px);
+        }
+        
+        .difficulty-btn.selected {
+            background-color: #8b0000;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+        
+        .difficulty-desc {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f0e0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .start-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #8b0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .start-btn:hover {
+            background-color: #a00000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    `;
+    document.head.appendChild(styleElement);
+    
+    // 버튼 이벤트 리스너 추가
+    console.log("???");
+    document.getElementById('easy-btn').addEventListener('click', () => selectDifficulty('쉬움'));
+    document.getElementById('normal-btn').addEventListener('click', () => selectDifficulty('보통'));
+    document.getElementById('hard-btn').addEventListener('click', () => selectDifficulty('어려움'));
+    document.getElementById('start-game-btn').addEventListener('click', startGameWithSelectedDifficulty);
+}
+
+// 난이도 선택 함수
+function selectDifficulty(difficulty) {
+    // 버튼 선택 상태 업데이트
+    document.querySelectorAll('.difficulty-btn').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    
+    // 선택한 난이도 버튼 강조
+    let btnId;
+    switch (difficulty) {
+        case '쉬움': btnId = 'easy-btn'; break;
+        case '보통': btnId = 'normal-btn'; break;
+        case '어려움': btnId = 'hard-btn'; break;
+    }
+    document.getElementById(btnId).classList.add('selected');
+    
+    // 난이도 설명 업데이트
+    const descElement = document.getElementById('difficulty-desc');
+    let description = '';
+    
+    switch (difficulty) {
+        case '쉬움':
+            description = '<strong>쉬움:</strong> 초보자에게 적합한 난이도입니다. AI는 기본적인 전략만 사용하고 실수를 자주 합니다.';
+            break;
+        case '보통':
+            description = '<strong>보통:</strong> 기본적인 전략을 사용하는 AI입니다. 대부분의 플레이어에게 적합합니다.';
+            break;
+        case '어려움':
+            description = '<strong>어려움:</strong> 고급 전략을 사용하는 AI입니다. 도전적인 게임을 원하는 플레이어에게 적합합니다.';
+            break;
+    }
+    
+    descElement.innerHTML = `<p>${description}</p>`;
+    
+    // 게임 상태에 난이도 저장
+    gameState.aiDifficulty = difficulty;
+}
+
+// 선택한 난이도로 게임 시작
+function startGameWithSelectedDifficulty() {
+    // 모달 닫기
+    document.getElementById('difficulty-modal').style.display = 'none';
+    
+    // AI 이름 업데이트 (난이도 표시)
+    gameState.players[1].name = `플레이어 2 (AI - ${gameState.aiDifficulty})`;
+    document.getElementById('player2-name').textContent = gameState.players[1].name;
+    
+    // 게임 시작
+    initGame();
+    
+    // 난이도 설정 로그 추가
+    addLogEntry(`AI 난이도가 '${gameState.aiDifficulty}'(으)로 설정되었습니다.`);
+}
+
+// 게임 초기화 전에 난이도 선택 모달 표시
+function showDifficultyModal() {
+    addAIDifficultyModal();
+    document.getElementById('difficulty-modal').style.display = 'flex';
+}
+
+// AI 턴 실행 함수 - 난이도에 따른 로직 추가
+function playAITurn() {
+    // AI가 패스한 경우 처리
+    if (gameState.hasPassedThisRound[2]) {
+        // 이미 AI가 패스한 상태라면 처리 안함
+        return;
+    }
+    
+    // AI 결정 로직
+    let cardsToPay = [];
+    let aiCombination = null;
+    
+    // 이전에 낸 카드가 있으면 그보다 강한 조합을 찾기
+    if (gameState.battleCards.player.length > 0) {
+        const playerCombination = determineCombination(gameState.battleCards.player);
+        
+        // AI 난이도에 따른 로직 조정
+        switch (gameState.aiDifficulty) {
+            case '쉬움':
+                // 쉬움 난이도: 가끔 실수하고 최적이 아닌 선택을 함
+                if (Math.random() < 0.3) { // 30% 확률로 실수
+                    // 랜덤한 패스 또는 최적이 아닌 카드 선택
+                    if (Math.random() < 0.5) {
+                        // 패스
+                        gameState.hasPassedThisRound[2] = true;
+                        addLogEntry('플레이어 2 (AI)가 패스했습니다.');
+                        
+                        if (gameState.battleCards.player.length > 0) {
+                            addLogEntry(`플레이어 1이 라운드에서 승리했습니다.`);
+                            gameState.lastPlayerId = 1;
+                            startNewRound();
+                            return;
+                        }
+                        
+                        gameState.currentPlayerIndex = 0;
+                        updateStatusDisplay();
+                        return;
+                    } else {
+                        // 최적이 아닌 카드 선택 (그냥 첫 번째 카드)
+                        if (gameState.players[1].hand.length > 0) {
+                            cardsToPay = [gameState.players[1].hand[0]];
+                            aiCombination = determineCombination(cardsToPay);
+                        }
+                    }
+                } else {
+                    // 일반적인 선택 (약간 약화된 전략)
+                    cardsToPay = findBestCombination(gameState.players[1].hand, playerCombination, 0.7);
+                }
+                break;
+                
+            case '보통':
+                // 보통 난이도: 기본 로직 사용
+                cardsToPay = findBestCombination(gameState.players[1].hand, playerCombination, 1.0);
+                break;
+                
+            case '어려움':
+                // 어려움 난이도: 최적의 전략과 선제적 판단
+                // 승리 가능성이 높은 카드 조합을 더 공격적으로 선택
+                cardsToPay = findBestCombination(gameState.players[1].hand, playerCombination, 1.2);
+                
+                // 라운드 초반에 더 공격적으로 플레이
+                if (gameState.players[1].hand.length > 10 && cardsToPay.length === 0) {
+                    // 강한 카드를 먼저 내도록 시도
+                    cardsToPay = findStrongestCombination(gameState.players[1].hand, playerCombination.priority);
+                }
+                break;
+        }
+        
+        if (cardsToPay.length > 0) {
+            aiCombination = determineCombination(cardsToPay);
+        } else {
+            // 강한 조합을 찾지 못했으면 패스
+            gameState.hasPassedThisRound[2] = true;
+            addLogEntry('플레이어 2 (AI)가 패스했습니다.');
+            
+            // AI가 패스했으므로 플레이어 승리로 처리
+            if (gameState.battleCards.player.length > 0) {
+                addLogEntry(`플레이어 1이 라운드에서 승리했습니다.`);
+                gameState.lastPlayerId = 1; // 다음 라운드에 플레이어가 선공
+                startNewRound();
+                return;
+            }
+            
+            // 턴 넘기기
+            gameState.currentPlayerIndex = 0;
+            updateStatusDisplay();
+            return;
+        }
+    } else {
+        // 첫 플레이어라면 난이도에 따른 첫 카드 선택
+        switch (gameState.aiDifficulty) {
+            case '쉬움':
+                // 쉬움 난이도: 단순한 조합 선호 (단일 병력/확대 병력 위주)
+                const simpleChoice = Math.random() < 0.7 ? 1 : 2; // 70% 확률로 단일 병력
+                cardsToPay = chooseCardsByType(gameState.players[1].hand, simpleChoice);
+                break;
+                
+            case '보통':
+                // 보통 난이도: 기본 랜덤 선택
+                const randomChoice = Math.floor(Math.random() * 4) + 1;
+                cardsToPay = chooseCardsByType(gameState.players[1].hand, randomChoice);
+                break;
+                
+            case '어려움':
+                // 어려움 난이도: 강한 조합 선호 (진법/총력전 위주)
+                const advancedChoice = Math.random() < 0.6 ? 
+                    (Math.random() < 0.5 ? 3 : 4) : // 60% 확률로 진법 또는 총력전
+                    (Math.random() < 0.5 ? 1 : 2);  // 40% 확률로 단일 또는 확대 병력
+                cardsToPay = chooseCardsByType(gameState.players[1].hand, advancedChoice);
+                break;
+        }
+        
+        aiCombination = determineCombination(cardsToPay);
+        
+        // 유효한 조합이 아니면 단일 병력 사용
+        if (!aiCombination) {
+            cardsToPay = [gameState.players[1].hand[0]];
+            aiCombination = determineCombination(cardsToPay);
+        }
+    }
+
+    // AI 카드 내기
+    gameState.battleCards.opponent = cardsToPay;
+    
+    // AI 손에서 카드 제거
+    cardsToPay.forEach(card => {
+        const index = gameState.players[1].hand.findIndex(c => 
+            c.type === card.type && c.number === card.number);
+        if (index !== -1) {
+            gameState.players[1].hand.splice(index, 1);
+        }
+    });
+    
+    addLogEntry(`플레이어 2 (AI)가 ${aiCombination.name} 조합을 냈습니다.`);
+    document.getElementById('player2-cards-count').textContent = gameState.players[1].hand.length;
+    
+    // 전투 카드 렌더링
+    renderBattleCards();
+    
+    // 마지막 플레이어 업데이트
+    gameState.lastPlayerId = 2;
+    
+    // AI의 카드가 없으면 라운드 종료
+    if (gameState.players[1].hand.length === 0) {
+        endRound(1);
+        return;
+    }
+    
+    // 턴 넘기기
+    gameState.currentPlayerIndex = 0;
+    updateStatusDisplay();
+}
+
+// 타입에 따른 카드 선택 함수
+function chooseCardsByType(hand, type) {
+    let cardsToPay = [];
+    
+    switch (type) {
+        case 1: // 단일 병력
+            cardsToPay = [hand[0]];
+            break;
+            
+        case 2: // 확대 병력
+            // 같은 병과 카드 찾기
+            const typeCount = [0, 0, 0, 0];
+            hand.forEach(card => typeCount[card.type]++);
+            
+            for (let i = 0; i < 4; i++) {
+                if (typeCount[i] >= 2) {
+                    const sameTypeCards = hand.filter(card => card.type === i);
+                    cardsToPay = sameTypeCards.slice(0, 2);
+                    break;
+                }
+            }
+            
+            if (cardsToPay.length !== 2) {
+                cardsToPay = [hand[0]]; // 단일 병력으로 대체
+            }
+            break;
+            
+        case 3: // 진법
+            // 책사 찾기
+            const scholars = hand.filter(card => card.type === 0);
+            
+            if (scholars.length > 0) {
+                const differentTypes = new Set();
+                
+                // 책사 추가
+                cardsToPay.push(scholars[0]);
+                differentTypes.add(0);
+                
+                // 다른 병과 2개 찾기
+                for (const card of hand) {
+                    if (card.type !== 0 && !differentTypes.has(card.type) && !cardsToPay.includes(card)) {
+                        cardsToPay.push(card);
+                        differentTypes.add(card.type);
+                        
+                        if (differentTypes.size === 3) break;
+                    }
+                }
+                
+                if (differentTypes.size !== 3) {
+                    cardsToPay = [hand[0]]; // 단일 병력으로 대체
+                }
+            } else {
+                cardsToPay = [hand[0]]; // 단일 병력으로 대체
+            }
+            break;
+            
+        case 4: // 총력전
+            // 4가지 병과 모두 찾기
+            const types = new Set();
+            
+            for (const card of hand) {
+                if (!types.has(card.type) && !cardsToPay.includes(card)) {
+                    cardsToPay.push(card);
+                    types.add(card.type);
+                    
+                    if (types.size === 4) break;
+                }
+            }
+            
+            if (types.size !== 4) {
+                cardsToPay = [hand[0]]; // 단일 병력으로 대체
+            }
+            break;
+    }
+    
+    return cardsToPay;
+}
+
+// 난이도에 따른 최적 조합 찾기 함수 수정
+function findBestCombination(hand, enemyCombination, difficultyFactor = 1.0) {
+    if (!enemyCombination) return [hand[0]]; // 적 조합이 없으면 첫 번째 카드 반환
+    
+    // 가능한 모든 조합 생성 및 적 조합보다 강한지 확인
+    const possibleCombinations = [];
+    
+    // 적과 같은 유형의 조합만 가능
+    const requiredPriority = enemyCombination.priority;
+    
+    // 단일 병력
+    if (requiredPriority === 1) {
+        hand.forEach(card => {
+            const combination = {
+                cards: [card],
+                combo: determineCombination([card])
+            };
+            
+            if (combination.combo && (combination.combo.value > enemyCombination.value || 
+                (combination.combo.value === enemyCombination.value && combination.combo.type < enemyCombination.type))) {
+                possibleCombinations.push(combination);
+            }
+        });
+    }
+    
+    // 확대 병력
+    else if (requiredPriority === 2) {
+        for (let i = 0; i < hand.length; i++) {
+            for (let j = i + 1; j < hand.length; j++) {
+                if (hand[i].type === hand[j].type) {
+                    const cards = [hand[i], hand[j]];
+                    const combo = determineCombination(cards);
+                    
+                    if (combo && (combo.value > enemyCombination.value || 
+                        (combo.value === enemyCombination.value && combo.type < enemyCombination.type))) {
+                        possibleCombinations.push({ cards, combo });
+                    }
+                }
+            }
+        }
+    }
+    
+    // 진법
+    else if (requiredPriority === 3) {
+        for (let i = 0; i < hand.length; i++) {
+            for (let j = i + 1; j < hand.length; j++) {
+                for (let k = j + 1; k < hand.length; k++) {
+                    const cards = [hand[i], hand[j], hand[k]];
+                    const combo = determineCombination(cards);
+                    
+                    if (combo && combo.priority === 3 && (combo.value > enemyCombination.value || 
+                        (combo.value === enemyCombination.value && combo.type < enemyCombination.type))) {
+                        possibleCombinations.push({ cards, combo });
+                    }
+                }
+            }
+        }
+    }
+    
+    // 총력전
+    else if (requiredPriority === 4) {
+        for (let i = 0; i < hand.length; i++) {
+            for (let j = i + 1; j < hand.length; j++) {
+                for (let k = j + 1; k < hand.length; k++) {
+                    for (let l = k + 1; l < hand.length; l++) {
+                        const cards = [hand[i], hand[j], hand[k], hand[l]];
+                        const combo = determineCombination(cards);
+                        
+                        if (combo && combo.priority === 4 && combo.value > enemyCombination.value) {
+                            possibleCombinations.push({ cards, combo });
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // 최적의 조합 선택 (강한 조합을 찾은 경우)
+    if (possibleCombinations.length > 0) {
+        // 난이도에 따른 선택 방식
+        if (gameState.aiDifficulty === '쉬움') {
+            // 쉬움: 랜덤하게 선택 (최적이 아닐 수 있음)
+            const randomIndex = Math.floor(Math.random() * possibleCombinations.length);
+            return possibleCombinations[randomIndex].cards;
+        } else {
+            // 조합 강도에 따라 정렬
+            possibleCombinations.sort((a, b) => {
+                // 어려움: 우선순위가 높은 조합 선호
+                if (gameState.aiDifficulty === '어려움') {
+                    if (a.combo.priority !== b.combo.priority) {
+                        return b.combo.priority - a.combo.priority; // 높은 우선순위 선호
+                    }
+                } else {
+                    // 보통: 우선순위가 낮은 조합 선호
+                    if (a.combo.priority !== b.combo.priority) {
+                        return a.combo.priority - b.combo.priority;
+                    }
+                }
+                
+                // 같은 우선순위면 값이 작은 것을 선호 (자원 절약)
+                // 단, 어려움 난이도에서는 적보다 훨씬 높은 값을 낼 확률이 높음
+                const diffFactor = gameState.aiDifficulty === '어려움' ? 
+                    a.combo.value - enemyCombination.value : 
+                    enemyCombination.value - a.combo.value;
+                
+                return diffFactor * difficultyFactor;
+            });
+            
+            // 최적의 조합 선택
+            return possibleCombinations[0].cards;
+        }
+    }
+    
+    return []; // 적합한 조합이 없으면 빈 배열 반환 (패스)
+}
+
+// 어려움 난이도용: 가장 강한 조합 찾기
+function findStrongestCombination(hand, priorityType) {
+    const possibleCombinations = [];
+    
+    // 진법 조합 찾기 (priorityType이 3이면)
+    if (priorityType === 3) {
+        // 책사 찾기
+        const scholars = hand.filter(card => card.type === 0);
+        
+        if (scholars.length > 0) {
+            // 가장 높은 값의 책사 찾기
+            scholars.sort((a, b) => b.number - a.number);
+            const bestScholar = scholars[0];
+            
+            // 다른 타입 카드 찾기
+            const otherTypes = new Set();
+            const selectedCards = [bestScholar];
+            otherTypes.add(0); // 책사 타입 추가
+            
+            // 높은 값의 다른 타입 카드 찾기
+            const remainingCards = hand.filter(card => card.type !== 0)
+                .sort((a, b) => b.number - a.number);
+            
+            for (const card of remainingCards) {
+                if (!otherTypes.has(card.type)) {
+                    selectedCards.push(card);
+                    otherTypes.add(card.type);
+                    
+                    if (otherTypes.size === 3) break;
+                }
+            }
+            
+            if (otherTypes.size === 3) {
+                return selectedCards;
+            }
+        }
+    }
+    // 총력전 조합 찾기 (priorityType이 4이면)
+    else if (priorityType === 4) {
+        const typesAvailable = new Set(hand.map(card => card.type));
+        
+        if (typesAvailable.size === 4) {
+            // 각 타입별 최고 카드 찾기
+            const bestByType = {};
+            
+            for (const card of hand) {
+                if (!bestByType[card.type] || card.number > bestByType[card.type].number) {
+                    bestByType[card.type] = card;
+                }
+            }
+            
+            return Object.values(bestByType);
+        }
+    }
+    // 확대 병력 조합 찾기 (priorityType이 2이면)
+    else if (priorityType === 2) {
+        // 타입별 카드 수 확인
+        const typeCount = {};
+        hand.forEach(card => {
+            typeCount[card.type] = (typeCount[card.type] || 0) + 1;
+        });
+        
+        // 개수가 2개 이상인 타입 중 가장 높은 값 찾기
+        let bestType = null;
+        let bestMax = 0;
+        
+        for (const type in typeCount) {
+            if (typeCount[type] >= 2) {
+                // 해당 타입의 카드 중 가장 높은 값 찾기
+                const sameTypeCards = hand.filter(card => card.type === parseInt(type));
+                const maxVal = Math.max(...sameTypeCards.map(card => card.number));
+                
+                if (maxVal > bestMax) {
+                    bestMax = maxVal;
+                    bestType = parseInt(type);
+                }
+            }
+        }
+        
+        if (bestType !== null) {
+            // 해당 타입의 가장 높은 값 2개 선택
+            const sameTypeCards = hand.filter(card => card.type === bestType)
+                .sort((a, b) => b.number - a.number);
+            return sameTypeCards.slice(0, 2);
+        }
+    }
+    // 단일 병력 조합 찾기 (priorityType이 1이면)
+    else if (priorityType === 1) {
+        // 가장 높은 값의 카드 찾기
+        const highestCard = [...hand].sort((a, b) => {
+            if (b.number !== a.number) {
+                return b.number - a.number;
+            }
+            // 같은 값이면 타입이 낮은 것 선호 (책사, 기병, 궁병, 보병 순)
+            return a.type - b.type;
+        })[0];
+        
+        return [highestCard];
+    }
+    
+    // 적합한 조합을 찾지 못하면 단일 병력 반환
+    if (hand.length > 0) {
+        return [hand[0]];
+    }
+    
+    return []; // 카드가 없으면 빈 배열 반환
 }
 
 // 카드 하이라이트 스타일 추가 함수
@@ -1112,4 +1727,4 @@ document.getElementById('close-result-x').addEventListener('click', function() {
 });
 
 // 게임 시작
-window.onload = initGame;
+window.onload = showDifficultyModal;
