@@ -1,0 +1,31 @@
+.flex-container {
+    /* 1. flex-start (기본값) */
+    justify-content: flex-start;
+    /* 결과: [아이템1][아이템2][아이템3]                    남은공간 */
+    /* 모든 아이템이 시작점에 붙어서 배치 */
+
+    /* 2. flex-end */
+    justify-content: flex-end;
+    /* 결과:                    남은공간 [아이템1][아이템2][아이템3] */
+    /* 모든 아이템이 끝점에 붙어서 배치 */
+
+    /* 3. center */
+    justify-content: center;
+    /* 결과:           남은공간 [아이템1][아이템2][아이템3] 남은공간 */
+    /* 모든 아이템이 가운데 배치 */
+
+    /* 4. space-between */
+    justify-content: space-between;
+    /* 결과: [아이템1]    균등간격    [아이템2]    균등간격    [아이템3] */
+    /* 첫 번째와 마지막 아이템은 양 끝에, 나머지는 균등 간격 */
+
+    /* 5. space-around */
+    justify-content: space-around;
+    /* 결과: 간격 [아이템1] 간격×2 [아이템2] 간격×2 [아이템3] 간격 */
+    /* 각 아이템 주위에 동일한 간격 (끝 간격은 반) */
+
+    /* 6. space-evenly */
+    justify-content: space-evenly;
+    /* 결과: 간격 [아이템1] 간격 [아이템2] 간격 [아이템3] 간격 */
+    /* 모든 간격이 완전히 동일 */
+}

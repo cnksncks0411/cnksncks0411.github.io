@@ -1,0 +1,28 @@
+/* 전통적인 float 레이아웃 */
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.sidebar {
+    float: left;
+    width: 25%;
+    background: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-content {
+    float: left;
+    width: 75%;
+    background: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 문제점들 */
+/* 1. 높이 맞추기 어려움 */
+/* 2. 수직 가운데 정렬 불가능 */
+/* 3. clearfix 같은 해킹 필요 */
+/* 4. 반응형 구현 복잡함 */

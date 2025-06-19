@@ -1,0 +1,94 @@
+/* em 단위 */
+
+/* em은 현재 요소의 font-size 기준 */
+.parent {
+    font-size: 16px;
+}
+
+.child {
+    font-size: 1.5em;    /* 16px × 1.5 = 24px */
+    padding: 1em;        /* 24px × 1 = 24px (자신의 font-size 기준!) */
+    margin: 0.5em;       /* 24px × 0.5 = 12px */
+}
+
+/* em의 문제점: 중첩 시 복합 계산 */
+.level1 { font-size: 1.2em; }    /* 16px × 1.2 = 19.2px */
+.level2 { font-size: 1.2em; }    /* 19.2px × 1.2 = 23.04px */
+.level3 { font-size: 1.2em; }    /* 23.04px × 1.2 = 27.65px */
+
+
+/* rem 단위 (권장) */
+
+/* rem은 루트 요소(html)의 font-size 기준 */
+html {
+    font-size: 16px;     /* 기본값, 브라우저 설정에 따라 달라질 수 있음 */
+}
+
+.element1 {
+    font-size: 1.5rem;   /* 16px × 1.5 = 24px */
+    padding: 1rem;       /* 16px × 1 = 16px */
+    margin: 2rem;        /* 16px × 2 = 32px */
+}
+
+.nested-element {
+    font-size: 1.5rem;   /* 여전히 16px × 1.5 = 24px (중첩 무관!) */
+}
+
+/* rem의 장점: 일관된 계산, 중첩 영향 없음 */
+
+
+/* vw, vh 단위 */
+
+/* 뷰포트 기준 단위 */
+.fullscreen {
+    width: 100vw;        /* 뷰포트 너비의 100% */
+    height: 100vh;       /* 뷰포트 높이의 100% */
+}
+
+.responsive-text {
+    font-size: 4vw;      /* 뷰포트 너비의 4% */
+    /* 320px 화면: 12.8px, 1200px 화면: 48px */
+}
+
+/* 주의사항: 스크롤바 때문에 100vw > 100% 될 수 있음 */
+.safe-width {
+    width: 100%;         /* 스크롤바 고려한 안전한 방법 */
+    max-width: 100vw;
+}
+
+
+/* 퍼센트(%) 단위 */
+
+/* 부모 요소 기준 상대 크기 */
+.parent {
+    width: 800px;
+    height: 600px;
+}
+
+.child {
+    width: 50%;          /* 부모 width의 50% = 400px */
+    height: 30%;         /* 부모 height의 30% = 180px */
+    
+    /* 주의: padding/margin의 % 는 항상 부모의 width 기준! */
+    padding: 10%;        /* 부모 width의 10% = 80px (height 아님!) */
+    margin: 5%;          /* 부모 width의 5% = 40px */
+}
+
+
+/* calc() 함수 활용 */
+
+/* 서로 다른 단위 조합 */
+.mixed-unit {
+    width: calc(100% - 40px);           /* 부모 너비에서 40px 뺀 크기 */
+    height: calc(100vh - 60px);         /* 뷰포트 높이에서 60px 뺀 크기 */
+    font-size: calc(1rem + 2vw);        /* 고정 크기 + 반응형 크기 */
+    margin: calc(50% - 200px) auto;     /* 정확한 가운데 정렬 */
+}
+
+/* 반응형 폰트 크기 (최소/최대 제한) */
+.responsive-heading {
+    font-size: calc(1.5rem + 1.5vw);
+    font-size: clamp(1.2rem, calc(1.5rem + 1.5vw), 3rem);
+    /* 최소 1.2rem, 최대 3rem, 기본은 계산값 */
+}
+

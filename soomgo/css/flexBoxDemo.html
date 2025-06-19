@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox 실습</title>
+    <style>
+        .flex-container {
+            display: flex;
+            height: 200px;
+            background: #f0f0f0;
+            border: 2px solid #333;
+            margin: 20px 0;
+            padding: 10px;
+            
+            /* 이 값들을 실시간으로 변경하며 설명 */
+            justify-content: flex-start;
+            align-items: stretch;
+            flex-wrap: nowrap;
+            gap: 10px;
+        }
+        
+        .flex-item {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            min-width: 100px;
+            
+            /* 이 값들도 실시간으로 변경하며 설명 */
+            flex: 0 1 auto;
+        }
+        
+        .item1 { background: #FF6B6B; }
+        .item2 { background: #4ECDC4; }
+        .item3 { background: #45B7D1; }
+        
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Flexbox 실습</h2>
+    
+    <div class="flex-container">
+        <div class="flex-item item1">아이템 1</div>
+        <div class="flex-item item2">아이템 2<br>더 많은 콘텐츠</div>
+        <div class="flex-item item3">아이템 3</div>
+    </div>
+    
+    <p>개발자 도구로 justify-content, align-items, flex 속성을 바꿔보세요!</p>
+</body>
+</html>

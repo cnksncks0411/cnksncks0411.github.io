@@ -1,0 +1,31 @@
+.flex-container {
+    display: flex;              /* 또는 inline-flex */
+    
+    /* 주축 방향 설정 */
+    flex-direction: row;        /* 기본값: 왼쪽→오른쪽 */
+    /* flex-direction: row-reverse;     오른쪽→왼쪽 */
+    /* flex-direction: column;          위→아래 */
+    /* flex-direction: column-reverse;  아래→위 */
+    
+    /* 줄바꿈 설정 */
+    flex-wrap: nowrap;          /* 기본값: 줄바꿈 안함 */
+    /* flex-wrap: wrap;                줄바꿈 허용 */
+    /* flex-wrap: wrap-reverse;        역순 줄바꿈 */
+    
+    /* 단축 속성 */
+    flex-flow: row wrap;        /* direction + wrap */
+    
+    /* 주축 정렬 */
+    justify-content: flex-start; /* 기본값 */
+    
+    /* 교차축 정렬 (한 줄) */
+    align-items: stretch;       /* 기본값 */
+    
+    /* 교차축 정렬 (여러 줄) */
+    align-content: stretch;     /* 기본값 */
+    
+    /* 아이템 간격 */
+    gap: 20px;                  /* row-gap + column-gap */
+    row-gap: 10px;              /* 행 간격 */
+    column-gap: 15px;           /* 열 간격 */
+}

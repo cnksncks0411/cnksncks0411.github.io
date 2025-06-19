@@ -1,0 +1,35 @@
+.flex-item {
+    /* 성장 비율 (남은 공간 차지) */
+    flex-grow: 0;               /* 기본값: 성장 안함 */
+    /* flex-grow: 1;              다른 아이템과 동일 비율로 성장 */
+    /* flex-grow: 2;              다른 아이템의 2배로 성장 */
+    
+    /* 축소 비율 (공간 부족시) */
+    flex-shrink: 1;             /* 기본값: 축소 허용 */
+    /* flex-shrink: 0;            축소 금지 */
+    /* flex-shrink: 2;            다른 아이템보다 2배 빠르게 축소 */
+    
+    /* 기본 크기 */
+    flex-basis: auto;           /* 기본값: 콘텐츠 크기 */
+    /* flex-basis: 200px;         고정 크기 */
+    /* flex-basis: 30%;           비율 크기 */
+    /* flex-basis: 0;             콘텐츠 크기 무시 */
+    
+    /* 단축 속성 */
+    flex: 0 1 auto;             /* grow shrink basis */
+    /* flex: 1;                   1 1 0과 동일 */
+    /* flex: auto;                1 1 auto와 동일 */
+    /* flex: none;                0 0 auto와 동일 */
+    
+    /* 개별 교차축 정렬 */
+    align-self: auto;           /* 기본값: 컨테이너 따름 */
+    /* align-self: flex-start;    위쪽 정렬 */
+    /* align-self: center;        가운데 정렬 */
+    /* align-self: flex-end;      아래쪽 정렬 */
+    /* align-self: stretch;       늘려서 채우기 */
+    
+    /* 시각적 순서 변경 */
+    order: 0;                   /* 기본값: HTML 순서 */
+    /* order: -1;                 앞으로 이동 */
+    /* order: 1;                  뒤로 이동 */
+}
