@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌧️ 불금 번개 모임 초대장 ⚡</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* 비 내리는 애니메이션 */
+        .rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .drop {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            width: 2px;
+            height: 20px;
+            border-radius: 1px;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        /* 번개 애니메이션 */
+        .lightning {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            animation: flash 2s infinite;
+            z-index: 10;
+        }
+        
+        @keyframes flash {
+            0%, 90%, 100% { opacity: 0; }
+            5%, 85% { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .invitation-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            animation: bounce 0.8s ease-out;
+        }
+        
+        @keyframes bounce {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            60% {
+                transform: translateY(10px);
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        .date-badge {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .weather-info {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .rain-emoji {
+            font-size: 1.5rem;
+            animation: wiggle 1s ease-in-out infinite alternate;
+        }
+        
+        @keyframes wiggle {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+        
+        .details {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .plan-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .plan-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .plan-card:nth-child(2) {
+            transform: rotate(2deg);
+        }
+        
+        .plan-card:nth-child(3) {
+            transform: rotate(-1deg);
+        }
+        
+        .plan-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .plan-emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .plan-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .plan-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+        }
+        
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .footer {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .invitation-card {
+                padding: 30px 20px;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .plan-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 비 내리는 효과 -->
+    <div class="rain" id="rain"></div>
+    
+    <!-- 번개 이모지 -->
+    <div class="lightning">⚡</div>
+    
+    <!-- 떠다니는 하트 -->
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="invitation-card">
+            <div class="header">
+                <div class="date-badge">2025년 06월 20일 (금)</div>
+                <h1 class="title">🎉 불금 번개 모임 🎉</h1>
+                <p class="subtitle">비 오는 불금, 함께 즐겨요!</p>
+            </div>
+            
+            <div class="weather-info">
+                <span class="rain-emoji">🌧️</span>
+                <span>오늘은 비가 와도 우리의 텐션은 UP! ⬆️</span>
+                <span class="rain-emoji">☔</span>
+            </div>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <span class="icon">📍</span>
+                    <span><strong>만나는 곳:</strong> 안양역</span>
+                </div>
+                <div class="detail-item">
+                    <span class="icon">⏰</span>
+                    <span><strong>시간:</strong> 오후 8시 30분</span>
+                </div>
+                <div class="detail-item">
+                    <span class="icon">👥</span>
+                    <span><strong>분위기:</strong> 에너지 넘치고 재밌게!</span>
+                </div>
+            </div>
+            
+            <div class="plan-cards">
+                <div class="plan-card" onclick="window.open('https://map.naver.com/p/search/%EC%95%88%EC%96%91%EC%97%AD%20%EC%B9%98%ED%82%A8/place/1174338462?placePath=/home?entry=pll&from=map&fromNxList=true&fromPanelNum=2&timestamp=202506201616&locale=ko&svcName=map_pcv5&searchText=%EC%95%88%EC%96%91%EC%97%AD%20%EC%B9%98%ED%82%A8', '_blank')">
+                    <span class="plan-emoji">🍗</span>
+                    <div class="plan-title">1차 - 치킨</div>
+                    <div class="plan-desc">바삭바삭 맛있는 치킨으로 시작!</div>
+                </div>
+                <div class="plan-card">
+                    <span class="plan-emoji">🎪</span>
+                    <div class="plan-title">2차 - 인형뽑기</div>
+                    <div class="plan-desc">귀여운 인형들을 겟하자!</div>
+                </div>
+                <div class="plan-card">
+                    <span class="plan-emoji">🎮</span>
+                    <div class="plan-title">기타 등등</div>
+                    <div class="plan-desc">재밌는 놀거리가 가득!</div>
+                </div>
+            </div>
+            
+            <button class="cta-button" onclick="handleJoin()">
+                🚀 참여할래요! 🚀
+            </button>
+            
+            <div class="footer">
+                <p>💜 비 와도 즐거운 불금 되세요! 💜</p>
+                <p>우산 챙기는 거 잊지 마세요~ ☂️</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 비 내리는 효과
+        function createRain() {
+            const rainContainer = document.getElementById('rain');
+            const dropCount = 50;
+            
+            for (let i = 0; i < dropCount; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                rainContainer.appendChild(drop);
+            }
+        }
+        
+        // 떠다니는 하트 효과
+        function createFloatingHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 3000);
+        }
+        
+        // 참여 버튼 클릭 이벤트
+        function handleJoin() {
+            alert('🎉 참여 의사를 표현해주셔서 감사해요! 🎉\n\n더 자세한 정보는 단톡방이나 개별 연락으로 안내드릴게요!\n\n비 오는 불금이지만 함께 즐거운 시간 보내요! 💜');
+        }
+        
+        // 페이지 로드 시 효과 시작
+        document.addEventListener('DOMContentLoaded', function() {
+            createRain();
+            createFloatingHearts();
+        });
+        
+        // 카드 호버 효과음 (선택사항)
+        document.querySelectorAll('.plan-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.animationDuration = '0.5s';
+                this.style.animationName = 'bounce';
+            });
+        });
+    </script>
+</body>
+</html>
