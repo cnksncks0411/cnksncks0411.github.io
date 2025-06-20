@@ -1,0 +1,93 @@
+/* 1. 데스크탑 스타일 먼저 작성 (기본) */
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+
+.sidebar {
+    background: #f0f0f0;
+    padding: 30px;
+}
+
+.main-content {
+    padding: 30px;
+}
+
+/* 2. 작은 화면으로 내려가며 수정 */
+@media (max-width: 1240px) {
+    .container {
+        width: 95%;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .sidebar,
+    .main-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar,
+    .main-content {
+        padding: 15px;
+    }
+}
+
+/* ################################################## */
+
+/* 1. 모바일 스타일 먼저 작성 (기본) */
+.container {
+    width: 95%;
+    margin: 0 auto;
+    display: block;
+}
+
+.sidebar,
+.main-content {
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.sidebar {
+    background: #f0f0f0;
+}
+
+/* 2. 큰 화면으로 올라가며 개선 */
+@media (min-width: 481px) {
+    .sidebar,
+    .main-content {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 769px) {
+    .container {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 20px;
+    }
+    
+    .sidebar,
+    .main-content {
+        margin-bottom: 0;
+        padding: 30px;
+    }
+}
+
+@media (min-width: 1241px) {
+    .container {
+        width: 1200px;
+        gap: 30px;
+    }
+}
