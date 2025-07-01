@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM 조작 및 이벤트 처리 실습</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .demo-area {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            min-height: 100px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #28a745, #218838);
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #ffc107, #e0a800);
+            color: black;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 5px 0;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .highlight {
+            background-color: yellow !important;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .active {
+            color: #28a745 !important;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .success {
+            color: #28a745;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #667eea;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.1);
+        }
+
+        .item-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .item-list li {
+            background: #f8f9fa;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .stats {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .code-display {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .mouse-tracker {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .form-section {
+            border: 2px solid #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 DOM 조작 및 이벤트 처리 실습</h1>
+
+        <!-- 섹션 1: DOM 요소 선택 및 조작 -->
+        <div class="section">
+            <h2>1. DOM 요소 선택 및 조작</h2>
+            <div class="demo-area">
+                <h3 id="demo-title">원본 제목입니다</h3>
+                <p class="demo-content">이것은 원본 내용입니다.</p>
+                <p class="demo-content">이것은 두 번째 문단입니다.</p>
+                <img id="demo-image" src="https://via.placeholder.com/150x100/667eea/white?text=원본" alt="데모 이미지" style="border-radius: 8px;">
+            </div>
+            
+            <button class="btn" onclick="changeTitle()">제목 변경</button>
+            <button class="btn" onclick="changeContent()">내용 변경</button>
+            <button class="btn" onclick="changeImage()">이미지 변경</button>
+            <button class="btn" onclick="addHighlight()">하이라이트 추가</button>
+            <button class="btn" onclick="removeHighlight()">하이라이트 제거</button>
+            
+            <div class="code-display">
+// 실행된 코드:
+<span id="code-output-1">아직 실행된 코드가 없습니다.</span>
+            </div>
+        </div>
+
+        <!-- 섹션 2: 스타일 조작 -->
+        <div class="section">
+            <h2>2. CSS 스타일 조작</h2>
+            <div class="demo-area">
+                <div class="box" id="style-box"></div>
+                <div class="stats" id="box-stats">
+                    현재 색상: <span id="current-color">기본색</span><br>
+                    현재 크기: <span id="current-size">100px</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-danger" onclick="changeColor('red')">빨간색</button>
+            <button class="btn btn-success" onclick="changeColor('green')">초록색</button>
+            <button class="btn" onclick="changeColor('blue')">파란색</button>
+            <button class="btn btn-warning" onclick="changeSize()">크기 변경</button>
+            <button class="btn" onclick="resetBox()">초기화</button>
+            
+            <div class="code-display">
+// 실행된 코드:
+<span id="code-output-2">아직 실행된 코드가 없습니다.</span>
+            </div>
+        </div>
+
+        <!-- 섹션 3: 요소 생성 및 삭제 -->
+        <div class="section">
+            <h2>3. 요소 생성 및 삭제</h2>
+            <div class="demo-area">
+                <input type="text" id="new-item-input" placeholder="새 항목을 입력하세요...">
+                <button class="btn" onclick="addNewItem()">항목 추가</button>
+                <button class="btn btn-danger" onclick="clearAllItems()">모두 삭제</button>
+                
+                <ul class="item-list" id="dynamic-list">
+                    <li>기본 항목 1 <button class="delete-btn" onclick="deleteItem(this)">삭제</button></li>
+                    <li>기본 항목 2 <button class="delete-btn" onclick="deleteItem(this)">삭제</button></li>
+                </ul>
+                
+                <div class="stats">
+                    총 항목 수: <span id="item-count">2</span>개
+                </div>
+            </div>
+            
+            <div class="code-display">
+// 실행된 코드:
+<span id="code-output-3">아직 실행된 코드가 없습니다.</span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- 섹션 4: 마우스 이벤트 -->
+            <div class="section">
+                <h2>4. 마우스 이벤트</h2>
+                <div class="demo-area">
+                    <div class="box" id="mouse-box" style="margin: 20px auto; display: block;"></div>
+                    <div class="mouse-tracker">
+                        <div>마우스 위치: <span id="mouse-position">X: 0, Y: 0</span></div>
+                        <div>마지막 이벤트: <span id="last-event">없음</span></div>
+                        <div>클릭 횟수: <span id="click-count">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="code-display">
+// 마우스 이벤트 리스너가 활성화되어 있습니다
+// 위의 박스에 마우스를 올려보세요!
+                </div>
+            </div>
+
+            <!-- 섹션 5: 키보드 이벤트 -->
+            <div class="section">
+                <h2>5. 키보드 이벤트</h2>
+                <div class="demo-area">
+                    <input type="text" id="keyboard-input" placeholder="여기에 타이핑해보세요...">
+                    <div id="key-info" style="margin-top: 10px; padding: 10px; background: #e9ecef; border-radius: 5px;">
+                        <div>입력된 키: <span id="pressed-key">없음</span></div>
+                        <div>입력된 텍스트: <span id="input-text">없음</span></div>
+                        <div>텍스트 길이: <span id="text-length">0</span>자</div>
+                    </div>
+                </div>
+                
+                <div class="code-display">
+// 키보드 이벤트 리스너가 활성화되어 있습니다
+// 위의 입력창에 타이핑해보세요!
+                </div>
+            </div>
+        </div>
+
+        <!-- 섹션 6: 폼 이벤트와 유효성 검사 -->
+        <div class="section">
+            <h2>6. 폼 이벤트와 유효성 검사</h2>
+            <div class="demo-area">
+                <form id="demo-form" class="form-section">
+                    <h4>회원가입 폼</h4>
+                    
+                    <input type="text" id="username" placeholder="사용자명 (3글자 이상)">
+                    <div id="username-error" class="error"></div>
+                    
+                    <input type="email" id="email" placeholder="이메일 주소">
+                    <div id="email-error" class="error"></div>
+                    
+                    <input type="password" id="password" placeholder="비밀번호 (6글자 이상)">
+                    <div id="password-error" class="error"></div>
+                    <div id="password-strength"></div>
+                    
+                    <button type="submit" class="btn">가입하기</button>
+                </form>
+                
+                <div id="form-result" style="margin-top: 15px;"></div>
+            </div>
+            
+            <div class="code-display">
+// 폼 유효성 검사가 실시간으로 작동합니다
+// 각 필드에 입력해보세요!
+            </div>
+        </div>
+
+        <!-- 섹션 7: 이벤트 위임 -->
+        <div class="section">
+            <h2>7. 이벤트 위임 (Event Delegation)</h2>
+            <div class="demo-area">
+                <button class="btn" onclick="addColorBox()">새 색상 박스 추가</button>
+                <button class="btn btn-danger" onclick="clearColorBoxes()">모든 박스 삭제</button>
+                
+                <div id="color-container" style="margin-top: 15px; min-height: 100px; border: 2px dashed #ccc; padding: 10px; border-radius: 8px;">
+                    <div class="box" style="background: red; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;"></div>
+                    <div class="box" style="background: green; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;"></div>
+                    <div class="box" style="background: blue; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;"></div>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    마지막으로 클릭된 박스: <span id="clicked-box-info">없음</span>
+                </div>
+            </div>
+            
+            <div class="code-display">
+// 이벤트 위임을 사용하여 동적으로 추가된 요소도 
+// 자동으로 이벤트가 적용됩니다!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 섹션 1: DOM 요소 선택 및 조작
+        function changeTitle() {
+            const title = document.getElementById('demo-title');
+            title.textContent = '제목이 변경되었습니다!';
+            title.style.color = '#28a745';
+            document.getElementById('code-output-1').innerHTML = `
+document.getElementById('demo-title').textContent = '제목이 변경되었습니다!';
+document.getElementById('demo-title').style.color = '#28a745';`;
+        }
+
+        function changeContent() {
+            const contents = document.querySelectorAll('.demo-content');
+            contents[0].innerHTML = '<strong>첫 번째 문단이 변경되었습니다!</strong>';
+            contents[1].innerHTML = '<em>두 번째 문단도 변경되었습니다!</em>';
+            document.getElementById('code-output-1').innerHTML = `
+const contents = document.querySelectorAll('.demo-content');
+contents[0].innerHTML = '&lt;strong&gt;첫 번째 문단이 변경되었습니다!&lt;/strong&gt;';
+contents[1].innerHTML = '&lt;em&gt;두 번째 문단도 변경되었습니다!&lt;/em&gt;';`;
+        }
+
+        function changeImage() {
+            const img = document.getElementById('demo-image');
+            img.src = 'https://via.placeholder.com/150x100/28a745/white?text=변경됨';
+            img.alt = '변경된 이미지';
+            document.getElementById('code-output-1').innerHTML = `
+const img = document.getElementById('demo-image');
+img.src = 'https://via.placeholder.com/150x100/28a745/white?text=변경됨';
+img.alt = '변경된 이미지';`;
+        }
+
+        function addHighlight() {
+            const contents = document.querySelectorAll('.demo-content');
+            contents.forEach(content => content.classList.add('highlight'));
+            document.getElementById('code-output-1').innerHTML = `
+const contents = document.querySelectorAll('.demo-content');
+contents.forEach(content => content.classList.add('highlight'));`;
+        }
+
+        function removeHighlight() {
+            const contents = document.querySelectorAll('.demo-content');
+            contents.forEach(content => content.classList.remove('highlight'));
+            document.getElementById('code-output-1').innerHTML = `
+const contents = document.querySelectorAll('.demo-content');
+contents.forEach(content => content.classList.remove('highlight'));`;
+        }
+
+        // 섹션 2: 스타일 조작
+        let currentBoxSize = 100;
+
+        function changeColor(color) {
+            const box = document.getElementById('style-box');
+            box.style.backgroundColor = color;
+            document.getElementById('current-color').textContent = color;
+            document.getElementById('code-output-2').innerHTML = `
+const box = document.getElementById('style-box');
+box.style.backgroundColor = '${color}';`;
+        }
+
+        function changeSize() {
+            const box = document.getElementById('style-box');
+            currentBoxSize = currentBoxSize === 100 ? 150 : 100;
+            box.style.width = currentBoxSize + 'px';
+            box.style.height = currentBoxSize + 'px';
+            document.getElementById('current-size').textContent = currentBoxSize + 'px';
+            document.getElementById('code-output-2').innerHTML = `
+const box = document.getElementById('style-box');
+box.style.width = '${currentBoxSize}px';
+box.style.height = '${currentBoxSize}px';`;
+        }
+
+        function resetBox() {
+            const box = document.getElementById('style-box');
+            box.style.backgroundColor = '#667eea';
+            box.style.width = '100px';
+            box.style.height = '100px';
+            currentBoxSize = 100;
+            document.getElementById('current-color').textContent = '기본색';
+            document.getElementById('current-size').textContent = '100px';
+            document.getElementById('code-output-2').innerHTML = `
+const box = document.getElementById('style-box');
+box.style.backgroundColor = '#667eea';
+box.style.width = '100px';
+box.style.height = '100px';`;
+        }
+
+        // 섹션 3: 요소 생성 및 삭제
+        function addNewItem() {
+            const input = document.getElementById('new-item-input');
+            const text = input.value.trim();
+            
+            if (text === '') {
+                alert('항목을 입력하세요!');
+                return;
+            }
+            
+            const list = document.getElementById('dynamic-list');
+            const li = document.createElement('li');
+            li.innerHTML = `${text} <button class="delete-btn" onclick="deleteItem(this)">삭제</button>`;
+            list.appendChild(li);
+            
+            input.value = '';
+            updateItemCount();
+            
+            document.getElementById('code-output-3').innerHTML = `
+const li = document.createElement('li');
+li.innerHTML = '${text} &lt;button class="delete-btn" onclick="deleteItem(this)"&gt;삭제&lt;/button&gt;';
+document.getElementById('dynamic-list').appendChild(li);`;
+        }
+
+        function deleteItem(button) {
+            const li = button.parentElement;
+            li.remove();
+            updateItemCount();
+            
+            document.getElementById('code-output-3').innerHTML = `
+const li = button.parentElement;
+li.remove();`;
+        }
+
+        function clearAllItems() {
+            const list = document.getElementById('dynamic-list');
+            list.innerHTML = '';
+            updateItemCount();
+            
+            document.getElementById('code-output-3').innerHTML = `
+const list = document.getElementById('dynamic-list');
+list.innerHTML = '';`;
+        }
+
+        function updateItemCount() {
+            const count = document.getElementById('dynamic-list').children.length;
+            document.getElementById('item-count').textContent = count;
+        }
+
+        // Enter 키로 항목 추가
+        document.getElementById('new-item-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addNewItem();
+            }
+        });
+
+        // 섹션 4: 마우스 이벤트
+        const mouseBox = document.getElementById('mouse-box');
+        let clickCount = 0;
+
+        mouseBox.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = 'lightblue';
+            document.getElementById('last-event').textContent = 'mouseenter';
+        });
+
+        mouseBox.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '#667eea';
+            document.getElementById('last-event').textContent = 'mouseleave';
+        });
+
+        mouseBox.addEventListener('click', function() {
+            clickCount++;
+            document.getElementById('click-count').textContent = clickCount;
+            document.getElementById('last-event').textContent = 'click';
+            this.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+
+        mouseBox.addEventListener('mousemove', function(event) {
+            const rect = this.getBoundingClientRect();
+            const x = Math.round(event.clientX - rect.left);
+            const y = Math.round(event.clientY - rect.top);
+            document.getElementById('mouse-position').textContent = `X: ${x}, Y: ${y}`;
+        });
+
+        // 섹션 5: 키보드 이벤트
+        const keyboardInput = document.getElementById('keyboard-input');
+
+        keyboardInput.addEventListener('keydown', function(event) {
+            document.getElementById('pressed-key').textContent = event.key;
+        });
+
+        keyboardInput.addEventListener('input', function() {
+            const text = this.value;
+            document.getElementById('input-text').textContent = text || '없음';
+            document.getElementById('text-length').textContent = text.length;
+        });
+
+        // 섹션 6: 폼 이벤트와 유효성 검사
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const demoForm = document.getElementById('demo-form');
+
+        usernameInput.addEventListener('input', function() {
+            const value = this.value;
+            const errorDiv = document.getElementById('username-error');
+            
+            if (value.length > 0 && value.length < 3) {
+                errorDiv.textContent = '사용자명은 3글자 이상이어야 합니다';
+                this.style.borderColor = 'red';
+            } else {
+                errorDiv.textContent = '';
+                this.style.borderColor = value.length >= 3 ? 'green' : '#e0e0e0';
+            }
+        });
+
+        emailInput.addEventListener('blur', function() {
+            const email = this.value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const errorDiv = document.getElementById('email-error');
+            
+            if (email && !emailPattern.test(email)) {
+                errorDiv.textContent = '올바른 이메일 형식이 아닙니다';
+                this.style.borderColor = 'red';
+            } else {
+                errorDiv.textContent = '';
+                this.style.borderColor = email ? 'green' : '#e0e0e0';
+            }
+        });
+
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            const errorDiv = document.getElementById('password-error');
+            const strengthDiv = document.getElementById('password-strength');
+            
+            if (password.length > 0 && password.length < 6) {
+                errorDiv.textContent = '비밀번호는 6글자 이상이어야 합니다';
+                this.style.borderColor = 'red';
+                strengthDiv.innerHTML = '<span style="color: red;">약함</span>';
+            } else if (password.length >= 6) {
+                errorDiv.textContent = '';
+                this.style.borderColor = 'green';
+                if (password.length < 10) {
+                    strengthDiv.innerHTML = '<span style="color: orange;">보통</span>';
+                } else {
+                    strengthDiv.innerHTML = '<span style="color: green;">강함</span>';
+                }
+            } else {
+                strengthDiv.textContent = '';
+                this.style.borderColor = '#e0e0e0';
+            }
+        });
+
+        demoForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const userData = {
+                username: usernameInput.value,
+                email: emailInput.value,
+                password: passwordInput.value
+            };
+            
+            document.getElementById('form-result').innerHTML = `
+                <div class="success">
+                    <h4>가입 정보:</h4>
+                    <p>사용자명: ${userData.username}</p>
+                    <p>이메일: ${userData.email}</p>
+                    <p>비밀번호: ${'*'.repeat(userData.password.length)}</p>
+                </div>
+            `;
+        });
+
+        // 섹션 7: 이벤트 위임
+        const colorContainer = document.getElementById('color-container');
+        const colors = ['red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink', 'cyan'];
+
+        // 이벤트 위임 사용
+        colorContainer.addEventListener('click', function(event) {
+            if (event.target.classList.contains('box')) {
+                const bgColor = event.target.style.backgroundColor;
+                document.getElementById('clicked-box-info').textContent = bgColor + ' 박스';
+                
+                // 클릭 효과
+                event.target.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    event.target.style.transform = 'scale(1)';
+                }, 200);
+            }
+        });
+
+        function addColorBox() {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const box = document.createElement('div');
+            box.className = 'box';
+            box.style.background = randomColor;
+            box.style.width = '80px';
+            box.style.height = '80px';
+            box.style.margin = '5px';
+            box.style.display = 'inline-block';
+            box.style.cursor = 'pointer';
+            
+            colorContainer.appendChild(box);
+        }
+
+        function clearColorBoxes() {
+            const boxes = colorContainer.querySelectorAll('.box');
+            boxes.forEach(box => box.remove());
+            document.getElementById('clicked-box-info').textContent = '없음';
+        }
+    </script>
+</body>
+</html>
