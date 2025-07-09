@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { transition: all 0.3s ease; padding: 20px; }
+        .light { background: white; color: black; }
+        .dark { background: #333; color: white; }
+        .toggle-btn { 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class="light">
+    <h1>다크모드 토글 테스트</h1>
+    <p>이 설정은 브라우저를 다시 열어도 유지됩니다!</p>
+    <button class="toggle-btn" id="themeToggle">🌙 다크모드</button>
+
+    <script>
+        $(document).ready(function() {
+            // 페이지 로드 시 저장된 테마 적용
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                $('body').removeClass('light').addClass('dark');
+                $('#themeToggle').text('☀️ 라이트모드');
+            }
+
+            // 토글 버튼 클릭 이벤트
+            $('#themeToggle').click(function() {
+                if ($('body').hasClass('light')) {
+                    // 다크모드로 변경
+                    $('body').removeClass('light').addClass('dark');
+                    $(this).text('☀️ 라이트모드');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    // 라이트모드로 변경
+                    $('body').removeClass('dark').addClass('light');
+                    $(this).text('🌙 다크모드');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 나의 콘텐츠 다이어리</title>
+    <style>
+        /* 기본 스타일 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        /* 입력 폼 스타일 */
+        .input-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid #e9ecef;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .form-row label {
+            min-width: 80px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        input[type="text"], input[type="date"], select, textarea {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* 평점 선택 스타일 */
+        .rating-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 5px;
+        }
+
+        .star {
+            font-size: 24px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #ffc107;
+        }
+
+        /* 버튼 스타일 */
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* 통계 섹션 */
+        .stats-section {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* 필터 섹션 */
+        .filter-section {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .filter-btn {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* 다이어리 목록 */
+        .diary-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .diary-list {
+            list-style: none;
+        }
+
+        .diary-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.2s ease;
+        }
+
+        .diary-item:hover {
+            transform: translateX(5px);
+        }
+
+        .diary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .diary-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .diary-date {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .diary-type {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .type-movie {
+            background: #ffe0e6;
+            color: #d63384;
+        }
+
+        .type-drama {
+            background: #e7f3ff;
+            color: #0969da;
+        }
+
+        .type-webtoon {
+            background: #f0fff4;
+            color: #1a7f37;
+        }
+
+        .type-book {
+            background: #fff8e1;
+            color: #bf8700;
+        }
+
+        .diary-rating {
+            color: #ffc107;
+            font-size: 18px;
+        }
+
+        .diary-memo {
+            color: #555;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: #c82333;
+        }
+
+        /* 빈 상태 메시지 */
+        .empty-message {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 18px;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .form-row label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .diary-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .diary-header2 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <h1>📚 나의 콘텐츠 다이어리</h1>
+
+        <!-- 새 다이어리 입력 섹션 -->
+        <div class="input-section">
+            <form id="diary-form">
+                <div class="form-row">
+                    <label for="content-title">제목:</label>
+                    <input type="text" id="content-title" placeholder="영화, 드라마, 웹툰, 책 제목을 입력하세요" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="content-type">종류:</label>
+                    <select id="content-type" required>
+                        <option value="">선택하세요</option>
+                        <option value="movie">🎬 영화</option>
+                        <option value="drama">📺 드라마</option>
+                        <option value="webtoon">📱 웹툰</option>
+                        <option value="book">📖 책</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="content-date">날짜:</label>
+                    <input type="date" id="content-date" required>
+                </div>
+
+                <div class="form-row rating-section">
+                    <label>평점:</label>
+                    <div class="star-rating">
+                        <span class="star1" data-rating="1">⭐</span>
+                        <span class="star2" data-rating="2">⭐</span>
+                        <span class="star" data-rating="3">⭐</span>
+                        <span class="star" data-rating="4">⭐</span>
+                        <span class="star" data-rating="5">⭐</span>
+                    </div>
+                    <span id="rating-text">(평점을 선택하세요)</span>
+                </div>
+
+                <div class="form-row">
+                    <label for="content-memo">메모:</label>
+                    <textarea id="content-memo" placeholder="감상평이나 기억하고 싶은 내용을 적어보세요..."></textarea>
+                </div>
+
+                <button type="submit" class="btn">📝 다이어리 추가하기</button>
+            </form>
+        </div>
+
+        <!-- 통계 섹션 -->
+        <div class="stats-section">
+            <h3>📊 나의 콘텐츠 통계</h3>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number" id="total-count">0</div>
+                    <div class="stat-label">총 개수</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="average-rating">0.0</div>
+                    <div class="stat-label">평균 평점</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="this-month">0</div>
+                    <div class="stat-label">이번 달</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="favorite-type">-</div>
+                    <div class="stat-label">최애 장르</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 필터 섹션 -->
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">전체</button>
+            <button class="filter-btn" data-filter="movie">🎬 영화</button>
+            <button class="filter-btn" data-filter="drama">📺 드라마</button>
+            <button class="filter-btn" data-filter="webtoon">📱 웹툰</button>
+            <button class="filter-btn" data-filter="book">📖 책</button>
+        </div>
+
+        <!-- 다이어리 목록 섹션 -->
+        <div class="diary-section">
+            <h3>📖 내가 본 콘텐츠들</h3>
+            <ul class="diary-list" id="diary-list">
+                <!-- 다이어리 항목들이 여기에 동적으로 추가됩니다 -->
+            </ul>
+
+            <!-- 빈 상태 메시지 -->
+            <div class="empty-message" id="empty-message">
+                <div class="empty-icon">📝</div>
+                <p>아직 기록된 콘텐츠가 없어요!</p>
+                <p>위에서 첫 번째 다이어리를 작성해보세요 😊</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 오늘 날짜를 기본값으로 설정
+        document.getElementById('content-date').valueAsDate = new Date();
+
+        // 별점 클릭 이벤트 (기본 기능만)
+        let selectedRating = 0;
+        
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.dataset.rating);
+                updateStarDisplay();
+            });
+        });
+
+        function updateStarDisplay() {
+            const stars = document.querySelectorAll('.star');
+            const ratingText = document.getElementById('rating-text');
+            
+            stars.forEach((star, index) => {
+                if (index < selectedRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+
+            if (selectedRating > 0) {
+                ratingText.textContent = `(${selectedRating}점)`;
+            } else {
+                ratingText.textContent = '(평점을 선택하세요)';
+            }
+        }
+
+        // 폼 제출 이벤트 (기본 동작 막기)
+        document.getElementById('diary-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('JavaScript 기능을 추가해주세요!');
+        });
+    </script>
+</body>
+</html>

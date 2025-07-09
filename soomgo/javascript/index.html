@@ -352,10 +352,12 @@
                 <button class="btn btn-danger" onclick="clearColorBoxes()">모든 박스 삭제</button>
                 
                 <div id="color-container" style="margin-top: 15px; min-height: 100px; border: 2px dashed #ccc; padding: 10px; border-radius: 8px;">
-                    <div class="box" style="background: red; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;"></div>
-                    <div class="box" style="background: green; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;"></div>
-                    <div class="box" style="background: blue; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;"></div>
+                    <div class="box" style="background: red; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;" data="1"></div>
+                    <div class="box" style="background: green; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;" data="2"></div>
+                    <div class="box" style="background: blue; width: 80px; height: 80px; margin: 5px; display: inline-block; cursor: pointer;" data="3"></div>
                 </div>
+                
+                $("#color-container .box[data=1]")
                 
                 <div style="margin-top: 10px;">
                     마지막으로 클릭된 박스: <span id="clicked-box-info">없음</span>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .profile-form { margin: 20px 0; padding: 20px; border: 1px solid #ccc; }
+        .profile-display { margin: 20px 0; padding: 20px; background: #f0f0f0; }
+        input, select { margin: 5px; padding: 8px; width: 200px; }
+        button { padding: 10px 15px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h2>사용자 프로필 관리</h2>
+    
+    <div class="profile-form">
+        <h3>프로필 입력</h3>
+        <input type="text" id="userName" placeholder="이름">
+        <input type="number" id="userAge" placeholder="나이">
+        <select id="userCity">
+            <option value="">도시 선택</option>
+            <option value="서울">서울</option>
+            <option value="부산">부산</option>
+            <option value="대구">대구</option>
+        </select>
+        <br>
+        <button id="saveProfile">프로필 저장</button>
+        <button id="loadProfile">프로필 불러오기</button>
+        <button id="clearProfile">프로필 삭제</button>
+    </div>
+
+    <div class="profile-display" id="profileDisplay">
+        저장된 프로필이 없습니다.
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // 프로필 저장
+            $('#saveProfile').click(function() {
+                const profile = {
+                    name: $('#userName').val(),
+                    age: $('#userAge').val(),
+                    city: $('#userCity').val(),
+                    savedAt: new Date().toLocaleString()
+                };
+
+                if (!profile.name || !profile.age || !profile.city) {
+                    alert('모든 필드를 입력해주세요!');
+                    return;
+                }
+
+                localStorage.setItem('userProfile', JSON.stringify(profile));
+                alert('프로필이 저장되었습니다!');
+                displayProfile(profile);
+            });
+
+            // 프로필 불러오기
+            $('#loadProfile').click(function() {
+                const savedProfile = localStorage.getItem('userProfile');
+                if (savedProfile) {
+                    const profile = JSON.parse(savedProfile);
+                    $('#userName').val(profile.name);
+                    $('#userAge').val(profile.age);
+                    $('#userCity').val(profile.city);
+                    displayProfile(profile);
+                } else {
+                    alert('저장된 프로필이 없습니다.');
+                }
+            });
+
+            // 프로필 삭제
+            $('#clearProfile').click(function() {
+                localStorage.removeItem('userProfile');
+                $('#profileDisplay').text('저장된 프로필이 없습니다.');
+                $('#userName, #userAge, #userCity').val('');
+                alert('프로필이 삭제되었습니다.');
+            });
+
+            // 프로필 표시 함수
+            function displayProfile(profile) {
+                $('#profileDisplay').html(`
+                    <h4>저장된 프로필</h4>
+                    <p><strong>이름:</strong> ${profile.name}</p>
+                    <p><strong>나이:</strong> ${profile.age}세</p>
+                    <p><strong>도시:</strong> ${profile.city}</p>
+                    <p><strong>저장시간:</strong> ${profile.savedAt}</p>
+                `);
+            }
+
+            // 페이지 로드 시 자동으로 프로필 불러오기
+            $('#loadProfile').click();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .profile-card { 
+            border: 1px solid #ddd; 
+            border-radius: 10px; 
+            padding: 20px; 
+            margin: 20px 0; 
+            text-align: center;
+            background: #f9f9f9;
+        }
+        .profile-image { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            margin: 10px 0; 
+        }
+        .btn { 
+            background: #007bff; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin: 5px;
+        }
+        .btn:hover { background: #0056b3; }
+        .loading { color: #666; font-style: italic; }
+        .error { color: red; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            text-align: left;
+            margin: 15px 0;
+        }
+        .info-item {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        .label { font-weight: bold; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎲 랜덤 사용자 프로필 생성기</h1>
+        
+        <button class="btn" id="generateUser">새로운 사용자 생성</button>
+        <button class="btn" id="saveUser">현재 사용자 저장</button>
+        <button class="btn" id="loadSavedUser">저장된 사용자 불러오기</button>
+        
+        <div id="profileContainer">
+            <div class="profile-card">
+                <p>위의 버튼을 클릭해서 랜덤 사용자를 생성해보세요!</p>
+            </div>
+        </div>
+
+        <div id="savedProfiles">
+            <h3>💾 저장된 프로필들</h3>
+            <div id="savedList">저장된 프로필이 없습니다.</div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            let currentUser = null;
+
+            // 새로운 사용자 생성
+            $('#generateUser').click(function() {
+                $('#profileContainer').html('<div class="profile-card loading">🔄 사용자 정보를 불러오는 중...</div>');
+                
+                $.getJSON('https://randomuser.me/api/', function(data) {
+                    currentUser = data.results[0];
+                    displayUser(currentUser);
+                }).fail(function() {
+                    $('#profileContainer').html('<div class="profile-card error">❌ 사용자 정보를 불러올 수 없습니다. 네트워크를 확인해주세요.</div>');
+                });
+            });
+
+            // 사용자 정보 표시 함수
+            function displayUser(user) {
+                const userHtml = `
+                    <div class="profile-card">
+                        <img src="${user.picture.large}" alt="프로필 사진" class="profile-image">
+                        <h2>${user.name.first} ${user.name.last}</h2>
+                        
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="label">이메일</div>
+                                <div>${user.email}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">전화번호</div>
+                                <div>${user.phone}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">나이</div>
+                                <div>${user.dob.age}세</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">성별</div>
+                                <div>${user.gender === 'male' ? '남성' : '여성'}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">국가</div>
+                                <div>${user.location.country}</div>
+                            </div>
+                            <div class="info-item">
+                                <div class="label">도시</div>
+                                <div>${user.location.city}</div>
+                            </div>
+                        </div>
+                        
+                        <p><strong>주소:</strong> ${user.location.street.number} ${user.location.street.name}</p>
+                    </div>
+                `;
+                $('#profileContainer').html(userHtml);
+            }
+
+            // 현재 사용자 저장
+            $('#saveUser').click(function() {
+                if (!currentUser) {
+                    alert('먼저 사용자를 생성해주세요!');
+                    return;
+                }
+
+                // 기존 저장된 사용자들 가져오기
+                const savedUsers = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+                
+                // 현재 사용자 추가 (중복 확인)
+                const isDuplicate = savedUsers.some(user => user.email === currentUser.email);
+                if (isDuplicate) {
+                    alert('이미 저장된 사용자입니다!');
+                    return;
+                }
+
+                savedUsers.push({
+                    ...currentUser,
+                    savedAt: new Date().toLocaleString()
+                });
+
+                // localStorage에 저장
+                localStorage.setItem('savedUsers', JSON.stringify(savedUsers));
+                alert('사용자가 저장되었습니다!');
+                displaySavedUsers();
+            });
+
+            // 저장된 사용자들 표시
+            function displaySavedUsers() {
+                const savedUsers = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+                
+                if (savedUsers.length === 0) {
+                    $('#savedList').html('저장된 프로필이 없습니다.');
+                    return;
+                }
+
+                let savedHtml = '';
+                savedUsers.forEach((user, index) => {
+                    savedHtml += `
+                        <div style="border: 1px solid #ddd; padding: 10px; margin: 5px 0; border-radius: 5px;">
+                            <img src="${user.picture.thumbnail}" style="width: 40px; height: 40px; border-radius: 50%; vertical-align: middle;">
+                            <strong>${user.name.first} ${user.name.last}</strong> (${user.email})
+                            <button class="btn" style="padding: 5px 10px; float: right;" onclick="loadUser(${index})">불러오기</button>
+                            <button class="btn" style="padding: 5px 10px; float: right; background: #dc3545;" onclick="deleteUser(${index})">삭제</button>
+                            <br><small>저장시간: ${user.savedAt}</small>
+                        </div>
+                    `;
+                });
+                $('#savedList').html(savedHtml);
+            }
+
+            // 전역 함수로 사용자 불러오기
+            window.loadUser = function(index) {
+                const savedUsers = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+                currentUser = savedUsers[index];
+                displayUser(currentUser);
+            };
+
+            // 전역 함수로 사용자 삭제
+            window.deleteUser = function(index) {
+                if (confirm('정말 삭제하시겠습니까?')) {
+                    const savedUsers = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+                    savedUsers.splice(index, 1);
+                    localStorage.setItem('savedUsers', JSON.stringify(savedUsers));
+                    displaySavedUsers();
+                }
+            };
+
+            // 페이지 로드 시 저장된 사용자들 표시
+            displaySavedUsers();
+
+            // 저장된 사용자 불러오기 (랜덤)
+            $('#loadSavedUser').click(function() {
+                const savedUsers = JSON.parse(localStorage.getItem('savedUsers') || '[]');
+                if (savedUsers.length === 0) {
+                    alert('저장된 사용자가 없습니다!');
+                    return;
+                }
+                const randomIndex = Math.floor(Math.random() * savedUsers.length);
+                loadUser(randomIndex);
+            });
+        });
+    </script>
+</body>
+</html>
