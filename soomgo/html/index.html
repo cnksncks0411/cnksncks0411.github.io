@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML & CSS 기초 수업</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 표지 -->
+        <div class="slide-title">
+            <h1>🌐 HTML & CSS 기초</h1>
+            <p style="font-size: 1.5em; margin-top: 20px;">웹 페이지 제작의 첫 걸음</p>
+        </div>
+
+        <!-- 슬라이드 1: 소개 -->
+        <div class="slide">
+            <h2>📚 오늘 배울 내용</h2>
+            <ul style="font-size: 1.3em; line-height: 2;">
+                <li><strong>HTML 기본</strong> - 웹 페이지의 뼈대 만들기</li>
+                <li><strong>주요 태그</strong> - 자주 쓰이는 HTML 태그 실습</li>
+                <li><strong>CSS 기초</strong> - 예쁘게 꾸미기</li>
+                <li><strong>실전 프로젝트</strong> - 간단한 자기소개 페이지 만들기</li>
+            </ul>
+        </div>
+
+        <!-- 슬라이드 2: HTML이란? -->
+        <div class="slide">
+            <h2>🤔 HTML이란?</h2>
+            <p><strong>HTML (HyperText Markup Language)</strong></p>
+            <p>웹 페이지의 <span class="highlight">구조</span>를 만드는 언어입니다.</p>
+            
+            <div style="margin: 40px 0;">
+                <p>🏗️ <strong>집으로 비유하면:</strong></p>
+                <ul style="font-size: 1.2em;">
+                    <li>HTML = 집의 뼈대 (기둥, 벽, 방)</li>
+                    <li>CSS = 인테리어 (색상, 장식, 가구 배치)</li>
+                    <li>JavaScript = 전기, 수도 (움직임, 동작)</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                💡 <strong>Tip:</strong> HTML은 프로그래밍 언어가 아닌 <strong>마크업 언어</strong>입니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 3: HTML 기본 구조 -->
+        <div class="slide">
+            <h2>📝 HTML 기본 구조</h2>
+            
+            <div class="code-box">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;페이지 제목&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;안녕하세요!&lt;/h1&gt;
+    &lt;p&gt;첫 번째 웹 페이지입니다.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </div>
+
+            <h3>각 부분 설명:</h3>
+            <ul>
+                <li><code>&lt;!DOCTYPE html&gt;</code> - HTML5 문서라는 선언</li>
+                <li><code>&lt;html&gt;</code> - 전체 문서의 시작과 끝</li>
+                <li><code>&lt;head&gt;</code> - 페이지 정보 (보이지 않음)</li>
+                <li><code>&lt;body&gt;</code> - 실제로 보이는 내용</li>
+            </ul>
+        </div>
+
+        <!-- 슬라이드 4: 태그 이해하기 -->
+        <div class="slide">
+            <h2>🏷️ 태그(Tag) 이해하기</h2>
+            
+            <p><strong>태그는 꺾쇠괄호(&lt; &gt;)로 감싸진 명령어입니다.</strong></p>
+
+            <div class="example-box">
+                <h3>기본 형태:</h3>
+                <div class="code-box">
+&lt;태그이름&gt;내용&lt;/태그이름&gt;
+                </div>
+                <p>예시: <code>&lt;h1&gt;제목&lt;/h1&gt;</code></p>
+            </div>
+
+            <div class="example-box">
+                <h3>닫는 태그가 없는 경우:</h3>
+                <div class="code-box">
+&lt;br&gt;  (줄바꿈)
+&lt;img src="이미지.jpg"&gt;  (이미지)
+&lt;hr&gt;  (구분선)
+                </div>
+            </div>
+
+            <div class="tip">
+                💡 <strong>중요:</strong> 태그는 반드시 <strong>열었으면 닫아야</strong> 합니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 5: 자주 쓰는 태그 1 -->
+        <div class="slide">
+            <h2>✨ 자주 쓰는 태그 - 텍스트</h2>
+            
+            <table>
+                <tr>
+                    <th>태그</th>
+                    <th>설명</th>
+                    <th>예시</th>
+                </tr>
+                <tr>
+                    <td><code>&lt;h1&gt; ~ &lt;h6&gt;</code></td>
+                    <td>제목 (1이 가장 큼)</td>
+                    <td><code>&lt;h1&gt;큰 제목&lt;/h1&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;p&gt;</code></td>
+                    <td>문단</td>
+                    <td><code>&lt;p&gt;단락입니다&lt;/p&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;br&gt;</code></td>
+                    <td>줄바꿈</td>
+                    <td><code>첫줄&lt;br&gt;둘째줄</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;strong&gt;</code></td>
+                    <td>굵은 글씨 (중요)</td>
+                    <td><code>&lt;strong&gt;중요!&lt;/strong&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;input&gt;</code></td>
+                    <td>한줄 입력</td>
+                    <td><code>&lt;input type="text"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>&lt;textarea&gt;</code></td>
+                    <td>긴 입력</td>
+                    <td><code>&lt;textarea&gt;&lt;/textarea&gt;</code></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 슬라이드 6: 자주 쓰는 태그 2 -->
+        <div class="slide">
+            <h2>✨ 자주 쓰는 태그 - 링크와 이미지</h2>
+            
+            <h3>🔗 링크 만들기 (&lt;a&gt;)</h3>
+            <div class="code-box">
+&lt;a href="https://www.naver.com"&gt;네이버로 가기&lt;/a&gt;
+&lt;a href="https://www.google.com" target="_blank"&gt;구글(새창)&lt;/a&gt;
+            </div>
+            <ul>
+                <li><code>href</code> - 이동할 주소</li>
+                <li><code>target="_blank"</code> - 새 창에서 열기</li>
+            </ul>
+
+            <h3>🖼️ 이미지 넣기 (&lt;img&gt;)</h3>
+            <div class="code-box">
+&lt;img src="cat.jpg" alt="고양이 사진"&gt;
+&lt;img src="cat.jpg" alt="고양이" width="300"&gt;
+            </div>
+            <ul>
+                <li><code>src</code> - 이미지 파일 경로</li>
+                <li><code>alt</code> - 설명 텍스트 (필수!)</li>
+                <li><code>width/height</code> - 크기 조절</li>
+            </ul>
+        </div>
+
+        <!-- 슬라이드 7: 리스트 -->
+        <div class="slide">
+            <h2>📋 목록 만들기</h2>
+            
+            <h3>순서 없는 목록 (ul)</h3>
+            <div class="code-box">
+&lt;ul&gt;
+    &lt;li&gt;사과&lt;/li&gt;
+    &lt;li&gt;바나나&lt;/li&gt;
+    &lt;li&gt;오렌지&lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+            <div class="example-box">
+                <strong>결과:</strong>
+                <ul>
+                    <li>사과</li>
+                    <li>바나나</li>
+                    <li>오렌지</li>
+                </ul>
+            </div>
+
+            <h3>순서 있는 목록 (ol)</h3>
+            <div class="code-box">
+&lt;ol&gt;
+    &lt;li&gt;HTML 배우기&lt;/li&gt;
+    &lt;li&gt;CSS 배우기&lt;/li&gt;
+    &lt;li&gt;프로젝트 만들기&lt;/li&gt;
+&lt;/ol&gt;
+            </div>
+            <div class="example-box">
+                <strong>결과:</strong>
+                <ol>
+                    <li>HTML 배우기</li>
+                    <li>CSS 배우기</li>
+                    <li>프로젝트 만들기</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 슬라이드 8: 컨테이너 태그 -->
+        <div class="slide">
+            <h2>📦 묶음 태그 (컨테이너)</h2>
+            
+            <h3>&lt;div&gt; - 블록 영역</h3>
+            <p>여러 요소를 그룹으로 묶을 때 사용 (한 줄 전체 차지)</p>
+            <div class="code-box">
+&lt;div&gt;
+    &lt;h2&gt;섹션 제목&lt;/h2&gt;
+    &lt;p&gt;섹션 내용&lt;/p&gt;
+&lt;/div&gt;
+            </div>
+
+            <h3>&lt;span&gt; - 인라인 영역</h3>
+            <p>텍스트 일부분만 묶을 때 사용 (내용만큼만 차지)</p>
+            <div class="code-box">
+&lt;p&gt;이것은 &lt;span style="color: red;"&gt;빨간 글씨&lt;/span&gt;입니다.&lt;/p&gt;
+            </div>
+
+            <div class="tip">
+                💡 <strong>차이점:</strong> div는 줄바꿈O, span은 줄바꿈X
+            </div>
+        </div>
+
+        <!-- 슬라이드 9: 실습 1 -->
+        <div class="slide">
+            <h2>👨‍💻 실습 1: 첫 HTML 페이지 만들기</h2>
+            
+            <div class="practice">
+                <h3>🎯 목표: 자기소개 페이지 기본 구조 만들기</h3>
+                <p><strong>포함할 내용:</strong></p>
+                <ol>
+                    <li>큰 제목으로 자신의 이름</li>
+                    <li>소제목으로 "자기소개"</li>
+                    <li>자기소개 문단 2~3개</li>
+                    <li>좋아하는 것 목록 (3개 이상)</li>
+                    <li>좋아하는 웹사이트 링크 1개</li>
+                </ol>
+            </div>
+
+            <div class="code-box" style="font-size: 0.9em;">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;홍길동 소개&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;홍길동&lt;/h1&gt;
+    &lt;h2&gt;자기소개&lt;/h2&gt;
+    &lt;p&gt;안녕하세요! 저는 웹 개발을 공부하고 있습니다.&lt;/p&gt;
+    
+    &lt;h3&gt;좋아하는 것&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;코딩&lt;/li&gt;
+        &lt;li&gt;음악 감상&lt;/li&gt;
+        &lt;li&gt;여행&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;a href="https://www.github.com"&gt;GitHub&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </div>
+        </div>
+
+        <!-- 슬라이드 10: CSS 소개 -->
+        <div class="slide">
+            <h2>🎨 CSS란?</h2>
+            
+            <p><strong>CSS (Cascading Style Sheets)</strong></p>
+            <p>HTML로 만든 구조를 <span class="highlight">예쁘게 꾸미는</span> 언어입니다.</p>
+
+            <div style="margin: 40px 0;">
+                <h3>CSS로 할 수 있는 것:</h3>
+                <ul style="font-size: 1.2em;">
+                    <li>✅ 글자 색상, 크기, 폰트 변경</li>
+                    <li>✅ 배경색, 테두리 추가</li>
+                    <li>✅ 요소의 위치와 크기 조절</li>
+                    <li>✅ 애니메이션 효과</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <p><strong>Before (HTML만):</strong> 밋밋한 검은 글씨</p>
+                <p><strong>After (HTML + CSS):</strong> <span style="color: #667eea; font-size: 1.5em; font-weight: bold;">화려한 디자인! 🎉</span></p>
+            </div>
+        </div>
+
+        <!-- 슬라이드 11: CSS 적용 방법 -->
+        <div class="slide">
+            <h2>📍 CSS 적용하는 3가지 방법</h2>
+            
+            <h3>1️⃣ 인라인 방식 (태그에 직접)</h3>
+            <div class="code-box">
+&lt;h1 style="color: blue; font-size: 30px;"&gt;파란 제목&lt;/h1&gt;
+            </div>
+            <p>👉 간단하지만 관리가 어려워요</p>
+
+            <h3>2️⃣ 내부 스타일 (head 안에)</h3>
+            <div class="code-box">
+&lt;head&gt;
+    &lt;style&gt;
+        h1 { color: blue; }
+        p { font-size: 16px; }
+    &lt;/style&gt;
+&lt;/head&gt;
+            </div>
+            <p>👉 한 페이지에만 적용됩니다</p>
+
+            <h3>3️⃣ 외부 파일 (추천! ⭐)</h3>
+            <div class="code-box">
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+            </div>
+            <p>👉 여러 페이지에서 공유 가능!</p>
+        </div>
+
+        <!-- 슬라이드 12: CSS 기본 문법 -->
+        <div class="slide">
+            <h2>📖 CSS 기본 문법</h2>
+            
+            <div class="code-box" style="font-size: 1.2em;">
+선택자 {
+    속성: 값;
+    속성: 값;
+}
+            </div>
+
+            <div class="example-box">
+                <h3>실제 예시:</h3>
+                <div class="code-box">
+h1 {
+    color: blue;
+    font-size: 32px;
+    text-align: center;
+}
+
+p {
+    color: #333;
+    line-height: 1.6;
+}
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <p><strong>🎯 구성 요소:</strong></p>
+                <ul>
+                    <li><span class="highlight">선택자</span> - 어떤 요소를 꾸밀지 선택</li>
+                    <li><span class="highlight">속성</span> - 무엇을 바꿀지</li>
+                    <li><span class="highlight">값</span> - 어떻게 바꿀지</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 슬라이드 13: CSS 선택자 -->
+        <div class="slide">
+            <h2>🎯 CSS 선택자</h2>
+            
+            <h3>1. 태그 선택자</h3>
+            <div class="code-box">
+h1 { color: red; }
+p { font-size: 16px; }
+            </div>
+            <p>→ 모든 h1, p 태그에 적용</p>
+
+            <h3>2. 클래스 선택자 (.)</h3>
+            <div class="code-box">
+&lt;p class="intro"&gt;소개글&lt;/p&gt;
+
+.intro { 
+    color: blue; 
+    font-weight: bold;
+}
+            </div>
+            <p>→ class="intro"인 요소에만 적용</p>
+
+            <h3>3. 아이디 선택자 (#)</h3>
+            <div class="code-box">
+&lt;div id="header"&gt;헤더&lt;/div&gt;
+
+#header { 
+    background: gray; 
+}
+            </div>
+            <p>→ id="header"인 요소에만 적용 (한 페이지에 하나만!)</p>
+        </div>
+
+        <!-- 슬라이드 14: 자주 쓰는 CSS 속성 1 -->
+        <div class="slide">
+            <h2>🎨 자주 쓰는 CSS 속성 - 텍스트</h2>
+            
+            <table>
+                <tr>
+                    <th>속성</th>
+                    <th>설명</th>
+                    <th>예시</th>
+                </tr>
+                <tr>
+                    <td><code>color</code></td>
+                    <td>글자 색</td>
+                    <td><code>color: red;</code></td>
+                </tr>
+                <tr>
+                    <td><code>font-size</code></td>
+                    <td>글자 크기</td>
+                    <td><code>font-size: 20px;</code></td>
+                </tr>
+                <tr>
+                    <td><code>font-weight</code></td>
+                    <td>글자 굵기</td>
+                    <td><code>font-weight: bold;</code></td>
+                </tr>
+                <tr>
+                    <td><code>text-align</code></td>
+                    <td>정렬</td>
+                    <td><code>text-align: center;</code></td>
+                </tr>
+                <tr>
+                    <td><code>line-height</code></td>
+                    <td>줄 간격</td>
+                    <td><code>line-height: 1.5;</code></td>
+                </tr>
+            </table>
+
+            <div class="tip">
+                💡 색상 표현: <code>red</code>, <code>#FF0000</code>, <code>rgb(255,0,0)</code> 모두 빨강!
+            </div>
+        </div>
+
+        <!-- 슬라이드 15: 자주 쓰는 CSS 속성 2 -->
+        <div class="slide">
+            <h2>🎨 자주 쓰는 CSS 속성 - 박스</h2>
+            
+            <table>
+                <tr>
+                    <th>속성</th>
+                    <th>설명</th>
+                    <th>예시</th>
+                </tr>
+                <tr>
+                    <td><code>background-color</code></td>
+                    <td>배경색</td>
+                    <td><code>background-color: yellow;</code></td>
+                </tr>
+                <tr>
+                    <td><code>width</code></td>
+                    <td>너비</td>
+                    <td><code>width: 300px;</code></td>
+                </tr>
+                <tr>
+                    <td><code>height</code></td>
+                    <td>높이</td>
+                    <td><code>height: 200px;</code></td>
+                </tr>
+                <tr>
+                    <td><code>padding</code></td>
+                    <td>안쪽 여백</td>
+                    <td><code>padding: 20px;</code></td>
+                </tr>
+                <tr>
+                    <td><code>margin</code></td>
+                    <td>바깥 여백</td>
+                    <td><code>margin: 10px;</code></td>
+                </tr>
+                <tr>
+                    <td><code>border</code></td>
+                    <td>테두리</td>
+                    <td><code>border: 1px solid black;</code></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 슬라이드 16: Box Model -->
+        <div class="slide">
+            <h2>📦 박스 모델 이해하기</h2>
+            
+            <p>모든 HTML 요소는 <strong>박스</strong>로 구성됩니다!</p>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <div style="display: inline-block; border: 3px solid #764ba2; padding: 30px; background: #f0f0f0;">
+                    <div style="border: 3px solid #667eea; padding: 20px; background: #e0e0ff;">
+                        <div style="background: #fff; padding: 20px; border: 2px solid #333;">
+                            내용 (Content)
+                        </div>
+                        ⬆️ padding (안쪽 여백)
+                    </div>
+                    ⬆️ border (테두리)
+                </div>
+                <p style="margin-top: 10px;">⬆️ margin (바깥 여백)</p>
+            </div>
+
+            <div class="code-box">
+div {
+    width: 200px;          /* 내용 너비 */
+    padding: 20px;         /* 안쪽 여백 */
+    border: 2px solid black; /* 테두리 */
+    margin: 10px;          /* 바깥 여백 */
+}
+            </div>
+
+            <div class="tip">
+                💡 실제 요소 크기 = width + padding + border
+            </div>
+        </div>
+
+        <!-- 슬라이드 17: 가상 클래스 -->
+        <div class="slide">
+            <h2>🖱️ 마우스 반응 효과 (가상 클래스)</h2>
+            
+            <p>사용자의 동작에 따라 스타일을 변경할 수 있어요!</p>
+
+            <h3>:hover - 마우스를 올렸을 때</h3>
+            <div class="code-box">
+a:hover {
+    color: red;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: blue;
+}
+            </div>
+            <div class="example-box">
+                <strong>예시:</strong>
+                <a href="#" style="color: #0066cc; text-decoration: none;" 
+                   onmouseover="this.style.color='red'" 
+                   onmouseout="this.style.color='#0066cc'">
+                    마우스를 올려보세요!
+                </a>
+            </div>
+
+            <h3>:active - 클릭하는 순간</h3>
+            <div class="code-box">
+button:active {
+    background-color: darkblue;
+    transform: scale(0.95);
+}
+            </div>
+            <p>👉 버튼을 누르는 순간만 적용됩니다</p>
+
+            <h3>:focus - 입력칸을 선택했을 때</h3>
+            <div class="code-box">
+input:focus {
+    border: 2px solid blue;
+    outline: none;
+}
+            </div>
+            <p>👉 주로 input, textarea 등에 사용</p>
+
+            <div class="tip">
+                💡 <strong>조합 가능:</strong> <code>a:hover</code>, <code>button:active</code> 등으로 특정 태그에만 적용!
+            </div>
+        </div>
+
+        <!-- 슬라이드 18: 실습 2 -->
+        <div class="slide">
+            <h2>👨‍💻 실습 2: CSS로 꾸미기</h2>
+            
+            <div class="practice">
+                <h3>🎯 목표: 자기소개 페이지에 스타일 적용하기</h3>
+                <p><strong>적용할 스타일:</strong></p>
+                <ol>
+                    <li>제목(h1)을 파란색으로, 가운데 정렬</li>
+                    <li>문단(p)의 글자 크기를 18px로</li>
+                    <li>전체 배경색을 연한 회색으로</li>
+                    <li>링크에 마우스를 올리면 색상 변경 (:hover 사용!)</li>
+                </ol>
+            </div>
+
+            <div class="code-box" style="font-size: 0.85em;">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;홍길동 소개&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #0066cc;
+            text-align: center;
+        }
+        
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            color: #ff6600;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- HTML 내용은 이전과 동일 --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </div>
+        </div>
+
+        <!-- 슬라이드 19: 최종 프로젝트 -->
+        <div class="slide">
+            <h2>🎯 최종 프로젝트: 멋진 자기소개 페이지</h2>
+            
+            <div class="practice">
+                <h3>✨ 만들 것:</h3>
+                <ul>
+                    <li>헤더 영역 (이름, 직업/학교)</li>
+                    <li>자기소개 섹션</li>
+                    <li>취미/관심사 목록</li>
+                    <li>연락처/소셜 링크</li>
+                </ul>
+
+                <h3>🎨 포함할 스타일:</h3>
+                <ul>
+                    <li>배경색과 글자색 조화롭게</li>
+                    <li>padding, margin으로 여백 조절</li>
+                    <li>테두리나 그림자 효과</li>
+                    <li>호버 효과</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                💡 <strong>추가 도전:</strong> 이미지 추가, 목록 스타일 변경, border-radius로 둥근 모서리 만들기!
+            </div>
+        </div>
+
+        <!-- 슬라이드 20: 유용한 팁 -->
+        <div class="slide">
+            <h2>💡 알아두면 좋은 팁</h2>
+            
+            <div class="tip">
+                <h3>1. 개발자 도구 활용</h3>
+                <p><strong>F12</strong> 또는 <strong>마우스 우클릭 → 검사</strong></p>
+                <p>→ 웹사이트의 HTML, CSS를 실시간으로 볼 수 있어요!</p>
+            </div>
+
+            <div class="tip">
+                <h3>2. 색상 고르기</h3>
+                <ul>
+                    <li>Google: "color picker" 검색</li>
+                    <li>사이트: <a href="https://coolors.co" target="_blank">coolors.co</a></li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                <h3>3. 자주 하는 실수</h3>
+                <ul>
+                    <li>❌ 태그 닫기 잊음</li>
+                    <li>❌ CSS에서 세미콜론(;) 빼먹음</li>
+                    <li>❌ 클래스명에 공백 사용</li>
+                    <li>❌ id 중복 사용</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 슬라이드 21: 마무리 -->
+        <div class="slide">
+            <h2>🎉 수고하셨습니다!</h2>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <h3 style="font-size: 2em; color: #667eea;">오늘 배운 내용</h3>
+                <ul style="font-size: 1.3em; text-align: left; max-width: 600px; margin: 30px auto;">
+                    <li>✅ HTML 기본 구조와 주요 태그</li>
+                    <li>✅ CSS 기초와 선택자</li>
+                    <li>✅ 텍스트와 박스 스타일링</li>
+                    <li>✅ 간단한 웹 페이지 제작</li>
+                </ul>
+            </div>
+
+            <div class="tip" style="font-size: 1.2em;">
+                <h3>🚀 다음 단계:</h3>
+                <p>AI를 활용한 웹 페이지 만들기</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
