@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.slide {
+    padding: 60px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.slide-title {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 80px 60px;
+    text-align: center;
+}
+
+.session-header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    padding: 40px 60px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #f5576c;
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #f5576c;
+    padding-bottom: 15px;
+}
+
+h3 {
+    color: #f093fb;
+    font-size: 1.5em;
+    margin: 25px 0 15px 0;
+}
+
+h4 {
+    color: #666;
+    font-size: 1.2em;
+    margin: 20px 0 10px 0;
+}
+
+p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.code-box {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    border-left: 4px solid #f5576c;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.code-box .comment {
+    color: #6272a4;
+}
+
+.code-box .keyword {
+    color: #ff79c6;
+}
+
+.code-box .string {
+    color: #f1fa8c;
+}
+
+.code-box .function {
+    color: #50fa7b;
+}
+
+.example-box {
+    border: 2px solid #f093fb;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    background: #fef5ff;
+}
+
+.highlight {
+    background: #fff3cd;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #856404;
+}
+
+.important {
+    background: #ffe5e5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+ul,
+ol {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.tip {
+    background: #d4edda;
+    border-left: 4px solid #28a745;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.warning {
+    background: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.practice {
+    background: #e3f2fd;
+    border: 2px dashed #2196f3;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 10px;
+}
+
+.practice h3 {
+    color: #1976d2;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95em;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background: #f093fb;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.concept-box {
+    background: #fff3e0;
+    border: 2px solid #ff9800;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.concept-box h3 {
+    color: #e65100;
+    margin-top: 0;
+}
+
+.key-point {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+code {
+    background: #f4f4f4;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    color: #e83e8c;
+    font-size: 0.9em;
+}
+
+.session-divider {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 40px 0;
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    .container {
+        box-shadow: none;
+    }
+
+    .slide {
+        page-break-after: always;
+    }
+}

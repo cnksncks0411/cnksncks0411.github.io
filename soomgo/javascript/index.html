@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 기초 + 응용 수업</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 표지 -->
+        <div class="slide-title">
+            <h1>🚀 JavaScript 기초 + 응용</h1>
+            <p style="font-size: 1.5em; margin-top: 20px;">DOM 조작과 이벤트 처리 마스터하기</p>
+        </div>
+
+        <!-- 전체 목차 -->
+        <div class="slide">
+            <h2>📚 전체 수업 구성</h2>
+            
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #1976d2; margin-top: 0;">🎯 1회차 : JavaScript 기초 + DOM 조작</h3>
+                <ul style="font-size: 1.1em;">
+                    <li><strong>JavaScript 기초 문법</strong></li>
+                    <li>변수와 데이터 타입 (let, const, 문자열, 숫자, 불린)</li>
+                    <li>배열과 객체</li>
+                    <li>함수 작성하기</li>
+                    <li>조건문과 반복문</li>
+                    <li><strong>DOM 조작</strong></li>
+                    <li>요소 선택하기</li>
+                    <li>내용, 속성, 스타일, 클래스 조작</li>
+                    <li>요소 생성, 추가, 삭제하기</li>
+                    <li><strong>실습 1:</strong> 동적 할일 목록 만들기</li>
+                </ul>
+            </div>
+
+            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h3 style="color: #e65100; margin-top: 0;">🎯 2회차 : 이벤트 처리와 폼 검증</h3>
+                <ul style="font-size: 1.1em;">
+                    <li>이벤트 리스너 등록과 제거</li>
+                    <li>다양한 이벤트 타입 (마우스, 키보드, 폼)</li>
+                    <li>이벤트 객체 완전 활용</li>
+                    <li>이벤트 위임 패턴</li>
+                    <li>폼 입력값 검증과 실시간 피드백</li>
+                    <li>동적 폼 생성하기</li>
+                    <li><strong>실습 2:</strong> 회원가입 폼 만들기</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                💡 <strong>학습 팁:</strong> 코드를 직접 타이핑하면서 따라해보세요. 복사/붙여넣기보다 직접 작성할 때 더 많이 배울 수 있습니다!
+            </div>
+        </div>
+
+        <!-- 1회차 시작 -->
+        <div class="session-header">
+            <h1>📘 1회차: JavaScript 기초 + DOM 조작</h1>
+            <p style="font-size: 1.3em; margin-top: 20px;">기본 문법부터 웹 페이지 제어까지</p>
+        </div>
+
+        <!-- 슬라이드 0: JavaScript 소개 -->
+        <div class="slide">
+            <h2>💡 JavaScript란?</h2>
+            
+            <div class="concept-box">
+                <h3>JavaScript는 웹 페이지에 동작을 추가하는 프로그래밍 언어입니다</h3>
+                <p style="font-size: 1.1em; margin-top: 15px;">HTML이 구조, CSS가 디자인이라면, <strong>JavaScript는 동작과 상호작용</strong>을 담당합니다.</p>
+            </div>
+
+            <div style="margin: 40px 0;">
+                <h3>🎯 JavaScript로 할 수 있는 것</h3>
+                <ul style="font-size: 1.2em; line-height: 2;">
+                    <li>버튼 클릭, 폼 제출 등 <span class="highlight">사용자 이벤트</span> 처리</li>
+                    <li>웹 페이지 내용을 <span class="highlight">동적으로 변경</span></li>
+                    <li>서버와 <span class="highlight">데이터 주고받기</span></li>
+                    <li>애니메이션과 <span class="highlight">시각 효과</span> 구현</li>
+                    <li>브라우저에 <span class="highlight">데이터 저장</span></li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h4>🌐 웹 개발의 3요소</h4>
+                <table>
+                    <tr>
+                        <th>기술</th>
+                        <th>역할</th>
+                        <th>비유</th>
+                    </tr>
+                    <tr>
+                        <td><strong>HTML</strong></td>
+                        <td>구조</td>
+                        <td>🏗️ 건물의 뼈대</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CSS</strong></td>
+                        <td>디자인</td>
+                        <td>🎨 인테리어, 꾸미기</td>
+                    </tr>
+                    <tr>
+                        <td><strong>JavaScript</strong></td>
+                        <td>동작</td>
+                        <td>⚡ 전기, 엘리베이터, 기능</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tip">
+                💡 <strong>JavaScript를 어디에 작성하나요?</strong><br>
+                • HTML 파일 안의 <code>&lt;script&gt;</code> 태그 내부<br>
+                • 별도의 .js 파일 (권장)
+            </div>
+        </div>
+
+        <!-- 슬라이드 1: 변수와 데이터 타입 1 -->
+        <div class="slide">
+            <h2>📦 변수 선언하기</h2>
+            
+            <div class="concept-box">
+                <h3>변수란?</h3>
+                <p>데이터를 저장하는 <strong>상자</strong>와 같습니다. 이름을 붙여서 나중에 다시 사용할 수 있습니다.</p>
+            </div>
+
+            <h3>변수 선언 방법</h3>
+            <div class="code-box">
+<span class="comment">// 1. let - 변경 가능한 변수 (추천)</span><br>
+<span class="keyword">let</span> userName = <span class="string">"홍길동"</span>;<br>
+<span class="keyword">let</span> age = <span class="string">25</span>;<br>
+userName = <span class="string">"김철수"</span>;  <span class="comment">// 변경 가능 ✅</span><br><br>
+
+<span class="comment">// 2. const - 상수 (변경 불가, 추천)</span><br>
+<span class="keyword">const</span> PI = <span class="string">3.14159</span>;<br>
+<span class="keyword">const</span> API_KEY = <span class="string">"abc123xyz"</span>;<br>
+<span class="comment">// PI = 3.14;  // ❌ 오류 발생!</span><br><br>
+
+<span class="comment">// 3. var - 구식 방법 (사용 비권장)</span><br>
+<span class="keyword">var</span> oldStyle = <span class="string">"구식 선언"</span>;
+            </div>
+
+            <div class="key-point">
+                <strong>언제 무엇을 사용할까?</strong><br>
+                • <code>const</code>: 값이 변하지 않을 때 (기본으로 사용)<br>
+                • <code>let</code>: 값이 변할 때만 사용<br>
+                • <code>var</code>: 사용하지 마세요!
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제</h4>
+                <div class="code-box">
+<span class="keyword">const</span> siteName = <span class="string">"내 웹사이트"</span>;      <span class="comment">// 사이트명은 변경 안됨</span><br>
+<span class="keyword">let</span> loginCount = <span class="string">0</span>;              <span class="comment">// 로그인 횟수는 증가함</span><br>
+<span class="keyword">let</span> isLoggedIn = <span class="string">false</span>;          <span class="comment">// 로그인 상태는 변함</span><br>
+
+loginCount = loginCount + <span class="string">1</span>;  <span class="comment">// 1 증가</span><br>
+isLoggedIn = <span class="string">true</span>;            <span class="comment">// 로그인 완료</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 2: 데이터 타입 -->
+        <div class="slide">
+            <h2>🎲 데이터 타입 (Data Types)</h2>
+            
+            <h3>1️⃣ 문자열 (String)</h3>
+            <div class="code-box">
+<span class="comment">// 큰따옴표 또는 작은따옴표 사용</span><br>
+<span class="keyword">let</span> message = <span class="string">"안녕하세요"</span>;<br>
+<span class="keyword">let</span> name = <span class="string">'김철수'</span>;<br>
+<br>
+<span class="comment">// 템플릿 리터럴 (백틱 사용, 변수 삽입 가능)</span><br>
+<span class="keyword">let</span> greeting = <span class="string">`안녕하세요, ${name}님!`</span>;<br>
+<span class="keyword">console</span>.<span class="function">log</span>(greeting);  <span class="comment">// "안녕하세요, 김철수님!"</span><br>
+<br>
+<span class="comment">// 문자열 연결</span><br>
+<span class="keyword">let</span> fullName = <span class="string">"김"</span> + <span class="string">"철수"</span>;<br>
+<span class="keyword">let</span> intro = <span class="string">"제 이름은 "</span> + name + <span class="string">"입니다."</span>;
+            </div>
+
+            <h3>2️⃣ 숫자 (Number)</h3>
+            <div class="code-box">
+<span class="keyword">let</span> age = <span class="string">25</span>;<br>
+<span class="keyword">let</span> price = <span class="string">1999.99</span>;<br>
+<span class="keyword">let</span> temperature = <span class="string">-5</span>;<br>
+<br>
+<span class="comment">// 기본 연산</span><br>
+<span class="keyword">let</span> sum = <span class="string">10</span> + <span class="string">5</span>;        <span class="comment">// 15</span><br>
+<span class="keyword">let</span> difference = <span class="string">10</span> - <span class="string">5</span>;  <span class="comment">// 5</span><br>
+<span class="keyword">let</span> product = <span class="string">10</span> * <span class="string">5</span>;     <span class="comment">// 50</span><br>
+<span class="keyword">let</span> quotient = <span class="string">10</span> / <span class="string">5</span>;    <span class="comment">// 2</span><br>
+            </div>
+
+            <h3>3️⃣ 불린 (Boolean)</h3>
+            <div class="code-box">
+<span class="keyword">let</span> isLoggedIn = <span class="string">true</span>;<br>
+<span class="keyword">let</span> isEmpty = <span class="string">false</span>;<br>
+<span class="keyword">let</span> hasPermission = <span class="string">true</span>;<br>
+<br>
+<span class="comment">// 비교 연산</span><br>
+<span class="keyword">let</span> isAdult = age >= <span class="string">18</span>;        <span class="comment">// true 또는 false</span><br>
+<span class="keyword">let</span> isSame = <span class="string">"hello"</span> === <span class="string">"hello"</span>; <span class="comment">// true</span><br>
+            </div>
+
+            <div class="tip">
+                💡 <strong>typeof 연산자:</strong> 변수의 타입을 확인할 수 있습니다<br>
+                <code>console.log(typeof age);</code> → <code>"number"</code>
+            </div>
+        </div>
+
+        <!-- 슬라이드 3: 배열과 객체 -->
+        <div class="slide">
+            <h2>📚 배열 (Array)</h2>
+            
+            <div class="concept-box">
+                <h3>배열은 여러 값을 순서대로 저장하는 리스트입니다</h3>
+            </div>
+
+            <div class="code-box">
+<span class="comment">// 배열 선언</span><br>
+<span class="keyword">let</span> fruits = [<span class="string">"사과"</span>, <span class="string">"바나나"</span>, <span class="string">"오렌지"</span>];<br>
+<span class="keyword">let</span> numbers = [<span class="string">1</span>, <span class="string">2</span>, <span class="string">3</span>, <span class="string">4</span>, <span class="string">5</span>];<br>
+<span class="keyword">let</span> mixed = [<span class="string">"문자"</span>, <span class="string">123</span>, <span class="string">true</span>];  <span class="comment">// 다른 타입도 가능</span><br>
+<br>
+<span class="comment">// 배열 요소 접근 (인덱스는 0부터 시작!)</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(fruits[<span class="string">0</span>]);  <span class="comment">// "사과"</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(fruits[<span class="string">1</span>]);  <span class="comment">// "바나나"</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(fruits[<span class="string">2</span>]);  <span class="comment">// "오렌지"</span><br>
+<br>
+<span class="comment">// 배열 길이</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(fruits.<span class="function">length</span>);  <span class="comment">// 3</span><br>
+<br>
+<span class="comment">// 배열 수정</span><br>
+fruits[<span class="string">0</span>] = <span class="string">"딸기"</span>;<br>
+<span class="keyword">console</span>.<span class="function">log</span>(fruits);  <span class="comment">// ["딸기", "바나나", "오렌지"]</span><br>
+<br>
+<span class="comment">// 배열에 요소 추가</span><br>
+fruits.<span class="function">push</span>(<span class="string">"포도"</span>);     <span class="comment">// 끝에 추가</span><br>
+fruits.<span class="function">unshift</span>(<span class="string">"수박"</span>);  <span class="comment">// 앞에 추가</span><br>
+<br>
+<span class="comment">// 배열에서 요소 제거</span><br>
+fruits.<span class="function">pop</span>();         <span class="comment">// 마지막 제거</span><br>
+fruits.<span class="function">shift</span>();       <span class="comment">// 첫번째 제거</span><br>
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 장바구니</h4>
+                <div class="code-box">
+<span class="keyword">let</span> cart = [];<br>
+cart.<span class="function">push</span>(<span class="string">"노트북"</span>);<br>
+cart.<span class="function">push</span>(<span class="string">"마우스"</span>);<br>
+cart.<span class="function">push</span>(<span class="string">"키보드"</span>);<br>
+<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`장바구니에 ${cart.length}개의 상품이 있습니다.`</span>);
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 4: 객체 -->
+        <div class="slide">
+            <h2>🎁 객체 (Object)</h2>
+            
+            <div class="concept-box">
+                <h3>객체는 관련된 데이터를 이름(키)과 값(value)의 쌍으로 저장합니다</h3>
+            </div>
+
+            <div class="code-box">
+<span class="comment">// 객체 선언</span><br>
+<span class="keyword">let</span> person = {<br>
+    &nbsp name: <span class="string">"김철수"</span>,<br>
+    &nbsp age: <span class="string">30</span>,<br>
+    &nbsp city: <span class="string">"서울"</span>,<br>
+    &nbsp isStudent: <span class="string">false</span><br>
+};<br>
+<br>
+<span class="comment">// 객체 속성 접근 (점 표기법)</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(person.name);      <span class="comment">// "김철수"</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(person.age);       <span class="comment">// 30</span><br>
+<br>
+<span class="comment">// 객체 속성 접근 (대괄호 표기법)</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(person[<span class="string">"city"</span>]);   <span class="comment">// "서울"</span><br>
+<br>
+<span class="comment">// 객체 속성 수정</span><br>
+person.age = <span class="string">31</span>;<br>
+person.city = <span class="string">"부산"</span>;<br>
+<br>
+<span class="comment">// 새 속성 추가</span><br>
+person.job = <span class="string">"개발자"</span>;<br>
+person.email = <span class="string">"kim@email.com"</span>;<br>
+<br>
+<span class="comment">// 속성 삭제</span><br>
+<span class="keyword">delete</span> person.isStudent;
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 상품 정보</h4>
+                <div class="code-box">
+<span class="keyword">let</span> product = {<br>
+    &nbsp name: <span class="string">"무선 마우스"</span>,<br>
+    &nbsp price: <span class="string">29000</span>,<br>
+    &nbsp brand: <span class="string">"로지텍"</span>,<br>
+    &nbsp inStock: <span class="string">true</span>,<br>
+    &nbsp colors: [<span class="string">"검정"</span>, <span class="string">"흰색"</span>, <span class="string">"파랑"</span>]<br>
+};<br>
+<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`${product.name}의 가격은 ${product.price}원입니다.`</span>);<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`재고: ${product.inStock ? "있음" : "없음"}`</span>);
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 5: 함수 기초 -->
+        <div class="slide">
+            <h2>⚙️ 함수 (Functions)</h2>
+            
+            <div class="concept-box">
+                <h3>함수는 재사용 가능한 코드 블록입니다</h3>
+                <p>특정 작업을 수행하는 코드를 묶어서 이름을 붙이고, 필요할 때마다 호출할 수 있습니다.</p>
+            </div>
+
+            <h3>1️⃣ 함수 선언문</h3>
+            <div class="code-box">
+<span class="comment">// 함수 정의</span><br>
+<span class="keyword">function</span> <span class="function">greet</span>(name) {<br>
+    &nbsp <span class="keyword">return</span> <span class="string">"안녕하세요, "</span> + name + <span class="string">"님!"</span>;<br>
+}<br>
+<br>
+<span class="comment">// 함수 호출</span><br>
+<span class="keyword">let</span> message = <span class="function">greet</span>(<span class="string">"철수"</span>);<br>
+<span class="keyword">console</span>.<span class="function">log</span>(message);  <span class="comment">// "안녕하세요, 철수님!"</span><br>
+<br>
+<span class="comment">// 매개변수가 여러 개인 함수</span><br>
+<span class="keyword">function</span> <span class="function">add</span>(a, b) {<br>
+    &nbsp <span class="keyword">return</span> a + b;<br>
+}<br>
+<br>
+<span class="keyword">let</span> sum = <span class="function">add</span>(<span class="string">5</span>, <span class="string">3</span>);<br>
+<span class="keyword">console</span>.<span class="function">log</span>(sum);  <span class="comment">// 8</span><br>
+            </div>
+
+            <h3>2️⃣ 함수 표현식</h3>
+            <div class="code-box">
+<span class="comment">// 변수에 함수를 할당</span><br>
+<span class="keyword">const</span> multiply = <span class="keyword">function</span>(a, b) {<br>
+    &nbsp <span class="keyword">return</span> a * b;<br>
+};<br>
+<br>
+<span class="keyword">let</span> result = <span class="function">multiply</span>(<span class="string">4</span>, <span class="string">7</span>);<br>
+<span class="keyword">console</span>.<span class="function">log</span>(result);  <span class="comment">// 28</span>
+            </div>
+
+            <h3>3️⃣ 화살표 함수 (ES6, 최신 방식)</h3>
+            <div class="code-box">
+<span class="comment">// 기본 형태</span><br>
+<span class="keyword">const</span> subtract = (a, b) => {<br>
+    &nbsp <span class="keyword">return</span> a - b;<br>
+};<br>
+<br>
+<span class="comment">// 축약형 (한 줄일 때 return 생략 가능)</span><br>
+<span class="keyword">const</span> square = <span class="function">x</span> => x * x;<br>
+<span class="keyword">const</span> double = <span class="function">x</span> => x * <span class="string">2</span>;<br>
+<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">square</span>(<span class="string">5</span>));   <span class="comment">// 25</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">double</span>(<span class="string">10</span>));  <span class="comment">// 20</span>
+            </div>
+        </div>
+
+        <!-- 슬라이드 6: 함수 실전 -->
+        <div class="slide">
+            <h2>⚙️ 함수 실전 예제</h2>
+            
+            <div class="example-box">
+                <h4>예제 1: 계산기 함수</h4>
+                <div class="code-box">
+<span class="keyword">function</span> <span class="function">calculator</span>(num1, num2, operator) {<br>
+    &nbsp <span class="keyword">if</span> (operator === <span class="string">"+"</span>) {<br>
+        &nbsp &nbsp <span class="keyword">return</span> num1 + num2;<br>
+    &nbsp } <span class="keyword">else if</span> (operator === <span class="string">"-"</span>) {<br>
+        &nbsp &nbsp <span class="keyword">return</span> num1 - num2;<br>
+    &nbsp } <span class="keyword">else if</span> (operator === <span class="string">"*"</span>) {<br>
+        &nbsp &nbsp <span class="keyword">return</span> num1 * num2;<br>
+    &nbsp } <span class="keyword">else if</span> (operator === <span class="string">"/"</span>) {<br>
+        &nbsp &nbsp <span class="keyword">return</span> num1 / num2;<br>
+    &nbsp }<br>
+}<br>
+<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">calculator</span>(<span class="string">10</span>, <span class="string">5</span>, <span class="string">"+"</span>));  <span class="comment">// 15</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">calculator</span>(<span class="string">10</span>, <span class="string">5</span>, <span class="string">"*"</span>));  <span class="comment">// 50</span>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>예제 2: 할인 가격 계산</h4>
+                <div class="code-box">
+<span class="keyword">const</span> calculateDiscount = (price, discountRate) => {<br>
+    &nbsp <span class="keyword">const</span> discount = price * (discountRate / <span class="string">100</span>);<br>
+    &nbsp <span class="keyword">const</span> finalPrice = price - discount;<br>
+    &nbsp <span class="keyword">return</span> finalPrice;<br>
+};<br>
+<br>
+<span class="keyword">let</span> originalPrice = <span class="string">50000</span>;<br>
+<span class="keyword">let</span> salePrice = <span class="function">calculateDiscount</span>(originalPrice, <span class="string">20</span>);<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`할인가: ${salePrice}원`</span>);  <span class="comment">// 할인가: 40000원</span>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h4>예제 3: 환영 메시지 생성</h4>
+                <div class="code-box">
+<span class="keyword">function</span> <span class="function">createWelcomeMessage</span>(name, isVip) {<br>
+    &nbsp <span class="keyword">if</span> (isVip) {<br>
+        &nbsp &nbsp <span class="keyword">return</span> <span class="string">`🌟 VIP ${name}님, 환영합니다!`</span>;<br>
+    &nbsp } <span class="keyword">else</span> {<br>
+        &nbsp &nbsp <span class="keyword">return</span> <span class="string">`안녕하세요, ${name}님!`</span>;<br>
+    &nbsp }<br>
+}<br>
+<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">createWelcomeMessage</span>(<span class="string">"김철수"</span>, <span class="string">false</span>));<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="function">createWelcomeMessage</span>(<span class="string">"박영희"</span>, <span class="string">true</span>));
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 7: 조건문 -->
+        <div class="slide">
+            <h2>🔀 조건문 (if-else)</h2>
+            
+            <div class="concept-box">
+                <h3>조건에 따라 다른 코드를 실행합니다</h3>
+            </div>
+
+            <div class="code-box">
+<span class="comment">// 기본 if-else</span><br>
+<span class="keyword">let</span> age = <span class="string">20</span>;<br>
+<br>
+<span class="keyword">if</span> (age >= <span class="string">18</span>) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"성인입니다"</span>);<br>
+} <span class="keyword">else</span> {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"미성년자입니다"</span>);<br>
+}<br>
+<br>
+<span class="comment">// 다중 조건 (else if)</span><br>
+<span class="keyword">let</span> score = <span class="string">85</span>;<br>
+<br>
+<span class="keyword">if</span> (score >= <span class="string">90</span>) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"A등급입니다!"</span>);<br>
+} <span class="keyword">else if</span> (score >= <span class="string">80</span>) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"B등급입니다!"</span>);<br>
+} <span class="keyword">else if</span> (score >= <span class="string">70</span>) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"C등급입니다!"</span>);<br>
+} <span class="keyword">else</span> {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"더 노력하세요!"</span>);<br>
+}
+            </div>
+
+            <h3>비교 연산자</h3>
+            <div class="code-box">
+<span class="comment">// 같다 / 다르다</span><br>
+<span class="string">5</span> == <span class="string">5</span>          <span class="comment">// true (값과 타입이 같다)</span><br>
+<span class="string">5</span> != <span class="string">3</span>          <span class="comment">// true (같지 않다)</span><br>
+<br>
+<span class="comment">// 크다 / 작다</span><br>
+<span class="string">10</span> > <span class="string">5</span>           <span class="comment">// true</span><br>
+<span class="string">10</span> < <span class="string">5</span>           <span class="comment">// false</span><br>
+<span class="string">10</span> >= <span class="string">10</span>         <span class="comment">// true</span><br>
+<span class="string">10</span> <= <span class="string">5</span>          <span class="comment">// false</span><br>
+<br>
+<span class="comment">// 논리 연산자</span><br>
+age >= <span class="string">18</span> && age <= <span class="string">65</span>   <span class="comment">// AND (그리고)</span><br>
+age < <span class="string">18</span> || age > <span class="string">65</span>     <span class="comment">// OR (또는)</span><br>
+!(age < <span class="string">18</span>)                 <span class="comment">// NOT (부정)</span><br>
+            </div>
+
+            <h3>삼항 연산자 (간단한 조건)</h3>
+            <div class="code-box">
+<span class="comment">// 조건 ? 참일 때 : 거짓일 때</span><br>
+<span class="keyword">let</span> result = score >= <span class="string">80</span> ? <span class="string">"합격"</span> : <span class="string">"불합격"</span>;<br>
+<span class="keyword">let</span> message = age >= <span class="string">18</span> ? <span class="string">"입장 가능"</span> : <span class="string">"입장 불가"</span>;
+            </div>
+        </div>
+
+        <!-- 슬라이드 8: for 반복문 -->
+        <div class="slide">
+            <h2>🔁 반복문 - for 문</h2>
+            
+            <div class="concept-box">
+                <h3>같은 작업을 여러 번 반복할 때 사용합니다</h3>
+            </div>
+
+            <h3>기본 for 반복문</h3>
+            <div class="code-box">
+<span class="comment">// 0부터 4까지 출력</span><br>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="string">0</span>; i < <span class="string">5</span>; i++) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"숫자:"</span>, i);<br>
+}<br>
+<span class="comment">// 출력: 0, 1, 2, 3, 4</span><br>
+<br>
+<span class="comment">// 1부터 10까지의 합계</span><br>
+<span class="keyword">let</span> sum = <span class="string">0</span>;<br>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="string">1</span>; i <= <span class="string">10</span>; i++) {<br>
+    &nbsp sum += i;  <span class="comment">// sum = sum + i</span><br>
+}<br>
+
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"합계:"</span>, sum);  <span class="comment">// 55</span>
+            </div>
+
+            <h3>배열 반복 - for 문</h3>
+            <div class="code-box">
+<span class="keyword">let</span> fruits = [<span class="string">"사과"</span>, <span class="string">"바나나"</span>, <span class="string">"오렌지"</span>];<br>
+<br>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="string">0</span>; i < fruits.length; i++) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(i + <span class="string">": "</span> + fruits[i]);<br>
+}<br>
+<span class="comment">// 0: 사과
+// 1: 바나나
+// 2: 오렌지</span>
+            </div>
+
+            <h3>배열 반복 - for...of (더 간단)</h3>
+            <div class="code-box">
+<span class="keyword">let</span> colors = [<span class="string">"빨강"</span>, <span class="string">"파랑"</span>, <span class="string">"초록"</span>];<br>
+<br>
+<span class="keyword">for</span> (<span class="keyword">let</span> color <span class="keyword">of</span> colors) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"색상:"</span>, color);<br>
+}<br>
+<span class="comment">// 색상: 빨강
+// 색상: 파랑
+// 색상: 초록</span>
+            </div>
+        </div>
+
+        <!-- 슬라이드 9: forEach와 객체 반복 -->
+        <div class="slide">
+            <h2>🔁 반복문 - forEach와 객체</h2>
+            
+            <h3>배열 반복 - forEach 메서드</h3>
+            <div class="code-box">
+<span class="keyword">let</span> numbers = [<span class="string">1</span>, <span class="string">2</span>, <span class="string">3</span>, <span class="string">4</span>, <span class="string">5</span>];<br>
+<br>
+<span class="comment">// forEach: 각 요소마다 함수 실행</span><br>
+numbers.<span class="function">forEach</span>(<span class="keyword">function</span>(number, index) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`${index}번째: ${number}`</span>);<br>
+});<br>
+<br>
+<span class="comment">// 화살표 함수로도 사용 가능</span><br>
+numbers.<span class="function">forEach</span>((num) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(num * <span class="string">2</span>);  <span class="comment">// 각 숫자를 2배로</span><br>
+});<br>
+            </div>
+
+            <h3>객체 반복 - for...in</h3>
+            <div class="code-box">
+<span class="keyword">let</span> student = {<br>
+    &nbsp name: <span class="string">"김학생"</span>,<br>
+    &nbsp age: <span class="string">20</span>,<br>
+    &nbsp grade: <span class="string">"A"</span>,<br>
+    &nbsp school: <span class="string">"한국대학교"</span><br>
+};<br>
+<br>
+<span class="comment">// 객체의 모든 속성 순회</span><br>
+<span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> student) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`${key}: ${student[key]}`</span>);<br>
+}<br>
+<span class="comment">// name: 김학생
+// age: 20
+// grade: A
+// school: 한국대학교</span>
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 장바구니 총액 계산</h4>
+                <div class="code-box">
+<span class="keyword">let</span> cart = [<br>
+    &nbsp { name: <span class="string">"노트북"</span>, price: <span class="string">1200000</span> },<br>
+    &nbsp { name: <span class="string">"마우스"</span>, price: <span class="string">30000</span> },<br>
+    &nbsp { name: <span class="string">"키보드"</span>, price: <span class="string">80000</span> }<br>
+];<br>
+<br>
+<span class="keyword">let</span> total = <span class="string">0</span>;<br>
+cart.<span class="function">forEach</span>(<span class="keyword">function</span>(item) {<br>
+    &nbsp total += item.price;<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`${item.name}: ${item.price}원`</span>);<br>
+});<br>
+<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`총액: ${total}원`</span>);  <span class="comment">// 1,310,000원</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 10: 기초 실습 -->
+        <div class="slide">
+            <h2>👨‍💻 기초 실습: 간단한 프로그램</h2>
+            
+            <div class="practice">
+                <h3>🎯 실습 1: 짝수 찾기</h3>
+                <div class="code-box">
+<span class="comment">// 1부터 20까지 중 짝수만 출력하기</span><br>
+<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="string">1</span>; i <= <span class="string">20</span>; i++) {<br>
+    &nbsp <span class="keyword">if</span> (i % <span class="string">2</span> === <span class="string">0</span>) {  <span class="comment">// 2로 나눈 나머지가 0</span><br>
+        &nbsp &nbsp <span class="keyword">console</span>.<span class="function">log</span>(i);<br>
+    &nbsp }<br>
+}
+                </div>
+            </div>
+
+            <div class="practice">
+                <h3>🎯 실습 2: 성적 분석 프로그램</h3>
+                <div class="code-box">
+<span class="keyword">let</span> scores = [<span class="string">85</span>, <span class="string">92</span>, <span class="string">78</span>, <span class="string">95</span>, <span class="string">88</span>];<br>
+<br>
+<span class="comment">// 평균 계산</span><br>
+<span class="keyword">let</span> sum = <span class="string">0</span>;<br>
+scores.<span class="function">forEach</span>(score => {<br>
+    &nbsp sum += score;<br>
+});<br>
+<span class="keyword">let</span> average = sum / scores.length;<br>
+<br>
+<span class="comment">// 최고점 찾기</span><br>
+<span class="keyword">let</span> highest = scores[<span class="string">0</span>];<br>
+<span class="keyword">for</span> (<span class="keyword">let</span> score <span class="keyword">of</span> scores) {<br>
+    &nbsp <span class="keyword">if</span> (score > highest) {<br>
+        &nbsp &nbsp highest = score;<br>
+    &nbsp }<br>
+}<br>
+<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`평균: ${average}점`</span>);<br>
+<span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`최고점: ${highest}점`</span>);<br>
+                </div>
+            </div>
+
+            <div class="practice">
+                <h3>🎯 실습 3: 사용자 정보 출력</h3>
+                <div class="code-box">
+<span class="keyword">let</span> users = [<br>
+    &nbsp { name: <span class="string">"김철수"</span>, age: <span class="string">25</span>, city: <span class="string">"서울"</span> },<br>
+    &nbsp { name: <span class="string">"이영희"</span>, age: <span class="string">30</span>, city: <span class="string">"부산"</span> },<br>
+    &nbsp { name: <span class="string">"박민수"</span>, age: <span class="string">28</span>, city: <span class="string">"대구"</span> }<br>
+];<br>
+<br>
+users.<span class="function">forEach</span>(<span class="keyword">function</span>(user, index) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`${index + 1}. ${user.name} (${user.age}세, ${user.city})`</span>);<br>
+});
+                </div>
+            </div>
+        </div>
+
+        <!-- 이제 DOM 섹션 시작 -->
+        <div class="slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; padding: 80px 60px;">
+            <h1 style="color: white; font-size: 2.5em;">🌳 이제 DOM 조작을 배워봅시다!</h1>
+            <p style="font-size: 1.3em; margin-top: 30px; opacity: 0.95;">기초 문법을 익혔으니, 이제 웹 페이지를 직접 제어해볼 차례입니다</p>
+        </div>
+
+        <!-- 슬라이드 1: DOM이란? -->
+        <div class="slide">
+            <h2>🌳 DOM이란 무엇인가?</h2>
+            
+            <div class="concept-box">
+                <h3>DOM (Document Object Model)</h3>
+                <p style="font-size: 1.2em;"><strong>HTML 문서를 JavaScript로 조작할 수 있게 해주는 인터페이스</strong></p>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <h3>🔑 핵심 개념</h3>
+                <ul style="font-size: 1.2em; line-height: 2;">
+                    <li>HTML의 모든 요소는 <span class="highlight">객체(Object)</span>로 표현됩니다</li>
+                    <li>JavaScript를 통해 요소를 <span class="highlight">찾고, 수정하고, 생성하고, 삭제</span>할 수 있습니다</li>
+                    <li>웹 페이지를 <span class="highlight">실시간으로 변경</span>할 수 있습니다</li>
+                </ul>
+            </div>
+
+            <div class="example-box">
+                <h3>🏗️ 비유로 이해하기</h3>
+                <p style="font-size: 1.1em;">HTML 문서는 <strong>나무(Tree)</strong> 구조입니다:</p>
+                <ul>
+                    <li><code>&lt;html&gt;</code> = 뿌리</li>
+                    <li><code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> = 큰 가지</li>
+                    <li><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;span&gt;</code> = 작은 가지와 잎</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                💡 <strong>왜 DOM을 배워야 할까?</strong><br>
+                웹 페이지에 사용자 상호작용을 추가하려면 DOM 조작이 필수입니다!<br>
+                예: 버튼 클릭 시 내용 변경, 장바구니 추가, 댓글 작성 등
+            </div>
+        </div>
+
+        <!-- 슬라이드 2: 요소 선택하기 기초 -->
+        <div class="slide">
+            <h2>🎯 요소 선택하기 - 기초</h2>
+            
+            <h3>1️⃣ 단일 요소 선택</h3>
+            <div class="code-box">
+<span class="comment">// ID로 선택</span><br>
+<span class="keyword">const</span> title = <span class="keyword">document</span>.<span class="function">getElementById</span>(<span class="string">"main-title"</span>);<br>
+<br>
+<span class="comment">// CSS 선택자로 선택</span><br>
+<span class="keyword">const</span> firstButton = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".btn"</span>);<br>
+<span class="keyword">const</span> navElement = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"nav"</span>);<br>
+<span class="keyword">const</span> mainTitle = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#main-title"</span>);<br>
+            </div>
+
+            <h3>2️⃣ 여러 요소 선택</h3>
+            <div class="code-box">
+<span class="comment">// 클래스로 여러 개 선택</span><br>
+<span class="keyword">const</span> allButtons = <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">".btn"</span>);<br>
+<br>
+<span class="comment">// 태그로 여러 개 선택</span><br>
+<span class="keyword">const</span> listItems = <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">"ul li"</span>);<br>
+<br>
+<span class="comment">// 속성 선택자 사용</span><br>
+<span class="keyword">const</span> textInputs = <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">"input[type='text']"</span>);<br>
+            </div>
+
+            <div class="key-point">
+                ⭐ <code>querySelector</code> vs <code>querySelectorAll</code><br>
+                • querySelector: 첫 번째 요소 <strong>1개만</strong> 반환<br>
+                • querySelectorAll: 일치하는 <strong>모든 요소</strong>를 NodeList로 반환
+            </div>
+
+            <div class="tip">
+                💡 <strong>CSS 선택자를 그대로 사용할 수 있습니다!</strong><br>
+                <code>".container .item"</code>, <code>"div > p"</code>, <code>"button:hover"</code> 등
+            </div>
+        </div>
+
+        <!-- 슬라이드 3: 요소 선택하기 심화 -->
+        <div class="slide">
+            <h2>🎯 요소 선택하기 - 심화</h2>
+            
+            <h3>부모-자식 관계 탐색</h3>
+            <div class="code-box">
+<span class="keyword">const</span> container = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".container"</span>);<br>
+<br>
+<span class="comment">// 자식 요소들</span><br>
+<span class="keyword">const</span> children = container.<span class="function">children</span>;              <span class="comment">// 모든 자식 요소</span><br>
+<span class="keyword">const</span> firstChild = container.<span class="function">firstElementChild</span>;  <span class="comment">// 첫 번째 자식</span><br>
+<span class="keyword">const</span> lastChild = container.<span class="function">lastElementChild</span>;    <span class="comment">// 마지막 자식</span><br>
+<br>
+<span class="comment">// 부모 요소</span><br>
+<span class="keyword">const</span> parent = container.<span class="function">parentElement</span>;
+            </div>
+
+            <h3>형제 요소 탐색</h3>
+            <div class="code-box">
+<span class="keyword">const</span> currentElement = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#current"</span>);<br>
+<br>
+<span class="comment">// 다음 형제</span><br>
+<span class="keyword">const</span> nextSibling = currentElement.<span class="function">nextElementSibling</span>;<br>
+<br>
+<span class="comment">// 이전 형제</span><br>
+<span class="keyword">const</span> prevSibling = currentElement.<span class="function">previousElementSibling</span>;<br>
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 가장 가까운 조상 요소 찾기</h4>
+                <div class="code-box">
+<span class="keyword">const</span> deleteBtn = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".delete-btn"</span>);<br>
+<br>
+<span class="comment">// 버튼의 가장 가까운 .card 부모 찾기</span><br>
+<span class="keyword">const</span> card = deleteBtn.<span class="function">closest</span>(<span class="string">".card"</span>);
+                </div>
+            </div>
+
+            <div class="tip">
+                💡 <strong>closest() 메서드</strong>는 현재 요소부터 시작해서 조건에 맞는 가장 가까운 조상 요소를 찾습니다. 이벤트 위임에서 매우 유용합니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 4: 요소 내용 조작 -->
+        <div class="slide">
+            <h2>📝 요소 내용 조작하기</h2>
+            
+            <h3>1️⃣ textContent - 텍스트만</h3>
+            <div class="code-box">
+<span class="keyword">const</span> element = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#content"</span>);<br>
+<br>
+<span class="comment">// 텍스트 가져오기</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(element.<span class="function">textContent</span>);<br>
+<br>
+<span class="comment">// 텍스트 변경하기</span><br>
+element.<span class="function">textContent</span> = <span class="string">"새로운 텍스트"</span>;
+            </div>
+
+            <h3>2️⃣ innerHTML - HTML 포함</h3>
+            <div class="code-box">
+<span class="comment">// HTML 포함해서 가져오기</span>
+<span class="keyword">console</span>.<span class="function">log</span>(element.<span class="function">innerHTML</span>);<br>
+<br>
+<span class="comment">// HTML 변경하기</span><br>
+element.<span class="function">innerHTML</span> = <span class="string">"&lt;strong&gt;굵은 텍스트&lt;/strong&gt;"</span>;
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 상품 정보 업데이트</h4>
+                <div class="code-box">
+<span class="keyword">const</span> productName = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".product-name"</span>);<br>
+<span class="keyword">const</span> productPrice = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".product-price"</span>);<br>
+<br>
+productName.<span class="function">textContent</span> = <span class="string">"노트북"</span>;<br>
+productPrice.<span class="function">innerHTML</span> = <span class="string">"&lt;span class='currency'&gt;₩&lt;/span&gt;1,200,000"</span>;
+                </div>
+            </div>
+
+            <div class="key-point">
+                <strong>언제 무엇을 사용할까?</strong><br>
+                • <code>textContent</code>: 단순 텍스트만 다룰 때<br>
+                • <code>innerHTML</code>: HTML 태그를 포함할 때
+            </div>
+        </div>
+
+        <!-- 슬라이드 5: 속성 조작 -->
+        <div class="slide">
+            <h2>🏷️ 속성(Attribute) 조작하기</h2>
+            
+            <h3>기본 속성 조작</h3>
+            <div class="code-box">
+<span class="keyword">const</span> image = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"img"</span>);<br>
+<span class="keyword">const</span> link = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"a"</span>);<br>
+<br>
+<span class="comment">// 1. 속성 읽기</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(image.<span class="function">src</span>);                      <span class="comment">// 직접 접근</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(image.<span class="function">getAttribute</span>(<span class="string">"alt"</span>));    <span class="comment">// getAttribute 사용</span><br>
+<br>
+<span class="comment">// 2. 속성 변경</span><br>
+image.<span class="function">src</span> = <span class="string">"new-image.png"</span>;                  <span class="comment">// 직접 변경</span><br>
+image.<span class="function">setAttribute</span>(<span class="string">"alt"</span>, <span class="string">"새로운 이미지"</span>);  <span class="comment">// setAttribute 사용</span><br>
+<br>
+<span class="comment">// 3. 속성 제거</span><br>
+image.<span class="function">removeAttribute</span>(<span class="string">"title"</span>);<br>
+<br>
+<span class="comment">// 4. 속성 존재 확인</span><br>
+<span class="keyword">if</span> (link.<span class="function">hasAttribute</span>(<span class="string">"target"</span>)) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"target 속성이 있습니다"</span>);<br>
+}
+            </div>
+
+            <h3>데이터 속성 (data-*) 활용</h3>
+            <div class="code-box">
+<span class="comment">// HTML: &lt;div data-user-id="123" data-user-name="김철수"&gt;&lt;/div&gt;</span><br>
+<span class="keyword">const</span> userDiv = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"[data-user-id]"</span>);<br>
+<br>
+<span class="comment">// 읽기 (자동으로 카멜케이스로 변환됨)</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(userDiv.<span class="function">dataset</span>.userId);      <span class="comment">// "123"</span><br>
+<span class="keyword">console</span>.<span class="function">log</span>(userDiv.<span class="function">dataset</span>.userName);    <span class="comment">// "김철수"</span><br>
+<br>
+<span class="comment">// 쓰기</span><br>
+userDiv.<span class="function">dataset</span>.userAge = <span class="string">"25"</span>;           <span class="comment">// data-user-age="25" 추가됨</span>
+            </div>
+
+            <div class="tip">
+                💡 <strong>data-* 속성</strong>은 HTML 요소에 사용자 정의 데이터를 저장할 때 사용합니다. JavaScript에서 쉽게 접근할 수 있어 매우 유용합니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 6: 스타일 조작 -->
+        <div class="slide">
+            <h2>🎨 CSS 스타일 조작하기</h2>
+            
+            <h3>인라인 스타일 조작</h3>
+            <div class="code-box">
+<span class="keyword">const</span> box = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".box"</span>);<br>
+<br>
+<span class="comment">// 1. 개별 스타일 설정 (카멜케이스 사용!)</span><br>
+box.<span class="function">style</span>.backgroundColor = <span class="string">"red"</span>;<br>
+box.<span class="function">style</span>.width = <span class="string">"300px"</span>;<br>
+box.<span class="function">style</span>.height = <span class="string">"200px"</span>;<br>
+box.<span class="function">style</span>.border = <span class="string">"2px solid black"</span>;<br>
+<br>
+<span class="comment">// 2. 여러 스타일 한번에 설정</span><br>
+<span class="keyword">Object</span>.<span class="function">assign</span>(box.style, {<br>
+    &nbsp backgroundColor: <span class="string">"blue"</span>,<br>
+    &nbsp color: <span class="string">"white"</span>,<br>
+    &nbsp padding: <span class="string">"20px"</span>,<br>
+    &nbsp borderRadius: <span class="string">"10px"</span><br>
+});
+            </div>
+
+            <h3>계산된 스타일 가져오기</h3>
+            <div class="code-box">
+<span class="comment">// 실제 적용된 스타일 값 확인</span><br>
+<span class="keyword">const</span> computedStyle = <span class="function">getComputedStyle</span>(box);<br>
+<span class="keyword">console</span>.<span class="function">log</span>(computedStyle.backgroundColor);<br>
+<span class="keyword">console</span>.<span class="function">log</span>(computedStyle.width);
+            </div>
+
+            <div class="warning">
+                ⚠️ <strong>주의:</strong> CSS 속성명을 JavaScript에서 사용할 때는 <span class="important">카멜케이스</span>로 변환해야 합니다!<br>
+                • <code>background-color</code> → <code>backgroundColor</code><br>
+                • <code>font-size</code> → <code>fontSize</code><br>
+                • <code>border-radius</code> → <code>borderRadius</code>
+            </div>
+
+            <div class="tip">
+                💡 <strong>Best Practice:</strong> 가능하면 인라인 스타일보다는 <strong>클래스를 추가/제거</strong>하는 방식을 사용하세요! 유지보수가 훨씬 쉽습니다.
+            </div>
+        </div>
+
+        <!-- 슬라이드 7: 클래스 조작 -->
+        <div class="slide">
+            <h2>🎯 클래스 조작하기 (중요!)</h2>
+            
+            <div class="key-point">
+                클래스 조작은 DOM 조작에서 가장 많이 사용되는 기술입니다!
+            </div>
+
+            <div class="code-box">
+<span class="keyword">const</span> element = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".menu-item"</span>);<br>
+<br>
+<span class="comment">// 1. 클래스 추가</span><br>
+element.<span class="function">classList</span>.<span class="function">add</span>(<span class="string">"active"</span>);<br>
+element.<span class="function">classList</span>.<span class="function">add</span>(<span class="string">"highlight"</span>, <span class="string">"selected"</span>);  <span class="comment">// 여러 개 동시 추가</span><br>
+<br>
+<span class="comment">// 2. 클래스 제거</span><br>
+element.<span class="function">classList</span>.<span class="function">remove</span>(<span class="string">"active"</span>);<br>
+element.<span class="function">classList</span>.<span class="function">remove</span>(<span class="string">"highlight"</span>, <span class="string">"selected"</span>);  <span class="comment">// 여러 개 동시 제거</span><br>
+<br>
+<span class="comment">// 3. 클래스 토글 (있으면 제거, 없으면 추가)</span><br>
+element.<span class="function">classList</span>.<span class="function">toggle</span>(<span class="string">"active"</span>);<br>
+<br>
+<span class="comment">// 4. 클래스 존재 확인</span><br>
+<span class="keyword">if</span> (element.<span class="function">classList</span>.<span class="function">contains</span>(<span class="string">"active"</span>)) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"active 클래스가 있습니다"</span>);<br>
+}
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 탭 메뉴 전환</h4>
+                <div class="code-box">
+<span class="keyword">const</span> tabs = <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">".tab"</span>);<br>
+<br>
+<span class="keyword">function</span> <span class="function">switchTab</span>(clickedTab) {<br>
+    &nbsp <span class="comment">// 모든 탭에서 active 클래스 제거</span><br>
+    &nbsp tabs.<span class="function">forEach</span>(tab => tab.classList.<span class="function">remove</span>(<span class="string">"active"</span>));<br>
+    <br>
+    &nbsp <span class="comment">// 클릭된 탭에만 active 클래스 추가</span><br>
+    &nbsp clickedTab.classList.<span class="function">add</span>(<span class="string">"active"</span>);<br>
+}<br>
+<br>
+<span class="comment">// 각 탭에 클릭 이벤트 등록</span><br>
+tabs.<span class="function">forEach</span>(tab => {<br>
+    &nbsp tab.<span class="function">addEventListener</span>(<span class="string">"click"</span>, () => <span class="function">switchTab</span>(tab));<br>
+});
+                </div>
+            </div>
+
+            <div class="tip">
+                💡 <code>toggle()</code>은 ON/OFF 스위치처럼 동작합니다. 다크모드, 메뉴 열기/닫기 등에 매우 유용합니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 8: 요소 생성 -->
+        <div class="slide">
+            <h2>✨ 새 요소 생성하기</h2>
+            
+            <h3>1단계: 요소 생성</h3>
+            <div class="code-box">
+<span class="comment">// 새 요소 생성</span><br>
+<span class="keyword">const</span> newDiv = <span class="keyword">document</span>.<span class="function">createElement</span>(<span class="string">"div"</span>);<br>
+<span class="keyword">const</span> newParagraph = <span class="keyword">document</span>.<span class="function">createElement</span>(<span class="string">"p"</span>);<br>
+<span class="keyword">const</span> newImage = <span class="keyword">document</span>.<span class="function">createElement</span>(<span class="string">"img"</span>);<br>
+            </div>
+
+            <h3>2단계: 내용과 속성 추가</h3>
+            <div class="code-box">
+<span class="comment">// 텍스트 내용 추가</span><br>
+newDiv.<span class="function">textContent</span> = <span class="string">"새로 생성된 div"</span>;<br>
+<br>
+<span class="comment">// 클래스와 ID 추가</span><br>
+newDiv.<span class="function">className</span> = <span class="string">"new-box"</span>;<br>
+newDiv.<span class="function">id</span> = <span class="string">"dynamic-box"</span>;<br>
+<br>
+<span class="comment">// HTML 내용 추가</span><br>
+newParagraph.<span class="function">innerHTML</span> = <span class="string">"이것은 &lt;strong&gt;새로운&lt;/strong&gt; 문단입니다"</span>;<br>
+<br>
+<span class="comment">// 이미지 속성 설정</span><br>
+newImage.<span class="function">src</span> = <span class="string">"image.jpg"</span>;<br>
+newImage.<span class="function">alt</span> = <span class="string">"동적으로 생성된 이미지"</span>;<br>
+newImage.<span class="function">classList</span>.<span class="function">add</span>(<span class="string">"responsive-img"</span>);
+            </div>
+
+            <h3>3단계: DOM에 추가</h3>
+            <div class="code-box">
+<span class="keyword">const</span> container = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".container"</span>);<br>
+<br>
+<span class="comment">// 마지막에 추가</span><br>
+container.<span class="function">appendChild</span>(newDiv);<br>
+<br>
+<span class="comment">// 특정 요소 앞에 추가</span><br>
+container.<span class="function">insertBefore</span>(newParagraph, newDiv);<br>
+<br>
+<span class="comment">// 맨 앞에 추가 (더 편리한 방법)</span><br>
+container.<span class="function">prepend</span>(newImage);<br>
+<br>
+<span class="comment">// 맨 뒤에 추가 (더 편리한 방법)</span><br>
+container.<span class="function">append</span>(newDiv);
+            </div>
+
+            <div class="tip">
+                💡 <strong>최신 메서드:</strong> <code>prepend()</code>와 <code>append()</code>는 최신 브라우저에서 지원하는 더 직관적인 메서드입니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 9: 요소 추가 심화 -->
+        <div class="slide">
+            <h2>✨ 요소 추가 - 심화</h2>
+            
+            <h3>insertAdjacentHTML - 정확한 위치에 HTML 추가</h3>
+            <div class="code-box">
+<span class="keyword">const</span> target = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#target"</span>);<br>
+<br>
+<span class="comment">// 요소 앞에</span><br>
+target.<span class="function">insertAdjacentHTML</span>(<span class="string">'beforebegin'</span>, <span class="string">'&lt;div&gt;요소 앞&lt;/div&gt;'</span>);<br>
+<br>
+<span class="comment">// 요소 내부의 맨 앞에</span><br>
+target.<span class="function">insertAdjacentHTML</span>(<span class="string">'afterbegin'</span>, <span class="string">'&lt;span&gt;내부 시작&lt;/span&gt;'</span>);<br>
+<br>
+<span class="comment">// 요소 내부의 맨 뒤에</span><br>
+target.<span class="function">insertAdjacentHTML</span>(<span class="string">'beforeend'</span>, <span class="string">'&lt;span&gt;내부 끝&lt;/span&gt;'</span>);<br>
+<br>
+<span class="comment">// 요소 뒤에</span><br>
+target.<span class="function">insertAdjacentHTML</span>(<span class="string">'afterend'</span>, <span class="string">'&lt;div&gt;요소 뒤&lt;/div&gt;'</span>);<br>
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 할일 목록에 항목 추가</h4>
+                <div class="code-box">
+<span class="keyword">function</span> <span class="function">addTodoItem</span>(text) {<br>
+    &nbsp <span class="keyword">const</span> todoList = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".todo-list"</span>);<br>
+    
+    &nbsp <span class="keyword">const</span> newItem = <span class="keyword">document</span>.<span class="function">createElement</span>(<span class="string">"li"</span>);<br>
+    &nbsp newItem.<span class="function">className</span> = <span class="string">"todo-item"</span>;<br>
+    &nbsp newItem.<span class="function">innerHTML</span> = <span class="string">`<br>
+        &nbsp &nbsp &lt;span class="todo-text"&gt;${text}&lt;/span&gt;<br>
+        &nbsp &nbsp &lt;button class="delete-btn"&gt;삭제&lt;/button&gt;<br>
+    &nbsp `</span>;<br>
+    <br>
+    &nbsp todoList.<span class="function">appendChild</span>(newItem);<br>
+}<br>
+<br>
+<span class="comment">// 사용</span><br>
+<span class="function">addTodoItem</span>(<span class="string">"JavaScript 공부하기"</span>);
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 10: 요소 삭제 -->
+        <div class="slide">
+            <h2>🗑️ 요소 삭제하기</h2>
+            
+            <h3>기본 삭제 방법</h3>
+            <div class="code-box">
+<span class="comment">// 1. 자기 자신 제거 (최신 방법)</span><br>
+<span class="keyword">const</span> element = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".old-content"</span>);<br>
+element.<span class="function">remove</span>();<br>
+<br>
+<span class="comment">// 2. 부모에서 자식 제거 (구버전 브라우저 지원)</span><br>
+<span class="keyword">const</span> parent = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".parent"</span>);<br>
+<span class="keyword">const</span> child = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".child"</span>);<br>
+parent.<span class="function">removeChild</span>(child);
+            </div>
+
+            <h3>모든 자식 요소 제거</h3>
+            <div class="code-box">
+<span class="keyword">const</span> container = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".container"</span>);<br>
+<br>
+<span class="comment">// 방법 1: 간단하지만 이벤트도 제거됨</span><br>
+container.<span class="function">innerHTML</span> = <span class="string">""</span>;<br>
+<br>
+<span class="comment">// 방법 2: 안전한 방법</span><br>
+<span class="keyword">while</span> (container.firstChild) {<br>
+   &nbsp  container.<span class="function">removeChild</span>(container.firstChild);<br>
+}
+            </div>
+
+            <h3>조건에 맞는 요소들 제거</h3>
+            <div class="code-box">
+<span class="comment">// 비활성 항목 모두 제거</span><br>
+<span class="keyword">const</span> inactiveItems = <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">".item.inactive"</span>);<br>
+inactiveItems.<span class="function">forEach</span>(item => item.<span class="function">remove</span>());<br>
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 할일 항목 삭제</h4>
+                <div class="code-box">
+<span class="keyword">function</span> <span class="function">deleteTodoItem</span>(deleteButton) {<br>
+    &nbsp <span class="comment">// 버튼의 부모 요소(li) 찾기</span><br>
+    &nbsp <span class="keyword">const</span> todoItem = deleteButton.<span class="function">closest</span>(<span class="string">".todo-item"</span>);<br>
+    <br>
+    &nbsp <span class="comment">// 확인 후 삭제</span><br>
+    &nbsp <span class="keyword">if</span> (<span class="function">confirm</span>(<span class="string">"정말 삭제하시겠습니까?"</span>)) {<br>
+        &nbsp &nbsp todoItem.<span class="function">remove</span>();<br>
+    &nbsp }<br>
+}
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 11: 실습 1 안내 -->
+        <div class="slide">
+            <h2>👨‍💻 실습 1: 동적 할일 목록 만들기</h2>
+            
+            <div class="practice">
+                <h3>🎯 만들 기능</h3>
+                <ol style="font-size: 1.2em;">
+                    <li>입력칸에 할일을 입력하고 추가 버튼 클릭</li>
+                    <li>할일이 목록에 추가됨</li>
+                    <li>각 할일 옆에 삭제 버튼이 있음</li>
+                    <li>삭제 버튼을 누르면 해당 할일이 삭제됨</li>
+                    <li>할일을 클릭하면 완료 표시 (줄 그어짐)</li>
+                </ol>
+
+                <h3>📝 사용할 기술</h3>
+                <ul>
+                    <li>요소 선택: <code>querySelector</code></li>
+                    <li>요소 생성: <code>createElement</code></li>
+                    <li>요소 추가: <code>appendChild</code></li>
+                    <li>요소 삭제: <code>remove()</code></li>
+                    <li>클래스 조작: <code>classList.toggle()</code></li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                💡 <strong>힌트:</strong> 다음 슬라이드에 전체 코드가 있습니다. 먼저 스스로 시도해보고, 막히면 참고하세요!
+            </div>
+        </div>
+
+        <!-- 슬라이드 12: 실습 1 코드 -->
+        <div class="slide">
+            <h2>👨‍💻 실습 1 - 완성 코드</h2>
+            
+            <h3>HTML</h3>
+            <div class="code-box" style="font-size: 0.85em;">
+<span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"todo-container"</span><span class="keyword">&gt;</span><br>
+    &nbsp <span class="keyword">&lt;h1&gt;</span>📝 할일 목록<span class="keyword">&lt;/h1&gt;</span><br>
+    <br>
+    &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"input-group"</span><span class="keyword">&gt;</span><br>
+        &nbsp &nbsp <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"text"</span> <span class="function">id</span>=<span class="string">"todoInput"</span> <span class="function">placeholder</span>=<span class="string">"할일을 입력하세요"</span><span class="keyword">&gt;</span><br>
+        &nbsp &nbsp <span class="keyword">&lt;button</span> <span class="function">id</span>=<span class="string">"addBtn"</span><span class="keyword">&gt;</span>추가<span class="keyword">&lt;/button&gt;</span><br>
+    &nbsp <span class="keyword">&lt;/div&gt;</span><br>
+    <br>
+    &nbsp <span class="keyword">&lt;ul</span> <span class="function">id</span>=<span class="string">"todoList"</span><span class="keyword">&gt;&lt;/ul&gt;</span><br>
+<span class="keyword">&lt;/div&gt;</span>
+            </div>
+
+            <h3>CSS</h3>
+            <div class="code-box" style="font-size: 0.85em;">
+<span class="keyword">.todo-item</span> {<br>
+    &nbsp <span class="function">display</span>: <span class="string">flex</span>;<br>
+    &nbsp <span class="function">justify-content</span>: <span class="string">space-between</span>;<br>
+    &nbsp <span class="function">padding</span>: <span class="string">10px</span>;<br>
+    &nbsp <span class="function">border-bottom</span>: <span class="string">1px solid #ddd</span>;<br>
+}<br>
+<br>
+<span class="keyword">.todo-item.completed</span> {<br>
+    &nbsp <span class="function">text-decoration</span>: <span class="string">line-through</span>;<br>
+    &nbsp <span class="function">opacity</span>: <span class="string">0.5</span>;<br>
+}
+            </div>
+
+            <h3>JavaScript</h3>
+            <div class="code-box" style="font-size: 0.85em;">
+<span class="comment">// 요소 선택</span><br>
+<span class="keyword">const</span> todoInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#todoInput"</span>);<br>
+<span class="keyword">const</span> addBtn = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#addBtn"</span>);<br>
+<span class="keyword">const</span> todoList = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#todoList"</span>);<br>
+<br>
+<span class="comment">// 할일 추가 함수</span><br>
+<span class="keyword">function</span> <span class="function">addTodo</span>() {<br>
+    &nbsp <span class="keyword">const</span> text = todoInput.value.<span class="function">trim</span>();<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (text === <span class="string">""</span>) {<br>
+        &nbsp &nbsp <span class="function">alert</span>(<span class="string">"할일을 입력하세요!"</span>);<br>
+        &nbsp &nbsp <span class="keyword">return</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="comment">// 새 li 요소 생성</span><br>
+    &nbsp <span class="keyword">const</span> li = <span class="keyword">document</span>.<span class="function">createElement</span>(<span class="string">"li"</span>);<br>
+    &nbsp li.<span class="function">className</span> = <span class="string">"todo-item"</span>;<br>
+    <br>
+    &nbsp <span class="comment">// 텍스트 span 생성</span><br>
+    &nbsp <span class="keyword">const</span> span = <span class="keyword">document</span>.<span class="function">createElement</span>(<span class="string">"span"</span>);<br>
+    &nbsp span.<span class="function">textContent</span> = text;<br>
+    &nbsp span.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>() {<br>
+        &nbsp &nbsp li.classList.<span class="function">toggle</span>(<span class="string">"completed"</span>);<br>
+    &nbsp });<br>
+    <br>
+    &nbsp <span class="comment">// 삭제 버튼 생성</span><br>
+    &nbsp <span class="keyword">const</span> deleteBtn = <span class="keyword">document</span>.<span class="function">createElement</span>(<span class="string">"button"</span>);<br>
+    &nbsp deleteBtn.<span class="function">textContent</span> = <span class="string">"삭제"</span>;<br>
+    &nbsp deleteBtn.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>() {<br>
+        &nbsp &nbsp li.<span class="function">remove</span>();<br>
+    &nbsp });<br>
+    <br>
+    &nbsp <span class="comment">// li에 추가</span><br>
+    &nbsp li.<span class="function">appendChild</span>(span);<br>
+    &nbsp li.<span class="function">appendChild</span>(deleteBtn);<br>
+    <br>
+    &nbsp <span class="comment">// 목록에 추가</span><br>
+    &nbsp todoList.<span class="function">appendChild</span>(li);<br>
+    <br>
+    &nbsp <span class="comment">// 입력칸 비우기</span><br>
+    &nbsp todoInput.value = <span class="string">""</span>;<br>
+    &nbsp todoInput.<span class="function">focus</span>();<br>
+}<br>
+<br>
+<span class="comment">// 버튼 클릭 시</span><br>
+addBtn.<span class="function">addEventListener</span>(<span class="string">"click"</span>, addTodo);<br>
+<br>
+<span class="comment">// Enter 키 입력 시</span><br>
+todoInput.<span class="function">addEventListener</span>(<span class="string">"keypress"</span>, <span class="keyword">function</span>(e) {<br>
+    &nbsp <span class="keyword">if</span> (e.key === <span class="string">"Enter"</span>) {<br>
+        &nbsp &nbsp <span class="function">addTodo</span>();<br>
+    &nbsp }<br>
+});
+            </div>
+        </div>
+
+        <!-- 슬라이드 13: 1회차 정리 -->
+        <div class="slide">
+            <h2>📚 1회차 정리</h2>
+            
+            <div class="key-point">
+                <h3 style="color: white; margin-top: 0;">🎉 오늘 배운 것</h3>
+            </div>
+
+            <table>
+                <tr>
+                    <th>주제</th>
+                    <th>핵심 내용</th>
+                </tr>
+                <tr>
+                    <td><strong>요소 선택</strong></td>
+                    <td><code>querySelector</code>, <code>querySelectorAll</code></td>
+                </tr>
+                <tr>
+                    <td><strong>내용 조작</strong></td>
+                    <td><code>textContent</code>, <code>innerHTML</code></td>
+                </tr>
+                <tr>
+                    <td><strong>속성 조작</strong></td>
+                    <td><code>getAttribute</code>, <code>setAttribute</code>, <code>dataset</code></td>
+                </tr>
+                <tr>
+                    <td><strong>스타일 조작</strong></td>
+                    <td><code>style</code> 속성, <code>classList</code></td>
+                </tr>
+                <tr>
+                    <td><strong>클래스 조작</strong></td>
+                    <td><code>add</code>, <code>remove</code>, <code>toggle</code>, <code>contains</code></td>
+                </tr>
+                <tr>
+                    <td><strong>요소 생성</strong></td>
+                    <td><code>createElement</code>, <code>appendChild</code>, <code>append</code></td>
+                </tr>
+                <tr>
+                    <td><strong>요소 삭제</strong></td>
+                    <td><code>remove()</code>, <code>removeChild</code></td>
+                </tr>
+            </table>
+
+            <div class="tip" style="margin-top: 30px;">
+                💡 <strong>다음 시간 예고:</strong><br>
+                2회차에서는 이벤트 처리를 본격적으로 배워서 사용자와 상호작용하는 웹 페이지를 만들어봅니다!
+            </div>
+        </div>
+
+        <!-- 2회차 시작 -->
+        <div class="session-header">
+            <h1>📗 2회차: 이벤트 처리와 폼 검증</h1>
+            <p style="font-size: 1.3em; margin-top: 20px;">사용자 상호작용 완벽 마스터</p>
+        </div>
+
+        <!-- 슬라이드 14: 이벤트 기초 -->
+        <div class="slide">
+            <h2>🎬 이벤트란?</h2>
+            
+            <div class="concept-box">
+                <h3>이벤트 (Event)</h3>
+                <p style="font-size: 1.2em;"><strong>웹 페이지에서 발생하는 모든 사건</strong></p>
+                <p>클릭, 입력, 스크롤, 마우스 움직임 등</p>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <h3>대표적인 이벤트들</h3>
+                <ul style="font-size: 1.2em; line-height: 2;">
+                    <li>🖱️ <strong>마우스 이벤트:</strong> click, dblclick, mouseover, mouseout</li>
+                    <li>⌨️ <strong>키보드 이벤트:</strong> keydown, keyup, keypress</li>
+                    <li>📝 <strong>폼 이벤트:</strong> submit, focus, blur, change, input</li>
+                    <li>🌐 <strong>페이지 이벤트:</strong> load, resize, scroll</li>
+                </ul>
+            </div>
+
+            <div class="key-point">
+                이벤트를 잘 다루면 사용자 경험(UX)이 획기적으로 좋아집니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 15: 이벤트 리스너 등록 -->
+        <div class="slide">
+            <h2>👂 이벤트 리스너 등록하기</h2>
+            
+            <h3>기본 방법: addEventListener</h3>
+            <div class="code-box">
+<span class="keyword">const</span> button = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#myButton"</span>);<br>
+<br>
+<span class="comment">// 방법 1: 일반 함수</span><br>
+button.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>(event) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"버튼이 클릭되었습니다!"</span>);<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(event);  <span class="comment">// 이벤트 객체</span><br>
+});<br>
+<br>
+<span class="comment">// 방법 2: 화살표 함수 (추천)</span><br>
+button.<span class="function">addEventListener</span>(<span class="string">"click"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"화살표 함수로 처리!"</span>);<br>
+});<br>
+<br>
+<span class="comment">// 방법 3: 함수 참조</span><br>
+<span class="keyword">function</span> <span class="function">handleClick</span>(event) {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"함수 참조로 처리!"</span>);<br>
+}<br><br>
+button.<span class="function">addEventListener</span>(<span class="string">"click"</span>, handleClick);<br>
+            </div>
+
+            <h3>이벤트 리스너 제거</h3>
+            <div class="code-box">
+<span class="comment">// 제거하려면 같은 함수를 참조해야 함</span><br>
+button.<span class="function">removeEventListener</span>(<span class="string">"click"</span>, handleClick);
+            </div>
+
+            <div class="warning">
+                ⚠️ <strong>주의:</strong> 익명 함수로 등록한 이벤트는 제거할 수 없습니다! 제거가 필요하면 함수를 변수에 저장하세요.
+            </div>
+        </div>
+
+        <!-- 슬라이드 16: 마우스 이벤트 -->
+        <div class="slide">
+            <h2>🖱️ 마우스 이벤트</h2>
+            
+            <div class="code-box">
+<span class="keyword">const</span> div = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#myDiv"</span>);<br>
+<br>
+<span class="comment">// 클릭 이벤트</span><br>
+div.<span class="function">addEventListener</span>(<span class="string">"click"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"클릭!"</span>);<br>
+});<br>
+<br>
+<span class="comment">// 더블클릭</span><br>
+div.<span class="function">addEventListener</span>(<span class="string">"dblclick"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"더블클릭!"</span>);<br>
+});<br>
+<br>
+<span class="comment">// 마우스 버튼 누름/뗌</span><br>
+div.<span class="function">addEventListener</span>(<span class="string">"mousedown"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"마우스 버튼 누름"</span>);<br>
+});<br>
+<br>
+div.<span class="function">addEventListener</span>(<span class="string">"mouseup"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"마우스 버튼 뗌"</span>);<br>
+});<br>
+<br>
+<span class="comment">// 마우스 진입/벗어남</span><br>
+div.<span class="function">addEventListener</span>(<span class="string">"mouseenter"</span>, (e) => {<br>
+    &nbsp e.target.style.backgroundColor = <span class="string">"lightblue"</span>;<br>
+});<br>
+<br>
+div.<span class="function">addEventListener</span>(<span class="string">"mouseleave"</span>, (e) => {<br>
+    &nbsp e.target.style.backgroundColor = <span class="string">""</span>;<br>
+});<br>
+<br>
+<span class="comment">// 마우스 움직임</span><br>
+div.<span class="function">addEventListener</span>(<span class="string">"mousemove"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`위치: ${e.clientX}, ${e.clientY}`</span>);<br>
+});<br>
+            </div>
+
+            <div class="tip">
+                💡 <strong>mouseenter vs mouseover:</strong><br>
+                • <code>mouseenter</code>: 해당 요소에만 반응<br>
+                • <code>mouseover</code>: 자식 요소에도 반응 (버블링)
+            </div>
+        </div>
+
+        <!-- 슬라이드 17: 키보드 이벤트 -->
+        <div class="slide">
+            <h2>⌨️ 키보드 이벤트</h2>
+            
+            <div class="code-box">
+<span class="keyword">const</span> input = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#textInput"</span>);<br>
+<br>
+<span class="comment">// 키를 누를 때</span><br>
+input.<span class="function">addEventListener</span>(<span class="string">"keydown"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`키 누름: ${e.key}`</span>);<br>
+    <br>
+    &nbsp <span class="comment">// Enter 키 체크</span><br>
+    &nbsp <span class="keyword">if</span> (e.key === <span class="string">"Enter"</span>) {<br>
+        &nbsp &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"엔터키 눌림!"</span>);<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="comment">// 조합키 체크 (Ctrl + S)</span><br>
+    &nbsp <span class="keyword">if</span> (e.ctrlKey && e.key === <span class="string">"s"</span>) {<br>
+        &nbsp &nbsp e.<span class="function">preventDefault</span>();  <span class="comment">// 기본 저장 동작 막기</span><br>
+        &nbsp &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"Ctrl+S 감지!"</span>);<br>
+    &nbsp }<br>
+});<br>
+<br>
+<span class="comment">// 키를 뗄 때</span><br>
+input.<span class="function">addEventListener</span>(<span class="string">"keyup"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`키 뗌: ${e.key}`</span>);<br>
+});
+            </div>
+
+            <div class="example-box">
+                <h4>실용 예제: 검색창 자동완성</h4>
+                <div class="code-box">
+<span class="keyword">const</span> searchInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#search"</span>);<br>
+<br>
+searchInput.<span class="function">addEventListener</span>(<span class="string">"keyup"</span>, (e) => {<br>
+    &nbsp <span class="keyword">const</span> query = e.target.value;<br>
+    <br>
+    &nbsp <span class="comment">// 3글자 이상일 때만 검색</span><br>
+    &nbsp <span class="keyword">if</span> (query.length >= <span class="string">3</span>) {<br>
+        &nbsp &nbsp <span class="function">showSuggestions</span>(query);<br>
+    &nbsp }<br>
+});
+                </div>
+            </div>
+
+            <div class="tip">
+                💡 <strong>유용한 이벤트 속성:</strong><br>
+                • <code>e.key</code>: 누른 키의 이름 ("a", "Enter", "Shift")<br>
+                • <code>e.ctrlKey</code>: Ctrl 키가 눌렸는지<br>
+                • <code>e.shiftKey</code>: Shift 키가 눌렸는지<br>
+                • <code>e.altKey</code>: Alt 키가 눌렸는지
+            </div>
+        </div>
+
+        <!-- 슬라이드 18: 폼 이벤트 -->
+        <div class="slide">
+            <h2>📝 폼 이벤트</h2>
+            
+            <div class="code-box">
+<span class="keyword">const</span> input = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#username"</span>);<br>
+<span class="keyword">const</span> form = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#myForm"</span>);<br>
+<br>
+<span class="comment">// focus: 입력칸을 선택했을 때</span><br>
+input.<span class="function">addEventListener</span>(<span class="string">"focus"</span>, (e) => {<br>
+    &nbsp e.target.style.backgroundColor = <span class="string">"#e3f2fd"</span>;<br>
+    &nbsp e.target.style.borderColor = <span class="string">"blue"</span>;<br>
+});<br>
+<br>
+<span class="comment">// blur: 입력칸에서 벗어났을 때</span><br>
+input.<span class="function">addEventListener</span>(<span class="string">"blur"</span>, (e) => {<br>
+    &nbsp e.target.style.backgroundColor = <span class="string">""</span>;<br>
+    &nbsp e.target.style.borderColor = <span class="string">""</span>;<br>
+});<br>
+<br>
+<span class="comment">// input: 입력값이 변할 때마다 (실시간)</span><br>
+input.<span class="function">addEventListener</span>(<span class="string">"input"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`현재 값: ${e.target.value}`</span>);<br>
+    <br>
+    &nbsp <span class="comment">// 글자 수 표시</span><br>
+    &nbsp <span class="keyword">const</span> counter = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".char-counter"</span>);<br>
+    &nbsp counter.textContent = <span class="string">`${e.target.value.length}자`</span>;<br>
+});<br>
+<br>
+<span class="comment">// change: 값이 변경되고 포커스를 잃었을 때</span><br>
+input.<span class="function">addEventListener</span>(<span class="string">"change"</span>, (e) => {<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">`최종 값: ${e.target.value}`</span>);<br>
+});<br>
+<br>
+<span class="comment">// submit: 폼 제출 시</span><br>
+form.<span class="function">addEventListener</span>(<span class="string">"submit"</span>, (e) => {<br>
+    &nbsp e.<span class="function">preventDefault</span>();  <span class="comment">// 페이지 새로고침 막기!</span><br>
+    <br>
+    &nbsp <span class="keyword">const</span> username = input.value.<span class="function">trim</span>();<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (username === <span class="string">""</span>) {<br>
+        &nbsp &nbsp <span class="function">alert</span>(<span class="string">"이름을 입력하세요!"</span>);<br>
+        &nbsp &nbsp <span class="keyword">return</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"폼 제출:"</span>, username);<br>
+});
+            </div>
+
+            <div class="important" style="display: block; padding: 15px; margin: 20px 0; border-radius: 5px;">
+                ⚠️ <strong>중요:</strong> 폼 submit 이벤트에서는 반드시 <code>preventDefault()</code>를 호출해야 페이지가 새로고침되지 않습니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 19: 이벤트 객체 -->
+        <div class="slide">
+            <h2>📦 이벤트 객체 (Event Object)</h2>
+            
+            <div class="concept-box">
+                <h3>이벤트 객체란?</h3>
+                <p>이벤트가 발생할 때 자동으로 생성되는 객체로, 이벤트에 대한 모든 정보를 담고 있습니다.</p>
+            </div>
+
+            <div class="code-box">
+button.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>(event) {<br>
+    &nbsp <span class="comment">// 기본 정보</span><br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"이벤트 타입:"</span>, event.type);              <span class="comment">// "click"</span><br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"이벤트 대상:"</span>, event.target);            <span class="comment">// 클릭된 요소</span><br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"현재 대상:"</span>, event.currentTarget);       <span class="comment">// 리스너가 있는 요소</span><br>
+    <br>
+    &nbsp <span class="comment">// 마우스 위치 정보</span><br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"화면 기준:"</span>, event.clientX, event.clientY);<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"페이지 기준:"</span>, event.pageX, event.pageY);<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"요소 기준:"</span>, event.offsetX, event.offsetY);<br>
+    <br>
+    &nbsp <span class="comment">// 수정자 키 상태</span><br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"Ctrl 키:"</span>, event.ctrlKey);<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"Shift 키:"</span>, event.shiftKey);<br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"Alt 키:"</span>, event.altKey);<br>
+    <br>
+    &nbsp <span class="comment">// 이벤트 제어</span><br>
+    &nbsp event.<span class="function">preventDefault</span>();   <span class="comment">// 기본 동작 막기</span><br>
+    &nbsp event.<span class="function">stopPropagation</span>();  <span class="comment">// 이벤트 버블링 막기</span><br>
+});
+            </div>
+
+            <div class="key-point">
+                <strong>target vs currentTarget</strong><br>
+                • <code>target</code>: 실제로 클릭된 요소<br>
+                • <code>currentTarget</code>: 이벤트 리스너가 등록된 요소
+            </div>
+        </div>
+
+        <!-- 슬라이드 20: 이벤트 위임 -->
+        <div class="slide">
+            <h2>🎯 이벤트 위임 (Event Delegation)</h2>
+            
+            <div class="concept-box">
+                <h3>이벤트 위임이란?</h3>
+                <p>부모 요소에 이벤트 리스너를 등록하여 자식 요소들의 이벤트를 한 번에 처리하는 기법</p>
+            </div>
+
+            <h3>❌ 비효율적인 방법</h3>
+            <div class="code-box">
+<span class="comment">// 모든 버튼에 개별로 이벤트 등록 (나쁨)</span><br>
+<span class="keyword">const</span> buttons = <span class="keyword">document</span>.<span class="function">querySelectorAll</span>(<span class="string">".btn"</span>);<br>
+buttons.<span class="function">forEach</span>(btn => {<br>
+    &nbsp btn.<span class="function">addEventListener</span>(<span class="string">"click"</span>, handleClick);<br>
+});<br>
+<br>
+<span class="comment">// 문제: 나중에 추가된 버튼에는 이벤트가 없음!</span>
+            </div>
+
+            <h3>✅ 효율적인 방법 - 이벤트 위임</h3>
+            <div class="code-box">
+<span class="comment">// 부모 요소에 한 번만 등록 (좋음)</span><br>
+<span class="keyword">const</span> container = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".container"</span>);<br>
+<br>
+container.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>(event) {<br>
+    &nbsp <span class="comment">// 클릭된 요소가 버튼인지 확인</span><br>
+    &nbsp <span class="keyword">if</span> (event.target.classList.<span class="function">contains</span>(<span class="string">"btn"</span>)) {<br>
+        &nbsp &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"버튼 클릭:"</span>, event.target.textContent);<br>
+        <br>
+        &nbsp &nbsp <span class="comment">// 버튼 타입별 처리</span><br>
+        &nbsp &nbsp <span class="keyword">if</span> (event.target.classList.<span class="function">contains</span>(<span class="string">"delete-btn"</span>)) {<br>
+            &nbsp &nbsp &nbsp <span class="function">deleteItem</span>(event.target);<br>
+        &nbsp &nbsp } <span class="keyword">else if</span> (event.target.classList.<span class="function">contains</span>(<span class="string">"edit-btn"</span>)) {<br>
+            &nbsp &nbsp &nbsp <span class="function">editItem</span>(event.target);<br>
+        &nbsp &nbsp }<br>
+    &nbsp }<br>
+});<br>
+<br>
+<span class="comment">// 이제 나중에 추가된 버튼도 자동으로 동작함!</span>
+            </div>
+
+            <div class="tip">
+                💡 <strong>이벤트 위임의 장점:</strong><br>
+                1. 메모리 효율적 (이벤트 리스너 1개만 필요)<br>
+                2. 동적으로 추가된 요소도 자동으로 처리<br>
+                3. 코드가 간결해짐
+            </div>
+        </div>
+
+        <!-- 슬라이드 21: 이벤트 위임 실전 -->
+        <div class="slide">
+            <h2>🎯 이벤트 위임 - 실전 예제</h2>
+            
+            <div class="example-box">
+                <h4>카드 목록 관리</h4>
+                <div class="code-box" style="font-size: 0.9em;">
+<span class="keyword">const</span> cardContainer = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".card-container"</span>);<br>
+<br>
+cardContainer.<span class="function">addEventListener</span>(<span class="string">"click"</span>, <span class="keyword">function</span>(event) {<br>
+    &nbsp <span class="keyword">const</span> clickedElement = event.target;<br>
+    <br>
+    &nbsp <span class="comment">// 가장 가까운 .card 요소 찾기</span><br>
+    &nbsp <span class="keyword">const</span> card = clickedElement.<span class="function">closest</span>(<span class="string">".card"</span>);<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (!card) <span class="keyword">return</span>;  <span class="comment">// 카드가 아니면 무시</span><br>
+    <br>
+    &nbsp <span class="comment">// 좋아요 버튼</span><br>
+    &nbsp <span class="keyword">if</span> (clickedElement.classList.<span class="function">contains</span>(<span class="string">"like-btn"</span>)) {<br>
+        &nbsp &nbsp <span class="function">toggleLike</span>(card);<br>
+    &nbsp }<br>
+    &nbsp <span class="comment">// 삭제 버튼</span><br>
+    &nbsp <span class="keyword">else if</span> (clickedElement.classList.<span class="function">contains</span>(<span class="string">"delete-btn"</span>)) {<br>
+        &nbsp &nbsp <span class="function">deleteCard</span>(card);<br>
+    &nbsp }<br>
+    &nbsp <span class="comment">// 공유 버튼</span><br>
+    &nbsp <span class="keyword">else if</span> (clickedElement.classList.<span class="function">contains</span>(<span class="string">"share-btn"</span>)) {<br>
+        &nbsp &nbsp <span class="function">shareCard</span>(card);<br>
+    &nbsp }<br>
+});<br>
+<br>
+<span class="keyword">function</span> <span class="function">toggleLike</span>(card) {<br>
+    &nbsp <span class="keyword">const</span> likeBtn = card.<span class="function">querySelector</span>(<span class="string">".like-btn"</span>);<br>
+    &nbsp likeBtn.classList.<span class="function">toggle</span>(<span class="string">"liked"</span>);<br>
+    &nbsp likeBtn.textContent = likeBtn.classList.<span class="function">contains</span>(<span class="string">"liked"</span>) ? <span class="string">"♥"</span> : <span class="string">"♡"</span>;<br>
+}<br>
+<br>
+<span class="keyword">function</span> <span class="function">deleteCard</span>(card) {<br>
+    &nbsp <span class="keyword">if</span> (<span class="function">confirm</span>(<span class="string">"정말로 삭제하시겠습니까?"</span>)) {<br>
+        &nbsp &nbsp card.<span class="function">remove</span>();<br>
+    &nbsp }<br>
+}<br>
+<br>
+<span class="keyword">function</span> <span class="function">shareCard</span>(card) {<br>
+    &nbsp <span class="keyword">const</span> title = card.<span class="function">querySelector</span>(<span class="string">".card-title"</span>).textContent;<br>
+    &nbsp <span class="function">alert</span>(<span class="string">`"${title}" 카드를 공유합니다!`</span>);<br>
+}
+                </div>
+            </div>
+        </div>
+
+        <!-- 슬라이드 22: 폼 검증 기초 -->
+        <div class="slide">
+            <h2>✅ 폼 입력값 검증 - 기초</h2>
+            
+            <div class="code-box">
+<span class="keyword">const</span> loginForm = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#loginForm"</span>);<br>
+<span class="keyword">const</span> usernameInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#username"</span>);<br>
+<span class="keyword">const</span> passwordInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#password"</span>);<br>
+<br>
+loginForm.<span class="function">addEventListener</span>(<span class="string">"submit"</span>, <span class="keyword">function</span>(event) {<br>
+    &nbsp event.<span class="function">preventDefault</span>();  <span class="comment">// 제출 막기</span><br>
+    <br>
+    &nbsp <span class="comment">// 입력값 가져오기 (공백 제거)</span><br>
+    &nbsp <span class="keyword">const</span> username = usernameInput.value.<span class="function">trim</span>();<br>
+    &nbsp <span class="keyword">const</span> password = passwordInput.value.<span class="function">trim</span>();<br>
+    <br>
+    &nbsp <span class="comment">// 기본 검증</span><br>
+    &nbsp <span class="keyword">if</span> (username === <span class="string">""</span>) {<br>
+        &nbsp &nbsp <span class="function">alert</span>(<span class="string">"사용자명을 입력해주세요!"</span>);<br>
+        &nbsp &nbsp usernameInput.<span class="function">focus</span>();  <span class="comment">// 포커스 이동</span><br>
+        &nbsp &nbsp <span class="keyword">return</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (password === <span class="string">""</span>) {<br>
+        &nbsp &nbsp <span class="function">alert</span>(<span class="string">"비밀번호를 입력해주세요!"</span>);<br>
+        &nbsp &nbsp passwordInput.<span class="function">focus</span>();<br>
+        &nbsp &nbsp <span class="keyword">return</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (password.length < <span class="string">6</span>) {<br>
+        &nbsp &nbsp <span class="function">alert</span>(<span class="string">"비밀번호는 6자 이상이어야 합니다!"</span>);<br>
+        &nbsp &nbsp passwordInput.<span class="function">focus</span>();<br>
+        &nbsp &nbsp <span class="keyword">return</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="comment">// 검증 통과!</span><br>
+    &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"로그인 시도:"</span>, { username, password });<br>
+    &nbsp <span class="function">alert</span>(<span class="string">"로그인 성공!"</span>);<br>
+});
+            </div>
+
+            <div class="tip">
+                💡 <code>trim()</code>은 문자열 앞뒤의 공백을 제거합니다. 폼 검증에서 필수입니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 23: 실시간 검증 -->
+        <div class="slide">
+            <h2>⚡ 실시간 입력값 검증</h2>
+            
+            <div class="code-box">
+<span class="keyword">const</span> usernameInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#username"</span>);<br>
+<span class="keyword">const</span> feedback = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">".feedback"</span>);<br>
+<br>
+usernameInput.<span class="function">addEventListener</span>(<span class="string">"input"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="keyword">const</span> value = <span class="keyword">this</span>.value;<br>
+    <br>
+    &nbsp <span class="comment">// 길이 검증</span><br>
+    &nbsp <span class="keyword">if</span> (value.length < <span class="string">3</span>) {<br>
+        &nbsp &nbsp feedback.textContent = <span class="string">"사용자명은 3자 이상이어야 합니다"</span>;<br>
+        &nbsp &nbsp feedback.className = <span class="string">"feedback error"</span>;<br>
+        &nbsp &nbsp <span class="keyword">this</span>.classList.<span class="function">add</span>(<span class="string">"invalid"</span>);<br>
+        &nbsp &nbsp <span class="keyword">this</span>.classList.<span class="function">remove</span>(<span class="string">"valid"</span>);<br>
+    &nbsp } <span class="keyword">else</span> {<br>
+        &nbsp &nbsp feedback.textContent = <span class="string">"✓ 사용 가능한 사용자명입니다"</span>;<br>
+        &nbsp &nbsp feedback.className = <span class="string">"feedback success"</span>;<br>
+        &nbsp &nbsp <span class="keyword">this</span>.classList.<span class="function">remove</span>(<span class="string">"invalid"</span>);<br>
+        &nbsp &nbsp <span class="keyword">this</span>.classList.<span class="function">add</span>(<span class="string">"valid"</span>);<br>
+    &nbsp }<br>
+});
+            </div>
+
+            <h3>CSS 스타일</h3>
+            <div class="code-box">
+<span class="keyword">.feedback</span> {<br>
+    &nbsp <span class="function">margin-top</span>: <span class="string">5px</span>;<br>
+    &nbsp <span class="function">font-size</span>: <span class="string">0.9em</span>;<br>
+}<br>
+<br>
+<span class="keyword">.feedback.error</span> {<br>
+    &nbsp <span class="function">color</span>: <span class="string">red</span>;<br>
+}<br>
+<br>
+<span class="keyword">.feedback.success</span> {<br>
+    &nbsp <span class="function">color</span>: <span class="string">green</span>;<br>
+}<br>
+<br>
+<span class="keyword">input.invalid</span> {<br>
+    &nbsp <span class="function">border-color</span>: <span class="string">red</span>;<br>
+}<br>
+<br>
+<span class="keyword">input.valid</span> {<br>
+    &nbsp <span class="function">border-color</span>: <span class="string">green</span>;<br>
+}
+            </div>
+        </div>
+
+        <!-- 슬라이드 24: 정규표현식 검증 -->
+        <div class="slide">
+            <h2>🔍 정규표현식으로 고급 검증</h2>
+            
+            <div class="code-box">
+<span class="comment">// 검증 패턴 정의</span><br>
+<span class="keyword">const</span> validators = {<br>
+    &nbsp email: {<br>
+        &nbsp &nbsp pattern: <span class="string">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>,<br>
+        &nbsp &nbsp message: <span class="string">"올바른 이메일 주소를 입력해주세요"</span><br>
+    &nbsp },<br>
+    &nbsp password: {<br>
+        &nbsp &nbsp pattern: <span class="string">/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/</span>,<br>
+        &nbsp &nbsp message: <span class="string">"비밀번호는 8자 이상, 대소문자, 숫자, 특수문자 포함"</span><br>
+    &nbsp },<br>
+    &nbsp phone: {<br>
+        &nbsp &nbsp pattern: <span class="string">/^01[016789]-?\d{3,4}-?\d{4}$/</span>,<br>
+        &nbsp &nbsp message: <span class="string">"올바른 휴대폰 번호를 입력해주세요"</span><br>
+    &nbsp }<br>
+};<br>
+<br>
+<span class="comment">// 검증 함수</span><br>
+<span class="keyword">function</span> <span class="function">validateField</span>(input, validatorKey) {<br>
+    &nbsp <span class="keyword">const</span> value = input.value.<span class="function">trim</span>();<br>
+    &nbsp <span class="keyword">const</span> validator = validators[validatorKey];<br>
+    &nbsp <span class="keyword">const</span> feedback = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">`#${input.id}-feedback`</span>);<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (value === <span class="string">""</span>) {<br>
+        &nbsp &nbsp <span class="function">showError</span>(input, feedback, <span class="string">"필수 입력 항목입니다"</span>);<br>
+        &nbsp &nbsp <span class="keyword">return false</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (validator && !validator.pattern.<span class="function">test</span>(value)) {<br>
+        &nbsp &nbsp <span class="function">showError</span>(input, feedback, validator.message);<br>
+        &nbsp &nbsp <span class="keyword">return false</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="function">showSuccess</span>(input, feedback, <span class="string">"✓ 올바른 입력입니다"</span>);<br>
+    &nbsp <span class="keyword">return true</span>;<br>
+}<br>
+<br>
+<span class="keyword">function</span> <span class="function">showError</span>(input, feedback, message) {<br>
+    &nbsp input.classList.<span class="function">remove</span>(<span class="string">"valid"</span>);<br>
+    &nbsp input.classList.<span class="function">add</span>(<span class="string">"invalid"</span>);<br>
+    &nbsp feedback.textContent = message;<br>
+    &nbsp feedback.className = <span class="string">"feedback error"</span>;<br>
+}<br>
+<br>
+<span class="keyword">function</span> <span class="function">showSuccess</span>(input, feedback, message) {<br>
+    &nbsp input.classList.<span class="function">remove</span>(<span class="string">"invalid"</span>);<br>
+    &nbsp input.classList.<span class="function">add</span>(<span class="string">"valid"</span>);<br>
+    &nbsp feedback.textContent = message;<br>
+    &nbsp feedback.className = <span class="string">"feedback success"</span>;<br>
+}<br>
+<br>
+<span class="comment">// 사용</span><br>
+<span class="keyword">const</span> emailInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#email"</span>);<br>
+emailInput.<span class="function">addEventListener</span>(<span class="string">"blur"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="function">validateField</span>(<span class="keyword">this</span>, <span class="string">"email"</span>);<br>
+});
+            </div>
+        </div>
+
+        <!-- 슬라이드 25: 비밀번호 확인 -->
+        <div class="slide">
+            <h2>🔐 비밀번호 확인 검증</h2>
+            
+            <div class="code-box">
+<span class="keyword">const</span> passwordInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#password"</span>);<br>
+<span class="keyword">const</span> confirmPasswordInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#confirmPassword"</span>);<br>
+<br>
+confirmPasswordInput.<span class="function">addEventListener</span>(<span class="string">"input"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="keyword">const</span> feedback = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#confirmPassword-feedback"</span>);<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (<span class="keyword">this</span>.value === <span class="string">""</span>) {<br>
+        &nbsp &nbsp feedback.textContent = <span class="string">""</span>;<br>
+        &nbsp &nbsp <span class="keyword">return</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (<span class="keyword">this</span>.value !== passwordInput.value) {<br>
+        &nbsp &nbsp <span class="function">showError</span>(<span class="keyword">this</span>, feedback, <span class="string">"비밀번호가 일치하지 않습니다"</span>);<br>
+    &nbsp } <span class="keyword">else</span> {<br>
+        &nbsp &nbsp <span class="function">showSuccess</span>(<span class="keyword">this</span>, feedback, <span class="string">"✓ 비밀번호가 일치합니다"</span>);<br>
+    &nbsp }<br>
+});<br>
+<br>
+<span class="comment">// 비밀번호가 변경되면 확인 필드도 다시 검증</span><br>
+passwordInput.<span class="function">addEventListener</span>(<span class="string">"input"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="keyword">if</span> (confirmPasswordInput.value !== <span class="string">""</span>) {<br>
+        &nbsp &nbsp <span class="keyword">const</span> feedback = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#confirmPassword-feedback"</span>);<br>
+        <br>
+        &nbsp &nbsp <span class="keyword">if</span> (confirmPasswordInput.value !== <span class="keyword">this</span>.value) {<br>
+            &nbsp &nbsp &nbsp <span class="function">showError</span>(confirmPasswordInput, feedback, <span class="string">"비밀번호가 일치하지 않습니다"</span>);<br>
+        &nbsp &nbsp } <span class="keyword">else</span> {<br>
+            &nbsp &nbsp &nbsp <span class="function">showSuccess</span>(confirmPasswordInput, feedback, <span class="string">"✓ 비밀번호가 일치합니다"</span>);<br>
+        &nbsp &nbsp }<br>
+    &nbsp }<br>
+});
+            </div>
+        </div>
+
+        <!-- 슬라이드 26: 전화번호 자동 포맷팅 -->
+        <div class="slide">
+            <h2>📱 전화번호 자동 포맷팅</h2>
+            
+            <div class="code-box">
+<span class="keyword">const</span> phoneInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#phone"</span>);<br>
+<br>
+phoneInput.<span class="function">addEventListener</span>(<span class="string">"input"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="comment">// 숫자만 추출</span><br>
+    &nbsp <span class="keyword">let</span> value = <span class="keyword">this</span>.value.<span class="function">replace</span>(<span class="string">/[^0-9]/g</span>, <span class="string">""</span>);<br>
+    <br>
+    &nbsp <span class="comment">// 자동 포맷팅: 010-1234-5678</span><br>
+    &nbsp <span class="keyword">if</span> (value.length >= <span class="string">3</span> && value.length <= <span class="string">7</span>) {<br>
+        &nbsp &nbsp value = value.<span class="function">replace</span>(<span class="string">/(\d{3})(\d{1,4})/</span>, <span class="string">"$1-$2"</span>);<br>
+    &nbsp } <span class="keyword">else if</span> (value.length >= <span class="string">8</span>) {<br>
+        &nbsp &nbsp value = value.<span class="function">replace</span>(<span class="string">/(\d{3})(\d{4})(\d{0,4})/</span>, <span class="string">"$1-$2-$3"</span>);<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">this</span>.value = value;<br>
+    <br>
+    &nbsp <span class="comment">// 검증도 함께</span><br>
+    &nbsp <span class="function">validateField</span>(<span class="keyword">this</span>, <span class="string">"phone"</span>);<br>
+});
+            </div>
+
+            <div class="example-box">
+                <h4>동작 예시</h4>
+                <ul>
+                    <li>입력: <code>01012345678</code></li>
+                    <li>출력: <code>010-1234-5678</code></li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                💡 정규표현식의 <code>replace()</code> 메서드를 사용하면 문자열 패턴을 쉽게 변환할 수 있습니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 27: 실습 2 안내 -->
+        <div class="slide">
+            <h2>👨‍💻 실습 2: 회원가입 폼 만들기</h2>
+            
+            <div class="practice">
+                <h3>🎯 만들 기능</h3>
+                <ol style="font-size: 1.2em;">
+                    <li><strong>입력 필드:</strong> 이메일, 비밀번호, 비밀번호 확인, 휴대폰</li>
+                    <li><strong>실시간 검증:</strong> 입력할 때마다 유효성 체크</li>
+                    <li><strong>시각적 피드백:</strong> 성공/오류 메시지와 색상 표시</li>
+                    <li><strong>제출 검증:</strong> 모든 필드가 유효할 때만 제출 가능</li>
+                    <li><strong>자동 포맷팅:</strong> 전화번호 하이픈 자동 추가</li>
+                </ol>
+
+                <h3>📝 사용할 기술</h3>
+                <ul>
+                    <li>폼 이벤트: <code>submit</code>, <code>input</code>, <code>blur</code></li>
+                    <li>정규표현식 검증</li>
+                    <li>클래스 조작: <code>classList.add/remove</code></li>
+                    <li><code>preventDefault()</code>로 폼 제출 제어</li>
+                </ul>
+            </div>
+
+            <div class="tip">
+                💡 다음 슬라이드부터 단계별로 구현 코드를 제공합니다!
+            </div>
+        </div>
+
+        <!-- 슬라이드 28: 실습 2 HTML/CSS -->
+        <div class="slide">
+            <h2>👨‍💻 실습 2 - HTML & CSS</h2>
+            
+            <h3>HTML 구조</h3>
+            <div class="code-box" style="font-size: 0.8em;">
+<span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"signup-container"</span><span class="keyword">&gt;</span><br>
+    &nbsp <span class="keyword">&lt;h1&gt;</span>회원가입<span class="keyword">&lt;/h1&gt;</span><br>
+    <br>
+    &nbsp <span class="keyword">&lt;form</span> <span class="function">id</span>=<span class="string">"signupForm"</span><span class="keyword">&gt;</span><br>
+        &nbsp &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"form-group"</span><span class="keyword">&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"email"</span><span class="keyword">&gt;</span>이메일<span class="keyword">&lt;/label&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"email"</span> <span class="function">id</span>=<span class="string">"email"</span> <span class="function">required</span><span class="keyword">&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"feedback"</span> <span class="function">id</span>=<span class="string">"email-feedback"</span><span class="keyword">&gt;&lt;/div&gt;</span><br>
+        &nbsp &nbsp <span class="keyword">&lt;/div&gt;</span><br>
+        <br>
+        &nbsp &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"form-group"</span><span class="keyword">&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"password"</span><span class="keyword">&gt;</span>비밀번호<span class="keyword">&lt;/label&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"password"</span> <span class="function">id</span>=<span class="string">"password"</span> <span class="function">required</span><span class="keyword">&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"feedback"</span> <span class="function">id</span>=<span class="string">"password-feedback"</span><span class="keyword">&gt;&lt;/div&gt;</span><br>
+        &nbsp &nbsp <span class="keyword">&lt;/div&gt;</span><br>
+        <br>
+        &nbsp &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"form-group"</span><span class="keyword">&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"confirmPassword"</span><span class="keyword">&gt;</span>비밀번호 확인<span class="keyword">&lt;/label&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"password"</span> <span class="function">id</span>=<span class="string">"confirmPassword"</span> <span class="function">required</span><span class="keyword">&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"feedback"</span> <span class="function">id</span>=<span class="string">"confirmPassword-feedback"</span><span class="keyword">&gt;&lt;/div&gt;</span><br>
+        &nbsp &nbsp <span class="keyword">&lt;/div&gt;</span><br>
+        <br>
+        &nbsp &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"form-group"</span><span class="keyword">&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;label</span> <span class="function">for</span>=<span class="string">"phone"</span><span class="keyword">&gt;</span>휴대폰<span class="keyword">&lt;/label&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;input</span> <span class="function">type</span>=<span class="string">"tel"</span> <span class="function">id</span>=<span class="string">"phone"</span> <span class="function">placeholder</span>=<span class="string">"010-1234-5678"</span> <span class="function">required</span><span class="keyword">&gt;</span><br>
+            &nbsp &nbsp &nbsp <span class="keyword">&lt;div</span> <span class="function">class</span>=<span class="string">"feedback"</span> <span class="function">id</span>=<span class="string">"phone-feedback"</span><span class="keyword">&gt;&lt;/div&gt;</span><br>
+        &nbsp &nbsp <span class="keyword">&lt;/div&gt;</span><br>
+        <br>
+        &nbsp &nbsp <span class="keyword">&lt;button</span> <span class="function">type</span>=<span class="string">"submit"</span><span class="keyword">&gt;</span>가입하기<span class="keyword">&lt;/button&gt;</span><br>
+    &nbsp <span class="keyword">&lt;/form&gt;</span><br>
+<span class="keyword">&lt;/div&gt;</span>
+            </div>
+
+            <h3>CSS 스타일</h3>
+            <div class="code-box" style="font-size: 0.8em;">
+<span class="keyword">.form-group</span> {<br>
+    &nbsp <span class="function">margin-bottom</span>: <span class="string">20px</span>;<br>
+}<br>
+<br>
+<span class="keyword">label</span> {<br>
+    &nbsp <span class="function">display</span>: <span class="string">block</span>;<br>
+    &nbsp <span class="function">margin-bottom</span>: <span class="string">5px</span>;<br>
+    &nbsp <span class="function">font-weight</span>: <span class="string">bold</span>;<br>
+}<br>
+<br>
+<span class="keyword">input</span> {<br>
+    &nbsp <span class="function">width</span>: <span class="string">100%</span>;<br>
+    &nbsp <span class="function">padding</span>: <span class="string">10px</span>;<br>
+    &nbsp <span class="function">border</span>: <span class="string">2px solid #ddd</span>;<br>
+    &nbsp <span class="function">border-radius</span>: <span class="string">5px</span>;<br>
+    &nbsp <span class="function">font-size</span>: <span class="string">16px</span>;<br>
+}<br>
+<br>
+<span class="keyword">input.invalid</span> {<br>
+    &nbsp <span class="function">border-color</span>: <span class="string">#f44336</span>;<br>
+    &nbsp <span class="function">background-color</span>: <span class="string">#ffebee</span>;<br>
+}<br>
+<br>
+<span class="keyword">input.valid</span> {<br>
+    &nbsp <span class="function">border-color</span>: <span class="string">#4caf50</span>;<br>
+    &nbsp <span class="function">background-color</span>: <span class="string">#f1f8f4</span>;<br>
+}<br>
+<br>
+<span class="keyword">.feedback</span> {<br>
+    &nbsp <span class="function">margin-top</span>: <span class="string">5px</span>;<br>
+    &nbsp <span class="function">font-size</span>: <span class="string">0.9em</span>;<br>
+    &nbsp <span class="function">min-height</span>: <span class="string">20px</span>;<br>
+}<br>
+<br>
+<span class="keyword">.feedback.error</span> {<br>
+    &nbsp <span class="function">color</span>: <span class="string">#f44336</span>;<br>
+}<br>
+<br>
+<span class="keyword">.feedback.success</span> {<br>
+    &nbsp <span class="function">color</span>: <span class="string">#4caf50</span>;<br>
+}
+            </div>
+        </div>
+
+        <!-- 슬라이드 29: 실습 2 JavaScript (1부) -->
+        <div class="slide">
+            <h2>👨‍💻 실습 2 - JavaScript (1/2)</h2>
+            
+            <div class="code-box" style="font-size: 0.75em;">
+<span class="comment">// 검증 패턴 정의</span><br>
+<span class="keyword">const</span> validators = {<br>
+    &nbsp email: {<br>
+        &nbsp &nbsp pattern: <span class="string">/^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>,<br>
+        &nbsp &nbsp message: <span class="string">"올바른 이메일 주소를 입력해주세요"</span><br>
+    &nbsp },<br>
+    &nbsp password: {<br>
+        &nbsp &nbsp pattern: <span class="string">/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/</span>,<br>
+        &nbsp &nbsp message: <span class="string">"8자 이상, 대소문자, 숫자, 특수문자 포함"</span><br>
+    &nbsp },<br>
+    &nbsp phone: {<br>
+        &nbsp &nbsp pattern: <span class="string">/^01[016789]-?\d{3,4}-?\d{4}$/</span>,<br>
+        &nbsp &nbsp message: <span class="string">"올바른 휴대폰 번호를 입력해주세요"</span><br>
+    &nbsp }<br>
+};<br>
+<br>
+<span class="comment">// 요소 선택</span><br>
+<span class="keyword">const</span> signupForm = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#signupForm"</span>);<br>
+<span class="keyword">const</span> emailInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#email"</span>);<br>
+<span class="keyword">const</span> passwordInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#password"</span>);<br>
+<span class="keyword">const</span> confirmPasswordInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#confirmPassword"</span>);<br>
+<span class="keyword">const</span> phoneInput = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#phone"</span>);<br>
+<br>
+<span class="comment">// 헬퍼 함수들</span><br>
+<span class="keyword">function</span> <span class="function">showError</span>(input, feedback, message) {<br>
+    &nbsp input.classList.<span class="function">remove</span>(<span class="string">"valid"</span>);<br>
+    &nbsp input.classList.<span class="function">add</span>(<span class="string">"invalid"</span>);<br>
+    &nbsp feedback.textContent = message;<br>
+    &nbsp feedback.className = <span class="string">"feedback error"</span>;<br>
+}<br>
+<br>
+<span class="keyword">function</span> <span class="function">showSuccess</span>(input, feedback, message) {<br>
+    &nbsp input.classList.<span class="function">remove</span>(<span class="string">"invalid"</span>);<br>
+    &nbsp input.classList.<span class="function">add</span>(<span class="string">"valid"</span>);<br>
+    &nbsp feedback.textContent = message;<br>
+    &nbsp feedback.className = <span class="string">"feedback success"</span>;<br>
+}<br>
+<br>
+<span class="keyword">function</span> <span class="function">validateField</span>(input, validatorKey) {<br>
+    &nbsp <span class="keyword">const</span> value = input.value.<span class="function">trim</span>();<br>
+    &nbsp <span class="keyword">const</span> validator = validators[validatorKey];<br>
+    &nbsp <span class="keyword">const</span> feedback = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">`#${input.id}-feedback`</span>);<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (value === <span class="string">""</span>) {<br>
+        &nbsp &nbsp <span class="function">showError</span>(input, feedback, <span class="string">"필수 입력 항목입니다"</span>);<br>
+        &nbsp &nbsp <span class="keyword">return false</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (validator && !validator.pattern.<span class="function">test</span>(value)) {<br>
+        &nbsp &nbsp <span class="function">showError</span>(input, feedback, validator.message);<br>
+        &nbsp &nbsp <span class="keyword">return false</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="function">showSuccess</span>(input, feedback, <span class="string">"✓ 올바른 입력입니다"</span>);<br>
+    &nbsp <span class="keyword">return true</span>;<br>
+}
+            </div>
+        </div>
+
+        <!-- 슬라이드 30: 실습 2 JavaScript (2부) -->
+        <div class="slide">
+            <h2>👨‍💻 실습 2 - JavaScript (2/2)</h2>
+            
+            <div class="code-box" style="font-size: 0.75em;">
+<span class="comment">// 이메일 검증</span><br>
+emailInput.<span class="function">addEventListener</span>(<span class="string">"blur"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="function">validateField</span>(<span class="keyword">this</span>, <span class="string">"email"</span>);<br>
+});<br>
+<br>
+<span class="comment">// 비밀번호 검증</span><br>
+passwordInput.<span class="function">addEventListener</span>(<span class="string">"blur"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="function">validateField</span>(<span class="keyword">this</span>, <span class="string">"password"</span>);<br>
+});<br>
+<br>
+<span class="comment">// 비밀번호 확인 검증</span><br>
+confirmPasswordInput.<span class="function">addEventListener</span>(<span class="string">"input"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="keyword">const</span> feedback = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#confirmPassword-feedback"</span>);<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (<span class="keyword">this</span>.value === <span class="string">""</span>) {<br>
+        &nbsp &nbsp feedback.textContent = <span class="string">""</span>;<br>
+        &nbsp &nbsp <span class="keyword">return</span>;<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (<span class="keyword">this</span>.value !== passwordInput.value) {<br>
+        &nbsp &nbsp <span class="function">showError</span>(<span class="keyword">this</span>, feedback, <span class="string">"비밀번호가 일치하지 않습니다"</span>);<br>
+    &nbsp } <span class="keyword">else</span> {<br>
+        &nbsp &nbsp <span class="function">showSuccess</span>(<span class="keyword">this</span>, feedback, <span class="string">"✓ 비밀번호가 일치합니다"</span>);<br>
+    &nbsp }<br>
+});<br>
+<br>
+<span class="comment">// 전화번호 자동 포맷팅</span><br>
+phoneInput.<span class="function">addEventListener</span>(<span class="string">"input"</span>, <span class="keyword">function</span>() {<br>
+    &nbsp <span class="keyword">let</span> value = <span class="keyword">this</span>.value.<span class="function">replace</span>(<span class="string">/[^0-9]/g</span>, <span class="string">""</span>);<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (value.length >= <span class="string">3</span> && value.length <= <span class="string">7</span>) {<br>
+        &nbsp &nbsp value = value.<span class="function">replace</span>(<span class="string">/(\d{3})(\d{1,4})/</span>, <span class="string">"$1-$2"</span>);<br>
+    &nbsp } <span class="keyword">else if</span> (value.length >= <span class="string">8</span>) {<br>
+        &nbsp &nbsp value = value.<span class="function">replace</span>(<span class="string">/(\d{3})(\d{4})(\d{0,4})/</span>, <span class="string">"$1-$2-$3"</span>);<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">this</span>.value = value;<br>
+    &nbsp <span class="function">validateField</span>(<span class="keyword">this</span>, <span class="string">"phone"</span>);<br>
+});<br>
+<br>
+<span class="comment">// 폼 제출 처리</span><br>
+signupForm.<span class="function">addEventListener</span>(<span class="string">"submit"</span>, <span class="keyword">function</span>(e) {<br>
+    &nbsp e.<span class="function">preventDefault</span>();<br>
+    <br>
+    &nbsp <span class="comment">// 모든 필드 검증</span><br>
+    &nbsp <span class="keyword">const</span> isEmailValid = <span class="function">validateField</span>(emailInput, <span class="string">"email"</span>);<br>
+    &nbsp <span class="keyword">const</span> isPasswordValid = <span class="function">validateField</span>(passwordInput, <span class="string">"password"</span>);<br>
+    &nbsp <span class="keyword">const</span> isPhoneValid = <span class="function">validateField</span>(phoneInput, <span class="string">"phone"</span>);<br>
+    <br>
+    &nbsp <span class="keyword">const</span> passwordsMatch = confirmPasswordInput.value === passwordInput.value;<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (!passwordsMatch) {<br>
+        &nbsp &nbsp <span class="keyword">const</span> feedback = <span class="keyword">document</span>.<span class="function">querySelector</span>(<span class="string">"#confirmPassword-feedback"</span>);<br>
+        &nbsp &nbsp <span class="function">showError</span>(confirmPasswordInput, feedback, <span class="string">"비밀번호가 일치하지 않습니다"</span>);<br>
+    &nbsp }<br>
+    <br>
+    &nbsp <span class="keyword">if</span> (isEmailValid && isPasswordValid && isPhoneValid && passwordsMatch) {<br>
+        &nbsp &nbsp <span class="function">alert</span>(<span class="string">"회원가입 성공!"</span>);<br>
+        &nbsp &nbsp <span class="keyword">console</span>.<span class="function">log</span>(<span class="string">"가입 데이터:"</span>, {<br>
+            &nbsp &nbsp &nbsp email: emailInput.value,<br>
+            &nbsp &nbsp &nbsp password: passwordInput.value,<br>
+            &nbsp &nbsp &nbsp phone: phoneInput.value<br>
+        &nbsp &nbsp });<br>
+    &nbsp } <span class="keyword">else</span> {<br>
+        &nbsp &nbsp <span class="function">alert</span>(<span class="string">"모든 필드를 올바르게 입력해주세요!"</span>);<br>
+    &nbsp }<br>
+});
+            </div>
+        </div>
+
+        <!-- 슬라이드 31: 2회차 정리 -->
+        <div class="slide">
+            <h2>📚 2회차 정리</h2>
+            
+            <div class="key-point">
+                <h3 style="color: white; margin-top: 0;">🎉 오늘 배운 것</h3>
+            </div>
+
+            <table>
+                <tr>
+                    <th>주제</th>
+                    <th>핵심 내용</th>
+                </tr>
+                <tr>
+                    <td><strong>이벤트 리스너</strong></td>
+                    <td><code>addEventListener</code>, <code>removeEventListener</code></td>
+                </tr>
+                <tr>
+                    <td><strong>마우스 이벤트</strong></td>
+                    <td><code>click</code>, <code>mouseenter</code>, <code>mouseleave</code></td>
+                </tr>
+                <tr>
+                    <td><strong>키보드 이벤트</strong></td>
+                    <td><code>keydown</code>, <code>keyup</code>, 조합키 감지</td>
+                </tr>
+                <tr>
+                    <td><strong>폼 이벤트</strong></td>
+                    <td><code>submit</code>, <code>input</code>, <code>focus</code>, <code>blur</code></td>
+                </tr>
+                <tr>
+                    <td><strong>이벤트 객체</strong></td>
+                    <td><code>target</code>, <code>preventDefault()</code>, <code>stopPropagation()</code></td>
+                </tr>
+                <tr>
+                    <td><strong>이벤트 위임</strong></td>
+                    <td>부모 요소에서 자식 이벤트 처리</td>
+                </tr>
+                <tr>
+                    <td><strong>폼 검증</strong></td>
+                    <td>정규표현식, 실시간 피드백, 자동 포맷팅</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 슬라이드 32: 전체 과정 마무리 -->
+        <div class="slide">
+            <h2>🎓 전체 과정 완료!</h2>
+            
+            <div style="text-align: center; margin: 40px 0;">
+                <h3 style="font-size: 2em; color: #f5576c;">축하합니다! 🎉</h3>
+                <p style="font-size: 1.3em; margin-top: 20px;">JavaScript DOM 조작과 이벤트 처리를 모두 배우셨습니다!</p>
+            </div>
+
+            <div class="key-point" style="margin: 30px 0;">
+                <h3 style="color: white; margin-top: 0;">🚀 이제 할 수 있는 것들</h3>
+                <ul style="color: white; font-size: 1.1em;">
+                    <li>웹 페이지의 요소를 자유롭게 선택하고 조작</li>
+                    <li>동적으로 요소 생성, 추가, 삭제</li>
+                    <li>사용자의 모든 행동에 반응하는 인터랙티브 웹 페이지 제작</li>
+                    <li>실시간 폼 검증과 사용자 친화적인 피드백 제공</li>
+                </ul>
+            </div>
+
+            <div class="concept-box" style="margin: 30px 0;">
+                <h3>📖 더 공부하면 좋은 것들</h3>
+                <ul style="font-size: 1.1em;">
+                    <li><strong>Fetch API:</strong> 서버와 데이터 주고받기</li>
+                    <li><strong>LocalStorage:</strong> 브라우저에 데이터 저장</li>
+                    <li><strong>비동기 처리:</strong> async/await, Promise</li>
+                    <li><strong>프레임워크:</strong> React, Vue, Angular</li>
+                </ul>
+            </div>
+
+            <div class="tip" style="font-size: 1.2em;">
+                💡 <strong>학습 팁:</strong> 배운 내용을 활용해서 작은 프로젝트들을 직접 만들어보세요!<br>
+                예: 계산기, 타이머, 간단한 게임, 쇼핑몰 장바구니 등
+            </div>
+
+            <div style="text-align: center; margin-top: 60px; font-size: 1.5em; color: #f093fb;">
+                <strong>질문이 있으신가요?</strong>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
