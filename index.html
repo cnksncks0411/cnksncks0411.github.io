@@ -1,120 +1,440 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4HGT36HG8B"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-4HGT36HG8B');
-    </script>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MC5CTMKM');</script>
-    <!-- End Google Tag Manager -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>홈 - 나만의 웹사이트 클래스</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catsonality 64 - 고양이 성격유형 검사</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="./resource/css/index.css">
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MC5CTMKM"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <header>
-        <nav>
-            <div class="logo">나만의 웹사이트</div>
-            <div class="hamburger"><div></div><div></div><div></div></div>
-            <ul class="nav-links">
-                <li><a href="/">홈</a></li>
-                <li><a href="oneday.html">원데이 클래스</a></li>
-                <li><a href="intensive.html">일반 수업</a></li>
-                <li><a href="apply.html">수강 신청</a></li>
-                <li><a href="contact.html">문의하기</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main class="section">
-        
-<h1>코딩 몰라도 만드는 나만의 웹사이트</h1>
-<p>웹사이트 제작, 아직도 어렵고 복잡하다고 느끼시나요?</p>
-<p><strong>이제는 AI와 함께 누구나 2시간 안에 나만의 웹페이지를 직접 만들 수 있습니다.</strong></p>
-<p><strong>지금 보시는 이 페이지 역시 그렇게 만들어진 페이지입니다.</strong></p>
+    <div id="root"></div>
 
-<div class="feature-boxes">
-    <div class="feature">
-        <h3>👩‍💻 누구나 쉽게</h3>
-        <p>개발 지식 없이도 따라할 수 있는 직관적인 수업으로 구성했습니다.</p>
-    </div>
-    <div class="feature">
-        <h3>⚡ 최소 2시간 완성</h3>
-        <p>실시간으로 나만의 웹사이트 제작 및 배포까지 완료</p>
-    </div>
-    <div class="feature">
-        <h3>📦 결과물 소유</h3>
-        <p>수업 이후에도 원하는 만큼 웹사이트 수정·확장 가능</p>
-    </div>
-</div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-<h2 style="margin-top: 4rem;">이런 웹페이지를 만들 수 있어요!</h2>
-<div class="sample-pages">
-    <div class="sample-card">
-        <img src="portfolio.png" alt="포트폴리오 예시" />
-        <h3>포트폴리오 페이지</h3>
-        <p>이력서 대신 웹사이트로 나를 소개해 보세요.</p>
-        <a class="button" href="portfolio.html" target="_blank">예시 보기</a>
-    </div>
-    <div class="sample-card">
-        <img src="wedding.png" alt="청첩장 예시" />
-        <h3>셀프 청첩장</h3>
-        <p>디지털로 깔끔하게, 감성 가득한 청첩장 제작!</p>
-        <a class="button" href="wedding.html" target="_blank">예시 보기</a>
-    </div>
-    <div class="sample-card">
-        <img src="brand.png" alt="브랜드 소개 예시" />
-        <h3>브랜드 소개 페이지</h3>
-        <p>작은 브랜드도 멋지게 보여줄 수 있어요.</p>
-        <a class="button" href="brand.html" target="_blank">예시 보기</a>
-    </div>
-    <div class="sample-card">
-        <img src="product.png" alt="상품 소개 예시" />
-        <h3>상품 소개 페이지</h3>
-        <p>제품 특징과 가격을 깔끔하게 정리해 보세요.</p>
-        <a class="button" href="product.html" target="_blank">예시 보기</a>
-    </div>
-    <div class="sample-card">
-        <img src="recipe.png" alt="레시피 모음 예시" />
-        <h3>요리 레시피 모음 페이지</h3>
-        <p>자주 요리하는 레시피를 검색해 보세요.</p>
-        <a class="button" href="https://heetae-jiyun.github.io/cook" target="_blank">예시 보기</a>
-    </div>
-    <div class="sample-card">
-        <img src="event.png" alt="이벤트 홍보보 예시" />
-        <h3>이벤트 홍보 페이지</h3>
-        <p>진행중인 이벤트를 홍보해 보세요.</p>
-        <a class="button" href="event.html" target="_blank">예시 보기</a>
-    </div>
-</div>
+        // 이미지 파일명 매핑 (실제 파일명에 맞춤)
+        const IMAGE_MAPPING = {
+            "CPF": "CRF_마음방패냥 (Heart Shield).png",
+            "ELF": "EFL_노래하는 고양이 (Melodytail).png"
+        };
 
-    </main>
-    <footer>
-        <p>&copy; 2025 나만의 웹사이트 클래스</p>
-    </footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.querySelector('.hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
+        // 데이터 (엑셀에서 추출한 실제 데이터)
+        const QUESTIONS_DATA = [
+            {id: 1, axis: "행동(Behavior)", question: "낯선 상자나 가방이 생겼을 때 고양이는?", options: [{text: "일단 들어가본다. 모험의 시작!", code: "E"}, {text: "멀리서 관찰 후 한참 뒤 탐색", code: "C"}, {text: "관심 없음. 내 영역이 우선", code: "W"}, {text: "냄새부터 확인, 위험 감지 모드", code: "H"}]},
+            {id: 2, axis: "행동(Behavior)", question: "창문을 열면 가장 먼저 하는 행동은?", options: [{text: "바로 창틀로 올라가 밖을 구경", code: "E"}, {text: "바람이 불어오는지 확인 후 결정", code: "W"}, {text: "익숙한 자리로 돌아간다", code: "C"}, {text: "냄새와 소리를 예민하게 감지", code: "H"}]},
+            {id: 3, axis: "행동(Behavior)", question: "집사가 새로운 가구를 들였을 때?", options: [{text: "즉시 탐색 시작! 이곳저곳 확인", code: "E"}, {text: "며칠 지켜본 후 천천히 접근", code: "C"}, {text: "크게 신경 안 쓰고 내 할 일 함", code: "W"}, {text: "안전성 확인 후 은신처로 활용 검토", code: "H"}]},
+            {id: 4, axis: "행동(Behavior)", question: "장난감을 꺼내면?", options: [{text: "신나게 달려들어 놀이 시작", code: "E"}, {text: "기분에 따라 다르게 반응", code: "W"}, {text: "항상 좋아하는 장난감만 선택", code: "C"}, {text: "사냥감으로 인식하고 집중 모드", code: "H"}]},
+            {id: 5, axis: "행동(Behavior)", question: "이사나 환경 변화 시 반응은?", options: [{text: "빠르게 적응하며 새 공간 탐색", code: "E"}, {text: "스트레스 받지만 결국 적응", code: "W"}, {text: "오래 숨어있고 회복이 느림", code: "C"}, {text: "경계 모드 최대, 안전 확인 우선", code: "H"}]},
+            {id: 6, axis: "행동(Behavior)", question: "문틈이 살짝 열려 있다면?", options: [{text: "당연히 열고 나간다!", code: "E"}, {text: "기분 좋으면 나가고 아니면 무시", code: "W"}, {text: "익숙한 공간이 더 편해서 안 나감", code: "C"}, {text: "밖을 정찰 후 필요시 이동", code: "H"}]},
+            {id: 7, axis: "행동(Behavior)", question: "새벽 시간 고양이의 상태는?", options: [{text: "활동 시간! 집안을 누빈다", code: "E"}, {text: "컨디션에 따라 다름", code: "W"}, {text: "조용히 자고 있음", code: "C"}, {text: "사냥 본능 발동, 깨어 있음", code: "H"}]},
+            {id: 8, axis: "행동(Behavior)", question: "낯선 냄새가 날 때?", options: [{text: "적극적으로 냄새 추적", code: "E"}, {text: "별로 관심 없음", code: "W"}, {text: "일단 피하고 나중에 확인", code: "C"}, {text: "위협 요소인지 철저히 분석", code: "H"}]},
+            {id: 9, axis: "행동(Behavior)", question: "낯선 사람이 들어오면?", options: [{text: "호기심에 다가가 인사", code: "E"}, {text: "거리를 두고 관찰만", code: "W"}, {text: "숨어버림", code: "C"}, {text: "경계하며 위협적인지 판단", code: "H"}]},
+            {id: 10, axis: "행동(Behavior)", question: "집사가 가방을 쌀 때?", options: [{text: "가방 속을 탐색하며 방해", code: "E"}, {text: "별로 신경 안 씀", code: "W"}, {text: "불안해하며 숨거나 따라다님", code: "C"}, {text: "상황을 주시하며 관찰", code: "H"}]},
+            {id: 11, axis: "행동(Behavior)", question: "평소 이동 동선이 일정한가요?", options: [{text: "매번 다른 곳을 돌아다닌다", code: "W"}, {text: "어느 정도 규칙적이지만 유연함", code: "E"}, {text: "거의 정해진 루트로만 이동", code: "C"}, {text: "전략적으로 동선을 정함", code: "H"}]},
+            {id: 12, axis: "행동(Behavior)", question: "창문 앞에서 시간을 보낼 때?", options: [{text: "밖에 나가고 싶어 보임", code: "E"}, {text: "그냥 멍하니 있음", code: "W"}, {text: "편안하게 햇볕을 즐김", code: "C"}, {text: "새나 벌레를 주시함", code: "H"}]},
+            {id: 13, axis: "행동(Behavior)", question: "갑작스러운 소음(청소기 등)에 반응은?", options: [{text: "확인하러 다가감", code: "E"}, {text: "신경 안 씀", code: "W"}, {text: "놀라서 도망감", code: "C"}, {text: "경계하며 숨어서 관찰", code: "H"}]},
+            {id: 14, axis: "행동(Behavior)", question: "고양이에게 '놀이 시간'은?", options: [{text: "언제든 즐겁게!", code: "E"}, {text: "기분 내킬 때만", code: "W"}, {text: "정해진 시간에만", code: "C"}, {text: "사냥 훈련 시간", code: "H"}]},
+            {id: 15, axis: "행동(Behavior)", question: "낯선 물체가 집안에 놓이면?", options: [{text: "즉시 냄새 맡고 확인", code: "E"}, {text: "별로 신경 안 씀", code: "W"}, {text: "며칠간 회피", code: "C"}, {text: "위협 여부 파악 후 접근", code: "H"}]},
+            {id: 16, axis: "행동(Behavior)", question: "스스로 놀이를 할 때는?", options: [{text: "집안 곳곳을 탐험", code: "E"}, {text: "기분에 따라 즉흥적으로", code: "W"}, {text: "익숙한 장난감으로만", code: "C"}, {text: "혼자 사냥놀이", code: "H"}]},
+            {id: 17, axis: "행동(Behavior)", question: "방문을 닫으면?", options: [{text: "열어달라고 울부짖음", code: "E"}, {text: "상관없음", code: "W"}, {text: "이제 익숙해서 괜찮음", code: "C"}, {text: "탈출 방법 모색", code: "H"}]},
+            {id: 18, axis: "행동(Behavior)", question: "집사와의 산책 시도 시?", options: [{text: "적극적으로 따라나감", code: "E"}, {text: "짧게는 괜찮음", code: "W"}, {text: "거부하고 집에 있고 싶음", code: "C"}, {text: "경계하지만 필요시 이동", code: "H"}]},
+            {id: 19, axis: "행동(Behavior)", question: "비 오는 날 창밖을 볼 때?", options: [{text: "빗소리에 흥미를 보이며 관찰", code: "E"}, {text: "평소와 다름없이 행동", code: "W"}, {text: "익숙한 장소에서 안정 취함", code: "C"}, {text: "경계하며 주변을 살핌", code: "H"}]},
+            {id: 20, axis: "행동(Behavior)", question: "새로운 공간(호텔, 병원 등)에 들어섰을 때?", options: [{text: "신속하게 주변 탐색", code: "E"}, {text: "적당히 둘러보고 자리 잡음", code: "W"}, {text: "구석에 숨어 나오지 않음", code: "C"}, {text: "모든 출입구와 위험 요소 확인", code: "H"}]},
+            {id: 21, axis: "사회성(Social)", question: "집사가 집에 돌아오면?", options: [{text: "반갑게 맞이하며 애교 폭발", code: "L"}, {text: "쳐다보지도 않음", code: "S"}, {text: "다른 고양이가 있다면 그쪽 확인", code: "G"}, {text: "잠깐 인사 후 다시 내 자리로", code: "P"}]},
+            {id: 22, axis: "사회성(Social)", question: "집사가 다른 일을 할 때 고양이는?", options: [{text: "방해하며 관심 요구", code: "L"}, {text: "혼자 놀거나 잠", code: "S"}, {text: "조용히 옆에서 지켜봄", code: "G"}, {text: "거리를 두고 관찰", code: "P"}]},
+            {id: 23, axis: "사회성(Social)", question: "다른 고양이가 집에 있다면?", options: [{text: "적극적으로 친해지려 함", code: "L"}, {text: "무관심, 내 영역만 지킴", code: "S"}, {text: "거리 조절하며 평화 유지", code: "G"}, {text: "서열 정리 후 거리 유지", code: "P"}]},
+            {id: 24, axis: "사회성(Social)", question: "집사가 쓰다듬으려 할 때?", options: [{text: "좋아하며 계속 요구", code: "L"}, {text: "기분 아니면 피함", code: "S"}, {text: "적당히 받아주는 편", code: "G"}, {text: "허락한 만큼만 받아줌", code: "P"}]},
+            {id: 25, axis: "사회성(Social)", question: "혼자 있는 시간이 길어지면?", options: [{text: "외로워하며 집사 찾음", code: "L"}, {text: "전혀 문제없음, 오히려 좋음", code: "S"}, {text: "약간 서운해하지만 괜찮음", code: "G"}, {text: "상관없음, 내 시간 즐김", code: "P"}]},
+            {id: 26, axis: "사회성(Social)", question: "집사가 다른 고양이를 쓰다듬으면?", options: [{text: "질투하며 끼어듦", code: "L"}, {text: "관심 없음", code: "S"}, {text: "지켜보다 자기 차례 기다림", code: "G"}, {text: "무시하거나 자리 뜸", code: "P"}]},
+            {id: 27, axis: "사회성(Social)", question: "낯선 손님이 왔을 때 반응은?", options: [{text: "적극적으로 다가가 탐색", code: "L"}, {text: "숨어서 나오지 않음", code: "S"}, {text: "거리 두고 조용히 관찰", code: "G"}, {text: "냉정하게 평가 후 무시", code: "P"}]},
+            {id: 28, axis: "사회성(Social)", question: "집사가 슬퍼 보일 때?", options: [{text: "다가가서 위로하려 함", code: "L"}, {text: "별로 신경 안 씀", code: "S"}, {text: "조용히 곁에 있어줌", code: "G"}, {text: "거리를 두고 지켜봄", code: "P"}]},
+            {id: 29, axis: "사회성(Social)", question: "집사와의 놀이 시간은?", options: [{text: "최대한 길게 원함", code: "L"}, {text: "혼자 노는 게 더 좋음", code: "S"}, {text: "적당히 함께 놀아줌", code: "G"}, {text: "내가 원할 때만", code: "P"}]},
+            {id: 30, axis: "사회성(Social)", question: "밥 시간에 다른 고양이가 있다면?", options: [{text: "함께 나란히 먹음", code: "L"}, {text: "차례 안 기다리고 내 것만 챙김", code: "S"}, {text: "양보하거나 순서 지킴", code: "G"}, {text: "먼저 먹거나 나중에 따로 먹음", code: "P"}]},
+            {id: 31, axis: "사회성(Social)", question: "집사의 무릎은?", options: [{text: "최고의 자리! 자주 올라감", code: "L"}, {text: "별로 관심 없음", code: "S"}, {text: "가끔 올라가 시간 보냄", code: "G"}, {text: "내가 허락할 때만 올라감", code: "P"}]},
+            {id: 32, axis: "사회성(Social)", question: "집사가 전화 통화 중일 때?", options: [{text: "관심받고 싶어 방해", code: "L"}, {text: "신경 안 씀", code: "S"}, {text: "조용히 기다림", code: "G"}, {text: "방해되면 다른 곳으로 이동", code: "P"}]},
+            {id: 33, axis: "사회성(Social)", question: "여러 고양이가 모여 있을 때?", options: [{text: "중심에서 분위기 주도", code: "L"}, {text: "멀리 떨어져 혼자 있음", code: "S"}, {text: "조화롭게 어울림", code: "G"}, {text: "거리 두고 관찰", code: "P"}]},
+            {id: 34, axis: "사회성(Social)", question: "집사가 부르면?", options: [{text: "바로 달려옴", code: "L"}, {text: "대부분 무시", code: "S"}, {text: "천천히 다가옴", code: "G"}, {text: "기분 내키면 옴", code: "P"}]},
+            {id: 35, axis: "사회성(Social)", question: "새로운 고양이가 집에 왔을 때?", options: [{text: "금방 친해지려 노력", code: "L"}, {text: "철저히 무시하고 거리 유지", code: "S"}, {text: "적응할 시간을 주며 배려", code: "G"}, {text: "서열 확인 후 경계 유지", code: "P"}]},
+            {id: 36, axis: "사회성(Social)", question: "집사가 밥을 주는 방식은?", options: [{text: "손으로 직접 먹여줘야 좋음", code: "L"}, {text: "알아서 챙겨 먹음", code: "S"}, {text: "함께 있어주면 좋음", code: "G"}, {text: "혼자 조용히 먹는 게 좋음", code: "P"}]},
+            {id: 37, axis: "사회성(Social)", question: "다른 고양이가 아플 때?", options: [{text: "걱정하며 다가감", code: "L"}, {text: "관심 없음", code: "S"}, {text: "조용히 지켜보며 배려", code: "G"}, {text: "거리 두고 관찰만", code: "P"}]},
+            {id: 38, axis: "사회성(Social)", question: "집사가 다른 반려동물과 놀 때?", options: [{text: "질투하며 끼어듦", code: "L"}, {text: "관심 없음", code: "S"}, {text: "함께 어울리려 함", code: "G"}, {text: "무시하고 자기 할 일 함", code: "P"}]},
+            {id: 39, axis: "사회성(Social)", question: "집사의 침대는?", options: [{text: "같이 자는 게 최고!", code: "L"}, {text: "내 잠자리가 따로 있음", code: "S"}, {text: "가끔 같이 자기도 함", code: "G"}, {text: "내가 원할 때만 올라감", code: "P"}]},
+            {id: 40, axis: "사회성(Social)", question: "집에 여러 사람이 모였을 때?", options: [{text: "모두에게 인사하러 다님", code: "L"}, {text: "숨어버림", code: "S"}, {text: "조용히 구석에서 지켜봄", code: "G"}, {text: "선택적으로 특정인에게만 접근", code: "P"}]},
+            {id: 41, axis: "사고(Cognitive)", question: "새로운 장난감을 받으면?", options: [{text: "작동 원리를 파악하려 관찰", code: "T"}, {text: "감정적으로 반응하며 즐김", code: "F"}, {text: "창의적으로 새로운 놀이 개발", code: "A"}, {text: "실용성을 판단 후 사용 여부 결정", code: "R"}]},
+            {id: 42, axis: "사고(Cognitive)", question: "문제 상황(문이 닫힘 등)에서?", options: [{text: "논리적으로 해결 방법 모색", code: "T"}, {text: "감정적으로 반응(울음 등)", code: "F"}, {text: "독창적인 방법 시도", code: "A"}, {text: "과거 경험 활용해 해결", code: "R"}]},
+            {id: 43, axis: "사고(Cognitive)", question: "간식 숨기기 놀이를 할 때?", options: [{text: "체계적으로 위치 추론", code: "T"}, {text: "집사의 반응 보며 찾음", code: "F"}, {text: "예상 못한 곳 먼저 확인", code: "A"}, {text: "익숙한 장소부터 확인", code: "R"}]},
+            {id: 44, axis: "사고(Cognitive)", question: "물이 담긴 그릇을 볼 때?", options: [{text: "깊이와 양을 확인 후 마심", code: "T"}, {text: "목마르면 바로 마심", code: "F"}, {text: "발로 건드려보며 장난침", code: "A"}, {text: "항상 마시던 방식으로 마심", code: "R"}]},
+            {id: 45, axis: "사고(Cognitive)", question: "집사의 행동 패턴을?", options: [{text: "정확히 파악하고 예측", code: "T"}, {text: "감정 상태로 이해", code: "F"}, {text: "나만의 해석으로 받아들임", code: "A"}, {text: "경험으로 익숙하게 파악", code: "R"}]},
+            {id: 46, axis: "사고(Cognitive)", question: "놀이할 때 관심사는?", options: [{text: "규칙성이나 패턴 찾기", code: "T"}, {text: "집사와의 교감", code: "F"}, {text: "새로운 방식 시도", code: "A"}, {text: "익숙한 놀이 반복", code: "R"}]},
+            {id: 47, axis: "사고(Cognitive)", question: "먹이를 발견했을 때?", options: [{text: "안전 여부 분석 후 접근", code: "T"}, {text: "바로 반응해서 먹음", code: "F"}, {text: "독특한 방식으로 먹기 시도", code: "A"}, {text: "검증된 먹이만 선택", code: "R"}]},
+            {id: 48, axis: "사고(Cognitive)", question: "집사가 화났을 때?", options: [{text: "원인을 분석하려 관찰", code: "T"}, {text: "감정을 읽고 공감", code: "F"}, {text: "독특한 방식으로 위로 시도", code: "A"}, {text: "조용히 거리 둠", code: "R"}]},
+            {id: 49, axis: "사고(Cognitive)", question: "꼬리를 밟혔을 때 반응은?", options: [{text: "누가 밟았는지 파악 후 회피", code: "T"}, {text: "울거나 바로 도망감", code: "F"}, {text: "예상치 못한 반응을 보임", code: "A"}, {text: "다시는 그 자리에 안 감", code: "R"}]},
+            {id: 50, axis: "사고(Cognitive)", question: "다른 고양이와 갈등 시?", options: [{text: "상황을 분석하고 대응", code: "T"}, {text: "감정적으로 반응", code: "F"}, {text: "예상치 못한 방법 사용", code: "A"}, {text: "경험상 효과적인 방법 사용", code: "R"}]},
+            {id: 51, axis: "사고(Cognitive)", question: "장난감이 보이지 않는 곳에 떨어졌을 때?", options: [{text: "떨어진 궤적 계산해 찾음", code: "T"}, {text: "포기하고 다른 놀이 찾음", code: "F"}, {text: "새로운 방법으로 찾기 시도", code: "A"}, {text: "비슷한 경험 떠올려 찾음", code: "R"}]},
+            {id: 52, axis: "사고(Cognitive)", question: "밥을 주는 시간이 지났을 때?", options: [{text: "시간 개념으로 요구", code: "T"}, {text: "울어서 감정 표현", code: "F"}, {text: "독특한 방식으로 알림", code: "A"}, {text: "밥그릇으로 가서 대기", code: "R"}]},
+            {id: 53, axis: "사고(Cognitive)", question: "높은 곳에 올라갈 때?", options: [{text: "경로를 계산하고 시도", code: "T"}, {text: "도전 의욕으로 바로 시도", code: "F"}, {text: "독특한 루트 개척", code: "A"}, {text: "안전한 경로만 선택", code: "R"}]},
+            {id: 54, axis: "사고(Cognitive)", question: "반복되는 일상에서?", options: [{text: "패턴을 파악하고 최적화", code: "T"}, {text: "감정 변화에 따라 반응", code: "F"}, {text: "변화를 주려 노력", code: "A"}, {text: "익숙함을 즐김", code: "R"}]},
+            {id: 55, axis: "사고(Cognitive)", question: "집사가 새 가구를 조립할 때?", options: [{text: "과정을 관찰하며 분석", code: "T"}, {text: "집사와 함께 있는 것에 집중", code: "F"}, {text: "부품을 가지고 새로운 놀이 개발", code: "A"}, {text: "방해 안 되게 떨어져 있음", code: "R"}]},
+            {id: 56, axis: "사고(Cognitive)", question: "다른 고양이의 행동을 볼 때?", options: [{text: "행동 패턴 분석", code: "T"}, {text: "감정 상태 파악", code: "F"}, {text: "독특한 행동에 관심", code: "A"}, {text: "위협 여부만 확인", code: "R"}]},
+            {id: 57, axis: "사고(Cognitive)", question: "움직이는 장난감을 볼 때?", options: [{text: "움직임의 규칙 파악", code: "T"}, {text: "본능적으로 쫓음", code: "F"}, {text: "예상 못한 방식으로 잡으려 함", code: "A"}, {text: "효율적인 방법으로 사냥", code: "R"}]},
+            {id: 58, axis: "사고(Cognitive)", question: "문이 열리는 소리를 들을 때?", options: [{text: "누가 들어오는지 추론", code: "T"}, {text: "기대감으로 달려감", code: "F"}, {text: "숨어서 반응 관찰", code: "A"}, {text: "평소대로 반응", code: "R"}]},
+            {id: 59, axis: "사고(Cognitive)", question: "집사가 외출 준비를 할 때?", options: [{text: "패턴으로 외출 시간 예측", code: "T"}, {text: "슬퍼하거나 불안해함", code: "F"}, {text: "방해하려 독특한 행동", code: "A"}, {text: "익숙하게 받아들임", code: "R"}]},
+            {id: 60, axis: "사고(Cognitive)", question: "창문 밖 새를 볼 때?", options: [{text: "새의 움직임 분석", code: "T"}, {text: "흥분하며 소리 냄", code: "F"}, {text: "상상 속 사냥 시뮬레이션", code: "A"}, {text: "실제 잡을 수 있는지 판단", code: "R"}]}
+        ];
+
+        const TYPES_DATA = {
+                "CGA": { "code": "CGA", "name": "햇살수집냥 (Sun Collector)" }, "CGF": { "code": "CGF", "name": "따뜻한 그루머냥 (Gentle Groomer)" }, "CGR": { "code": "CGR", "name": "평화의 중재냥 (MediPaw)" }, "CGT": { "code": "CGT", "name": "정찰대장냥 (Quiet Scout)" }, "CLA": { "code": "CLA", "name": "책상위 철학냥 (Thinktail)" }, "CLF": { "code": "CLF", "name": "포근담요냥 (Comfort Paw)" }, "CLR": { "code": "CLR", "name": "묘한조언냥 (Whisker Whisperer)" }, "CLT": { "code": "CLT", "name": "기록냥 (Logcat)" }, "CPA": { "code": "CPA", "name": "소심탐정냥 (Timid Sleuth)" }, "CPF": { "code": "CPF", "name": "마음방패냥 (Heart Shield)" }, "CPR": { "code": "CPR", "name": "의젓한 집사냥 (Tiny Guardian)" }, "CPT": { "code": "CPT", "name": "루틴장인냥 (Pattern Paw)" }, "CSA": { "code": "CSA", "name": "달빛감시냥 (Moon Watcher)" }, "CSF": { "code": "CSF", "name": "위로방울냥 (Tear Healer)" }, "CSR": { "code": "CSR", "name": "묘한중력냥 (Gravity Cat)" }, "CST": { "code": "CST", "name": "수호냥 (Silent Keeper)" }, "EGA": { "code": "EGA", "name": "길위의 시인냥 (Nomadic Muse)" }, "EGF": { "code": "EGF", "name": "햇살광대냥 (Sunny Fool)" }, "EGR": { "code": "EGR", "name": "하늘지도냥 (Sky Mapper)" }, "EGT": { "code": "EGT", "name": "항로개척냥 (Pathfinder Cat)" }, "ELA": { "code": "ELA", "name": "꿈결그림냥 (Dream Painter)" }, "ELF": { "code": "ELF", "name": "노래하는 고양이 (Melodytail)" }, "ELR": { "code": "ELR", "name": "바람친구냥 (Windmate)" }, "ELT": { "code": "ELT", "name": "탐험대장냥 (Expedition Leader)" }, "EPA": { "code": "EPA", "name": "계획도전냥 (Tactical Pouncer)" }, "EPF": { "code": "EPF", "name": "무드메이커냥 (Cheer Paw)" }, "EPR": { "code": "EPR", "name": "왕자냥 (Royal Paw)" }, "EPT": { "code": "EPT", "name": "계산냥 (Mind Strider)" }, "ESA": { "code": "ESA", "name": "별빛연구냥 (Star Coder)" }, "ESF": { "code": "ESF", "name": "예술냥 (Muse Cat)" }, "ESR": { "code": "ESR", "name": "협상가냥 (Diplomeow)" }, "EST": { "code": "EST", "name": "사령관냥 (Commander Cat)" }, "HGA": { "code": "HGA", "name": "화염냥 (Blaze Cat)" }, "HGF": { "code": "HGF", "name": "불꽃마음냥 (Burning Heart)" }, "HGR": { "code": "HGR", "name": "폭풍냥 (Storm Chaser)" }, "HGT": { "code": "HGT", "name": "사냥지략냥 (Hunt Strategist)" }, "HLA": { "code": "HLA", "name": "따뜻한전사냥 (Warm Warrior)" }, "HLF": { "code": "HLF", "name": "뜨거운심장냥 (Flame Core)" }, "HLR": { "code": "HLR", "name": "액션냥 (Action Cat)" }, "HLT": { "code": "HLT", "name": "집중냥 (Focus Hunter)" }, "HPA": { "code": "HPA", "name": "도전냥 (Brave Paw)" }, "HPF": { "code": "HPF", "name": "불멸냥 (Flare Spirit)" }, "HPR": { "code": "HPR", "name": "대담냥 (Bold Fang)" }, "HPT": { "code": "HPT", "name": "전술헌터냥 (Tactical Hunter)" }, "HSA": { "code": "HSA", "name": "직감냥 (Sixth Tail)" }, "HSF": { "code": "HSF", "name": "감정폭풍냥 (Ember Soul)" }, "HSR": { "code": "HSR", "name": "본능지휘냥 (Instinct Leader)" }, "HST": { "code": "HST", "name": "헌터마스터냥 (Prime Hunter)" }, "WGA": { "code": "WGA", "name": "바람그림냥 (Wind Painter)" }, "WGF": { "code": "WGF", "name": "치유냥 (Healer Cat)" }, "WGR": { "code": "WGR", "name": "방랑시인냥 (Nomad Poet)" }, "WGT": { "code": "WGT", "name": "묘행자냥 (Curious Drifter)" }, "WLA": { "code": "WLA", "name": "석양몽상냥 (Dusk Dreamer)" }, "WLF": { "code": "WLF", "name": "포근연인냥 (Soft Lover)" }, "WLR": { "code": "WLR", "name": "자유영혼냥 (Free Soul)" }, "WLT": { "code": "WLT", "name": "감각항해냥 (Sensory Voyager)" }, "WPA": { "code": "WPA", "name": "꿈추적냥 (Dream Chaser)" }, "WPF": { "code": "WPF", "name": "별빛안내냥 (Starlight Guide)" }, "WPR": { "code": "WPR", "name": "즉흥예술냥 (Improv Muse)" }, "WPT": { "code": "WPT", "name": "방랑철학냥 (Nomadic Thinker)" }, "WSA": { "code": "WSA", "name": "고요몽상냥 (Quiet Dreamer)" }, "WSF": { "code": "WSF", "name": "감정화가냥 (Mood Painter)" }, "WSR": { "code": "WSR", "name": "하늘관찰냥 (Sky Watcher)" }, "WST": { "code": "WST", "name": "은둔현자냥 (Hermit Cat)" }
+            };
+
+        function CatsonalityTest() {
+            const [screen, setScreen] = useState('title');
+            const [currentQuestion, setCurrentQuestion] = useState(0);
+            const [answers, setAnswers] = useState({});
+            const [result, setResult] = useState(null);
+            const [characterData, setCharacterData] = useState({});
+
+            // character.json 데이터 로드
+            useEffect(() => {
+                fetch('character.json')
+                    .then(response => response.json())
+                    .then(data => setCharacterData(data))
+                    .catch(error => console.error('Error loading character data:', error));
+            }, []);
+
+            // localStorage에서 진행사항 불러오기
+            useEffect(() => {
+                const saved = localStorage.getItem('catsonality_progress');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    setAnswers(data.answers || {});
+                    setCurrentQuestion(data.currentQuestion || 0);
+                }
+            }, []);
+
+            // 진행사항 저장
+            useEffect(() => {
+                if (screen === 'test') {
+                    localStorage.setItem('catsonality_progress', JSON.stringify({
+                        answers,
+                        currentQuestion
+                    }));
+                }
+            }, [answers, currentQuestion, screen]);
+
+            // 60개 랜덤 문항 선택
+            const [selectedQuestions] = useState(() => {
+                const shuffled = [...QUESTIONS_DATA].sort(() => Math.random() - 0.5);
+                return shuffled.slice(0, 60);
             });
-        });
+
+            const handleStart = () => {
+                setScreen('test');
+                setCurrentQuestion(0);
+                setAnswers({});
+                localStorage.removeItem('catsonality_progress');
+            };
+
+            const handleAnswer = (code) => {
+                const newAnswers = { ...answers, [currentQuestion]: code };
+                setAnswers(newAnswers);
+
+                if (currentQuestion < 59) {
+                    setCurrentQuestion(currentQuestion + 1);
+                } else {
+                    calculateResult(newAnswers);
+                }
+            };
+
+            const calculateResult = (finalAnswers) => {
+                const codes = { E: 0, W: 0, C: 0, H: 0, L: 0, S: 0, G: 0, P: 0, T: 0, F: 0, A: 0, R: 0 };
+                
+                Object.values(finalAnswers).forEach(code => {
+                    if (codes.hasOwnProperty(code)) {
+                        codes[code]++;
+                    }
+                });
+
+                const behavior = ['E', 'W', 'C', 'H'].reduce((a, b) => codes[a] > codes[b] ? a : b);
+                const social = ['L', 'S', 'G', 'P'].reduce((a, b) => codes[a] > codes[b] ? a : b);
+                const thinking = ['T', 'F', 'A', 'R'].reduce((a, b) => codes[a] > codes[b] ? a : b);
+
+                const typeCode = behavior + social + thinking;
+                const typeInfo = TYPES_DATA[typeCode];
+                const detailInfo = characterData[typeCode] || '';
+
+                setResult({ ...typeInfo, detailInfo });
+                setScreen('result');
+                localStorage.removeItem('catsonality_progress');
+            };
+
+            const handleShare = () => {
+                const shareUrl = window.location.href.split('?')[0] + '?result=' + result.code;
+                
+                // 타입 대표 문장 추출 (첫 번째 섹션의 내용)
+                const detailSections = parseDetailInfo(result.detailInfo);
+                const representativeSentence = detailSections.length > 0 ? detailSections[0].content.split('\n')[0] : '';
+                
+                const text = `우리 냥이는 ${result.code} ${result.name}!\n"${representativeSentence}"\n\n당신의 냥이는 어떤 냥이인가요?\n\nCI64 고양이 성격유형 검사\n${shareUrl}`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Catsonality 64 결과',
+                        text: text,
+                        url: shareUrl
+                    }).catch((error) => {
+                        // 사용자가 공유를 취소한 경우 등
+                        console.log('공유 취소:', error);
+                    });
+                } else {
+                    // Web Share API를 지원하지 않는 경우 링크 복사로 대체
+                    navigator.clipboard.writeText(text);
+                    alert('이 브라우저는 공유 기능을 지원하지 않아 링크가 복사되었습니다!');
+                }
+            };
+
+            const handleCopyLink = () => {
+                const shareUrl = window.location.href.split('?')[0] + '?result=' + result.code;
+                navigator.clipboard.writeText(shareUrl);
+                alert('링크가 복사되었습니다!');
+            };
+
+            const handleSaveImage = async () => {
+                // html2canvas 라이브러리 로딩 확인
+                if (typeof html2canvas === 'undefined') {
+                    alert('이미지 저장 기능을 사용하려면 인터넷 연결을 확인하고 페이지를 새로고침 해주세요.');
+                    return;
+                }
+
+                const resultCard = document.querySelector('.result-screen');
+                if (!resultCard) {
+                    alert('결과 화면을 찾을 수 없습니다.');
+                    return;
+                }
+
+                try {
+                    // 버튼 임시 숨기기
+                    const allButtons = resultCard.querySelectorAll('button');
+                    const shareButtonsDiv = resultCard.querySelector('.share-buttons');
+                    
+                    allButtons.forEach(btn => btn.style.visibility = 'hidden');
+                    if (shareButtonsDiv) shareButtonsDiv.style.visibility = 'hidden';
+
+                    // 충분한 렌더링 대기 시간 (인터넷이 느린 경우 대비)
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // 폰트 로딩 완료 대기
+                    if (document.fonts && document.fonts.ready) {
+                        await document.fonts.ready;
+                    }
+                    
+                    // 캔버스로 변환
+                    const canvas = await html2canvas(resultCard, {
+                        backgroundColor: '#ffffff',
+                        scale: 2,
+                        logging: false,
+                        useCORS: true,
+                        allowTaint: false,
+                        windowWidth: resultCard.scrollWidth,
+                        windowHeight: resultCard.scrollHeight
+                    });
+
+                    // 버튼 다시 보이기
+                    allButtons.forEach(btn => btn.style.visibility = 'visible');
+                    if (shareButtonsDiv) shareButtonsDiv.style.visibility = 'visible';
+
+                    // 캔버스 검증
+                    if (canvas.width === 0 || canvas.height === 0) {
+                        throw new Error('빈 이미지가 생성되었습니다.');
+                    }
+
+                    // 이미지 다운로드
+                    const dataUrl = canvas.toDataURL('image/png', 1.0);
+                    const link = document.createElement('a');
+                    link.download = `catsonality_${result.code}_${Date.now()}.png`;
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                } catch (error) {
+                    console.error('이미지 저장 실패:', error);
+                    alert('이미지 저장에 실패했습니다.\n\n인터넷 연결을 확인하고 페이지를 새로고침 후 다시 시도해주세요.\n\n오류: ' + error.message);
+                    
+                    // 버튼 복구
+                    const allButtons = resultCard.querySelectorAll('button');
+                    const shareButtonsDiv = resultCard.querySelector('.share-buttons');
+                    allButtons.forEach(btn => btn.style.visibility = 'visible');
+                    if (shareButtonsDiv) shareButtonsDiv.style.visibility = 'visible';
+                }
+            };
+
+            const handleRestart = () => {
+                setScreen('title');
+                setCurrentQuestion(0);
+                setAnswers({});
+                setResult(null);
+                localStorage.removeItem('catsonality_progress');
+            };
+
+            useEffect(() => {
+                const params = new URLSearchParams(window.location.search);
+                const resultCode = params.get('result');
+                if (resultCode && TYPES_DATA[resultCode]) {
+                    setScreen('title');
+                }
+            }, []);
+
+            // 상세 정보를 섹션별로 파싱
+            const parseDetailInfo = (detailInfo) => {
+                if (!detailInfo) return [];
+                
+                const sections = detailInfo.split(/【|】/).filter(s => s.trim());
+                const result = [];
+                
+                for (let i = 0; i < sections.length; i += 2) {
+                    if (sections[i] && sections[i + 1]) {
+                        result.push({
+                            title: sections[i+1].trim(),
+                            content: sections[i].trim()
+                        });
+                    }
+                }
+                
+                return result;
+            };
+
+            if (screen === 'title') {
+                return (
+                    <div className="container">
+                        <div className="card title-screen">
+                            <h1 className="title">🐱 Catsonality 64</h1>
+                            <p className="subtitle">
+                                고양이 성격유형 검사<br/>
+                                60개의 질문으로 알아보는<br/>
+                                우리 고양이의 진짜 성격!
+                            </p>
+                            <div className="cat-emoji">😺</div>
+                            <button className="button" onClick={handleStart}>
+                                검사 시작하기
+                            </button>
+                            {Object.keys(answers).length > 0 && (
+                                <button className="button button-secondary" onClick={() => setScreen('test')}>
+                                    이어서 하기 ({Object.keys(answers).length}/60)
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                );
+            }
+
+            if (screen === 'test') {
+                const progress = ((currentQuestion + 1) / 60 * 100).toFixed(0);
+                const question = selectedQuestions[currentQuestion];
+
+                return (
+                    <div className="container">
+                        <div className="card">
+                            <div className="progress-container">
+                                <div className="progress-text">
+                                    <span>{currentQuestion + 1} / 60</span>
+                                    <span>{progress}%</span>
+                                </div>
+                                <div className="progress-bar">
+                                    <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+                                </div>
+                            </div>
+                            
+                            <h2 className="question-text">{question.question}</h2>
+                            
+                            <div className="options">
+                                {question.options.map((option, index) => (
+                                    <div
+                                        key={index}
+                                        className="option"
+                                        onClick={() => handleAnswer(option.code)}
+                                    >
+                                        {option.text}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (screen === 'result') {
+                const detailSections = parseDetailInfo(result.detailInfo);
+                
+                // 타입 이미지 경로 생성 (특수 케이스 처리)
+                let imageFileName;
+                if (IMAGE_MAPPING[result.code]) {
+                    imageFileName = IMAGE_MAPPING[result.code];
+                } else {
+                    imageFileName = `${result.code}_${result.name.replace(/\s+/g, ' ')}.png`;
+                }
+                const imagePath = `./images/${imageFileName}`;
+                
+                return (
+                    <div className="container">
+                        <div className="card result-screen">
+                            <img 
+                                src={imagePath} 
+                                alt={result.name} 
+                                className="result-image"
+                                onError={(e) => {
+                                    console.error('이미지 로드 실패:', imagePath);
+                                    e.target.style.display = 'none';
+                                }}
+                            />
+                            <div className="result-code">{result.code}</div>
+                            <h1 className="result-name">
+                                {result.name.split('(')[0].trim()}
+                                {result.name.includes('(') && (
+                                    <span className="result-name-eng">({result.name.split('(')[1]}</span>
+                                )}
+                            </h1>
+                            
+                            <div className="result-details">
+                                {detailSections.map((section, index) => (
+                                    <div className="detail-section" key={index}>
+                                        <div className="detail-title">
+                                            {section.title}
+                                        </div>
+                                        <div className="detail-content">
+                                            {section.content}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="share-buttons">
+                                <button className="button" onClick={handleShare}>
+                                    <span className="icon">🔗</span> 결과 공유하기
+                                </button>
+                                <button className="button button-secondary" onClick={handleCopyLink}>
+                                    <span className="icon">📋</span> 링크 복사
+                                </button>
+                            </div>
+                            
+                            <button className="button button-secondary" onClick={handleSaveImage} style={{marginBottom: '10px'}}>
+                                <span className="icon">📷</span> 이미지로 저장
+                            </button>
+                            
+                            <button className="button button-secondary" onClick={handleRestart}>
+                                처음으로
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<CatsonalityTest />);
     </script>
 </body>
 </html>
