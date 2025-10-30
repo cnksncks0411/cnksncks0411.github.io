@@ -192,6 +192,15 @@
             font-weight: 800;
             color: #333;
             margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .result-name-eng {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #667eea;
+            display: block;
+            margin-top: 5px;
         }
 
         .result-description {
@@ -199,7 +208,6 @@
             color: #666;
             margin-bottom: 40px;
             line-height: 1.8;
-            font-style: italic;
         }
 
         .result-details {
@@ -219,25 +227,37 @@
         }
 
         .detail-title {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #667eea;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
         }
 
         .detail-content {
             font-size: 1rem;
             color: #555;
-            line-height: 1.7;
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .detail-points {
+            margin-top: 10px;
+            padding-left: 15px;
         }
 
         .share-buttons {
             display: flex;
             gap: 10px;
             margin-bottom: 10px;
+        }
+
+        .share-buttons .button {
+            flex: 1;
+            padding: 16px 20px;
+            font-size: 1rem;
+            white-space: nowrap;
         }
 
         .icon {
@@ -264,6 +284,17 @@
             .result-name {
                 font-size: 1.8rem;
             }
+
+            .share-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .share-buttons .button {
+                width: 100%;
+                font-size: 0.95rem;
+                padding: 15px 20px;
+            }
         }
     </style>
 </head>
@@ -284,7 +315,7 @@
             {id: 7, axis: "행동(Behavior)", question: "새벽 시간 고양이의 상태는?", options: [{text: "활동 시간! 집안을 누빈다", code: "E"}, {text: "컨디션에 따라 다름", code: "W"}, {text: "조용히 자고 있음", code: "C"}, {text: "사냥 본능 발동, 깨어 있음", code: "H"}]},
             {id: 8, axis: "행동(Behavior)", question: "낯선 냄새가 날 때?", options: [{text: "적극적으로 냄새 추적", code: "E"}, {text: "별로 관심 없음", code: "W"}, {text: "일단 피하고 나중에 확인", code: "C"}, {text: "위협 요소인지 철저히 분석", code: "H"}]},
             {id: 9, axis: "행동(Behavior)", question: "낯선 사람이 들어오면?", options: [{text: "호기심에 다가가 인사", code: "E"}, {text: "거리를 두고 관찰만", code: "W"}, {text: "숨어버림", code: "C"}, {text: "경계하며 위협적인지 판단", code: "H"}]},
-            {id: 10, axis: "행동(Behavior)", question: "밥을 주는 시간에 집사가 늦으면?", options: [{text: "직접 찾아가 요구", code: "E"}, {text: "좀 기다리다 포기하고 놀기", code: "W"}, {text: "조용히 기다림", code: "C"}, {text: "계속 따라다니며 압박", code: "H"}]},
+            {id: 10, axis: "행동(Behavior)", question: "집사가 가방을 쌀 때?", options: [{text: "가방 속을 탐색하며 방해", code: "E"}, {text: "별로 신경 안 씀", code: "W"}, {text: "불안해하며 숨거나 따라다님", code: "C"}, {text: "상황을 주시하며 관찰", code: "H"}]},
             {id: 11, axis: "행동(Behavior)", question: "평소 이동 동선이 일정한가요?", options: [{text: "매번 다른 곳을 돌아다닌다", code: "W"}, {text: "어느 정도 규칙적이지만 유연함", code: "E"}, {text: "거의 정해진 루트로만 이동", code: "C"}, {text: "전략적으로 동선을 정함", code: "H"}]},
             {id: 12, axis: "행동(Behavior)", question: "창문 앞에서 시간을 보낼 때?", options: [{text: "밖에 나가고 싶어 보임", code: "E"}, {text: "그냥 멍하니 있음", code: "W"}, {text: "편안하게 햇볕을 즐김", code: "C"}, {text: "새나 벌레를 주시함", code: "H"}]},
             {id: 13, axis: "행동(Behavior)", question: "갑작스러운 소음(청소기 등)에 반응은?", options: [{text: "확인하러 다가감", code: "E"}, {text: "신경 안 씀", code: "W"}, {text: "놀라서 도망감", code: "C"}, {text: "경계하며 숨어서 관찰", code: "H"}]},
@@ -293,7 +324,7 @@
             {id: 16, axis: "행동(Behavior)", question: "스스로 놀이를 할 때는?", options: [{text: "집안 곳곳을 탐험", code: "E"}, {text: "기분에 따라 즉흥적으로", code: "W"}, {text: "익숙한 장난감으로만", code: "C"}, {text: "혼자 사냥놀이", code: "H"}]},
             {id: 17, axis: "행동(Behavior)", question: "방문을 닫으면?", options: [{text: "열어달라고 울부짖음", code: "E"}, {text: "상관없음", code: "W"}, {text: "이제 익숙해서 괜찮음", code: "C"}, {text: "탈출 방법 모색", code: "H"}]},
             {id: 18, axis: "행동(Behavior)", question: "집사와의 산책 시도 시?", options: [{text: "적극적으로 따라나감", code: "E"}, {text: "짧게는 괜찮음", code: "W"}, {text: "거부하고 집에 있고 싶음", code: "C"}, {text: "경계하지만 필요시 이동", code: "H"}]},
-            {id: 19, axis: "행동(Behavior)", question: "낯선 냄새를 맡았을 때?", options: [{text: "바로 확인하러 간다", code: "E"}, {text: "흥미 있으면 체크, 없으면 무시", code: "W"}, {text: "불안해하며 피한다", code: "C"}, {text: "위협 요소인지 확인", code: "H"}]},
+            {id: 19, axis: "행동(Behavior)", question: "비 오는 날 창밖을 볼 때?", options: [{text: "빗소리에 흥미를 보이며 관찰", code: "E"}, {text: "평소와 다름없이 행동", code: "W"}, {text: "익숙한 장소에서 안정 취함", code: "C"}, {text: "경계하며 주변을 살핌", code: "H"}]},
             {id: 20, axis: "행동(Behavior)", question: "새로운 공간(호텔, 병원 등)에 들어섰을 때?", options: [{text: "신속하게 주변 탐색", code: "E"}, {text: "적당히 둘러보고 자리 잡음", code: "W"}, {text: "구석에 숨어 나오지 않음", code: "C"}, {text: "모든 출입구와 위험 요소 확인", code: "H"}]},
             {id: 21, axis: "사회성(Social)", question: "집사가 집에 돌아오면?", options: [{text: "반갑게 맞이하며 애교 폭발", code: "L"}, {text: "쳐다보지도 않음", code: "S"}, {text: "다른 고양이가 있다면 그쪽 확인", code: "G"}, {text: "잠깐 인사 후 다시 내 자리로", code: "P"}]},
             {id: 22, axis: "사회성(Social)", question: "집사가 다른 일을 할 때 고양이는?", options: [{text: "방해하며 관심 요구", code: "L"}, {text: "혼자 놀거나 잠", code: "S"}, {text: "조용히 옆에서 지켜봄", code: "G"}, {text: "거리를 두고 관찰", code: "P"}]},
@@ -318,12 +349,12 @@
             {id: 41, axis: "사고(Cognitive)", question: "새로운 장난감을 받으면?", options: [{text: "작동 원리를 파악하려 관찰", code: "T"}, {text: "감정적으로 반응하며 즐김", code: "F"}, {text: "창의적으로 새로운 놀이 개발", code: "A"}, {text: "실용성을 판단 후 사용 여부 결정", code: "R"}]},
             {id: 42, axis: "사고(Cognitive)", question: "문제 상황(문이 닫힘 등)에서?", options: [{text: "논리적으로 해결 방법 모색", code: "T"}, {text: "감정적으로 반응(울음 등)", code: "F"}, {text: "독창적인 방법 시도", code: "A"}, {text: "과거 경험 활용해 해결", code: "R"}]},
             {id: 43, axis: "사고(Cognitive)", question: "간식 숨기기 놀이를 할 때?", options: [{text: "체계적으로 위치 추론", code: "T"}, {text: "집사의 반응 보며 찾음", code: "F"}, {text: "예상 못한 곳 먼저 확인", code: "A"}, {text: "익숙한 장소부터 확인", code: "R"}]},
-            {id: 44, axis: "사고(Cognitive)", question: "낯선 물체를 대할 때?", options: [{text: "관찰하며 분석적으로 접근", code: "T"}, {text: "직감적으로 반응", code: "F"}, {text: "상상력을 발휘해 탐색", code: "A"}, {text: "위험도부터 판단", code: "R"}]},
+            {id: 44, axis: "사고(Cognitive)", question: "물이 담긴 그릇을 볼 때?", options: [{text: "깊이와 양을 확인 후 마심", code: "T"}, {text: "목마르면 바로 마심", code: "F"}, {text: "발로 건드려보며 장난침", code: "A"}, {text: "항상 마시던 방식으로 마심", code: "R"}]},
             {id: 45, axis: "사고(Cognitive)", question: "집사의 행동 패턴을?", options: [{text: "정확히 파악하고 예측", code: "T"}, {text: "감정 상태로 이해", code: "F"}, {text: "나만의 해석으로 받아들임", code: "A"}, {text: "경험으로 익숙하게 파악", code: "R"}]},
             {id: 46, axis: "사고(Cognitive)", question: "놀이할 때 관심사는?", options: [{text: "규칙성이나 패턴 찾기", code: "T"}, {text: "집사와의 교감", code: "F"}, {text: "새로운 방식 시도", code: "A"}, {text: "익숙한 놀이 반복", code: "R"}]},
             {id: 47, axis: "사고(Cognitive)", question: "먹이를 발견했을 때?", options: [{text: "안전 여부 분석 후 접근", code: "T"}, {text: "바로 반응해서 먹음", code: "F"}, {text: "독특한 방식으로 먹기 시도", code: "A"}, {text: "검증된 먹이만 선택", code: "R"}]},
             {id: 48, axis: "사고(Cognitive)", question: "집사가 화났을 때?", options: [{text: "원인을 분석하려 관찰", code: "T"}, {text: "감정을 읽고 공감", code: "F"}, {text: "독특한 방식으로 위로 시도", code: "A"}, {text: "조용히 거리 둠", code: "R"}]},
-            {id: 49, axis: "사고(Cognitive)", question: "새로운 공간에 적응할 때?", options: [{text: "모든 구조를 체계적으로 파악", code: "T"}, {text: "분위기를 느끼며 적응", code: "F"}, {text: "창의적으로 공간 활용", code: "A"}, {text: "필요한 곳만 파악하고 정착", code: "R"}]},
+            {id: 49, axis: "사고(Cognitive)", question: "꼬리를 밟혔을 때 반응은?", options: [{text: "누가 밟았는지 파악 후 회피", code: "T"}, {text: "울거나 바로 도망감", code: "F"}, {text: "예상치 못한 반응을 보임", code: "A"}, {text: "다시는 그 자리에 안 감", code: "R"}]},
             {id: 50, axis: "사고(Cognitive)", question: "다른 고양이와 갈등 시?", options: [{text: "상황을 분석하고 대응", code: "T"}, {text: "감정적으로 반응", code: "F"}, {text: "예상치 못한 방법 사용", code: "A"}, {text: "경험상 효과적인 방법 사용", code: "R"}]},
             {id: 51, axis: "사고(Cognitive)", question: "장난감이 보이지 않는 곳에 떨어졌을 때?", options: [{text: "떨어진 궤적 계산해 찾음", code: "T"}, {text: "포기하고 다른 놀이 찾음", code: "F"}, {text: "새로운 방법으로 찾기 시도", code: "A"}, {text: "비슷한 경험 떠올려 찾음", code: "R"}]},
             {id: 52, axis: "사고(Cognitive)", question: "밥을 주는 시간이 지났을 때?", options: [{text: "시간 개념으로 요구", code: "T"}, {text: "울어서 감정 표현", code: "F"}, {text: "독특한 방식으로 알림", code: "A"}, {text: "밥그릇으로 가서 대기", code: "R"}]},
@@ -337,81 +368,54 @@
             {id: 60, axis: "사고(Cognitive)", question: "창문 밖 새를 볼 때?", options: [{text: "새의 움직임 분석", code: "T"}, {text: "흥분하며 소리 냄", code: "F"}, {text: "상상 속 사냥 시뮬레이션", code: "A"}, {text: "실제 잡을 수 있는지 판단", code: "R"}]}
         ];
 
-        const TYPES_DATA = {"CGA":{"code":"CGA","name":"조화지킴냥 (Harmony Guardian)","description":"\"평화로운 공존, 그것이 내 예술이에요.\""},"CGF":{"code":"CGF","name":"감성수호냥 (Emotional Keeper)","description":"\"마음의 온도를 지키는 것이 나의 일상이죠.\""},"CGR":{"code":"CGR","name":"현실돌봄냥 (Practical Caregiver)","description":"\"실용적인 사랑이 가장 따뜻해요.\""},"CGT":{"code":"CGT","name":"냉철수호냥 (Rational Guardian)","description":"\"논리로 평화를 설계합니다.\""},"CLA":{"code":"CLA","name":"집순이예술냥 (Homebody Artist)","description":"\"편안한 내 집에서 창의력이 폭발해요!\""},"CLF":{"code":"CLF","name":"따뜻애교냥 (Warm Sweetheart)","description":"\"루틴 속에서 사랑이 자라나요.\""},"CLR":{"code":"CLR","name":"실속애교냥 (Practical Charmer)","description":"\"현실적이지만 사랑은 진심이에요.\""},"CLT":{"code":"CLT","name":"논리애교냥 (Logical Sweetheart)","description":"\"계획적인 애교가 더 효과적이죠.\""},"CPA":{"code":"CPA","name":"우아한집사냥 (Elegant Homebody)","description":"\"품격은 공간에서 나옵니다.\""},"CPF":{"code":"CPF","name":"감성귀족냥 (Sentimental Noble)","description":"\"안정 속에서 감성이 빛나요.\""},"CPR":{"code":"CPR","name":"실속귀족냥 (Practical Noble)","description":"\"품격은 실용성에서 완성됩니다.\""},"CPT":{"code":"CPT","name":"냉철귀족냥 (Rational Noble)","description":"\"논리와 품격, 완벽한 조합이죠.\""},"CSA":{"code":"CSA","name":"은둔예술냥 (Hermit Artist)","description":"\"고독 속에서 예술이 태어납니다.\""},"CSF":{"code":"CSF","name":"감성독립냥 (Sentimental Loner)","description":"\"혼자만의 감정을 소중히 여겨요.\""},"CSR":{"code":"CSR","name":"실속독립냥 (Practical Loner)","description":"\"혼자서도 현실적으로 잘 살아요.\""},"CST":{"code":"CST","name":"논리독립냥 (Rational Loner)","description":"\"독립과 논리, 최고의 조합이죠.\""},"EGA":{"code":"EGA","name":"탐험조화냥 (Explorer Harmonist)","description":"\"새로운 세계에서도 평화를 만들어요.\""},"EGF":{"code":"EGF","name":"공감탐험냥 (Empathetic Explorer)","description":"\"모험하며 마음을 나눕니다.\""},"EGR":{"code":"EGR","name":"실용탐험냥 (Practical Explorer)","description":"\"효율적으로 세상을 탐험해요.\""},"EGT":{"code":"EGT","name":"분석탐험냥 (Analytical Explorer)","description":"\"논리로 세계를 해석합니다.\""},"ELA":{"code":"ELA","name":"사교예술냥 (Social Artist)","description":"\"탐험과 예술로 세상을 물들여요.\""},"ELF":{"code":"ELF","name":"감성탐험냥 (Emotional Explorer)","description":"\"감정으로 세계와 교감합니다.\""},"ELR":{"code":"ELR","name":"실속사교냥 (Practical Socialite)","description":"\"현실적이지만 사교는 진심이에요.\""},"ELT":{"code":"ELT","name":"논리사교냥 (Logical Socialite)","description":"\"계획적으로 관계를 맺어요.\""},"EPA":{"code":"EPA","name":"카리스마냥 (Charismatic Cat)","description":"\"품격과 창의력으로 세상을 리드해요.\""},"EPF":{"code":"EPF","name":"감성리더냥 (Emotional Leader)","description":"\"감정과 품격으로 이끌어요.\""},"EPR":{"code":"EPR","name":"실용리더냥 (Practical Leader)","description":"\"현실적 리더십이 진짜죠.\""},"EPT":{"code":"EPT","name":"전략리더냥 (Strategic Leader)","description":"\"논리적 전략으로 세상을 정복해요.\""},"ESA":{"code":"ESA","name":"자유예술냥 (Free Artist)","description":"\"홀로 탐험하며 예술을 창조해요.\""},"ESF":{"code":"ESF","name":"감각탐험냥 (Sensory Explorer)","description":"\"독립적이지만 감성적인 모험가예요.\""},"ESR":{"code":"ESR","name":"독립탐험냥 (Independent Explorer)","description":"\"혼자서도 강인하게 세상을 탐험해요.\""},"EST":{"code":"EST","name":"고독관찰냥 (Solitary Observer)","description":"\"독립적으로 세상을 분석합니다.\""},"HGA":{"code":"HGA","name":"본능예술냥 (Instinct Artist)","description":"\"사냥 본능이 예술로 승화돼요.\""},"HGF":{"code":"HGF","name":"감성사냥냥 (Emotional Hunter)","description":"\"본능과 감정이 조화를 이뤄요.\""},"HGR":{"code":"HGR","name":"실용사냥냥 (Practical Hunter)","description":"\"효율적으로 사냥하며 배려해요.\""},"HGT":{"code":"HGT","name":"전술사냥냥 (Tactical Hunter)","description":"\"치밀한 전략으로 사냥합니다.\""},"HLA":{"code":"HLA","name":"예술사냥냥 (Artistic Hunter)","description":"\"본능과 예술이 폭발해요!\""},"HLF":{"code":"HLF","name":"열정폭탄냥 (Passion Bomb)","description":"\"사랑과 놀이, 모두 최대치!\""},"HLR":{"code":"HLR","name":"애교사냥냥 (Charming Hunter)","description":"\"사냥도 애교도 완벽해요.\""},"HLT":{"code":"HLT","name":"계산사냥냥 (Calculating Hunter)","description":"\"논리적으로 사냥하는 애교쟁이죠.\""},"HPA":{"code":"HPA","name":"귀족사냥냥 (Noble Hunter)","description":"\"품격 있게 사냥하는 예술가예요.\""},"HPF":{"code":"HPF","name":"감성본능냥 (Emotional Instinct)","description":"\"본능과 감성이 우아하게 공존해요.\""},"HPR":{"code":"HPR","name":"현실본능냥 (Practical Instinct)","description":"\"실용적 판단력의 품격 있는 사냥꾼이에요.\""},"HPT":{"code":"HPT","name":"전략본능냥 (Strategic Instinct)","description":"\"모든 움직임은 계산되어 있죠.\""},"HSA":{"code":"HSA","name":"독립사냥냥 (Solo Hunter)","description":"\"홀로 예술적으로 사냥해요.\""},"HSF":{"code":"HSF","name":"감각본능냥 (Sensory Instinct)","description":"\"섬세한 감각으로 사냥하는 독립형이에요.\""},"HSR":{"code":"HSR","name":"야생본능냥 (Wild Instinct)","description":"\"혼자서도 강인하게 사냥해요.\""},"HST":{"code":"HST","name":"냉혹사냥냥 (Ruthless Hunter)","description":"\"독립적이고 계산적인 완벽 사냥꾼이죠.\""},"WGA":{"code":"WGA","name":"자유예술냥 (Free Spirit Artist)","description":"\"바람 따라 예술을 창조해요.\""},"WGF":{"code":"WGF","name":"감성치유냥 (Emotional Healer)","description":"\"감정의 온도를 자유롭게 조절해요.\""},"WGR":{"code":"WGR","name":"실속방랑냥 (Practical Wanderer)","description":"\"현실적이면서도 자유로워요.\""},"WGT":{"code":"WGT","name":"지혜방랑냥 (Wise Wanderer)","description":"\"논리로 자유를 만끽해요.\""},"WLA":{"code":"WLA","name":"석양몽상냥 (Dusk Dreamer)","description":"\"세상의 모든 색은 내 눈 속에서 춤춰요.\""},"WLF":{"code":"WLF","name":"자유감성냥 (Free Emotion)","description":"\"바람처럼 자유롭고 감성적이에요.\""},"WLR":{"code":"WLR","name":"현실자유냥 (Practical Freedom)","description":"\"실용적이면서 자유로운 영혼이죠.\""},"WLT":{"code":"WLT","name":"관찰방랑냥 (Observant Wanderer)","description":"\"논리로 세상을 관찰하며 떠돌아요.\""},"WPA":{"code":"WPA","name":"자유귀족냥 (Free Noble)","description":"\"품격 있게 자유를 누려요.\""},"WPF":{"code":"WPF","name":"감성유랑냥 (Emotional Nomad)","description":"\"감성으로 자유를 노래해요.\""},"WPR":{"code":"WPR","name":"여유귀족냥 (Leisured Noble)","description":"\"실용적이면서 우아한 자유인이죠.\""},"WPT":{"code":"WPT","name":"지성방랑냥 (Intellectual Wanderer)","description":"\"논리로 자유를 설계해요.\""},"WSA":{"code":"WSA","name":"고독예술냥 (Solitary Artist)","description":"\"홀로 자유롭게 예술해요.\""},"WSF":{"code":"WSF","name":"유목감성냥 (Nomadic Emotion)","description":"\"독립적이고 감성적인 자유로운 영혼이에요.\""},"WSR":{"code":"WSR","name":"자유독립냥 (Free Loner)","description":"\"혼자 현실적으로 자유를 누려요.\""},"WST":{"code":"WST","name":"은둔철학냥 (Hermit Philosopher)","description":"\"고요한 세상을 사랑하는 사색가예요.\""}};
+        const TYPES_DATA = {
+                "CGA": {
+                    "code": "CGA",
+                    "name": "햇살수집냥 (Sun Collector)"
+                }, "CGF": {
+                    "code": "CGF",
+                    "name": "따뜻한 그루머냥 (Gentle Groomer)"
+                }, "CGR": {
+                    "code": "CGR", "name": "평화의 중재냥 (MediPaw)"
 
-        // 타입별 상세 정보 생성 함수
-        function getTypeDetails(typeCode) {
-            const behaviorMap = {
-                'E': { name: '탐험가형', trait: '호기심이 많고 새로운 것을 탐험하길 좋아해요' },
-                'W': { name: '자유냥형', trait: '자유롭고 구속받지 않는 삶을 추구해요' },
-                'C': { name: '안정냥형', trait: '안정적이고 루틴을 사랑하는 성격이에요' },
-                'H': { name: '사냥꾼형', trait: '본능적이고 활동적인 에너지를 가졌어요' }
-            };
-            
-            const socialMap = {
-                'L': { name: '애교냥형', trait: '사교적이고 애교가 넘치는 스타일이에요' },
-                'S': { name: '독립냥형', trait: '독립적이고 혼자만의 시간을 중요하게 생각해요' },
-                'G': { name: '배려냥형', trait: '다른 고양이를 배려하고 조화를 추구해요' },
-                'P': { name: '귀족냥형', trait: '품격 있고 자존심이 강한 성격이에요' }
-            };
-            
-            const thinkingMap = {
-                'T': { name: '관찰가형', trait: '논리적이고 관찰력이 뛰어나요' },
-                'F': { name: '감정가형', trait: '감성적이고 공감 능력이 높아요' },
-                'A': { name: '예술가형', trait: '창의적이고 감각적인 면이 있어요' },
-                'R': { name: '현실가형', trait: '현실적이고 실용적으로 판단해요' }
-            };
+                }, "CGT": {
+                    "code": "CGT", "name": "정찰대장냥 (Quiet Scout)"
 
-            const behavior = behaviorMap[typeCode[0]];
-            const social = socialMap[typeCode[1]];
-            const thinking = thinkingMap[typeCode[2]];
+                }, "CLA": {
+                    "code": "CLA", "name": "책상위 철학냥 (Thinktail)"
 
-            // 타입별 맞춤 상세 정보
-            const toyMap = {
-                'E': '🎯 탐험형 장난감, 숨바꼭질 장난감',
-                'W': '🪶 자유롭게 날아다니는 깃털 장난감',
-                'C': '🧸 익숙하고 편안한 인형',
-                'H': '🐭 사냥 본능을 자극하는 낚시대 장난감'
-            };
+                }, "CLF": {
+                    "code": "CLF", "name": "포근담요냥 (Comfort Paw)"
 
-            const colorMap = {
-                'E': '🎨 밝고 선명한 색상 (파랑, 초록)',
-                'W': '☁️ 자유로운 느낌의 하늘색, 민트색',
-                'C': '🤎 차분한 베이지, 브라운',
-                'H': '🔴 강렬한 빨강, 주황'
-            };
+                }, "CLR": {
+                    "code": "CLR", "name": "묘한조언냥 (Whisker Whisperer)"
 
-            const spaceMap = {
-                'L': '👥 집사와 가까운 거실이나 침실',
-                'S': '🏠 조용하고 혼자만의 공간',
-                'G': '🌈 다른 고양이와 함께 있는 공동 공간',
-                'P': '👑 높은 곳이나 특별한 전용 공간'
-            };
+                }, "CLT": {
+                    "code": "CLT", "name": "기록냥 (Logcat)"
 
-            const personalityMap = {
-                'T': '🧠 계획적이고 체계적으로 행동해요',
-                'F': '💖 감정 표현이 풍부하고 공감을 잘해요',
-                'A': '🎨 독창적이고 새로운 방법을 시도해요',
-                'R': '⚙️ 효율적이고 실용적으로 문제를 해결해요'
-            };
+                }, "CPA": {
+                    "code": "CPA", "name": "소심탐정냥 (Timid Sleuth)"
 
-            return {
-                personality: `${behavior.trait}. ${social.trait}. ${thinking.trait}.`,
-                toy: toyMap[typeCode[0]],
-                color: colorMap[typeCode[0]],
-                space: spaceMap[typeCode[1]],
-                trait: personalityMap[typeCode[2]],
-                behavior: behavior.name,
-                social: social.name,
-                thinking: thinking.name
+                }, "CPF": {
+                    "code": "CPF", "name": "마음방패냥 (Heart Shield)"
+
+                }, "CPR": { "code": "CPR", "name": "의젓한 집사냥 (Tiny Guardian)" }, "CPT": { "code": "CPT", "name": "루틴장인냥 (Pattern Paw)" }, "CSA": { "code": "CSA", "name": "달빛감시냥 (Moon Watcher)" }, "CSF": { "code": "CSF", "name": "위로방울냥 (Tear Healer)" }, "CSR": { "code": "CSR", "name": "묘한중력냥 (Gravity Cat)" }, "CST": { "code": "CST", "name": "수호냥 (Silent Keeper)" }, "EGA": { "code": "EGA", "name": "길위의 시인냥 (Nomadic Muse)" }, "EGF": { "code": "EGF", "name": "햇살광대냥 (Sunny Fool)" }, "EGR": { "code": "EGR", "name": "하늘지도냥 (Sky Mapper)" }, "EGT": { "code": "EGT", "name": "항로개척냥 (Pathfinder Cat)" }, "ELA": { "code": "ELA", "name": "꿈결그림냥 (Dream Painter)" }, "ELF": { "code": "ELF", "name": "노래하는 고양이 (Melodytail)" }, "ELR": { "code": "ELR", "name": "바람친구냥 (Windmate)" }, "ELT": { "code": "ELT", "name": "탐험대장냥 (Expedition Leader)" }, "EPA": { "code": "EPA", "name": "계획도전냥 (Tactical Pouncer)" }, "EPF": { "code": "EPF", "name": "무드메이커냥 (Cheer Paw)" }, "EPR": { "code": "EPR", "name": "왕자냥 (Royal Paw)" }, "EPT": { "code": "EPT", "name": "계산냥 (Mind Strider)" }, "ESA": { "code": "ESA", "name": "별빛연구냥 (Star Coder)" }, "ESF": { "code": "ESF", "name": "예술냥 (Muse Cat)" }, "ESR": { "code": "ESR", "name": "협상가냥 (Diplomeow)" }, "EST": { "code": "EST", "name": "사령관냥 (Commander Cat)" }, "HGA": { "code": "HGA", "name": "화염냥 (Blaze Cat)" }, "HGF": { "code": "HGF", "name": "불꽃마음냥 (Burning Heart)" }, "HGR": { "code": "HGR", "name": "폭풍냥 (Storm Chaser)" }, "HGT": { "code": "HGT", "name": "사냥지략냥 (Hunt Strategist)" }, "HLA": { "code": "HLA", "name": "따뜻한전사냥 (Warm Warrior)" }, "HLF": { "code": "HLF", "name": "뜨거운심장냥 (Flame Core)" }, "HLR": { "code": "HLR", "name": "액션냥 (Action Cat)" }, "HLT": { "code": "HLT", "name": "집중냥 (Focus Hunter)" }, "HPA": { "code": "HPA", "name": "도전냥 (Brave Paw)" }, "HPF": { "code": "HPF", "name": "불멸냥 (Flare Spirit)" }, "HPR": { "code": "HPR", "name": "대담냥 (Bold Fang)" }, "HPT": { "code": "HPT", "name": "전술헌터냥 (Tactical Hunter)" }, "HSA": { "code": "HSA", "name": "직감냥 (Sixth Tail)" }, "HSF": { "code": "HSF", "name": "감정폭풍냥 (Ember Soul)" }, "HSR": { "code": "HSR", "name": "본능지휘냥 (Instinct Leader)" }, "HST": { "code": "HST", "name": "헌터마스터냥 (Prime Hunter)" }, "WGA": { "code": "WGA", "name": "바람그림냥 (Wind Painter)" }, "WGF": { "code": "WGF", "name": "치유냥 (Healer Cat)" }, "WGR": { "code": "WGR", "name": "방랑시인냥 (Nomad Poet)" }, "WGT": { "code": "WGT", "name": "묘행자냥 (Curious Drifter)" }, "WLA": { "code": "WLA", "name": "석양몽상냥 (Dusk Dreamer)" }, "WLF": { "code": "WLF", "name": "포근연인냥 (Soft Lover)" }, "WLR": { "code": "WLR", "name": "자유영혼냥 (Free Soul)" }, "WLT": { "code": "WLT", "name": "감각항해냥 (Sensory Voyager)" }, "WPA": { "code": "WPA", "name": "꿈추적냥 (Dream Chaser)" }, "WPF": { "code": "WPF", "name": "별빛안내냥 (Starlight Guide)" }, "WPR": { "code": "WPR", "name": "즉흥예술냥 (Improv Muse)" }, "WPT": { "code": "WPT", "name": "방랑철학냥 (Nomadic Thinker)" }, "WSA": { "code": "WSA", "name": "고요몽상냥 (Quiet Dreamer)" }, "WSF": { "code": "WSF", "name": "감정화가냥 (Mood Painter)" }, "WSR": { "code": "WSR", "name": "하늘관찰냥 (Sky Watcher)" }, "WST": { "code": "WST", "name": "은둔현자냥 (Hermit Cat)" }
             };
-        }
 
         function CatsonalityTest() {
-            const [screen, setScreen] = useState('title'); // title, test, result
+            const [screen, setScreen] = useState('title');
             const [currentQuestion, setCurrentQuestion] = useState(0);
             const [answers, setAnswers] = useState({});
             const [result, setResult] = useState(null);
+            const [characterData, setCharacterData] = useState({});
+
+            // character.json 데이터 로드
+            useEffect(() => {
+                fetch('character.json')
+                    .then(response => response.json())
+                    .then(data => setCharacterData(data))
+                    .catch(error => console.error('Error loading character data:', error));
+            }, []);
 
             // localStorage에서 진행사항 불러오기
             useEffect(() => {
@@ -420,10 +424,6 @@
                     const data = JSON.parse(saved);
                     setAnswers(data.answers || {});
                     setCurrentQuestion(data.currentQuestion || 0);
-                    if (Object.keys(data.answers || {}).length > 0) {
-                        // 진행 중이면 자동으로 테스트 화면으로
-                        // setScreen('test');
-                    }
                 }
             }, []);
 
@@ -457,7 +457,6 @@
                 if (currentQuestion < 59) {
                     setCurrentQuestion(currentQuestion + 1);
                 } else {
-                    // 결과 계산
                     calculateResult(newAnswers);
                 }
             };
@@ -471,34 +470,36 @@
                     }
                 });
 
-                // 각 축에서 최고점 찾기
                 const behavior = ['E', 'W', 'C', 'H'].reduce((a, b) => codes[a] > codes[b] ? a : b);
                 const social = ['L', 'S', 'G', 'P'].reduce((a, b) => codes[a] > codes[b] ? a : b);
                 const thinking = ['T', 'F', 'A', 'R'].reduce((a, b) => codes[a] > codes[b] ? a : b);
 
                 const typeCode = behavior + social + thinking;
                 const typeInfo = TYPES_DATA[typeCode];
-                const details = getTypeDetails(typeCode);
+                const detailInfo = characterData[typeCode] || '';
 
-                setResult({ ...typeInfo, ...details });
+                setResult({ ...typeInfo, detailInfo });
                 setScreen('result');
                 localStorage.removeItem('catsonality_progress');
             };
 
             const handleShare = () => {
                 const shareUrl = window.location.href.split('?')[0] + '?result=' + result.code;
-                const text = `나는 ${result.name}! ${result.description}\n\nCatsonality 64 고양이 성격유형 검사`;
+                const text = `나는 ${result.name}!\n\nCatsonality 64 고양이 성격유형 검사`;
                 
                 if (navigator.share) {
                     navigator.share({
                         title: 'Catsonality 64 결과',
                         text: text,
                         url: shareUrl
+                    }).catch((error) => {
+                        // 사용자가 공유를 취소한 경우 등
+                        console.log('공유 취소:', error);
                     });
                 } else {
-                    // 복사 fallback
+                    // Web Share API를 지원하지 않는 경우 링크 복사로 대체
                     navigator.clipboard.writeText(`${text}\n${shareUrl}`);
-                    alert('링크가 복사되었습니다!');
+                    alert('이 브라우저는 공유 기능을 지원하지 않아 링크가 복사되었습니다!');
                 }
             };
 
@@ -516,15 +517,32 @@
                 localStorage.removeItem('catsonality_progress');
             };
 
-            // URL에서 result 파라미터 확인
             useEffect(() => {
                 const params = new URLSearchParams(window.location.search);
                 const resultCode = params.get('result');
                 if (resultCode && TYPES_DATA[resultCode]) {
-                    // 공유된 링크로 접속 시 타이틀 화면으로
                     setScreen('title');
                 }
             }, []);
+
+            // 상세 정보를 섹션별로 파싱
+            const parseDetailInfo = (detailInfo) => {
+                if (!detailInfo) return [];
+                
+                const sections = detailInfo.split(/【|】/).filter(s => s.trim());
+                const result = [];
+                
+                for (let i = 0; i < sections.length; i += 2) {
+                    if (sections[i] && sections[i + 1]) {
+                        result.push({
+                            title: sections[i+1].trim(),
+                            content: sections[i].trim()
+                        });
+                    }
+                }
+                
+                return result;
+            };
 
             if (screen === 'title') {
                 return (
@@ -586,62 +604,31 @@
             }
 
             if (screen === 'result') {
+                const detailSections = parseDetailInfo(result.detailInfo);
+                
                 return (
                     <div className="container">
                         <div className="card result-screen">
                             <div className="cat-emoji">🎉</div>
                             <div className="result-code">{result.code}</div>
-                            <h1 className="result-name">{result.name}</h1>
-                            <p className="result-description">"{result.description}"</p>
+                            <h1 className="result-name">
+                                {result.name.split('(')[0].trim()}
+                                {result.name.includes('(') && (
+                                    <span className="result-name-eng">({result.name.split('(')[1]}</span>
+                                )}
+                            </h1>
                             
                             <div className="result-details">
-                                <div className="detail-section">
-                                    <div className="detail-title">
-                                        <span>🐾</span> 성격 특성
+                                {detailSections.map((section, index) => (
+                                    <div className="detail-section" key={index}>
+                                        <div className="detail-title">
+                                            {section.title}
+                                        </div>
+                                        <div className="detail-content">
+                                            {section.content}
+                                        </div>
                                     </div>
-                                    <div className="detail-content">
-                                        {result.personality}
-                                    </div>
-                                </div>
-
-                                <div className="detail-section">
-                                    <div className="detail-title">
-                                        <span>🎯</span> 성격 구성
-                                    </div>
-                                    <div className="detail-content">
-                                        <strong>행동:</strong> {result.behavior}<br/>
-                                        <strong>사회성:</strong> {result.social}<br/>
-                                        <strong>사고:</strong> {result.thinking}
-                                    </div>
-                                </div>
-
-                                <div className="detail-section">
-                                    <div className="detail-title">
-                                        <span>🧶</span> 좋아하는 장난감
-                                    </div>
-                                    <div className="detail-content">{result.toy}</div>
-                                </div>
-
-                                <div className="detail-section">
-                                    <div className="detail-title">
-                                        <span>🎨</span> 어울리는 색상
-                                    </div>
-                                    <div className="detail-content">{result.color}</div>
-                                </div>
-
-                                <div className="detail-section">
-                                    <div className="detail-title">
-                                        <span>🏠</span> 선호하는 공간
-                                    </div>
-                                    <div className="detail-content">{result.space}</div>
-                                </div>
-
-                                <div className="detail-section">
-                                    <div className="detail-title">
-                                        <span>💡</span> 사고 방식
-                                    </div>
-                                    <div className="detail-content">{result.trait}</div>
-                                </div>
+                                ))}
                             </div>
 
                             <div className="share-buttons">
