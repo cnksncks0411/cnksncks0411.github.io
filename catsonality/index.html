@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,400 +8,89 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .title-screen {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #667eea;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .cat-emoji {
-            font-size: 5rem;
-            margin: 30px 0;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .button:active {
-            transform: translateY(0);
-        }
-
-        .button-secondary {
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-
-        .button-secondary:hover {
-            background: #f8f9ff;
-        }
-
-        .progress-container {
-            margin-bottom: 30px;
-        }
-
-        .progress-text {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #666;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
-            border-radius: 10px;
-        }
-
-        .question-text {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .option {
-            background: #f8f9ff;
-            border: 2px solid #e0e0e0;
-            padding: 18px 24px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 1rem;
-            text-align: left;
-        }
-
-        .option:hover {
-            border-color: #667eea;
-            background: white;
-            transform: translateX(5px);
-        }
-
-        .result-screen {
-            text-align: center;
-        }
-
-        .result-code {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-
-        .result-name {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #333;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .result-name-eng {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #667eea;
-            display: block;
-            margin-top: 5px;
-        }
-
-        .result-description {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-
-        .result-details {
-            background: #f8f9ff;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            text-align: left;
-        }
-
-        .detail-section {
-            margin-bottom: 25px;
-        }
-
-        .detail-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .detail-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #667eea;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #667eea;
-        }
-
-        .detail-content {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.8;
-            white-space: pre-line;
-        }
-
-        .detail-points {
-            margin-top: 10px;
-            padding-left: 15px;
-        }
-
-        .share-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .share-buttons .button {
-            flex: 1;
-            padding: 16px 20px;
-            font-size: 1rem;
-            white-space: nowrap;
-        }
-
-        .icon {
-            margin-right: 5px;
-        }
-
-        @media (max-width: 640px) {
-            .card {
-                padding: 30px 20px;
-            }
-
-            .title {
-                font-size: 2rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            .question-text {
-                font-size: 1.2rem;
-            }
-
-            .result-name {
-                font-size: 1.8rem;
-            }
-
-            .share-buttons {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .share-buttons .button {
-                width: 100%;
-                font-size: 0.95rem;
-                padding: 15px 20px;
-            }
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
+    <link rel="stylesheet" href="./resource/css/index.css">
 </head>
+
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
         const { useState, useEffect } = React;
 
+        // 이미지 파일명 매핑 (실제 파일명에 맞춤)
+        const IMAGE_MAPPING = {
+            "CPF": "CRF_마음방패냥 (Heart Shield).png",
+            "ELF": "EFL_노래하는 고양이 (Melodytail).png"
+        };
+
         // 데이터 (엑셀에서 추출한 실제 데이터)
         const QUESTIONS_DATA = [
-            {id: 1, axis: "행동(Behavior)", question: "낯선 상자나 가방이 생겼을 때 고양이는?", options: [{text: "일단 들어가본다. 모험의 시작!", code: "E"}, {text: "멀리서 관찰 후 한참 뒤 탐색", code: "C"}, {text: "관심 없음. 내 영역이 우선", code: "W"}, {text: "냄새부터 확인, 위험 감지 모드", code: "H"}]},
-            {id: 2, axis: "행동(Behavior)", question: "창문을 열면 가장 먼저 하는 행동은?", options: [{text: "바로 창틀로 올라가 밖을 구경", code: "E"}, {text: "바람이 불어오는지 확인 후 결정", code: "W"}, {text: "익숙한 자리로 돌아간다", code: "C"}, {text: "냄새와 소리를 예민하게 감지", code: "H"}]},
-            {id: 3, axis: "행동(Behavior)", question: "집사가 새로운 가구를 들였을 때?", options: [{text: "즉시 탐색 시작! 이곳저곳 확인", code: "E"}, {text: "며칠 지켜본 후 천천히 접근", code: "C"}, {text: "크게 신경 안 쓰고 내 할 일 함", code: "W"}, {text: "안전성 확인 후 은신처로 활용 검토", code: "H"}]},
-            {id: 4, axis: "행동(Behavior)", question: "장난감을 꺼내면?", options: [{text: "신나게 달려들어 놀이 시작", code: "E"}, {text: "기분에 따라 다르게 반응", code: "W"}, {text: "항상 좋아하는 장난감만 선택", code: "C"}, {text: "사냥감으로 인식하고 집중 모드", code: "H"}]},
-            {id: 5, axis: "행동(Behavior)", question: "이사나 환경 변화 시 반응은?", options: [{text: "빠르게 적응하며 새 공간 탐색", code: "E"}, {text: "스트레스 받지만 결국 적응", code: "W"}, {text: "오래 숨어있고 회복이 느림", code: "C"}, {text: "경계 모드 최대, 안전 확인 우선", code: "H"}]},
-            {id: 6, axis: "행동(Behavior)", question: "문틈이 살짝 열려 있다면?", options: [{text: "당연히 열고 나간다!", code: "E"}, {text: "기분 좋으면 나가고 아니면 무시", code: "W"}, {text: "익숙한 공간이 더 편해서 안 나감", code: "C"}, {text: "밖을 정찰 후 필요시 이동", code: "H"}]},
-            {id: 7, axis: "행동(Behavior)", question: "새벽 시간 고양이의 상태는?", options: [{text: "활동 시간! 집안을 누빈다", code: "E"}, {text: "컨디션에 따라 다름", code: "W"}, {text: "조용히 자고 있음", code: "C"}, {text: "사냥 본능 발동, 깨어 있음", code: "H"}]},
-            {id: 8, axis: "행동(Behavior)", question: "낯선 냄새가 날 때?", options: [{text: "적극적으로 냄새 추적", code: "E"}, {text: "별로 관심 없음", code: "W"}, {text: "일단 피하고 나중에 확인", code: "C"}, {text: "위협 요소인지 철저히 분석", code: "H"}]},
-            {id: 9, axis: "행동(Behavior)", question: "낯선 사람이 들어오면?", options: [{text: "호기심에 다가가 인사", code: "E"}, {text: "거리를 두고 관찰만", code: "W"}, {text: "숨어버림", code: "C"}, {text: "경계하며 위협적인지 판단", code: "H"}]},
-            {id: 10, axis: "행동(Behavior)", question: "집사가 가방을 쌀 때?", options: [{text: "가방 속을 탐색하며 방해", code: "E"}, {text: "별로 신경 안 씀", code: "W"}, {text: "불안해하며 숨거나 따라다님", code: "C"}, {text: "상황을 주시하며 관찰", code: "H"}]},
-            {id: 11, axis: "행동(Behavior)", question: "평소 이동 동선이 일정한가요?", options: [{text: "매번 다른 곳을 돌아다닌다", code: "W"}, {text: "어느 정도 규칙적이지만 유연함", code: "E"}, {text: "거의 정해진 루트로만 이동", code: "C"}, {text: "전략적으로 동선을 정함", code: "H"}]},
-            {id: 12, axis: "행동(Behavior)", question: "창문 앞에서 시간을 보낼 때?", options: [{text: "밖에 나가고 싶어 보임", code: "E"}, {text: "그냥 멍하니 있음", code: "W"}, {text: "편안하게 햇볕을 즐김", code: "C"}, {text: "새나 벌레를 주시함", code: "H"}]},
-            {id: 13, axis: "행동(Behavior)", question: "갑작스러운 소음(청소기 등)에 반응은?", options: [{text: "확인하러 다가감", code: "E"}, {text: "신경 안 씀", code: "W"}, {text: "놀라서 도망감", code: "C"}, {text: "경계하며 숨어서 관찰", code: "H"}]},
-            {id: 14, axis: "행동(Behavior)", question: "고양이에게 '놀이 시간'은?", options: [{text: "언제든 즐겁게!", code: "E"}, {text: "기분 내킬 때만", code: "W"}, {text: "정해진 시간에만", code: "C"}, {text: "사냥 훈련 시간", code: "H"}]},
-            {id: 15, axis: "행동(Behavior)", question: "낯선 물체가 집안에 놓이면?", options: [{text: "즉시 냄새 맡고 확인", code: "E"}, {text: "별로 신경 안 씀", code: "W"}, {text: "며칠간 회피", code: "C"}, {text: "위협 여부 파악 후 접근", code: "H"}]},
-            {id: 16, axis: "행동(Behavior)", question: "스스로 놀이를 할 때는?", options: [{text: "집안 곳곳을 탐험", code: "E"}, {text: "기분에 따라 즉흥적으로", code: "W"}, {text: "익숙한 장난감으로만", code: "C"}, {text: "혼자 사냥놀이", code: "H"}]},
-            {id: 17, axis: "행동(Behavior)", question: "방문을 닫으면?", options: [{text: "열어달라고 울부짖음", code: "E"}, {text: "상관없음", code: "W"}, {text: "이제 익숙해서 괜찮음", code: "C"}, {text: "탈출 방법 모색", code: "H"}]},
-            {id: 18, axis: "행동(Behavior)", question: "집사와의 산책 시도 시?", options: [{text: "적극적으로 따라나감", code: "E"}, {text: "짧게는 괜찮음", code: "W"}, {text: "거부하고 집에 있고 싶음", code: "C"}, {text: "경계하지만 필요시 이동", code: "H"}]},
-            {id: 19, axis: "행동(Behavior)", question: "비 오는 날 창밖을 볼 때?", options: [{text: "빗소리에 흥미를 보이며 관찰", code: "E"}, {text: "평소와 다름없이 행동", code: "W"}, {text: "익숙한 장소에서 안정 취함", code: "C"}, {text: "경계하며 주변을 살핌", code: "H"}]},
-            {id: 20, axis: "행동(Behavior)", question: "새로운 공간(호텔, 병원 등)에 들어섰을 때?", options: [{text: "신속하게 주변 탐색", code: "E"}, {text: "적당히 둘러보고 자리 잡음", code: "W"}, {text: "구석에 숨어 나오지 않음", code: "C"}, {text: "모든 출입구와 위험 요소 확인", code: "H"}]},
-            {id: 21, axis: "사회성(Social)", question: "집사가 집에 돌아오면?", options: [{text: "반갑게 맞이하며 애교 폭발", code: "L"}, {text: "쳐다보지도 않음", code: "S"}, {text: "다른 고양이가 있다면 그쪽 확인", code: "G"}, {text: "잠깐 인사 후 다시 내 자리로", code: "P"}]},
-            {id: 22, axis: "사회성(Social)", question: "집사가 다른 일을 할 때 고양이는?", options: [{text: "방해하며 관심 요구", code: "L"}, {text: "혼자 놀거나 잠", code: "S"}, {text: "조용히 옆에서 지켜봄", code: "G"}, {text: "거리를 두고 관찰", code: "P"}]},
-            {id: 23, axis: "사회성(Social)", question: "다른 고양이가 집에 있다면?", options: [{text: "적극적으로 친해지려 함", code: "L"}, {text: "무관심, 내 영역만 지킴", code: "S"}, {text: "거리 조절하며 평화 유지", code: "G"}, {text: "서열 정리 후 거리 유지", code: "P"}]},
-            {id: 24, axis: "사회성(Social)", question: "집사가 쓰다듬으려 할 때?", options: [{text: "좋아하며 계속 요구", code: "L"}, {text: "기분 아니면 피함", code: "S"}, {text: "적당히 받아주는 편", code: "G"}, {text: "허락한 만큼만 받아줌", code: "P"}]},
-            {id: 25, axis: "사회성(Social)", question: "혼자 있는 시간이 길어지면?", options: [{text: "외로워하며 집사 찾음", code: "L"}, {text: "전혀 문제없음, 오히려 좋음", code: "S"}, {text: "약간 서운해하지만 괜찮음", code: "G"}, {text: "상관없음, 내 시간 즐김", code: "P"}]},
-            {id: 26, axis: "사회성(Social)", question: "집사가 다른 고양이를 쓰다듬으면?", options: [{text: "질투하며 끼어듦", code: "L"}, {text: "관심 없음", code: "S"}, {text: "지켜보다 자기 차례 기다림", code: "G"}, {text: "무시하거나 자리 뜸", code: "P"}]},
-            {id: 27, axis: "사회성(Social)", question: "낯선 손님이 왔을 때 반응은?", options: [{text: "적극적으로 다가가 탐색", code: "L"}, {text: "숨어서 나오지 않음", code: "S"}, {text: "거리 두고 조용히 관찰", code: "G"}, {text: "냉정하게 평가 후 무시", code: "P"}]},
-            {id: 28, axis: "사회성(Social)", question: "집사가 슬퍼 보일 때?", options: [{text: "다가가서 위로하려 함", code: "L"}, {text: "별로 신경 안 씀", code: "S"}, {text: "조용히 곁에 있어줌", code: "G"}, {text: "거리를 두고 지켜봄", code: "P"}]},
-            {id: 29, axis: "사회성(Social)", question: "집사와의 놀이 시간은?", options: [{text: "최대한 길게 원함", code: "L"}, {text: "혼자 노는 게 더 좋음", code: "S"}, {text: "적당히 함께 놀아줌", code: "G"}, {text: "내가 원할 때만", code: "P"}]},
-            {id: 30, axis: "사회성(Social)", question: "밥 시간에 다른 고양이가 있다면?", options: [{text: "함께 나란히 먹음", code: "L"}, {text: "차례 안 기다리고 내 것만 챙김", code: "S"}, {text: "양보하거나 순서 지킴", code: "G"}, {text: "먼저 먹거나 나중에 따로 먹음", code: "P"}]},
-            {id: 31, axis: "사회성(Social)", question: "집사의 무릎은?", options: [{text: "최고의 자리! 자주 올라감", code: "L"}, {text: "별로 관심 없음", code: "S"}, {text: "가끔 올라가 시간 보냄", code: "G"}, {text: "내가 허락할 때만 올라감", code: "P"}]},
-            {id: 32, axis: "사회성(Social)", question: "집사가 전화 통화 중일 때?", options: [{text: "관심받고 싶어 방해", code: "L"}, {text: "신경 안 씀", code: "S"}, {text: "조용히 기다림", code: "G"}, {text: "방해되면 다른 곳으로 이동", code: "P"}]},
-            {id: 33, axis: "사회성(Social)", question: "여러 고양이가 모여 있을 때?", options: [{text: "중심에서 분위기 주도", code: "L"}, {text: "멀리 떨어져 혼자 있음", code: "S"}, {text: "조화롭게 어울림", code: "G"}, {text: "거리 두고 관찰", code: "P"}]},
-            {id: 34, axis: "사회성(Social)", question: "집사가 부르면?", options: [{text: "바로 달려옴", code: "L"}, {text: "대부분 무시", code: "S"}, {text: "천천히 다가옴", code: "G"}, {text: "기분 내키면 옴", code: "P"}]},
-            {id: 35, axis: "사회성(Social)", question: "새로운 고양이가 집에 왔을 때?", options: [{text: "금방 친해지려 노력", code: "L"}, {text: "철저히 무시하고 거리 유지", code: "S"}, {text: "적응할 시간을 주며 배려", code: "G"}, {text: "서열 확인 후 경계 유지", code: "P"}]},
-            {id: 36, axis: "사회성(Social)", question: "집사가 밥을 주는 방식은?", options: [{text: "손으로 직접 먹여줘야 좋음", code: "L"}, {text: "알아서 챙겨 먹음", code: "S"}, {text: "함께 있어주면 좋음", code: "G"}, {text: "혼자 조용히 먹는 게 좋음", code: "P"}]},
-            {id: 37, axis: "사회성(Social)", question: "다른 고양이가 아플 때?", options: [{text: "걱정하며 다가감", code: "L"}, {text: "관심 없음", code: "S"}, {text: "조용히 지켜보며 배려", code: "G"}, {text: "거리 두고 관찰만", code: "P"}]},
-            {id: 38, axis: "사회성(Social)", question: "집사가 다른 반려동물과 놀 때?", options: [{text: "질투하며 끼어듦", code: "L"}, {text: "관심 없음", code: "S"}, {text: "함께 어울리려 함", code: "G"}, {text: "무시하고 자기 할 일 함", code: "P"}]},
-            {id: 39, axis: "사회성(Social)", question: "집사의 침대는?", options: [{text: "같이 자는 게 최고!", code: "L"}, {text: "내 잠자리가 따로 있음", code: "S"}, {text: "가끔 같이 자기도 함", code: "G"}, {text: "내가 원할 때만 올라감", code: "P"}]},
-            {id: 40, axis: "사회성(Social)", question: "집에 여러 사람이 모였을 때?", options: [{text: "모두에게 인사하러 다님", code: "L"}, {text: "숨어버림", code: "S"}, {text: "조용히 구석에서 지켜봄", code: "G"}, {text: "선택적으로 특정인에게만 접근", code: "P"}]},
-            {id: 41, axis: "사고(Cognitive)", question: "새로운 장난감을 받으면?", options: [{text: "작동 원리를 파악하려 관찰", code: "T"}, {text: "감정적으로 반응하며 즐김", code: "F"}, {text: "창의적으로 새로운 놀이 개발", code: "A"}, {text: "실용성을 판단 후 사용 여부 결정", code: "R"}]},
-            {id: 42, axis: "사고(Cognitive)", question: "문제 상황(문이 닫힘 등)에서?", options: [{text: "논리적으로 해결 방법 모색", code: "T"}, {text: "감정적으로 반응(울음 등)", code: "F"}, {text: "독창적인 방법 시도", code: "A"}, {text: "과거 경험 활용해 해결", code: "R"}]},
-            {id: 43, axis: "사고(Cognitive)", question: "간식 숨기기 놀이를 할 때?", options: [{text: "체계적으로 위치 추론", code: "T"}, {text: "집사의 반응 보며 찾음", code: "F"}, {text: "예상 못한 곳 먼저 확인", code: "A"}, {text: "익숙한 장소부터 확인", code: "R"}]},
-            {id: 44, axis: "사고(Cognitive)", question: "물이 담긴 그릇을 볼 때?", options: [{text: "깊이와 양을 확인 후 마심", code: "T"}, {text: "목마르면 바로 마심", code: "F"}, {text: "발로 건드려보며 장난침", code: "A"}, {text: "항상 마시던 방식으로 마심", code: "R"}]},
-            {id: 45, axis: "사고(Cognitive)", question: "집사의 행동 패턴을?", options: [{text: "정확히 파악하고 예측", code: "T"}, {text: "감정 상태로 이해", code: "F"}, {text: "나만의 해석으로 받아들임", code: "A"}, {text: "경험으로 익숙하게 파악", code: "R"}]},
-            {id: 46, axis: "사고(Cognitive)", question: "놀이할 때 관심사는?", options: [{text: "규칙성이나 패턴 찾기", code: "T"}, {text: "집사와의 교감", code: "F"}, {text: "새로운 방식 시도", code: "A"}, {text: "익숙한 놀이 반복", code: "R"}]},
-            {id: 47, axis: "사고(Cognitive)", question: "먹이를 발견했을 때?", options: [{text: "안전 여부 분석 후 접근", code: "T"}, {text: "바로 반응해서 먹음", code: "F"}, {text: "독특한 방식으로 먹기 시도", code: "A"}, {text: "검증된 먹이만 선택", code: "R"}]},
-            {id: 48, axis: "사고(Cognitive)", question: "집사가 화났을 때?", options: [{text: "원인을 분석하려 관찰", code: "T"}, {text: "감정을 읽고 공감", code: "F"}, {text: "독특한 방식으로 위로 시도", code: "A"}, {text: "조용히 거리 둠", code: "R"}]},
-            {id: 49, axis: "사고(Cognitive)", question: "꼬리를 밟혔을 때 반응은?", options: [{text: "누가 밟았는지 파악 후 회피", code: "T"}, {text: "울거나 바로 도망감", code: "F"}, {text: "예상치 못한 반응을 보임", code: "A"}, {text: "다시는 그 자리에 안 감", code: "R"}]},
-            {id: 50, axis: "사고(Cognitive)", question: "다른 고양이와 갈등 시?", options: [{text: "상황을 분석하고 대응", code: "T"}, {text: "감정적으로 반응", code: "F"}, {text: "예상치 못한 방법 사용", code: "A"}, {text: "경험상 효과적인 방법 사용", code: "R"}]},
-            {id: 51, axis: "사고(Cognitive)", question: "장난감이 보이지 않는 곳에 떨어졌을 때?", options: [{text: "떨어진 궤적 계산해 찾음", code: "T"}, {text: "포기하고 다른 놀이 찾음", code: "F"}, {text: "새로운 방법으로 찾기 시도", code: "A"}, {text: "비슷한 경험 떠올려 찾음", code: "R"}]},
-            {id: 52, axis: "사고(Cognitive)", question: "밥을 주는 시간이 지났을 때?", options: [{text: "시간 개념으로 요구", code: "T"}, {text: "울어서 감정 표현", code: "F"}, {text: "독특한 방식으로 알림", code: "A"}, {text: "밥그릇으로 가서 대기", code: "R"}]},
-            {id: 53, axis: "사고(Cognitive)", question: "높은 곳에 올라갈 때?", options: [{text: "경로를 계산하고 시도", code: "T"}, {text: "도전 의욕으로 바로 시도", code: "F"}, {text: "독특한 루트 개척", code: "A"}, {text: "안전한 경로만 선택", code: "R"}]},
-            {id: 54, axis: "사고(Cognitive)", question: "반복되는 일상에서?", options: [{text: "패턴을 파악하고 최적화", code: "T"}, {text: "감정 변화에 따라 반응", code: "F"}, {text: "변화를 주려 노력", code: "A"}, {text: "익숙함을 즐김", code: "R"}]},
-            {id: 55, axis: "사고(Cognitive)", question: "집사가 새 가구를 조립할 때?", options: [{text: "과정을 관찰하며 분석", code: "T"}, {text: "집사와 함께 있는 것에 집중", code: "F"}, {text: "부품을 가지고 새로운 놀이 개발", code: "A"}, {text: "방해 안 되게 떨어져 있음", code: "R"}]},
-            {id: 56, axis: "사고(Cognitive)", question: "다른 고양이의 행동을 볼 때?", options: [{text: "행동 패턴 분석", code: "T"}, {text: "감정 상태 파악", code: "F"}, {text: "독특한 행동에 관심", code: "A"}, {text: "위협 여부만 확인", code: "R"}]},
-            {id: 57, axis: "사고(Cognitive)", question: "움직이는 장난감을 볼 때?", options: [{text: "움직임의 규칙 파악", code: "T"}, {text: "본능적으로 쫓음", code: "F"}, {text: "예상 못한 방식으로 잡으려 함", code: "A"}, {text: "효율적인 방법으로 사냥", code: "R"}]},
-            {id: 58, axis: "사고(Cognitive)", question: "문이 열리는 소리를 들을 때?", options: [{text: "누가 들어오는지 추론", code: "T"}, {text: "기대감으로 달려감", code: "F"}, {text: "숨어서 반응 관찰", code: "A"}, {text: "평소대로 반응", code: "R"}]},
-            {id: 59, axis: "사고(Cognitive)", question: "집사가 외출 준비를 할 때?", options: [{text: "패턴으로 외출 시간 예측", code: "T"}, {text: "슬퍼하거나 불안해함", code: "F"}, {text: "방해하려 독특한 행동", code: "A"}, {text: "익숙하게 받아들임", code: "R"}]},
-            {id: 60, axis: "사고(Cognitive)", question: "창문 밖 새를 볼 때?", options: [{text: "새의 움직임 분석", code: "T"}, {text: "흥분하며 소리 냄", code: "F"}, {text: "상상 속 사냥 시뮬레이션", code: "A"}, {text: "실제 잡을 수 있는지 판단", code: "R"}]}
+            { id: 1, axis: "행동(Behavior)", question: "낯선 상자나 가방이 생겼을 때 고양이는?", options: [{ text: "일단 들어가본다. 모험의 시작!", code: "E" }, { text: "멀리서 관찰 후 한참 뒤 탐색", code: "C" }, { text: "관심 없음. 내 영역이 우선", code: "W" }, { text: "냄새부터 확인, 위험 감지 모드", code: "H" }] },
+            { id: 2, axis: "행동(Behavior)", question: "창문을 열면 가장 먼저 하는 행동은?", options: [{ text: "바로 창틀로 올라가 밖을 구경", code: "E" }, { text: "바람이 불어오는지 확인 후 결정", code: "W" }, { text: "익숙한 자리로 돌아간다", code: "C" }, { text: "냄새와 소리를 예민하게 감지", code: "H" }] },
+            { id: 3, axis: "행동(Behavior)", question: "집사가 새로운 가구를 들였을 때?", options: [{ text: "즉시 탐색 시작! 이곳저곳 확인", code: "E" }, { text: "며칠 지켜본 후 천천히 접근", code: "C" }, { text: "크게 신경 안 쓰고 내 할 일 함", code: "W" }, { text: "안전성 확인 후 은신처로 활용 검토", code: "H" }] },
+            { id: 4, axis: "행동(Behavior)", question: "장난감을 꺼내면?", options: [{ text: "신나게 달려들어 놀이 시작", code: "E" }, { text: "기분에 따라 다르게 반응", code: "W" }, { text: "항상 좋아하는 장난감만 선택", code: "C" }, { text: "사냥감으로 인식하고 집중 모드", code: "H" }] },
+            { id: 5, axis: "행동(Behavior)", question: "이사나 환경 변화 시 반응은?", options: [{ text: "빠르게 적응하며 새 공간 탐색", code: "E" }, { text: "스트레스 받지만 결국 적응", code: "W" }, { text: "오래 숨어있고 회복이 느림", code: "C" }, { text: "경계 모드 최대, 안전 확인 우선", code: "H" }] },
+            { id: 6, axis: "행동(Behavior)", question: "문틈이 살짝 열려 있다면?", options: [{ text: "당연히 열고 나간다!", code: "E" }, { text: "기분 좋으면 나가고 아니면 무시", code: "W" }, { text: "익숙한 공간이 더 편해서 안 나감", code: "C" }, { text: "밖을 정찰 후 필요시 이동", code: "H" }] },
+            { id: 7, axis: "행동(Behavior)", question: "새벽 시간 고양이의 상태는?", options: [{ text: "활동 시간! 집안을 누빈다", code: "E" }, { text: "컨디션에 따라 다름", code: "W" }, { text: "조용히 자고 있음", code: "C" }, { text: "사냥 본능 발동, 깨어 있음", code: "H" }] },
+            { id: 8, axis: "행동(Behavior)", question: "낯선 냄새가 날 때?", options: [{ text: "적극적으로 냄새 추적", code: "E" }, { text: "별로 관심 없음", code: "W" }, { text: "일단 피하고 나중에 확인", code: "C" }, { text: "위협 요소인지 철저히 분석", code: "H" }] },
+            { id: 9, axis: "행동(Behavior)", question: "낯선 사람이 들어오면?", options: [{ text: "호기심에 다가가 인사", code: "E" }, { text: "거리를 두고 관찰만", code: "W" }, { text: "숨어버림", code: "C" }, { text: "경계하며 위협적인지 판단", code: "H" }] },
+            { id: 10, axis: "행동(Behavior)", question: "집사가 가방을 쌀 때?", options: [{ text: "가방 속을 탐색하며 방해", code: "E" }, { text: "별로 신경 안 씀", code: "W" }, { text: "불안해하며 숨거나 따라다님", code: "C" }, { text: "상황을 주시하며 관찰", code: "H" }] },
+            { id: 11, axis: "행동(Behavior)", question: "평소 이동 동선이 일정한가요?", options: [{ text: "매번 다른 곳을 돌아다닌다", code: "W" }, { text: "어느 정도 규칙적이지만 유연함", code: "E" }, { text: "거의 정해진 루트로만 이동", code: "C" }, { text: "전략적으로 동선을 정함", code: "H" }] },
+            { id: 12, axis: "행동(Behavior)", question: "창문 앞에서 시간을 보낼 때?", options: [{ text: "밖에 나가고 싶어 보임", code: "E" }, { text: "그냥 멍하니 있음", code: "W" }, { text: "편안하게 햇볕을 즐김", code: "C" }, { text: "새나 벌레를 주시함", code: "H" }] },
+            { id: 13, axis: "행동(Behavior)", question: "갑작스러운 소음(청소기 등)에 반응은?", options: [{ text: "확인하러 다가감", code: "E" }, { text: "신경 안 씀", code: "W" }, { text: "놀라서 도망감", code: "C" }, { text: "경계하며 숨어서 관찰", code: "H" }] },
+            { id: 14, axis: "행동(Behavior)", question: "고양이에게 '놀이 시간'은?", options: [{ text: "언제든 즐겁게!", code: "E" }, { text: "기분 내킬 때만", code: "W" }, { text: "정해진 시간에만", code: "C" }, { text: "사냥 훈련 시간", code: "H" }] },
+            { id: 15, axis: "행동(Behavior)", question: "낯선 물체가 집안에 놓이면?", options: [{ text: "즉시 냄새 맡고 확인", code: "E" }, { text: "별로 신경 안 씀", code: "W" }, { text: "며칠간 회피", code: "C" }, { text: "위협 여부 파악 후 접근", code: "H" }] },
+            { id: 16, axis: "행동(Behavior)", question: "스스로 놀이를 할 때는?", options: [{ text: "집안 곳곳을 탐험", code: "E" }, { text: "기분에 따라 즉흥적으로", code: "W" }, { text: "익숙한 장난감으로만", code: "C" }, { text: "혼자 사냥놀이", code: "H" }] },
+            { id: 17, axis: "행동(Behavior)", question: "방문을 닫으면?", options: [{ text: "열어달라고 울부짖음", code: "E" }, { text: "상관없음", code: "W" }, { text: "이제 익숙해서 괜찮음", code: "C" }, { text: "탈출 방법 모색", code: "H" }] },
+            { id: 18, axis: "행동(Behavior)", question: "집사와의 산책 시도 시?", options: [{ text: "적극적으로 따라나감", code: "E" }, { text: "짧게는 괜찮음", code: "W" }, { text: "거부하고 집에 있고 싶음", code: "C" }, { text: "경계하지만 필요시 이동", code: "H" }] },
+            { id: 19, axis: "행동(Behavior)", question: "비 오는 날 창밖을 볼 때?", options: [{ text: "빗소리에 흥미를 보이며 관찰", code: "E" }, { text: "평소와 다름없이 행동", code: "W" }, { text: "익숙한 장소에서 안정 취함", code: "C" }, { text: "경계하며 주변을 살핌", code: "H" }] },
+            { id: 20, axis: "행동(Behavior)", question: "새로운 공간(호텔, 병원 등)에 들어섰을 때?", options: [{ text: "신속하게 주변 탐색", code: "E" }, { text: "적당히 둘러보고 자리 잡음", code: "W" }, { text: "구석에 숨어 나오지 않음", code: "C" }, { text: "모든 출입구와 위험 요소 확인", code: "H" }] },
+            { id: 21, axis: "사회성(Social)", question: "집사가 집에 돌아오면?", options: [{ text: "반갑게 맞이하며 애교 폭발", code: "L" }, { text: "쳐다보지도 않음", code: "S" }, { text: "다른 고양이가 있다면 그쪽 확인", code: "G" }, { text: "잠깐 인사 후 다시 내 자리로", code: "P" }] },
+            { id: 22, axis: "사회성(Social)", question: "집사가 다른 일을 할 때 고양이는?", options: [{ text: "방해하며 관심 요구", code: "L" }, { text: "혼자 놀거나 잠", code: "S" }, { text: "조용히 옆에서 지켜봄", code: "G" }, { text: "거리를 두고 관찰", code: "P" }] },
+            { id: 23, axis: "사회성(Social)", question: "다른 고양이가 집에 있다면?", options: [{ text: "적극적으로 친해지려 함", code: "L" }, { text: "무관심, 내 영역만 지킴", code: "S" }, { text: "거리 조절하며 평화 유지", code: "G" }, { text: "서열 정리 후 거리 유지", code: "P" }] },
+            { id: 24, axis: "사회성(Social)", question: "집사가 쓰다듬으려 할 때?", options: [{ text: "좋아하며 계속 요구", code: "L" }, { text: "기분 아니면 피함", code: "S" }, { text: "적당히 받아주는 편", code: "G" }, { text: "허락한 만큼만 받아줌", code: "P" }] },
+            { id: 25, axis: "사회성(Social)", question: "혼자 있는 시간이 길어지면?", options: [{ text: "외로워하며 집사 찾음", code: "L" }, { text: "전혀 문제없음, 오히려 좋음", code: "S" }, { text: "약간 서운해하지만 괜찮음", code: "G" }, { text: "상관없음, 내 시간 즐김", code: "P" }] },
+            { id: 26, axis: "사회성(Social)", question: "집사가 다른 고양이를 쓰다듬으면?", options: [{ text: "질투하며 끼어듦", code: "L" }, { text: "관심 없음", code: "S" }, { text: "지켜보다 자기 차례 기다림", code: "G" }, { text: "무시하거나 자리 뜸", code: "P" }] },
+            { id: 27, axis: "사회성(Social)", question: "낯선 손님이 왔을 때 반응은?", options: [{ text: "적극적으로 다가가 탐색", code: "L" }, { text: "숨어서 나오지 않음", code: "S" }, { text: "거리 두고 조용히 관찰", code: "G" }, { text: "냉정하게 평가 후 무시", code: "P" }] },
+            { id: 28, axis: "사회성(Social)", question: "집사가 슬퍼 보일 때?", options: [{ text: "다가가서 위로하려 함", code: "L" }, { text: "별로 신경 안 씀", code: "S" }, { text: "조용히 곁에 있어줌", code: "G" }, { text: "거리를 두고 지켜봄", code: "P" }] },
+            { id: 29, axis: "사회성(Social)", question: "집사와의 놀이 시간은?", options: [{ text: "최대한 길게 원함", code: "L" }, { text: "혼자 노는 게 더 좋음", code: "S" }, { text: "적당히 함께 놀아줌", code: "G" }, { text: "내가 원할 때만", code: "P" }] },
+            { id: 30, axis: "사회성(Social)", question: "밥 시간에 다른 고양이가 있다면?", options: [{ text: "함께 나란히 먹음", code: "L" }, { text: "차례 안 기다리고 내 것만 챙김", code: "S" }, { text: "양보하거나 순서 지킴", code: "G" }, { text: "먼저 먹거나 나중에 따로 먹음", code: "P" }] },
+            { id: 31, axis: "사회성(Social)", question: "집사의 무릎은?", options: [{ text: "최고의 자리! 자주 올라감", code: "L" }, { text: "별로 관심 없음", code: "S" }, { text: "가끔 올라가 시간 보냄", code: "G" }, { text: "내가 허락할 때만 올라감", code: "P" }] },
+            { id: 32, axis: "사회성(Social)", question: "집사가 전화 통화 중일 때?", options: [{ text: "관심받고 싶어 방해", code: "L" }, { text: "신경 안 씀", code: "S" }, { text: "조용히 기다림", code: "G" }, { text: "방해되면 다른 곳으로 이동", code: "P" }] },
+            { id: 33, axis: "사회성(Social)", question: "여러 고양이가 모여 있을 때?", options: [{ text: "중심에서 분위기 주도", code: "L" }, { text: "멀리 떨어져 혼자 있음", code: "S" }, { text: "조화롭게 어울림", code: "G" }, { text: "거리 두고 관찰", code: "P" }] },
+            { id: 34, axis: "사회성(Social)", question: "집사가 부르면?", options: [{ text: "바로 달려옴", code: "L" }, { text: "대부분 무시", code: "S" }, { text: "천천히 다가옴", code: "G" }, { text: "기분 내키면 옴", code: "P" }] },
+            { id: 35, axis: "사회성(Social)", question: "새로운 고양이가 집에 왔을 때?", options: [{ text: "금방 친해지려 노력", code: "L" }, { text: "철저히 무시하고 거리 유지", code: "S" }, { text: "적응할 시간을 주며 배려", code: "G" }, { text: "서열 확인 후 경계 유지", code: "P" }] },
+            { id: 36, axis: "사회성(Social)", question: "집사가 밥을 주는 방식은?", options: [{ text: "손으로 직접 먹여줘야 좋음", code: "L" }, { text: "알아서 챙겨 먹음", code: "S" }, { text: "함께 있어주면 좋음", code: "G" }, { text: "혼자 조용히 먹는 게 좋음", code: "P" }] },
+            { id: 37, axis: "사회성(Social)", question: "다른 고양이가 아플 때?", options: [{ text: "걱정하며 다가감", code: "L" }, { text: "관심 없음", code: "S" }, { text: "조용히 지켜보며 배려", code: "G" }, { text: "거리 두고 관찰만", code: "P" }] },
+            { id: 38, axis: "사회성(Social)", question: "집사가 다른 반려동물과 놀 때?", options: [{ text: "질투하며 끼어듦", code: "L" }, { text: "관심 없음", code: "S" }, { text: "함께 어울리려 함", code: "G" }, { text: "무시하고 자기 할 일 함", code: "P" }] },
+            { id: 39, axis: "사회성(Social)", question: "집사의 침대는?", options: [{ text: "같이 자는 게 최고!", code: "L" }, { text: "내 잠자리가 따로 있음", code: "S" }, { text: "가끔 같이 자기도 함", code: "G" }, { text: "내가 원할 때만 올라감", code: "P" }] },
+            { id: 40, axis: "사회성(Social)", question: "집에 여러 사람이 모였을 때?", options: [{ text: "모두에게 인사하러 다님", code: "L" }, { text: "숨어버림", code: "S" }, { text: "조용히 구석에서 지켜봄", code: "G" }, { text: "선택적으로 특정인에게만 접근", code: "P" }] },
+            { id: 41, axis: "사고(Cognitive)", question: "새로운 장난감을 받으면?", options: [{ text: "작동 원리를 파악하려 관찰", code: "T" }, { text: "감정적으로 반응하며 즐김", code: "F" }, { text: "창의적으로 새로운 놀이 개발", code: "A" }, { text: "실용성을 판단 후 사용 여부 결정", code: "R" }] },
+            { id: 42, axis: "사고(Cognitive)", question: "문제 상황(문이 닫힘 등)에서?", options: [{ text: "논리적으로 해결 방법 모색", code: "T" }, { text: "감정적으로 반응(울음 등)", code: "F" }, { text: "독창적인 방법 시도", code: "A" }, { text: "과거 경험 활용해 해결", code: "R" }] },
+            { id: 43, axis: "사고(Cognitive)", question: "간식 숨기기 놀이를 할 때?", options: [{ text: "체계적으로 위치 추론", code: "T" }, { text: "집사의 반응 보며 찾음", code: "F" }, { text: "예상 못한 곳 먼저 확인", code: "A" }, { text: "익숙한 장소부터 확인", code: "R" }] },
+            { id: 44, axis: "사고(Cognitive)", question: "물이 담긴 그릇을 볼 때?", options: [{ text: "깊이와 양을 확인 후 마심", code: "T" }, { text: "목마르면 바로 마심", code: "F" }, { text: "발로 건드려보며 장난침", code: "A" }, { text: "항상 마시던 방식으로 마심", code: "R" }] },
+            { id: 45, axis: "사고(Cognitive)", question: "집사의 행동 패턴을?", options: [{ text: "정확히 파악하고 예측", code: "T" }, { text: "감정 상태로 이해", code: "F" }, { text: "나만의 해석으로 받아들임", code: "A" }, { text: "경험으로 익숙하게 파악", code: "R" }] },
+            { id: 46, axis: "사고(Cognitive)", question: "놀이할 때 관심사는?", options: [{ text: "규칙성이나 패턴 찾기", code: "T" }, { text: "집사와의 교감", code: "F" }, { text: "새로운 방식 시도", code: "A" }, { text: "익숙한 놀이 반복", code: "R" }] },
+            { id: 47, axis: "사고(Cognitive)", question: "먹이를 발견했을 때?", options: [{ text: "안전 여부 분석 후 접근", code: "T" }, { text: "바로 반응해서 먹음", code: "F" }, { text: "독특한 방식으로 먹기 시도", code: "A" }, { text: "검증된 먹이만 선택", code: "R" }] },
+            { id: 48, axis: "사고(Cognitive)", question: "집사가 화났을 때?", options: [{ text: "원인을 분석하려 관찰", code: "T" }, { text: "감정을 읽고 공감", code: "F" }, { text: "독특한 방식으로 위로 시도", code: "A" }, { text: "조용히 거리 둠", code: "R" }] },
+            { id: 49, axis: "사고(Cognitive)", question: "꼬리를 밟혔을 때 반응은?", options: [{ text: "누가 밟았는지 파악 후 회피", code: "T" }, { text: "울거나 바로 도망감", code: "F" }, { text: "예상치 못한 반응을 보임", code: "A" }, { text: "다시는 그 자리에 안 감", code: "R" }] },
+            { id: 50, axis: "사고(Cognitive)", question: "다른 고양이와 갈등 시?", options: [{ text: "상황을 분석하고 대응", code: "T" }, { text: "감정적으로 반응", code: "F" }, { text: "예상치 못한 방법 사용", code: "A" }, { text: "경험상 효과적인 방법 사용", code: "R" }] },
+            { id: 51, axis: "사고(Cognitive)", question: "장난감이 보이지 않는 곳에 떨어졌을 때?", options: [{ text: "떨어진 궤적 계산해 찾음", code: "T" }, { text: "포기하고 다른 놀이 찾음", code: "F" }, { text: "새로운 방법으로 찾기 시도", code: "A" }, { text: "비슷한 경험 떠올려 찾음", code: "R" }] },
+            { id: 52, axis: "사고(Cognitive)", question: "밥을 주는 시간이 지났을 때?", options: [{ text: "시간 개념으로 요구", code: "T" }, { text: "울어서 감정 표현", code: "F" }, { text: "독특한 방식으로 알림", code: "A" }, { text: "밥그릇으로 가서 대기", code: "R" }] },
+            { id: 53, axis: "사고(Cognitive)", question: "높은 곳에 올라갈 때?", options: [{ text: "경로를 계산하고 시도", code: "T" }, { text: "도전 의욕으로 바로 시도", code: "F" }, { text: "독특한 루트 개척", code: "A" }, { text: "안전한 경로만 선택", code: "R" }] },
+            { id: 54, axis: "사고(Cognitive)", question: "반복되는 일상에서?", options: [{ text: "패턴을 파악하고 최적화", code: "T" }, { text: "감정 변화에 따라 반응", code: "F" }, { text: "변화를 주려 노력", code: "A" }, { text: "익숙함을 즐김", code: "R" }] },
+            { id: 55, axis: "사고(Cognitive)", question: "집사가 새 가구를 조립할 때?", options: [{ text: "과정을 관찰하며 분석", code: "T" }, { text: "집사와 함께 있는 것에 집중", code: "F" }, { text: "부품을 가지고 새로운 놀이 개발", code: "A" }, { text: "방해 안 되게 떨어져 있음", code: "R" }] },
+            { id: 56, axis: "사고(Cognitive)", question: "다른 고양이의 행동을 볼 때?", options: [{ text: "행동 패턴 분석", code: "T" }, { text: "감정 상태 파악", code: "F" }, { text: "독특한 행동에 관심", code: "A" }, { text: "위협 여부만 확인", code: "R" }] },
+            { id: 57, axis: "사고(Cognitive)", question: "움직이는 장난감을 볼 때?", options: [{ text: "움직임의 규칙 파악", code: "T" }, { text: "본능적으로 쫓음", code: "F" }, { text: "예상 못한 방식으로 잡으려 함", code: "A" }, { text: "효율적인 방법으로 사냥", code: "R" }] },
+            { id: 58, axis: "사고(Cognitive)", question: "문이 열리는 소리를 들을 때?", options: [{ text: "누가 들어오는지 추론", code: "T" }, { text: "기대감으로 달려감", code: "F" }, { text: "숨어서 반응 관찰", code: "A" }, { text: "평소대로 반응", code: "R" }] },
+            { id: 59, axis: "사고(Cognitive)", question: "집사가 외출 준비를 할 때?", options: [{ text: "패턴으로 외출 시간 예측", code: "T" }, { text: "슬퍼하거나 불안해함", code: "F" }, { text: "방해하려 독특한 행동", code: "A" }, { text: "익숙하게 받아들임", code: "R" }] },
+            { id: 60, axis: "사고(Cognitive)", question: "창문 밖 새를 볼 때?", options: [{ text: "새의 움직임 분석", code: "T" }, { text: "흥분하며 소리 냄", code: "F" }, { text: "상상 속 사냥 시뮬레이션", code: "A" }, { text: "실제 잡을 수 있는지 판단", code: "R" }] }
         ];
 
         const TYPES_DATA = {
-                "CGA": {
-                    "code": "CGA",
-                    "name": "햇살수집냥 (Sun Collector)"
-                }, "CGF": {
-                    "code": "CGF",
-                    "name": "따뜻한 그루머냥 (Gentle Groomer)"
-                }, "CGR": {
-                    "code": "CGR", "name": "평화의 중재냥 (MediPaw)"
-
-                }, "CGT": {
-                    "code": "CGT", "name": "정찰대장냥 (Quiet Scout)"
-
-                }, "CLA": {
-                    "code": "CLA", "name": "책상위 철학냥 (Thinktail)"
-
-                }, "CLF": {
-                    "code": "CLF", "name": "포근담요냥 (Comfort Paw)"
-
-                }, "CLR": {
-                    "code": "CLR", "name": "묘한조언냥 (Whisker Whisperer)"
-
-                }, "CLT": {
-                    "code": "CLT", "name": "기록냥 (Logcat)"
-
-                }, "CPA": {
-                    "code": "CPA", "name": "소심탐정냥 (Timid Sleuth)"
-
-                }, "CPF": {
-                    "code": "CPF", "name": "마음방패냥 (Heart Shield)"
-
-                }, "CPR": { "code": "CPR", "name": "의젓한 집사냥 (Tiny Guardian)" }, "CPT": { "code": "CPT", "name": "루틴장인냥 (Pattern Paw)" }, "CSA": { "code": "CSA", "name": "달빛감시냥 (Moon Watcher)" }, "CSF": { "code": "CSF", "name": "위로방울냥 (Tear Healer)" }, "CSR": { "code": "CSR", "name": "묘한중력냥 (Gravity Cat)" }, "CST": { "code": "CST", "name": "수호냥 (Silent Keeper)" }, "EGA": { "code": "EGA", "name": "길위의 시인냥 (Nomadic Muse)" }, "EGF": { "code": "EGF", "name": "햇살광대냥 (Sunny Fool)" }, "EGR": { "code": "EGR", "name": "하늘지도냥 (Sky Mapper)" }, "EGT": { "code": "EGT", "name": "항로개척냥 (Pathfinder Cat)" }, "ELA": { "code": "ELA", "name": "꿈결그림냥 (Dream Painter)" }, "ELF": { "code": "ELF", "name": "노래하는 고양이 (Melodytail)" }, "ELR": { "code": "ELR", "name": "바람친구냥 (Windmate)" }, "ELT": { "code": "ELT", "name": "탐험대장냥 (Expedition Leader)" }, "EPA": { "code": "EPA", "name": "계획도전냥 (Tactical Pouncer)" }, "EPF": { "code": "EPF", "name": "무드메이커냥 (Cheer Paw)" }, "EPR": { "code": "EPR", "name": "왕자냥 (Royal Paw)" }, "EPT": { "code": "EPT", "name": "계산냥 (Mind Strider)" }, "ESA": { "code": "ESA", "name": "별빛연구냥 (Star Coder)" }, "ESF": { "code": "ESF", "name": "예술냥 (Muse Cat)" }, "ESR": { "code": "ESR", "name": "협상가냥 (Diplomeow)" }, "EST": { "code": "EST", "name": "사령관냥 (Commander Cat)" }, "HGA": { "code": "HGA", "name": "화염냥 (Blaze Cat)" }, "HGF": { "code": "HGF", "name": "불꽃마음냥 (Burning Heart)" }, "HGR": { "code": "HGR", "name": "폭풍냥 (Storm Chaser)" }, "HGT": { "code": "HGT", "name": "사냥지략냥 (Hunt Strategist)" }, "HLA": { "code": "HLA", "name": "따뜻한전사냥 (Warm Warrior)" }, "HLF": { "code": "HLF", "name": "뜨거운심장냥 (Flame Core)" }, "HLR": { "code": "HLR", "name": "액션냥 (Action Cat)" }, "HLT": { "code": "HLT", "name": "집중냥 (Focus Hunter)" }, "HPA": { "code": "HPA", "name": "도전냥 (Brave Paw)" }, "HPF": { "code": "HPF", "name": "불멸냥 (Flare Spirit)" }, "HPR": { "code": "HPR", "name": "대담냥 (Bold Fang)" }, "HPT": { "code": "HPT", "name": "전술헌터냥 (Tactical Hunter)" }, "HSA": { "code": "HSA", "name": "직감냥 (Sixth Tail)" }, "HSF": { "code": "HSF", "name": "감정폭풍냥 (Ember Soul)" }, "HSR": { "code": "HSR", "name": "본능지휘냥 (Instinct Leader)" }, "HST": { "code": "HST", "name": "헌터마스터냥 (Prime Hunter)" }, "WGA": { "code": "WGA", "name": "바람그림냥 (Wind Painter)" }, "WGF": { "code": "WGF", "name": "치유냥 (Healer Cat)" }, "WGR": { "code": "WGR", "name": "방랑시인냥 (Nomad Poet)" }, "WGT": { "code": "WGT", "name": "묘행자냥 (Curious Drifter)" }, "WLA": { "code": "WLA", "name": "석양몽상냥 (Dusk Dreamer)" }, "WLF": { "code": "WLF", "name": "포근연인냥 (Soft Lover)" }, "WLR": { "code": "WLR", "name": "자유영혼냥 (Free Soul)" }, "WLT": { "code": "WLT", "name": "감각항해냥 (Sensory Voyager)" }, "WPA": { "code": "WPA", "name": "꿈추적냥 (Dream Chaser)" }, "WPF": { "code": "WPF", "name": "별빛안내냥 (Starlight Guide)" }, "WPR": { "code": "WPR", "name": "즉흥예술냥 (Improv Muse)" }, "WPT": { "code": "WPT", "name": "방랑철학냥 (Nomadic Thinker)" }, "WSA": { "code": "WSA", "name": "고요몽상냥 (Quiet Dreamer)" }, "WSF": { "code": "WSF", "name": "감정화가냥 (Mood Painter)" }, "WSR": { "code": "WSR", "name": "하늘관찰냥 (Sky Watcher)" }, "WST": { "code": "WST", "name": "은둔현자냥 (Hermit Cat)" }
-            };
+            "CGA": { "code": "CGA", "name": "햇살수집냥 (Sun Collector)" }, "CGF": { "code": "CGF", "name": "따뜻한 그루머냥 (Gentle Groomer)" }, "CGR": { "code": "CGR", "name": "평화의 중재냥 (MediPaw)" }, "CGT": { "code": "CGT", "name": "정찰대장냥 (Quiet Scout)" }, "CLA": { "code": "CLA", "name": "책상위 철학냥 (Thinktail)" }, "CLF": { "code": "CLF", "name": "포근담요냥 (Comfort Paw)" }, "CLR": { "code": "CLR", "name": "묘한조언냥 (Whisker Whisperer)" }, "CLT": { "code": "CLT", "name": "기록냥 (Logcat)" }, "CPA": { "code": "CPA", "name": "소심탐정냥 (Timid Sleuth)" }, "CPF": { "code": "CPF", "name": "마음방패냥 (Heart Shield)" }, "CPR": { "code": "CPR", "name": "의젓한 집사냥 (Tiny Guardian)" }, "CPT": { "code": "CPT", "name": "루틴장인냥 (Pattern Paw)" }, "CSA": { "code": "CSA", "name": "달빛감시냥 (Moon Watcher)" }, "CSF": { "code": "CSF", "name": "위로방울냥 (Tear Healer)" }, "CSR": { "code": "CSR", "name": "묘한중력냥 (Gravity Cat)" }, "CST": { "code": "CST", "name": "수호냥 (Silent Keeper)" }, "EGA": { "code": "EGA", "name": "길위의 시인냥 (Nomadic Muse)" }, "EGF": { "code": "EGF", "name": "햇살광대냥 (Sunny Fool)" }, "EGR": { "code": "EGR", "name": "하늘지도냥 (Sky Mapper)" }, "EGT": { "code": "EGT", "name": "항로개척냥 (Pathfinder Cat)" }, "ELA": { "code": "ELA", "name": "꿈결그림냥 (Dream Painter)" }, "ELF": { "code": "ELF", "name": "노래하는 고양이 (Melodytail)" }, "ELR": { "code": "ELR", "name": "바람친구냥 (Windmate)" }, "ELT": { "code": "ELT", "name": "탐험대장냥 (Expedition Leader)" }, "EPA": { "code": "EPA", "name": "계획도전냥 (Tactical Pouncer)" }, "EPF": { "code": "EPF", "name": "무드메이커냥 (Cheer Paw)" }, "EPR": { "code": "EPR", "name": "왕자냥 (Royal Paw)" }, "EPT": { "code": "EPT", "name": "계산냥 (Mind Strider)" }, "ESA": { "code": "ESA", "name": "별빛연구냥 (Star Coder)" }, "ESF": { "code": "ESF", "name": "예술냥 (Muse Cat)" }, "ESR": { "code": "ESR", "name": "협상가냥 (Diplomeow)" }, "EST": { "code": "EST", "name": "사령관냥 (Commander Cat)" }, "HGA": { "code": "HGA", "name": "화염냥 (Blaze Cat)" }, "HGF": { "code": "HGF", "name": "불꽃마음냥 (Burning Heart)" }, "HGR": { "code": "HGR", "name": "폭풍냥 (Storm Chaser)" }, "HGT": { "code": "HGT", "name": "사냥지략냥 (Hunt Strategist)" }, "HLA": { "code": "HLA", "name": "따뜻한전사냥 (Warm Warrior)" }, "HLF": { "code": "HLF", "name": "뜨거운심장냥 (Flame Core)" }, "HLR": { "code": "HLR", "name": "액션냥 (Action Cat)" }, "HLT": { "code": "HLT", "name": "집중냥 (Focus Hunter)" }, "HPA": { "code": "HPA", "name": "도전냥 (Brave Paw)" }, "HPF": { "code": "HPF", "name": "불멸냥 (Flare Spirit)" }, "HPR": { "code": "HPR", "name": "대담냥 (Bold Fang)" }, "HPT": { "code": "HPT", "name": "전술헌터냥 (Tactical Hunter)" }, "HSA": { "code": "HSA", "name": "직감냥 (Sixth Tail)" }, "HSF": { "code": "HSF", "name": "감정폭풍냥 (Ember Soul)" }, "HSR": { "code": "HSR", "name": "본능지휘냥 (Instinct Leader)" }, "HST": { "code": "HST", "name": "헌터마스터냥 (Prime Hunter)" }, "WGA": { "code": "WGA", "name": "바람그림냥 (Wind Painter)" }, "WGF": { "code": "WGF", "name": "치유냥 (Healer Cat)" }, "WGR": { "code": "WGR", "name": "방랑시인냥 (Nomad Poet)" }, "WGT": { "code": "WGT", "name": "묘행자냥 (Curious Drifter)" }, "WLA": { "code": "WLA", "name": "석양몽상냥 (Dusk Dreamer)" }, "WLF": { "code": "WLF", "name": "포근연인냥 (Soft Lover)" }, "WLR": { "code": "WLR", "name": "자유영혼냥 (Free Soul)" }, "WLT": { "code": "WLT", "name": "감각항해냥 (Sensory Voyager)" }, "WPA": { "code": "WPA", "name": "꿈추적냥 (Dream Chaser)" }, "WPF": { "code": "WPF", "name": "별빛안내냥 (Starlight Guide)" }, "WPR": { "code": "WPR", "name": "즉흥예술냥 (Improv Muse)" }, "WPT": { "code": "WPT", "name": "방랑철학냥 (Nomadic Thinker)" }, "WSA": { "code": "WSA", "name": "고요몽상냥 (Quiet Dreamer)" }, "WSF": { "code": "WSF", "name": "감정화가냥 (Mood Painter)" }, "WSR": { "code": "WSR", "name": "하늘관찰냥 (Sky Watcher)" }, "WST": { "code": "WST", "name": "은둔현자냥 (Hermit Cat)" }
+        };
 
         function CatsonalityTest() {
             const [screen, setScreen] = useState('title');
@@ -463,7 +153,7 @@
 
             const calculateResult = (finalAnswers) => {
                 const codes = { E: 0, W: 0, C: 0, H: 0, L: 0, S: 0, G: 0, P: 0, T: 0, F: 0, A: 0, R: 0 };
-                
+
                 Object.values(finalAnswers).forEach(code => {
                     if (codes.hasOwnProperty(code)) {
                         codes[code]++;
@@ -485,8 +175,13 @@
 
             const handleShare = () => {
                 const shareUrl = window.location.href.split('?')[0] + '?result=' + result.code;
-                const text = `나는 ${result.name}!\n\nCatsonality 64 고양이 성격유형 검사`;
-                
+
+                // 타입 대표 문장 추출 (첫 번째 섹션의 내용)
+                const detailSections = parseDetailInfo(result.detailInfo);
+                const representativeSentence = detailSections.length > 0 ? detailSections[0].content.split('\n')[0] : '';
+
+                const text = `우리 냥이는 ${result.code} ${result.name}!\n"${representativeSentence}"\n\n당신의 냥이는 어떤 냥이인가요?\n\nCI64 고양이 성격유형 검사\n${shareUrl}`;
+
                 if (navigator.share) {
                     navigator.share({
                         title: 'Catsonality 64 결과',
@@ -498,7 +193,7 @@
                     });
                 } else {
                     // Web Share API를 지원하지 않는 경우 링크 복사로 대체
-                    navigator.clipboard.writeText(`${text}\n${shareUrl}`);
+                    navigator.clipboard.writeText(text);
                     alert('이 브라우저는 공유 기능을 지원하지 않아 링크가 복사되었습니다!');
                 }
             };
@@ -507,6 +202,74 @@
                 const shareUrl = window.location.href.split('?')[0] + '?result=' + result.code;
                 navigator.clipboard.writeText(shareUrl);
                 alert('링크가 복사되었습니다!');
+            };
+
+            const handleSaveImage = async () => {
+                const card = document.getElementById("result-screen");
+                if (!card) {
+                    alert('결과 화면을 찾을 수 없습니다.');
+                    return;
+                }
+
+                // 버튼 저장 및 숨기기
+                const buttons = card.querySelectorAll('.share-buttons, button');
+                const originalDisplay = [];
+                buttons.forEach((btn, index) => {
+                    originalDisplay[index] = btn.style.display;
+                    btn.style.display = 'none';
+                });
+
+                // 폰트 로딩 대기
+                if (document.fonts?.ready) {
+                    try { 
+                        await document.fonts.ready; 
+                    } catch (e) {
+                        console.log('Font loading check failed:', e);
+                    }
+                }
+
+                // 렌더링 대기
+                await new Promise(resolve => setTimeout(resolve, 300));
+
+                try {
+                    // dom-to-image를 사용하여 고품질 이미지 생성
+                    const dataUrl = await domtoimage.toPng(card, {
+                        quality: 1.0,
+                        width: card.offsetWidth * 2,
+                        height: card.offsetHeight * 2,
+                        style: {
+                            transform: 'scale(2)',
+                            transformOrigin: 'top left',
+                            width: card.offsetWidth + 'px',
+                            height: card.offsetHeight + 'px'
+                        },
+                        filter: (node) => {
+                            // 버튼과 공유 영역 제외
+                            if (node.classList) {
+                                return !node.classList.contains('share-buttons') && 
+                                       node.tagName !== 'BUTTON';
+                            }
+                            return true;
+                        }
+                    });
+
+                    // 다운로드
+                    const link = document.createElement('a');
+                    link.download = `catsonality_${result.code}_${Date.now()}.png`;
+                    link.href = dataUrl;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                } catch (error) {
+                    console.error('이미지 저장 실패:', error);
+                    alert('이미지 저장에 실패했습니다. 다시 시도해주세요.\n\n오류: ' + error.message);
+                } finally {
+                    // 버튼 복원
+                    buttons.forEach((btn, index) => {
+                        btn.style.display = originalDisplay[index];
+                    });
+                }
             };
 
             const handleRestart = () => {
@@ -528,19 +291,19 @@
             // 상세 정보를 섹션별로 파싱
             const parseDetailInfo = (detailInfo) => {
                 if (!detailInfo) return [];
-                
+
                 const sections = detailInfo.split(/【|】/).filter(s => s.trim());
                 const result = [];
-                
+
                 for (let i = 0; i < sections.length; i += 2) {
                     if (sections[i] && sections[i + 1]) {
                         result.push({
-                            title: sections[i+1].trim(),
+                            title: sections[i + 1].trim(),
                             content: sections[i].trim()
                         });
                     }
                 }
-                
+
                 return result;
             };
 
@@ -550,8 +313,8 @@
                         <div className="card title-screen">
                             <h1 className="title">🐱 Catsonality 64</h1>
                             <p className="subtitle">
-                                고양이 성격유형 검사<br/>
-                                60개의 질문으로 알아보는<br/>
+                                고양이 성격유형 검사<br />
+                                60개의 질문으로 알아보는<br />
                                 우리 고양이의 진짜 성격!
                             </p>
                             <div className="cat-emoji">😺</div>
@@ -584,9 +347,9 @@
                                     <div className="progress-fill" style={{ width: `${progress}%` }}></div>
                                 </div>
                             </div>
-                            
+
                             <h2 className="question-text">{question.question}</h2>
-                            
+
                             <div className="options">
                                 {question.options.map((option, index) => (
                                     <div
@@ -605,11 +368,28 @@
 
             if (screen === 'result') {
                 const detailSections = parseDetailInfo(result.detailInfo);
-                
+
+                // 타입 이미지 경로 생성 (특수 케이스 처리)
+                let imageFileName;
+                if (IMAGE_MAPPING[result.code]) {
+                    imageFileName = IMAGE_MAPPING[result.code];
+                } else {
+                    imageFileName = `${result.code}_${result.name.replace(/\s+/g, ' ')}.png`;
+                }
+                const imagePath = `./images/${imageFileName}`;
+
                 return (
                     <div className="container">
-                        <div className="card result-screen">
-                            <div className="cat-emoji">🎉</div>
+                        <div className="card result-screen" id="result-screen">
+                            <img
+                                src={imagePath}
+                                alt={result.name}
+                                className="result-image"
+                                onError={(e) => {
+                                    console.error('이미지 로드 실패:', imagePath);
+                                    e.target.style.display = 'none';
+                                }}
+                            />
                             <div className="result-code">{result.code}</div>
                             <h1 className="result-name">
                                 {result.name.split('(')[0].trim()}
@@ -617,7 +397,7 @@
                                     <span className="result-name-eng">({result.name.split('(')[1]}</span>
                                 )}
                             </h1>
-                            
+
                             <div className="result-details">
                                 {detailSections.map((section, index) => (
                                     <div className="detail-section" key={index}>
@@ -639,7 +419,11 @@
                                     <span className="icon">📋</span> 링크 복사
                                 </button>
                             </div>
-                            
+
+                            <button className="button button-secondary" onClick={handleSaveImage} style={{ marginBottom: '10px' }}>
+                                <span className="icon">📷</span> 이미지로 저장
+                            </button>
+
                             <button className="button button-secondary" onClick={handleRestart}>
                                 처음으로
                             </button>
@@ -653,4 +437,5 @@
         root.render(<CatsonalityTest />);
     </script>
 </body>
+
 </html>
