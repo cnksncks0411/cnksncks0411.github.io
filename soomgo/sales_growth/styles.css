@@ -1037,3 +1037,115 @@ select:focus {
         word-break: keep-all;
     }
 }
+
+/* Hero SVG Graphic Layout */
+.hero-graphic {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 6s ease-in-out infinite;
+    /* �յ� ���ִ� ȿ�� */
+}
+
+.growth-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(16, 185, 129, 0.1));
+}
+
+
+/* New Hero Layout (Background Image Center Layout) */
+.hero {
+    background-image: url('images/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.82);
+    z-index: 1;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 960px;
+    /* 컨테이너 폭 확대 (800 -> 960) */
+    /* ؽƮ ʹ  ʰ ߾  */
+    grid-template-columns: none !important;
+    /*  ׸  */
+    padding-top: 0 !important;
+}
+
+.hero-content {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hero-title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 58px;
+    /* 폰트 확대 (기존 대비 약 1.4배) */
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    /* 제목은 자간을 살짝 좁혀서 단단하게하거나, 요청대로 넓히려면 조절 */
+    line-height: 1.4;
+    /* 줄 간격 확대 */
+    margin-bottom: 30px;
+    /* 문단 사이 간격 확대 */
+}
+
+/* Accent text size adjustment if needed */
+.hero-title .accent-text {
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 24px;
+    /* 본문 폰트 확대 */
+    line-height: 1.8;
+    /* 줄 간격 넉넉하게 */
+    letter-spacing: 0.02em;
+    /* 자간 약간 확대 */
+    color: var(--text-main);
+    /* 가독성 위해 진한 색 */
+    max-width: 800px;
+    word-break: keep-all;
+    margin-bottom: 50px;
+    /* 버튼과의 간격 확대 */
+}
+
+.hero-actions.center-actions {
+    justify-content: center;
+    margin-top: 10px;
+    /* 위에서 margin-bottom을 줬으므로 여기는 줄임 */
+    gap: 20px;
+}
+
+.hero-actions .btn {
+    padding: 18px 40px;
+    /* 버튼도 덩달아 조금 더 크게 */
+    font-size: 19px;
+}
