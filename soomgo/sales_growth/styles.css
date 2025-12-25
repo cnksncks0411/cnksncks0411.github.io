@@ -1,23 +1,35 @@
 /* Bizupstone Design System - White & Green */
 :root {
-    --primary-color: #10B981;
-    /* Emerald Green */
-    --primary-dark: #059669;
-    --primary-light: #D1FAE5;
-    --accent-color: #34D399;
+    /* Brand Colors (Updated to #005634) */
+    --primary-color: #005634;
+    /* Main Brand Color */
+    --primary-light: #2E8B57;
+    /* Slightly lighter for hover */
+    --primary-dark: #003D24;
+    /* Darker shade for contrast */
+    --primary-dim: rgba(0, 86, 52, 0.1);
+    /* Low opacity used in backgrounds */
+    --primary-bg: #F2F8F5;
+    /* Very light green tint background */
 
-    --text-main: #111827;
+    --accent-color: #D4AF37;
+    /* Gold/Yellow accent that pairs well with dark green */
+    --accent-glow: rgba(212, 175, 55, 0.4);
+
+    /* Neutral Colors */
+    --text-main: #1F2937;
     --text-sub: #4B5563;
     --text-light: #9CA3AF;
 
     --bg-white: #FFFFFF;
     --bg-light: #F9FAFB;
     /* Very light gray for section separation */
-    --bg-dark: #064E3B;
-    /* Deep Green for Target/Footer */
+    --bg-dark: #003D24;
+    /* Deep Green for Target/Footer backgrounds */
 
     --font-main: 'Noto Sans KR', sans-serif;
 
+    /* Layout */
     --container-width: 1200px;
     --header-height: 80px;
 
@@ -766,6 +778,21 @@ select:focus {
     font-size: 14px;
 }
 
+.logo-img {
+    height: 40px;
+    /* Header logo height */
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-logo-img {
+    height: 32px;
+    /* Footer logo height (slightly smaller) */
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
 /* Modal */
 .modal {
     display: none;
@@ -949,6 +976,10 @@ select:focus {
         word-break: keep-all;
         padding: 0 20px;
     }
+
+    .footer-left p {
+        font-size: 12px;
+    }
 }
 
 /* Animations */
@@ -1035,6 +1066,18 @@ select:focus {
     .feature-box p {
         font-size: 15px;
         word-break: keep-all;
+    }
+
+    .footer-left p {
+        font-size: 9px;
+    }
+
+    .footer-light p {
+        font-size: 11px;
+    }
+
+    .footer-right .copyright {
+        font-size: 9px;
     }
 }
 
@@ -1149,3 +1192,102 @@ select:focus {
     /* 버튼도 덩달아 조금 더 크게 */
     font-size: 19px;
 }
+
+/* Mobile Optimization for Hero Typography */
+@media (max-width: 768px) {
+    .hero-container {
+        padding-top: 20px !important;
+        max-width: 90% !important;
+        /* ����Ͽ��� �¿� ���� Ȯ�� */
+    }
+
+    .hero-title {
+        font-size: 32px !important;
+        /* �����ϰ� ū ��Ʈ ��� */
+        line-height: 1.4 !important;
+        margin-bottom: 20px !important;
+        word-break: keep-all;
+        /* �ܾ� ���� �ٹٲ� */
+    }
+
+    .hero-desc {
+        font-size: 17px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 30px !important;
+        padding: 0 10px;
+        /* �¿� �е����� �ؽ�Ʈ�� ȭ�� ���� ���� �ʰ� */
+        word-break: keep-all;
+    }
+
+    .hero-actions.center-actions {
+        flex-direction: column;
+        /* ��ư ���� ��ġ */
+        gap: 12px;
+        width: 100%;
+        padding: 0 20px;
+        margin-top: 10px !important;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        /* ��ư �� ���� */
+        font-size: 16px !important;
+        padding: 16px !important;
+    }
+}
+
+/* Header Overflow Fix */
+.header {
+    height: auto !important;
+    min-height: 80px;
+    /* �ּ� ���� ���� */
+    padding: 15px 0 !important;
+    /* ���� ���� �˳��ϰ� */
+    overflow: visible !important;
+    /* ���� �߸� ���� */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    /* ���� Ȯ���ϰ� */
+    backdrop-filter: blur(10px);
+}
+
+.header-container {
+    height: auto !important;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+}
+
+/* �ΰ� �̹��� ũ�� ���� ���� (������ ����) */
+.logo-img {
+    height: 36px;
+    /* ����� ��� �ʹ� ũ�� �ʰ� ������ ���� (���� 40px -> 36px) */
+    width: auto;
+}
+/* Loading Spinner */
+.spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
