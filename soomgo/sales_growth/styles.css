@@ -1050,6 +1050,10 @@ select:focus {
         text-align: left;
     }
 
+    .target-footer p {
+        font-size: 11.9px !important;
+    }
+
     /* Why Us Card (Also applying to slightly larger mobile screens 480px) */
     .feature-box {
         flex-direction: column;
@@ -1404,6 +1408,10 @@ select:focus {
     .company-class p span {
         display: block;
         /* ����Ͽ��� ������ �ٹٲ� ���� ��� */
+    }
+
+    .target-footer p {
+        font-size: 15px;
     }
 }
 
