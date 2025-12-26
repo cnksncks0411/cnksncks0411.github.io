@@ -489,7 +489,6 @@ section {
 }
 
 .problem-icon {
-    display: block;
     font-weight: 900;
     color: var(--primary-color);
     margin-bottom: 8px;
@@ -511,13 +510,13 @@ section {
     /* 중앙 정렬로 변경하여 더 깔끔하게 */
     background: var(--primary-dark);
     color: white;
-    padding: 30px;
+    padding: 15px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(6, 78, 59, 0.15);
 }
 
 .about-quote p {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
     line-height: 1.5;
 }
@@ -1275,12 +1274,13 @@ select:focus {
     /* ����� ��� �ʹ� ũ�� �ʰ� ������ ���� (���� 40px -> 36px) */
     width: auto;
 }
+
 /* Loading Spinner */
 .spinner {
     display: inline-block;
     width: 16px;
     height: 16px;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     border-top-color: #fff;
     animation: spin 1s ease-in-out infinite;
@@ -1288,6 +1288,194 @@ select:focus {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
+
+/* PC Version Typography Scale Up */
+@media (min-width: 1024px) {
+
+    body {
+        font-size: 18px;
+    }
+
+    .section-desc {
+        font-size: 22px !important;
+        line-height: 1.6;
+        max-width: 760px;
+    }
+
+    /* ���� ���� */
+    .section-title {
+        font-size: 52px !important;
+    }
+
+    /* ����Ÿ��Ʋ */
+    .section-subtitle {
+        font-size: 16px !important;
+        letter-spacing: 3px;
+    }
+
+    /* ����/Ư¡ ī�� ���� */
+    .feature-box p,
+    .service-card p {
+        font-size: 17px !important;
+        line-height: 1.7;
+    }
+
+    /* Ÿ�� ����Ʈ �ڽ� */
+    .target-item {
+        font-size: 24px !important;
+        padding: 24px 30px !important;
+    }
+
+    .target-item p {
+        font-size: 24px !important;
+    }
+
+    /* Why Us �� ���� �ڽ� */
+    .feature-box h3,
+    .service-card h3 {
+        font-size: 24px !important;
+    }
+}
+
+/* Extra PC Typography Overrides for Service Cards */
+@media (min-width: 1024px) {
+    .step-number {
+        font-size: 56px !important;
+        /* ���� ũ�� */
+        margin-bottom: 24px !important;
+    }
+
+    .service-card h3 {
+        font-size: 28px !important;
+        /* ���� ũ�� */
+        margin-bottom: 20px !important;
+    }
+
+    .service-list li {
+        font-size: 19px !important;
+        /* ����Ʈ ���� ũ�� */
+        line-height: 1.8 !important;
+        margin-bottom: 10px;
+    }
+}
+
+
+/* Footer Detailed Info Styles */
+.company-class p {
+    margin-bottom: 4px;
+    /* �� ���� ���� */
+    color: var(--text-light);
+    /* �ణ �帮�� */
+    font-size: 13px;
+    /* ������ �ؽ�Ʈ�� �۰� */
+}
+
+.company-class strong {
+    color: var(--text-sub);
+    /* ȸ����� ���� �� ���ϰ� */
+    font-weight: 600;
+}
+
+.divider {
+    margin: 0 6px;
+    color: #E5E7EB;
+    /* ���м� ���� ���ϰ� */
+    display: inline-block;
+}
+
+/* ����� ���� */
+@media (max-width: 768px) {
+    .company-class p {
+        font-size: 11px;
+        line-height: 1.5;
+        word-break: keep-all;
+    }
+
+    .divider {
+        display: none;
+        /* ����Ͽ����� ���м� ����� �ٹٲ� ó���ǰ� �ϰų� ���� */
+    }
+
+    .company-class p span {
+        display: block;
+        /* ����Ͽ��� ������ �ٹٲ� ���� ��� */
+    }
+}
+
+/* Privacy Agreement Section */
+.privacy-section {
+    margin: 30px 0 20px;
+    text-align: left;
+}
+
+.privacy-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.privacy-desc {
+    font-size: 14px;
+    color: var(--text-sub);
+    margin-bottom: 15px;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+.privacy-content {
+    background: #F3F4F6;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    border: 1px solid #E5E7EB;
+}
+
+.privacy-content p {
+    margin-bottom: 4px;
+}
+
+.privacy-content strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.privacy-note {
+    margin-top: 10px;
+    color: var(--text-light);
+    font-size: 12px;
+}
+
+/* Checkbox Style */
+.privacy-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    padding: 5px 0;
+}
+
+.privacy-check input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+    /* �귣�� �÷� ���� */
+    cursor: pointer;
+}
+
+.privacy-check .required {
+    color: #EF4444;
+    /* �ʼ� ǥ�� ������ */
+    margin-left: 2px;
+}
