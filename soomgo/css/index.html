@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +36,7 @@
         .header h1 {
             font-size: 3rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header p {
@@ -48,7 +49,7 @@
             margin-bottom: 30px;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
@@ -86,10 +87,11 @@
             overflow-x: auto;
             position: relative;
             border: 2px solid #e2e8f0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             line-height: 1.6;
             font-size: 14px;
-            white-space: pre-wrap;  /* 이 속성이 핵심! */
+            white-space: pre-wrap;
+            /* 이 속성이 핵심! */
         }
 
         .code-block::before {
@@ -206,9 +208,17 @@
             justify-content: center;
         }
 
-        .flex-demo-item:nth-child(1) { background: #FF6B6B; }
-        .flex-demo-item:nth-child(2) { background: #4ECDC4; }
-        .flex-demo-item:nth-child(3) { background: #45B7D1; }
+        .flex-demo-item:nth-child(1) {
+            background: #FF6B6B;
+        }
+
+        .flex-demo-item:nth-child(2) {
+            background: #4ECDC4;
+        }
+
+        .flex-demo-item:nth-child(3) {
+            background: #45B7D1;
+        }
 
         /* 단위 데모 스타일 */
         .unit-demo {
@@ -226,11 +236,25 @@
             background: white;
         }
 
-        .unit-example.px { font-size: 16px; }
-        .unit-example.rem { font-size: 1.5rem; }
-        .unit-example.em { font-size: 1.2em; }
-        .unit-example.percent { width: 80%; }
-        .unit-example.vw { font-size: 3vw; }
+        .unit-example.px {
+            font-size: 16px;
+        }
+
+        .unit-example.rem {
+            font-size: 1.5rem;
+        }
+
+        .unit-example.em {
+            font-size: 1.2em;
+        }
+
+        .unit-example.percent {
+            width: 80%;
+        }
+
+        .unit-example.vw {
+            font-size: 3vw;
+        }
 
         /* 반응형 프로필 카드 데모 */
         .profile-demo {
@@ -239,7 +263,7 @@
             background: white;
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             display: flex;
             align-items: center;
             text-align: left;
@@ -314,7 +338,7 @@
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .comparison-table th,
@@ -360,6 +384,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -370,7 +395,7 @@
         <!-- 뷰포트 설명 섹션 -->
         <div class="section">
             <h2>1. 뷰포트(Viewport)란?</h2>
-            
+
             <h3>🔍 뷰포트의 정의</h3>
             <p><strong>뷰포트</strong>는 웹 브라우저에서 웹페이지가 표시되는 <strong>실제 화면 영역</strong>입니다.</p>
             <ul style="margin: 15px 0 15px 20px;">
@@ -409,65 +434,65 @@
         <!-- 기존 레이아웃 방법들 -->
         <div class="section">
             <h2>2. 기존 레이아웃 방법들의 한계</h2>
-            
+
             <h3>🏗️ Float 레이아웃 (구식 방법)</h3>
             <div class="code-block">
-/* 전통적인 float 레이아웃 */
-.container::after {
-    content: "";
-    display: table;
-    clear: both;
-}
+                /* 전통적인 float 레이아웃 */
+                .container::after {
+                content: "";
+                display: table;
+                clear: both;
+                }
 
-.sidebar {
-    float: left;
-    width: 25%;
-    background: #f0f0f0;
-    padding: 20px;
-    box-sizing: border-box;
-}
+                .sidebar {
+                float: left;
+                width: 25%;
+                background: #f0f0f0;
+                padding: 20px;
+                box-sizing: border-box;
+                }
 
-.main-content {
-    float: left;
-    width: 75%;
-    background: white;
-    padding: 20px;
-    box-sizing: border-box;
-}
+                .main-content {
+                float: left;
+                width: 75%;
+                background: white;
+                padding: 20px;
+                box-sizing: border-box;
+                }
 
-/* 문제점들 */
-/* 1. 높이 맞추기 어려움 */
-/* 2. 수직 가운데 정렬 불가능 */
-/* 3. clearfix 같은 해킹 필요 */
-/* 4. 반응형 구현 복잡함 */
+                /* 문제점들 */
+                /* 1. 높이 맞추기 어려움 */
+                /* 2. 수직 가운데 정렬 불가능 */
+                /* 3. clearfix 같은 해킹 필요 */
+                /* 4. 반응형 구현 복잡함 */
             </div>
 
             <h3>📍 Position 레이아웃</h3>
             <div class="code-block">
-/* position을 이용한 레이아웃 */
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: #333;
-    z-index: 1000;
-}
+                /* position을 이용한 레이아웃 */
+                .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 60px;
+                background: #333;
+                z-index: 1000;
+                }
 
-.sidebar {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 250px;
-    height: calc(100vh - 60px);
-    background: #f0f0f0;
-}
+                .sidebar {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 250px;
+                height: calc(100vh - 60px);
+                background: #f0f0f0;
+                }
 
-/* 문제점들 */
-/* 1. 절대 위치 지정으로 유연성 부족 */
-/* 2. 컨텐츠 양에 따른 동적 크기 조정 어려움 */
-/* 3. 반응형에서 복잡한 계산 필요 */
+                /* 문제점들 */
+                /* 1. 절대 위치 지정으로 유연성 부족 */
+                /* 2. 컨텐츠 양에 따른 동적 크기 조정 어려움 */
+                /* 3. 반응형에서 복잡한 계산 필요 */
             </div>
 
             <div class="important-note">
@@ -477,12 +502,19 @@
                 • 반응형 구현 시 많은 계산 필요<br>
                 • 코드 복잡성 증가
             </div>
+
+            <div class="link-grid">
+                <a href="float_position.html" class="link-card">
+                    <h4>📚 Float & Position 심화 학습</h4>
+                    <p>기초부터 상세한 설명까지 별도 페이지에서 확인하기</p>
+                </a>
+            </div>
         </div>
 
         <!-- Flexbox 섹션 -->
         <div class="section">
             <h2>3. Flexbox - 레이아웃의 혁신</h2>
-            
+
             <h3>📦 Flexbox가 해결하는 문제들</h3>
             <ul style="margin: 15px 0 15px 20px;">
                 <li>수직 가운데 정렬을 한 줄로 해결</li>
@@ -494,26 +526,26 @@
 
             <h3>🎯 Flex Container 속성</h3>
             <div class="code-block">
-.flex-container {
-    display: flex;              /* 또는 inline-flex */
-    
-    /* 주축 방향 설정 */
-    flex-direction: row;        /* 기본값: 왼쪽→오른쪽 */
-    /* flex-direction: column;          위→아래 */
-    
-    /* 줄바꿈 설정 */
-    flex-wrap: nowrap;          /* 기본값: 줄바꿈 안함 */
-    /* flex-wrap: wrap;                줄바꿈 허용 */
-    
-    /* 주축 정렬 */
-    justify-content: flex-start; /* 기본값 */
-    
-    /* 교차축 정렬 */
-    align-items: stretch;       /* 기본값 */
-    
-    /* 아이템 간격 */
-    gap: 20px;
-}
+                .flex-container {
+                display: flex; /* 또는 inline-flex */
+
+                /* 주축 방향 설정 */
+                flex-direction: row; /* 기본값: 왼쪽→오른쪽 */
+                /* flex-direction: column; 위→아래 */
+
+                /* 줄바꿈 설정 */
+                flex-wrap: nowrap; /* 기본값: 줄바꿈 안함 */
+                /* flex-wrap: wrap; 줄바꿈 허용 */
+
+                /* 주축 정렬 */
+                justify-content: flex-start; /* 기본값 */
+
+                /* 교차축 정렬 */
+                align-items: stretch; /* 기본값 */
+
+                /* 아이템 간격 */
+                gap: 20px;
+                }
             </div>
 
             <h3>🎯 justify-content 값별 결과</h3>
@@ -549,32 +581,32 @@
 
             <h3>🎯 Flex Item 속성</h3>
             <div class="code-block">
-.flex-item {
-    /* 성장 비율 (남은 공간 차지) */
-    flex-grow: 0;               /* 기본값: 성장 안함 */
-    /* flex-grow: 1;              동일 비율로 성장 */
-    /* flex-grow: 2;              2배로 성장 */
-    
-    /* 축소 비율 (공간 부족시) */
-    flex-shrink: 1;             /* 기본값: 축소 허용 */
-    /* flex-shrink: 0;            축소 금지 */
-    
-    /* 기본 크기 */
-    flex-basis: auto;           /* 기본값: 콘텐츠 크기 */
-    /* flex-basis: 200px;         고정 크기 */
-    
-    /* 단축 속성 */
-    flex: 0 1 auto;             /* grow shrink basis */
-    /* flex: 1;                   1 1 0과 동일 */
-    
-    /* 개별 교차축 정렬 */
-    align-self: auto;           /* 기본값: 컨테이너 따름 */
-    /* align-self: center;        가운데 정렬 */
-    
-    /* 시각적 순서 변경 */
-    order: 0;                   /* 기본값: HTML 순서 */
-    /* order: 1;                  뒤로 이동 */
-}
+                .flex-item {
+                /* 성장 비율 (남은 공간 차지) */
+                flex-grow: 0; /* 기본값: 성장 안함 */
+                /* flex-grow: 1; 동일 비율로 성장 */
+                /* flex-grow: 2; 2배로 성장 */
+
+                /* 축소 비율 (공간 부족시) */
+                flex-shrink: 1; /* 기본값: 축소 허용 */
+                /* flex-shrink: 0; 축소 금지 */
+
+                /* 기본 크기 */
+                flex-basis: auto; /* 기본값: 콘텐츠 크기 */
+                /* flex-basis: 200px; 고정 크기 */
+
+                /* 단축 속성 */
+                flex: 0 1 auto; /* grow shrink basis */
+                /* flex: 1; 1 1 0과 동일 */
+
+                /* 개별 교차축 정렬 */
+                align-self: auto; /* 기본값: 컨테이너 따름 */
+                /* align-self: center; 가운데 정렬 */
+
+                /* 시각적 순서 변경 */
+                order: 0; /* 기본값: HTML 순서 */
+                /* order: 1; 뒤로 이동 */
+                }
             </div>
 
             <div class="link-grid">
@@ -588,9 +620,9 @@
         <!-- 미디어 쿼리 섹션 -->
         <div class="section">
             <h2>4. 미디어 쿼리 - 반응형의 핵심</h2>
-            
+
             <h3>📱 Desktop First vs Mobile First</h3>
-            
+
             <table class="comparison-table">
                 <thead>
                     <tr>
@@ -630,46 +662,46 @@
 
             <h3>📱 Mobile First 예제</h3>
             <div class="code-block">
-/* 1. 모바일 스타일 먼저 작성 (기본) */
-.container {
-    width: 95%;
-    margin: 0 auto;
-    display: block;
-}
+                /* 1. 모바일 스타일 먼저 작성 (기본) */
+                .container {
+                width: 95%;
+                margin: 0 auto;
+                display: block;
+                }
 
-.sidebar,
-.main-content {
-    padding: 15px;
-    margin-bottom: 15px;
-}
+                .sidebar,
+                .main-content {
+                padding: 15px;
+                margin-bottom: 15px;
+                }
 
-/* 2. 큰 화면으로 올라가며 개선 */
-@media (min-width: 481px) {
-    .sidebar,
-    .main-content {
-        padding: 20px;
-    }
-}
+                /* 2. 큰 화면으로 올라가며 개선 */
+                @media (min-width: 481px) {
+                .sidebar,
+                .main-content {
+                padding: 20px;
+                }
+                }
 
-@media (min-width: 769px) {
-    .container {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        gap: 20px;
-    }
-    
-    .sidebar,
-    .main-content {
-        margin-bottom: 0;
-        padding: 30px;
-    }
-}
+                @media (min-width: 769px) {
+                .container {
+                display: grid;
+                grid-template-columns: 300px 1fr;
+                gap: 20px;
+                }
 
-@media (min-width: 1241px) {
-    .container {
-        width: 1200px;
-    }
-}
+                .sidebar,
+                .main-content {
+                margin-bottom: 0;
+                padding: 30px;
+                }
+                }
+
+                @media (min-width: 1241px) {
+                .container {
+                width: 1200px;
+                }
+                }
             </div>
 
             <div class="tip-box">
@@ -684,81 +716,81 @@
         <!-- 반응형 예제 섹션 -->
         <div class="section">
             <h2>5. 반응형 예제 - 프로필 카드</h2>
-            
+
             <h3>🎨 Mobile First 설계 과정</h3>
-            
+
             <h4>1단계: 모바일 기본 설계 (320px~)</h4>
             <div class="code-block">
-.profile-card {
-    width: 100%;
-    max-width: 400px;
-    margin: 20px auto;
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    text-align: center;
-}
+                .profile-card {
+                width: 100%;
+                max-width: 400px;
+                margin: 20px auto;
+                background: white;
+                border-radius: 12px;
+                padding: 20px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                text-align: center;
+                }
 
-.profile-image img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-}
+                .profile-image img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                object-fit: cover;
+                }
 
-.contact-btn {
-    width: 100%;
-    padding: 12px 24px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-}
+                .contact-btn {
+                width: 100%;
+                padding: 12px 24px;
+                background: #007bff;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                }
             </div>
 
             <h4>2단계: 태블릿 최적화 (481px~)</h4>
             <div class="code-block">
-@media (min-width: 481px) {
-    .profile-card {
-        max-width: 500px;
-        padding: 30px;
-    }
-    
-    .profile-image img {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .contact-btn {
-        width: auto;
-        min-width: 200px;
-    }
-}
+                @media (min-width: 481px) {
+                .profile-card {
+                max-width: 500px;
+                padding: 30px;
+                }
+
+                .profile-image img {
+                width: 120px;
+                height: 120px;
+                }
+
+                .contact-btn {
+                width: auto;
+                min-width: 200px;
+                }
+                }
             </div>
 
             <h4>3단계: 데스크탑 레이아웃 (769px~)</h4>
             <div class="code-block">
-@media (min-width: 769px) {
-    .profile-card {
-        max-width: 600px;
-        display: flex;
-        align-items: center;
-        text-align: left;
-        padding: 40px;
-    }
-    
-    .profile-image {
-        margin-bottom: 0;
-        margin-right: 30px;
-        flex-shrink: 0;
-    }
-    
-    .profile-image img {
-        width: 150px;
-        height: 150px;
-    }
-}
+                @media (min-width: 769px) {
+                .profile-card {
+                max-width: 600px;
+                display: flex;
+                align-items: center;
+                text-align: left;
+                padding: 40px;
+                }
+
+                .profile-image {
+                margin-bottom: 0;
+                margin-right: 30px;
+                flex-shrink: 0;
+                }
+
+                .profile-image img {
+                width: 150px;
+                height: 150px;
+                }
+                }
             </div>
 
             <h3>🎯 실제 동작 예제</h3>
@@ -782,9 +814,9 @@
         <!-- CSS 단위 섹션 -->
         <div class="section">
             <h2>6. CSS 상대 단위 완전 분석</h2>
-            
+
             <h3>📏 주요 단위들 비교</h3>
-            
+
             <div class="unit-demo">
                 <div class="unit-example px">
                     <strong>px (픽셀)</strong><br>
@@ -815,71 +847,71 @@
 
             <h3>🎯 rem vs em 차이점</h3>
             <div class="code-block">
-/* rem은 루트 요소(html)의 font-size 기준 */
-html {
-    font-size: 16px;
-}
+                /* rem은 루트 요소(html)의 font-size 기준 */
+                html {
+                font-size: 16px;
+                }
 
-.element1 {
-    font-size: 1.5rem;   /* 16px × 1.5 = 24px */
-    padding: 1rem;       /* 16px × 1 = 16px */
-}
+                .element1 {
+                font-size: 1.5rem; /* 16px × 1.5 = 24px */
+                padding: 1rem; /* 16px × 1 = 16px */
+                }
 
-.nested-element {
-    font-size: 1.5rem;   /* 여전히 16px × 1.5 = 24px (중첩 무관!) */
-}
+                .nested-element {
+                font-size: 1.5rem; /* 여전히 16px × 1.5 = 24px (중첩 무관!) */
+                }
 
-/* em은 현재 요소의 font-size 기준 */
-.parent {
-    font-size: 16px;
-}
+                /* em은 현재 요소의 font-size 기준 */
+                .parent {
+                font-size: 16px;
+                }
 
-.child {
-    font-size: 1.5em;    /* 16px × 1.5 = 24px */
-    padding: 1em;        /* 24px × 1 = 24px (자신의 font-size 기준!) */
-}
+                .child {
+                font-size: 1.5em; /* 16px × 1.5 = 24px */
+                padding: 1em; /* 24px × 1 = 24px (자신의 font-size 기준!) */
+                }
 
-/* em의 문제점: 중첩 시 복합 계산 */
-.level1 { font-size: 1.2em; }    /* 16px × 1.2 = 19.2px */
-.level2 { font-size: 1.2em; }    /* 19.2px × 1.2 = 23.04px */
-.level3 { font-size: 1.2em; }    /* 23.04px × 1.2 = 27.65px */
+                /* em의 문제점: 중첩 시 복합 계산 */
+                .level1 { font-size: 1.2em; } /* 16px × 1.2 = 19.2px */
+                .level2 { font-size: 1.2em; } /* 19.2px × 1.2 = 23.04px */
+                .level3 { font-size: 1.2em; } /* 23.04px × 1.2 = 27.65px */
             </div>
 
             <h3>🎯 뷰포트 단위 (vw, vh)</h3>
             <div class="code-block">
-/* 뷰포트 기준 단위 */
-.fullscreen {
-    width: 100vw;        /* 뷰포트 너비의 100% */
-    height: 100vh;       /* 뷰포트 높이의 100% */
-}
+                /* 뷰포트 기준 단위 */
+                .fullscreen {
+                width: 100vw; /* 뷰포트 너비의 100% */
+                height: 100vh; /* 뷰포트 높이의 100% */
+                }
 
-.responsive-text {
-    font-size: 4vw;      /* 뷰포트 너비의 4% */
-    /* 320px 화면: 12.8px, 1200px 화면: 48px */
-}
+                .responsive-text {
+                font-size: 4vw; /* 뷰포트 너비의 4% */
+                /* 320px 화면: 12.8px, 1200px 화면: 48px */
+                }
 
-/* 주의사항: 스크롤바 때문에 100vw > 100% 될 수 있음 */
-.safe-width {
-    width: 100%;         /* 스크롤바 고려한 안전한 방법 */
-    max-width: 100vw;
-}
+                /* 주의사항: 스크롤바 때문에 100vw > 100% 될 수 있음 */
+                .safe-width {
+                width: 100%; /* 스크롤바 고려한 안전한 방법 */
+                max-width: 100vw;
+                }
             </div>
 
             <h3>🎯 calc() 함수 활용</h3>
             <div class="code-block">
-/* 서로 다른 단위 조합 */
-.mixed-unit {
-    width: calc(100% - 40px);           /* 부모 너비에서 40px 뺀 크기 */
-    height: calc(100vh - 60px);         /* 뷰포트 높이에서 60px 뺀 크기 */
-    font-size: calc(1rem + 2vw);        /* 고정 크기 + 반응형 크기 */
-    margin: calc(50% - 200px) auto;     /* 정확한 가운데 정렬 */
-}
+                /* 서로 다른 단위 조합 */
+                .mixed-unit {
+                width: calc(100% - 40px); /* 부모 너비에서 40px 뺀 크기 */
+                height: calc(100vh - 60px); /* 뷰포트 높이에서 60px 뺀 크기 */
+                font-size: calc(1rem + 2vw); /* 고정 크기 + 반응형 크기 */
+                margin: calc(50% - 200px) auto; /* 정확한 가운데 정렬 */
+                }
 
-/* 반응형 폰트 크기 (최소/최대 제한) */
-.responsive-heading {
-    font-size: clamp(1.2rem, calc(1.5rem + 1.5vw), 3rem);
-    /* 최소 1.2rem, 최대 3rem, 기본은 계산값 */
-}
+                /* 반응형 폰트 크기 (최소/최대 제한) */
+                .responsive-heading {
+                font-size: clamp(1.2rem, calc(1.5rem + 1.5vw), 3rem);
+                /* 최소 1.2rem, 최대 3rem, 기본은 계산값 */
+                }
             </div>
 
             <h3>📊 단위별 사용 가이드라인</h3>
@@ -924,18 +956,18 @@ html {
         <!-- 실습 파일들 링크 섹션 -->
         <div class="section">
             <h2>7. 실습 파일들</h2>
-            
+
             <div class="link-grid">
                 <a href="flexBoxDemo.html" class="link-card" target="_blank">
                     <h4>🎮 Flexbox 데모</h4>
                     <p>실시간으로 속성을 변경하며 Flexbox 학습</p>
                 </a>
-                
+
                 <a href="noneViewPort.html" class="link-card" target="_blank">
                     <h4>❌ Viewport 없는 페이지</h4>
                     <p>모바일에서 문제가 되는 예제</p>
                 </a>
-                
+
                 <a href="useViewProt.html" class="link-card" target="_blank">
                     <h4>✅ Viewport 있는 페이지</h4>
                     <p>올바른 반응형 페이지 예제</p>
@@ -943,37 +975,38 @@ html {
             </div>
 
             <h3>📁 CSS 코드 파일들</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
                 <div style="background: #f8faff; padding: 15px; border-radius: 8px; border: 1px solid #667eea;">
                     <h4 style="margin: 0 0 10px 0; color: #667eea;">📄 useFlexContainer.css</h4>
                     <p style="margin: 0; font-size: 0.9rem; color: #666;">Flex Container 속성 모음</p>
                 </div>
-                
+
                 <div style="background: #f8faff; padding: 15px; border-radius: 8px; border: 1px solid #667eea;">
                     <h4 style="margin: 0 0 10px 0; color: #667eea;">📄 flexItemsDetail.css</h4>
                     <p style="margin: 0; font-size: 0.9rem; color: #666;">Flex Item 속성 상세 설명</p>
                 </div>
-                
+
                 <div style="background: #f8faff; padding: 15px; border-radius: 8px; border: 1px solid #667eea;">
                     <h4 style="margin: 0 0 10px 0; color: #667eea;">📄 useJustify-content.css</h4>
                     <p style="margin: 0; font-size: 0.9rem; color: #666;">justify-content 값별 결과</p>
                 </div>
-                
+
                 <div style="background: #f8faff; padding: 15px; border-radius: 8px; border: 1px solid #667eea;">
                     <h4 style="margin: 0 0 10px 0; color: #667eea;">📄 reactionExample.css</h4>
                     <p style="margin: 0; font-size: 0.9rem; color: #666;">반응형 프로필 카드 예제</p>
                 </div>
-                
+
                 <div style="background: #f8faff; padding: 15px; border-radius: 8px; border: 1px solid #667eea;">
                     <h4 style="margin: 0 0 10px 0; color: #667eea;">📄 size.css</h4>
                     <p style="margin: 0; font-size: 0.9rem; color: #666;">CSS 단위 완전 분석</p>
                 </div>
-                
+
                 <div style="background: #f8faff; padding: 15px; border-radius: 8px; border: 1px solid #667eea;">
                     <h4 style="margin: 0 0 10px 0; color: #667eea;">📄 useFloat.css</h4>
                     <p style="margin: 0; font-size: 0.9rem; color: #666;">기존 Float 레이아웃 방법</p>
                 </div>
-                
+
                 <div style="background: #f8faff; padding: 15px; border-radius: 8px; border: 1px solid #667eea;">
                     <h4 style="margin: 0 0 10px 0; color: #667eea;">📄 usePosition.css</h4>
                     <p style="margin: 0; font-size: 0.9rem; color: #666;">Position 레이아웃 방법</p>
@@ -984,19 +1017,25 @@ html {
         <!-- 브라우저 개발자 도구 사용법 -->
         <div class="section">
             <h2>8. 🔧 브라우저 개발자 도구 사용법</h2>
-            
+
             <h3>🚀 개발자 도구 열기</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
                 <div style="background: #e8f4f8; padding: 20px; border-radius: 10px; border-left: 5px solid #2196F3;">
                     <h4 style="margin: 0 0 10px 0; color: #1976D2;">🪟 Windows</h4>
-                    <p style="margin: 0;"><kbd style="background: #333; color: white; padding: 3px 6px; border-radius: 3px;">F12</kbd> 또는 <kbd style="background: #333; color: white; padding: 3px 6px; border-radius: 3px;">Ctrl + Shift + I</kbd></p>
+                    <p style="margin: 0;"><kbd
+                            style="background: #333; color: white; padding: 3px 6px; border-radius: 3px;">F12</kbd> 또는
+                        <kbd style="background: #333; color: white; padding: 3px 6px; border-radius: 3px;">Ctrl + Shift
+                            + I</kbd></p>
                 </div>
-                
+
                 <div style="background: #f3f4f6; padding: 20px; border-radius: 10px; border-left: 5px solid #6b7280;">
                     <h4 style="margin: 0 0 10px 0; color: #374151;">🍎 Mac</h4>
-                    <p style="margin: 0;"><kbd style="background: #333; color: white; padding: 3px 6px; border-radius: 3px;">Cmd + Option + I</kbd></p>
+                    <p style="margin: 0;"><kbd
+                            style="background: #333; color: white; padding: 3px 6px; border-radius: 3px;">Cmd + Option +
+                            I</kbd></p>
                 </div>
-                
+
                 <div style="background: #fef7e0; padding: 20px; border-radius: 10px; border-left: 5px solid #f59e0b;">
                     <h4 style="margin: 0 0 10px 0; color: #d97706;">🖱️ 우클릭</h4>
                     <p style="margin: 0;">페이지에서 우클릭 → <strong>"검사"</strong> 또는 <strong>"Inspect"</strong></p>
@@ -1007,14 +1046,17 @@ html {
             <div class="tip-box">
                 <strong>단계별 가이드:</strong><br>
                 1️⃣ 개발자 도구 열기<br>
-                2️⃣ 📱 모바일 아이콘 클릭 (또는 <kbd style="background: #333; color: white; padding: 2px 5px; border-radius: 3px;">Ctrl + Shift + M</kbd>)<br>
+                2️⃣ 📱 모바일 아이콘 클릭 (또는 <kbd
+                    style="background: #333; color: white; padding: 2px 5px; border-radius: 3px;">Ctrl + Shift +
+                    M</kbd>)<br>
                 3️⃣ 상단에서 기기 선택 (iPhone SE, iPad, Galaxy S20 등)<br>
                 4️⃣ 화면 크기를 직접 드래그해서 조절 가능<br>
                 5️⃣ 새로고침으로 정확한 테스트
             </div>
 
             <h3>🎯 반응형 테스트 방법</h3>
-            <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 25px; border-radius: 15px; margin: 20px 0;">
+            <div
+                style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 25px; border-radius: 15px; margin: 20px 0;">
                 <h4 style="margin: 0 0 15px 0;">추천 테스트 크기들</h4>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px;">
                     <div style="text-align: center;">
@@ -1045,7 +1087,8 @@ html {
             </div>
 
             <h3>🔍 CSS 속성 실시간 수정하기</h3>
-            <div style="background: #f8faff; padding: 20px; border-radius: 10px; border: 2px dashed #667eea; margin: 20px 0;">
+            <div
+                style="background: #f8faff; padding: 20px; border-radius: 10px; border: 2px dashed #667eea; margin: 20px 0;">
                 <h4 style="margin: 0 0 15px 0; color: #667eea;">실습해보기:</h4>
                 <ol style="margin: 0; padding-left: 20px;">
                     <li>위의 Flexbox 데모 링크를 클릭</li>
@@ -1059,20 +1102,25 @@ html {
             </div>
 
             <h3>💡 유용한 개발자 도구 팁</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0;">
                 <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; border: 1px solid #0ea5e9;">
                     <h4 style="margin: 0 0 10px 0; color: #0c4a6e;">🖱️ 요소 선택</h4>
-                    <p style="margin: 0; font-size: 0.9rem;">왼쪽 상단의 화살표 아이콘을 클릭 후, 페이지의 요소를 클릭하면 해당 HTML과 CSS를 바로 확인할 수 있어요!</p>
+                    <p style="margin: 0; font-size: 0.9rem;">왼쪽 상단의 화살표 아이콘을 클릭 후, 페이지의 요소를 클릭하면 해당 HTML과 CSS를 바로 확인할 수
+                        있어요!</p>
                 </div>
-                
+
                 <div style="background: #f0fdf4; padding: 20px; border-radius: 10px; border: 1px solid #22c55e;">
                     <h4 style="margin: 0 0 10px 0; color: #15803d;">📐 박스 모델 확인</h4>
-                    <p style="margin: 0; font-size: 0.9rem;">Elements 탭에서 요소를 선택하면 하단에 박스 모델이 표시됩니다. margin, padding, border를 시각적으로 확인 가능!</p>
+                    <p style="margin: 0; font-size: 0.9rem;">Elements 탭에서 요소를 선택하면 하단에 박스 모델이 표시됩니다. margin, padding,
+                        border를 시각적으로 확인 가능!</p>
                 </div>
-                
+
                 <div style="background: #fefbf3; padding: 20px; border-radius: 10px; border: 1px solid #f59e0b;">
                     <h4 style="margin: 0 0 10px 0; color: #d97706;">🔄 새로고침 꿀팁</h4>
-                    <p style="margin: 0; font-size: 0.9rem;">모바일 모드에서 테스트할 때는 <kbd style="background: #333; color: white; padding: 2px 5px; border-radius: 3px;">Ctrl + R</kbd>로 새로고침하면 더 정확한 결과를 볼 수 있어요!</p>
+                    <p style="margin: 0; font-size: 0.9rem;">모바일 모드에서 테스트할 때는 <kbd
+                            style="background: #333; color: white; padding: 2px 5px; border-radius: 3px;">Ctrl +
+                            R</kbd>로 새로고침하면 더 정확한 결과를 볼 수 있어요!</p>
                 </div>
             </div>
         </div>
@@ -1080,7 +1128,7 @@ html {
         <!-- 마무리 및 다음 단계 -->
         <div class="section">
             <h2>9. 🎓 마무리 및 다음 단계</h2>
-            
+
             <div class="important-note">
                 <h3 style="margin: 0 0 15px 0;">🎯 오늘 배운 핵심 내용</h3>
                 <div style="text-align: left;">
@@ -1093,23 +1141,28 @@ html {
             </div>
 
             <h3>🚀 더 공부하면 좋은 내용들</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
-                <div style="background: linear-gradient(135deg, #ff9a9e, #fecfef); padding: 20px; border-radius: 15px; color: #333;">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                <div
+                    style="background: linear-gradient(135deg, #ff9a9e, #fecfef); padding: 20px; border-radius: 15px; color: #333;">
                     <h4 style="margin: 0 0 10px 0;">📊 CSS Grid</h4>
                     <p style="margin: 0; font-size: 0.9rem;">2차원 레이아웃을 위한 더 강력한 도구</p>
                 </div>
-                
-                <div style="background: linear-gradient(135deg, #a8edea, #fed6e3); padding: 20px; border-radius: 15px; color: #333;">
+
+                <div
+                    style="background: linear-gradient(135deg, #a8edea, #fed6e3); padding: 20px; border-radius: 15px; color: #333;">
                     <h4 style="margin: 0 0 10px 0;">🎨 CSS 변수</h4>
                     <p style="margin: 0; font-size: 0.9rem;">테마 시스템과 재사용 가능한 스타일</p>
                 </div>
-                
-                <div style="background: linear-gradient(135deg, #ffd89b, #19547b); padding: 20px; border-radius: 15px; color: white;">
+
+                <div
+                    style="background: linear-gradient(135deg, #ffd89b, #19547b); padding: 20px; border-radius: 15px; color: white;">
                     <h4 style="margin: 0 0 10px 0;">⚡ JavaScript</h4>
                     <p style="margin: 0; font-size: 0.9rem;">인터랙티브한 반응형 UI 만들기</p>
                 </div>
-                
-                <div style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; border-radius: 15px; color: white;">
+
+                <div
+                    style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 20px; border-radius: 15px; color: white;">
                     <h4 style="margin: 0 0 10px 0;">🎯 실전 프로젝트</h4>
                     <p style="margin: 0; font-size: 0.9rem;">완전한 반응형 웹사이트 제작</p>
                 </div>
@@ -1119,9 +1172,9 @@ html {
 
     <script>
         // 페이지 로드 시 애니메이션
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const sections = document.querySelectorAll('.section');
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1141,7 +1194,7 @@ html {
 
         // 코드 블록 복사 기능
         document.querySelectorAll('.code-block').forEach(block => {
-            block.addEventListener('click', function() {
+            block.addEventListener('click', function () {
                 const text = this.textContent;
                 navigator.clipboard.writeText(text).then(() => {
                     const originalBg = this.style.background;
@@ -1165,4 +1218,5 @@ html {
         });
     </script>
 </body>
+
 </html>

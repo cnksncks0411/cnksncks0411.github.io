@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Float & Position 완전 정복</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            margin: 25px 0 15px 0;
+            font-size: 1.5rem;
+        }
+
+        .section h4 {
+            color: #555;
+            margin: 20px 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            color: #2d3748;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+            position: relative;
+            border: 2px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            line-height: 1.6;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+
+        .code-block::before {
+            content: 'CSS';
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .demo-box {
+            border: 2px dashed #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            background: #f8faff;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        /* 표 스타일 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8faff;
+        }
+
+        .important-note {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            color: #333;
+        }
+
+        /* 홈으로 가기 버튼 */
+        .home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .home-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 CSS Float & Position 완전 정복</h1>
+            <p>레이아웃 배치의 핵심 원리 이해하기</p>
+            <a href="index.html" class="home-btn">🏠 메인 강의로 돌아가기</a>
+        </div>
+
+        <!-- Float 섹션 (새로 작성됨) -->
+        <div class="section">
+            <h2>1. 둥실둥실 떠다니는 Float</h2>
+            <p><strong>Float</strong>은 원래 신문 레이아웃처럼 이미지 주위로 텍스트가 흐르게 하기 위해 만들어진 속성입니다. 하지만 웹 개발에서는 요소를 <strong>왼쪽이나
+                    오른쪽으로 정렬</strong>할 때 많이 사용되었습니다.</p>
+
+            <h3>🌊 개념 이해하기</h3>
+            <ul style="margin: 15px 0 15px 20px;">
+                <li>요소를 <code>normal flow</code>(일반적인 배치 흐름)에서 떼어내어 왼쪽이나 오른쪽으로 밀어버립니다.</li>
+                <li>둥둥 떠있기 때문에, 아래에 있는 요소들이 위로 올라와 빈 자리를 채우려 합니다.</li>
+                <li>텍스트나 인라인 요소는 float된 요소를 감싸며 흐릅니다.</li>
+            </ul>
+
+            <h3>⚙️ 주요 속성값</h3>
+            <div class="code-block">
+                .box {
+                float: left; /* 왼쪽으로 띄움 */
+                /* float: right; 오른쪽으로 띄움 */
+                /* float: none; 띄우지 않음 (기본값) */
+                }
+            </div>
+
+            <h3>⚠️ Float의 고질적인 문제: 부모 높이 실종 사건</h3>
+            <p>자식 요소들이 모두 float되면, 부모 요소는 "내 안에 내용물이 없다"고 착각해 높이가 0이 되어버립니다. 이를 <strong>height collapse</strong>(높이 무너짐)
+                현상이라고 합니다.</p>
+
+            <div class="demo-box">
+                <div style="border: 4px solid red; background: #ffe6e6;">
+                    <span style="color: red; font-weight: bold;">(부모 영역: 높이가 사라짐!)</span>
+                    <div style="float: left; width: 50px; height: 50px; background: blue; color: white;">Float</div>
+                    <div style="float: left; width: 50px; height: 50px; background: green; color: white;">Float</div>
+                </div>
+                <div style="clear: both; margin-top: 60px;">▲ 부모(빨간 테두리)가 자식들을 감싸지 못하는 모습</div>
+            </div>
+
+            <h3>🛠️ 해결책: Clearfix (클리어픽스)</h3>
+            <p>부모가 떠나간 자식들을 다시 인식하게 만드는 마법의 코드입니다.</p>
+
+            <div class="code-block">
+                /* 가장 널리 쓰이는 방법 */
+                .clearfix::after {
+                content: "";
+                display: table;
+                clear: both;
+                }
+
+                /* 사용법: 부모 요소에 class="clearfix" 추가 */
+            </div>
+        </div>
+
+        <!-- Position 섹션 (사용자 제공 내용) -->
+        <div class="section">
+            <h2>2. Position: 상자를 어디에 둘지 정하는 규칙</h2>
+
+            <h3>📍 Position이란 무엇인가?</h3>
+            <p>웹페이지는 글자와 그림이 들어 있는 상자들로 이루어져 있습니다. position은 <strong>이 상자들을 어디에, 무엇을 기준으로 둘지 정하는 약속</strong>입니다.</p>
+
+            <div class="tip-box">
+                <strong>🤔 Position이 답하는 질문들:</strong>
+                <ul style="margin-left: 20px;">
+                    <li>이 상자는 줄을 서야 하는가?</li>
+                    <li>기준은 자기 자리인가, 부모인가, 화면인가?</li>
+                    <li>스크롤하면 움직여야 하는가?</li>
+                </ul>
+            </div>
+
+            <h3>1️⃣ 기본 상태: position: static</h3>
+            <p>모든 상자의 기본 상태입니다. 위에서 아래로 차례대로 줄을 서서 배치됩니다.</p>
+            <ul style="margin: 15px 0 15px 20px;">
+                <li>이동 불가 (top, left 등 안 먹힘)</li>
+                <li>문서 흐름 안에 얌전히 있음</li>
+            </ul>
+            <div class="code-block">
+                .box {
+                position: static; /* 기본값이므로 생략 가능 */
+                width: 120px;
+                height: 60px;
+                background: lightblue;
+                }
+            </div>
+
+            <h3>2️⃣ 살짝 이동하기: position: relative</h3>
+            <p><strong>원래 있던 자리를 기준</strong>으로 살짝 이동합니다. 원래 있던 자리는 공백으로 그대로 남아있습니다.</p>
+            <div class="code-block">
+                .relative {
+                position: relative;
+                top: 20px; /* 원래 위쪽 라인에서 20px 아래로 */
+                left: 30px; /* 원래 왼쪽 라인에서 30px 오른쪽으로 */
+                }
+            </div>
+
+            <h3>3️⃣ 줄에서 빠지기: position: absolute</h3>
+            <p>줄에서 완전히 빠져나와 <strong>특정 기준점에 딱 붙습니다</strong>(공중에 뜸).</p>
+
+            <div class="important-note">
+                <strong>📝 기준 규칙 (중요!)</strong><br>
+                1. 가장 가까운 <strong>position이 있는 조상(부모)</strong><br>
+                2. 없으면 화면 전체(body/html)
+            </div>
+
+            <div class="code-block">
+                /* 공식처럼 외우세요! 부모는 relative, 자식은 absolute */
+                .parent {
+                position: relative; /* 기준점 역할 */
+                width: 200px;
+                height: 150px;
+                background: lightgray;
+                }
+
+                .child {
+                position: absolute; /* 부모 기준 배치 */
+                top: 10px;
+                right: 10px; /* 오른쪽 상단에 붙음 */
+                background: pink;
+                }
+            </div>
+
+            <h3>4️⃣ 화면에 붙이기: position: fixed</h3>
+            <p>부모와 상관없이 <strong>브라우저 화면(Viewport)</strong>이 기준입니다. 스크롤을 해도 계속 그 자리에 붙어있습니다.</p>
+            <div class="code-block">
+                .fixed-box {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: lightyellow;
+                }
+            </div>
+
+            <h3>5️⃣ 따라오다 멈추기: position: sticky</h3>
+            <p>스크롤에 따라 기준이 바뀝니다. 처음엔 자기 자리에 있다가(static), 스크롤되어 화면 밖으로 나가려 하면 화면에 붙습니다(fixed 효과).</p>
+            <div class="tip-box">
+                <strong>기준 정리:</strong> 부모 영역 안에서 화면에 붙음.<br>
+                (부모 영역이 끝나면 함께 사라짐)
+            </div>
+            <div class="code-block">
+                .sticky-box {
+                position: sticky;
+                top: 0; /* 스크롤해서 상단에 닿으면 붙음 */
+                background: orange;
+                }
+            </div>
+        </div>
+
+        <!-- 정리 섹션 -->
+        <div class="section">
+            <h2>3. 한눈에 보는 요약</h2>
+
+            <h3>📊 Fixed vs Sticky 비교</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>fixed</th>
+                        <th>sticky</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>기준</strong></td>
+                        <td>화면 전체</td>
+                        <td>부모 안에서 화면</td>
+                    </tr>
+                    <tr>
+                        <td><strong>초기 상태</strong></td>
+                        <td>바로 고정</td>
+                        <td>줄 서 있음 (static 처럼)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>스크롤 시</strong></td>
+                        <td>항상 고정</td>
+                        <td>조건부 고정 (설정한 위치 도달 시)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>부모 영향</strong></td>
+                        <td>없음 (독고다이)</td>
+                        <td>있음 (부모 영역 벗어나면 멈춤)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🧠 포지션 결정 알고리즘</h3>
+            <div class="demo-box" style="background: white; border: 2px solid #667eea;">
+                <p><strong>Q1. 줄에 서야 하나?</strong></p>
+                <ul>
+                    <li>그렇다 → <code>static</code> (기본), <code>relative</code> (살짝 이동)</li>
+                    <li>아니다 → Q2로 이동</li>
+                </ul>
+                <br>
+                <p><strong>Q2. 화면에 항상 붙어야 하나/떠있어야 하나?</strong></p>
+                <ul>
+                    <li>항상 화면에 고정(헤더, 퀵메뉴) → <code>fixed</code></li>
+                    <li>스크롤 할 때만 고정 → <code>sticky</code></li>
+                    <li>특정 부모 내부에 배치(배지, 닫기버튼) → <code>absolute</code> (+ 부모 relative)</li>
+                </ul>
+            </div>
+
+            <div class="important-note">
+                <h3>✨ 가장 중요한 한 문장</h3>
+                <p>"Position은 상자를 움직이는 기술이 아니라,<br><strong>무엇을 기준으로 둘지 정하는 규칙</strong>이다."</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
