@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 완전 정복</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Prism.js for Syntax Highlighting (Dracula Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        /* UI Reference: /soomgo/javascript/index.css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h2 {
+            color: #f5576c;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f5576c;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #d63384;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* Code Box Style Override for Prism */
+        .code-box {
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border-left: 5px solid #f5576c;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Prism overrides */
+        pre[class*="language-"] {
+            margin: 0 !important;
+            border-radius: 0 !important;
+            padding: 20px !important;
+            font-size: 0.95em;
+            font-family: 'Consolas', 'Monaco', monospace !important;
+        }
+
+        .concept-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .concept-box h3 {
+            color: #e65100;
+            margin-top: 0;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Gallery Demo Styles */
+        .gallery-container {
+            border: 2px dashed #f5576c;
+            padding: 20px;
+            background: #fff0f3;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .gallery-main {
+            width: 100%;
+            height: 400px;
+            background: #eee;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .gallery-main img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-thumbs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .thumb {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 4px;
+            transition: all 0.3s;
+            background: #ddd;
+        }
+
+        .thumb.active {
+            border-color: #f5576c;
+            transform: scale(1.1);
+        }
+
+        .thumb:hover {
+            opacity: 0.8;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #f5576c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #d63384;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>jQuery 완전 정복: 기초부터 실전까지</h1>
+        <p>복잡한 JavaScript를 간결하게! "Write Less, Do More"</p>
+
+        <h2>1. jQuery 기초</h2>
+
+        <div class="concept-box">
+            <h3>📌 jQuery란?</h3>
+            <p>jQuery는 JavaScript 라이브러리로, 복잡한 JavaScript 코드를 간단하게 작성할 수 있게 해줍니다.</p>
+            <ul>
+                <li><strong>Write Less, Do More</strong>: 더 적게 쓰고 더 많은 일을 한다</li>
+                <li>크로스 브라우저 호환성 제공</li>
+                <li>직관적이고 간결한 문법 (CSS 선택자 활용)</li>
+            </ul>
+        </div>
+
+        <h3>🛠 jQuery 설치 및 설정</h3>
+        <p>CDN을 사용하여 간단하게 불러올 수 있습니다.</p>
+        <div class="code-box">
+            <pre><code class="language-html">&lt;!-- jQuery CDN (head 태그 안에 추가) --&gt;
+&lt;script src="https://code.jquery.com/jquery-3.7.1.min.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+        <p>기본 실행 준비 코드:</p>
+        <div class="code-box">
+            <pre><code class="language-javascript">// jQuery 준비 완료 이벤트 (표준)
+$(document).ready(function() {
+    console.log("jQuery가 준비되었습니다!");
+});
+
+// 축약형 (실무에서 많이 사용)
+$(function() {
+    console.log("페이지 로드 완료!");
+});</code></pre>
+        </div>
+
+        <h2>2. jQuery 기본 문법</h2>
+        <p>기본 구조: <code>$(선택자).메서드()</code></p>
+
+        <h3>🎯 요소 선택</h3>
+        <div class="code-box">
+            <pre><code class="language-javascript">$('#myId')           // ID 선택자
+$('.myClass')        // 클래스 선택자
+$('div')             // 태그 선택자
+$('div.highlight')   // 복합 선택자
+$('[data-role]')     // 속성 선택자</code></pre>
+        </div>
+
+        <h3>⚖️ Vanilla JS vs jQuery 비교</h3>
+        <div class="code-box">
+            <pre><code class="language-javascript">// Vanilla JS
+document.getElementById('myButton').addEventListener('click', function() {
+    this.style.backgroundColor = 'red';
+});
+
+// jQuery
+$('#myButton').click(function() {
+    $(this).css('background-color', 'red');
+});</code></pre>
+        </div>
+
+        <h3>⛓ 체이닝 (Chaining)</h3>
+        <p>여러 동작을 한 줄로 연결해서 실행할 수 있습니다.</p>
+        <div class="code-box">
+            <pre><code class="language-javascript">$('#myDiv')
+    .addClass('highlight')  // 클래스 추가
+    .css('color', 'blue')   // 스타일 변경
+    .fadeIn(1000)           // 서서히 나타나기
+    .delay(2000)            // 2초 대기
+    .fadeOut(500);          // 서서히 사라지기</code></pre>
+        </div>
+
+        <h2>3. DOM 조작 (Document Object Model)</h2>
+
+        <h3>📝 내용 및 속성 조작</h3>
+        <div class="code-box">
+            <pre><code class="language-javascript">// 내용 변경
+$('#title').text('새로운 텍스트');           // 텍스트만
+$('#content').html('&lt;strong&gt;HTML 내용&lt;/strong&gt;'); // HTML 태그 포함
+
+// 값 가져오기
+let val = $('#username').val();
+
+// 속성 변경
+$('#myImage').attr('src', 'new-image.jpg');
+$('.link').attr('href', 'https://google.com');
+
+// 스타일 변경 (CSS)
+$('.box').css({
+    'width': '300px',
+    'background-color': 'blue',
+    'border': '2px solid red'
+});</code></pre>
+        </div>
+
+        <h3>➕ 요소 생성/추가/제거</h3>
+        <div class="code-box">
+            <pre><code class="language-javascript">// 생성
+let newBtn = $('&lt;button&gt;').text('새 버튼').addClass('btn-primary');
+
+// 추가
+$('.container').append(newBtn);      // 자식 요소 중 맨 뒤에
+$('.container').prepend(newBtn);     // 자식 요소 중 맨 앞에
+$('#target').after(newBtn);          // 형제 요소로서 바로 뒤에
+
+// 제거
+$('.old-item').remove();             // 완전 제거
+$('.container').empty();             // 내부 비우기</code></pre>
+        </div>
+
+        <h3>🎨 클래스 조작</h3>
+        <div class="code-box">
+            <pre><code class="language-javascript">$('.menu').addClass('active');       // 클래스 추가
+$('.menu').removeClass('active');    // 클래스 제거
+$('.menu').toggleClass('active');    // 있으면 제거, 없으면 추가
+if ($('.menu').hasClass('active')) { // 클래스 존재 여부 확인
+    // ...
+}</code></pre>
+        </div>
+
+        <h2>4. 이벤트 처리</h2>
+        <div class="code-box">
+            <pre><code class="language-javascript">// 1. 기본 이벤트 (click, hover, submit 등)
+$('#btn').click(function() {
+    alert('클릭!');
+});
+
+// 2. on() 메서드 (권장, 다중 이벤트 및 동적 요소 대응)
+$('#box').on('mouseenter mouseleave', function() {
+    $(this).toggleClass('hover-effect');
+});
+
+// 3. 이벤트 위임 (동적으로 생성된 요소에도 이벤트 적용)
+$(document).on('click', '.dynamic-btn', function() {
+    console.log('나중에 생성된 버튼도 클릭됩니다!');
+});</code></pre>
+        </div>
+
+        <h2>5. 애니메이션 효과</h2>
+        <p>jQuery의 강력한 내장 애니메이션 함수들입니다.</p>
+        <div class="code-box">
+            <pre><code class="language-javascript">// 기본 효과 (밀리초 단위 시간 지정 가능)
+$('.box').hide(1000);        // 숨기기
+$('.box').show('slow');      // 보이기
+$('.box').toggle();          // 토글
+
+// 페이드 효과
+$('.box').fadeIn(500);
+$('.box').fadeOut(500);
+
+// 슬라이드 효과
+$('.menu').slideDown();
+$('.menu').slideUp();
+
+// 커스텀 애니메이션 (animate)
+$('.character').animate({
+    left: '250px',
+    height: '+=50px', // 현재 값에서 50px 증가
+    opacity: 0.5
+}, 1000); // 1초 동안 실행</code></pre>
+        </div>
+
+        <h2>📸 실습: jQuery 이미지 갤러리</h2>
+        <p>썸네일을 클릭하면 메인 이미지가 바뀌는 갤러리를 만들어봅시다.</p>
+
+        <div class="gallery-container">
+            <div class="gallery-main">
+                <img id="mainImg" src="https://picsum.photos/id/101/800/400" alt="메인 이미지">
+            </div>
+            <div class="gallery-thumbs">
+                <!-- data-large 속성에 큰 이미지 주소 저장 -->
+                <img class="thumb active" src="https://picsum.photos/id/101/800/400"
+                    data-large="https://picsum.photos/id/101/800/400">
+                <img class="thumb" src="https://picsum.photos/id/102/800/400"
+                    data-large="https://picsum.photos/id/102/800/400">
+                <img class="thumb" src="https://picsum.photos/id/103/800/400"
+                    data-large="https://picsum.photos/id/103/800/400">
+                <img class="thumb" src="https://picsum.photos/id/104/800/400"
+                    data-large="https://picsum.photos/id/104/800/400">
+            </div>
+        </div>
+
+        <div class="code-box">
+            <pre><code class="language-javascript">// 갤러리 작동 코드
+$('.thumb').on('click', function() {
+    // 1. 모든 썸네일에서 active 제거
+    $('.thumb').removeClass('active');
+    
+    // 2. 클릭된 썸네일에 active 추가
+    $(this).addClass('active');
+    
+    // 3. 이미지 주소 가져오기
+    let newSrc = $(this).data('large');
+    
+    // 4. 메인 이미지 부드럽게 교체
+    $('#mainImg').fadeOut(200, function() {
+        $(this).attr('src', newSrc).fadeIn(200);
+    });
+});</code></pre>
+        </div>
+
+        <script>
+            // 실제 동작을 위한 스크립트
+            $(document).ready(function () {
+                $('.thumb').on('click', function () {
+                    $('.thumb').removeClass('active');
+                    $(this).addClass('active');
+                    let newSrc = $(this).attr('src'); // 데모용이라 src 사용
+                    $('#mainImg').fadeOut(200, function () {
+                        $(this).attr('src', newSrc).fadeIn(200);
+                    });
+                });
+            });
+        </script>
+
+        <!-- Prism JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="../ajax/index.html" class="btn">👉 다음 수업: AJAX와 비동기 통신</a>
+        </div>
+    </div>
+</body>
+
+</html>

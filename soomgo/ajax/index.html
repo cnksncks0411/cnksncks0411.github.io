@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax와 비동기 통신</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Prism.js for Syntax Highlighting (Dracula Theme) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        /* UI Reference: /soomgo/javascript/index.css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Malgun Gothic', Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            padding: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h2 {
+            color: #f5576c;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f5576c;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #d63384;
+            font-size: 1.4em;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* Code Box Style Override for Prism */
+        .code-box {
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border-left: 5px solid #f5576c;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Prism overrides */
+        pre[class*="language-"] {
+            margin: 0 !important;
+            border-radius: 0 !important;
+            padding: 20px !important;
+            font-size: 0.95em;
+            font-family: 'Consolas', 'Monaco', monospace !important;
+        }
+
+        .concept-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .concept-box h3 {
+            color: #e65100;
+            margin-top: 0;
+        }
+
+        .result-box {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        ul,
+        ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #f5576c;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background: #d63384;
+        }
+
+        .session-summary {
+            background: #f8f9fa;
+            border-top: 4px solid #343a40;
+            padding: 30px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>AJAX와 비동기 통신</h1>
+        <p>페이지 새로고침 없이 서버와 데이터를 주고받는 기술의 핵심을 알아봅니다.</p>
+
+        <h2>1. AJAX란?</h2>
+        <div class="concept-box">
+            <h3>🌐 AJAX (Asynchronous JavaScript And XML)</h3>
+            <p>AJAX는 웹 페이지 전체를 새로고침하지 않고도, 일부분만 서버와 데이터를 주고받아 갱신할 수 있게 해주는 기술입니다.</p>
+            <ul>
+                <li><strong>비동기(Asynchronous)</strong>: 서버 응답을 기다리지 않고 다른 작업을 수행할 수 있음</li>
+                <li>사용자 경험(UX) 향상 (깜빡임 없음)</li>
+                <li>JSON, XML, HTML 등 다양한 데이터 형식 지원</li>
+            </ul>
+        </div>
+
+        <h2>2. jQuery AJAX 사용법</h2>
+        <p>jQuery는 복잡한 AJAX 호출을 <code>$.ajax()</code>로 매우 간단하게 처리해줍니다.</p>
+
+        <div class="code-box">
+            <pre><code class="language-javascript">$.ajax({
+    url: 'https://jsonplaceholder.typicode.com/posts/1', // 요청할 주소
+    method: 'GET', // 요청 방식 (GET, POST, PUT, DELETE)
+    dataType: 'json', // 응답 데이터 타입
+    success: function(data) {
+        // 성공 시 실행
+        console.log('성공:', data);
+        $('#result').text(data.title);
+    },
+    error: function(xhr, status, error) {
+        // 실패 시 실행
+        console.error('에러:', error);
+    }
+});</code></pre>
+        </div>
+
+        <div class="result-box">
+            <h3>🧪 AJAX 테스트</h3>
+            <p>아래 버튼을 눌러 실제 데이터를 가져와보세요.</p>
+            <button id="fetchBtn" class="btn">데이터 가져오기</button>
+            <div id="ajaxResult" style="margin-top: 15px; font-weight: bold; min-height: 20px;"></div>
+        </div>
+
+        <h2>3. JSON 데이터 처리</h2>
+        <p>서버와 통신할 때 가장 많이 쓰는 데이터 형식인 JSON(JavaScript Object Notation)을 다루는 법입니다.</p>
+
+        <div class="code-box">
+            <pre><code class="language-javascript">const user = {
+    "id": 1,
+    "name": "김철수",
+    "email": "kim@example.com",
+    "address": {
+        "city": "서울",
+        "zipcode": "12345"
+    },
+    "hobbies": ["독서", "영화감상", "운동"]
+};
+
+// 1. 객체 -> JSON 문자열 변환 (서버로 보낼 때)
+const jsonString = JSON.stringify(user);
+console.log(jsonString); 
+// 출력: {"id":1,"name":"김철수"...}
+
+// 2. JSON 문자열 -> 객체 변환 (서버에서 받을 때)
+const parsedUser = JSON.parse(jsonString);
+console.log(parsedUser.name); // 김철수
+console.log(parsedUser.address.city); // 서울</code></pre>
+        </div>
+
+        <h2>4. 에러 핸들링 및 로딩 상태</h2>
+        <p>실제 서비스에서는 네트워크 오류나 서버 문제에 대비해야 합니다.</p>
+
+        <div class="code-box">
+            <pre><code class="language-javascript">async function fetchWithErrorHandling(url) {
+    const loadingElement = $('#loading');
+    const errorElement = $('#error');
+    
+    try {
+        // 1. 로딩 표시
+        loadingElement.show();
+        errorElement.hide();
+        
+        const response = await fetch(url);
+        
+        // 2. 상태 코드 확인
+        if (!response.ok) {
+            if (response.status === 404) throw new Error('데이터 없음');
+            if (response.status === 500) throw new Error('서버 오류');
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data;
+        
+    } catch (error) {
+        // 3. 에러 처리
+        console.error('요청 실패:', error);
+        errorElement.text(error.message).show();
+        
+    } finally {
+        // 4. 로딩 숨김 (성공하든 실패하든 실행)
+        loadingElement.hide();
+    }
+}</code></pre>
+        </div>
+
+        <div class="session-summary">
+            <h2>🎉 3회차 수업 마무리</h2>
+
+            <h3>📝 오늘 배운 내용</h3>
+            <ul>
+                <li><strong>jQuery 기초</strong>: 선택자, DOM 조작, 이벤트, 애니메이션</li>
+                <li><strong>AJAX 통신</strong>: <code>$.ajax()</code>를 이용한 비동기 데이터 요청</li>
+                <li><strong>JSON</strong>: 데이터 직렬화(stringify)와 파싱(parse)</li>
+            </ul>
+
+            <h3>🔮 다음 시간 예고 (4회차)</h3>
+            <ol>
+                <li>아이디 중복확인 기능 (AJAX 활용)</li>
+                <li>비밀번호 암호화 저장 원리</li>
+                <li>로그인/회원가입 전체 로직 구현</li>
+            </ol>
+
+            <div class="concept-box" style="background: #e8f5e9; border-color: #4caf50;">
+                <h3 style="color: #2e7d32;">✅ 과제: 회원가입 폼 완성하기</h3>
+                <p><strong>요구사항:</strong></p>
+                <ul>
+                    <li>jQuery를 사용하여 비밀번호/비밀번호 확인 일치 여부를 실시간으로 표시하세요.</li>
+                    <li>(선택) 가짜 API(jsonplaceholder 등)를 이용해 회원가입 버튼 클릭 시 '가입 완료' 메시지를 띄우세요.</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="../jquery/index.html" class="btn" style="background:#666;">👈 jQuery 기초 복습하기</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // AJAX 데모 스크립트
+        $(document).ready(function () {
+            $('#fetchBtn').click(function () {
+                var $resultDiv = $('#ajaxResult');
+                $resultDiv.text('데이터 불러오는 중...').css('color', 'blue');
+
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/todos/1',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        setTimeout(function () { // 로딩 느낌을 주기 위해 0.5초 지연
+                            $resultDiv.html(
+                                '제목: ' + data.title + '<br>' +
+                                '완료여부: ' + (data.completed ? '✅ 완료' : '❌ 미완료')
+                            ).css('color', 'green');
+                        }, 500);
+                    },
+                    error: function () {
+                        $resultDiv.text('데이터를 가져오는데 실패했습니다.').css('color', 'red');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Prism JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+
+</html>
