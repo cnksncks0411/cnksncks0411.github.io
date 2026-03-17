@@ -1,0 +1,29 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="78" y1="32" x2="1090" y2="598" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1830"/>
+      <stop offset="1" stop-color="#07111E"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="200" y1="110" x2="864" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <circle cx="1020" cy="118" r="120" fill="#2563EB" opacity="0.22"/>
+  <circle cx="186" cy="544" r="120" fill="#06B6D4" opacity="0.16"/>
+  <text x="92" y="128" fill="#38BDF8" font-size="26" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">실시간 최저가 비교 플랫폼, 온카</text>
+  <text x="92" y="244" fill="#F8FAFC" font-size="68" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">같은 차, 더 비싸게</text>
+  <text x="92" y="324" fill="#F8FAFC" font-size="68" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">계약할 이유 없습니다</text>
+  <text x="92" y="390" fill="#CBD5E1" font-size="28" font-family="Pretendard, 'Malgun Gothic', sans-serif">장기렌트와 리스, 이제 비교하지 말고 최저가만 선택하세요.</text>
+  <text x="92" y="432" fill="#CBD5E1" font-size="28" font-family="Pretendard, 'Malgun Gothic', sans-serif">3분 만에 견적 확인과 상담 연결까지 이어집니다.</text>
+  <rect x="720" y="118" width="364" height="234" rx="30" fill="#0F1A30" stroke="#2B4468"/>
+  <text x="756" y="176" fill="#E2E8F0" font-size="30" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">온카 최저가</text>
+  <text x="756" y="244" fill="#E0F2FE" font-size="54" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">월 57만원</text>
+  <text x="756" y="286" fill="#38BDF8" font-size="22" font-family="Pretendard, 'Malgun Gothic', sans-serif">딜러 경쟁 14건 진행 중</text>
+  <rect x="756" y="308" width="180" height="16" rx="8" fill="url(#accent)"/>
+  <rect x="944" y="308" width="96" height="16" rx="8" fill="#1D4ED8" opacity="0.8"/>
+  <rect x="720" y="398" width="364" height="116" rx="30" fill="#091120" stroke="#17253A"/>
+  <text x="756" y="454" fill="#7B89A5" font-size="22" font-family="Pretendard, 'Malgun Gothic', sans-serif">상담 예약 신청</text>
+  <text x="756" y="492" fill="#F8FAFC" font-size="38" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">무료로 시작 · 즉시 진행</text>
+</svg>

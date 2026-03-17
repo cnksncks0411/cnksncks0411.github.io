@@ -1,0 +1,68 @@
+<svg width="900" height="760" viewBox="0 0 900 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="84" y1="72" x2="790" y2="694" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C1527"/>
+      <stop offset="1" stop-color="#07101C"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="170" y1="92" x2="754" y2="568" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <filter id="blur" x="-120" y="-120" width="1140" height="1000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="50"/>
+    </filter>
+  </defs>
+  <rect width="900" height="760" rx="34" fill="url(#bg)"/>
+  <g opacity="0.45" filter="url(#blur)">
+    <ellipse cx="714" cy="132" rx="150" ry="88" fill="#2563EB"/>
+    <ellipse cx="188" cy="630" rx="144" ry="92" fill="#06B6D4"/>
+  </g>
+  <g opacity="0.08" stroke="white">
+    <path d="M0 74H900"/>
+    <path d="M0 148H900"/>
+    <path d="M0 222H900"/>
+    <path d="M0 296H900"/>
+    <path d="M0 370H900"/>
+    <path d="M0 444H900"/>
+    <path d="M0 518H900"/>
+    <path d="M0 592H900"/>
+    <path d="M0 666H900"/>
+    <path d="M74 0V760"/>
+    <path d="M148 0V760"/>
+    <path d="M222 0V760"/>
+    <path d="M296 0V760"/>
+    <path d="M370 0V760"/>
+    <path d="M444 0V760"/>
+    <path d="M518 0V760"/>
+    <path d="M592 0V760"/>
+    <path d="M666 0V760"/>
+    <path d="M740 0V760"/>
+    <path d="M814 0V760"/>
+  </g>
+  <rect x="470" y="64" width="370" height="250" rx="30" fill="#0F1A30" stroke="#2B4468"/>
+  <text x="504" y="116" fill="#E2E8F0" font-size="28" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">실시간 견적 도착</text>
+  <text x="504" y="150" fill="#7B89A5" font-size="16" font-family="Pretendard, 'Malgun Gothic', sans-serif">딜러 경쟁이 시작되면 조건이 아래처럼 내려갑니다</text>
+  <rect x="504" y="186" width="92" height="12" rx="6" fill="#2F405E"/>
+  <rect x="504" y="216" width="142" height="18" rx="9" fill="url(#blue)"/>
+  <rect x="666" y="216" width="108" height="18" rx="9" fill="#1D4ED8" opacity="0.8"/>
+  <rect x="504" y="250" width="130" height="16" rx="8" fill="#06B6D4" opacity="0.74"/>
+  <rect x="648" y="250" width="72" height="16" rx="8" fill="#233A57"/>
+  <rect x="504" y="284" width="284" height="1" fill="#24324A"/>
+  <rect x="504" y="306" width="260" height="1" fill="#24324A"/>
+  <rect x="72" y="482" width="756" height="164" rx="32" fill="#091120" stroke="#162238"/>
+  <path d="M126 522C165 446 240 396 354 386L494 374C590 365 669 388 734 442L786 486H812V548H754C743 588 707 614 664 614C621 614 585 588 574 548H311C300 588 264 614 221 614C178 614 142 588 131 548H88V538C88 531 92 525 99 522H126Z" fill="#0A1425"/>
+  <path d="M198 486C246 432 306 402 398 394L513 384C582 378 642 392 694 430L734 458H516C485 458 455 470 434 490H198Z" fill="#122240"/>
+  <path d="M186 506H728" stroke="url(#blue)" stroke-width="7" stroke-linecap="round"/>
+  <path d="M216 534H694" stroke="#8AB8FF" stroke-opacity="0.22" stroke-width="2"/>
+  <circle cx="224" cy="566" r="48" fill="#050A12" stroke="#101A2C" stroke-width="14"/>
+  <circle cx="224" cy="566" r="25" fill="#15294B" stroke="url(#blue)" stroke-width="7"/>
+  <circle cx="660" cy="566" r="48" fill="#050A12" stroke="#101A2C" stroke-width="14"/>
+  <circle cx="660" cy="566" r="25" fill="#15294B" stroke="url(#blue)" stroke-width="7"/>
+  <rect x="86" y="74" width="214" height="88" rx="24" fill="#0D1729" stroke="#2A3B57"/>
+  <text x="114" y="114" fill="#7B89A5" font-size="16" font-family="Pretendard, 'Malgun Gothic', sans-serif">같은 차 기존 견적</text>
+  <text x="114" y="144" fill="#F8FAFC" font-size="30" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">월 72만원</text>
+  <rect x="112" y="212" width="238" height="96" rx="24" fill="#101B31" stroke="#244061"/>
+  <text x="140" y="252" fill="#7B89A5" font-size="16" font-family="Pretendard, 'Malgun Gothic', sans-serif">온카 최저가</text>
+  <text x="140" y="286" fill="#E0F2FE" font-size="34" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">월 57만원</text>
+  <text x="140" y="312" fill="#38BDF8" font-size="15" font-family="Pretendard, 'Malgun Gothic', sans-serif">딜러 경쟁 14건 진행 중</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="48" y1="34" x2="592" y2="386" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1830"/>
+      <stop offset="1" stop-color="#08111F"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="146" y1="82" x2="484" y2="268" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="28" fill="url(#bg)"/>
+  <rect x="24" y="24" width="592" height="372" rx="24" fill="#0F1A30" stroke="#243754"/>
+  <text x="52" y="68" fill="#E2E8F0" font-size="24" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">벤츠 E클래스 견적 비교</text>
+  <text x="52" y="96" fill="#7B89A5" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">같은 차종도 경쟁 구조가 생기면 월 납입금이 달라집니다</text>
+  <rect x="52" y="124" width="166" height="114" rx="22" fill="#121F38"/>
+  <text x="72" y="156" fill="#7B89A5" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">일반 견적</text>
+  <text x="72" y="196" fill="#F8FAFC" font-size="30" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">72만원</text>
+  <text x="72" y="220" fill="#94A3B8" font-size="12" font-family="Pretendard, 'Malgun Gothic', sans-serif">보증금 20% / 48개월</text>
+  <rect x="236" y="124" width="168" height="114" rx="22" fill="#121F38" stroke="#2754A6"/>
+  <text x="256" y="156" fill="#38BDF8" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">온카 최저가</text>
+  <text x="256" y="196" fill="#E0F2FE" font-size="30" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">57만원</text>
+  <text x="256" y="220" fill="#A5F3FC" font-size="12" font-family="Pretendard, 'Malgun Gothic', sans-serif">추가 비용 없음 / 상담 연결 가능</text>
+  <rect x="422" y="124" width="166" height="114" rx="22" fill="#121F38"/>
+  <text x="442" y="156" fill="#7B89A5" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">절감 차이</text>
+  <text x="442" y="196" fill="url(#accent)" font-size="30" font-weight="900" font-family="Pretendard, 'Malgun Gothic', sans-serif">월 15만원</text>
+  <text x="442" y="220" fill="#94A3B8" font-size="12" font-family="Pretendard, 'Malgun Gothic', sans-serif">경쟁 시작 후 자동 반영</text>
+  <rect x="52" y="266" width="536" height="94" rx="22" fill="#0B1425"/>
+  <rect x="76" y="294" width="112" height="12" rx="6" fill="#334155"/>
+  <rect x="76" y="320" width="196" height="18" rx="9" fill="url(#accent)"/>
+  <rect x="292" y="320" width="120" height="18" rx="9" fill="#1D4ED8" opacity="0.78"/>
+  <rect x="432" y="320" width="92" height="18" rx="9" fill="#06B6D4" opacity="0.72"/>
+</svg>

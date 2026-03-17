@@ -1,0 +1,30 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="40" y1="20" x2="608" y2="392" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D172A"/>
+      <stop offset="1" stop-color="#07111E"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="88" y1="0" x2="468" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06B6D4"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="28" fill="url(#bg)"/>
+  <rect x="24" y="24" width="592" height="372" rx="24" fill="#0F1A30" stroke="#203350"/>
+  <text x="52" y="68" fill="#E2E8F0" font-size="24" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">SUV 월 납입금 비교</text>
+  <text x="52" y="96" fill="#7B89A5" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">차종별 월 비용을 즉시 읽히게 정리한 비교 화면 예시입니다</text>
+  <rect x="52" y="132" width="536" height="50" rx="18" fill="#111D34"/>
+  <text x="72" y="163" fill="#E2E8F0" font-size="15" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">쏘렌토 하이브리드</text>
+  <rect x="252" y="147" width="250" height="14" rx="7" fill="url(#bar)"/>
+  <text x="520" y="163" fill="#BAE6FD" font-size="15" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">59만원</text>
+  <rect x="52" y="196" width="536" height="50" rx="18" fill="#111D34"/>
+  <text x="72" y="227" fill="#E2E8F0" font-size="15" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">카니발 9인승</text>
+  <rect x="252" y="211" width="214" height="14" rx="7" fill="url(#bar)"/>
+  <text x="520" y="227" fill="#BAE6FD" font-size="15" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">63만원</text>
+  <rect x="52" y="260" width="536" height="50" rx="18" fill="#111D34"/>
+  <text x="72" y="291" fill="#E2E8F0" font-size="15" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">싼타페 하이브리드</text>
+  <rect x="252" y="275" width="182" height="14" rx="7" fill="url(#bar)"/>
+  <text x="520" y="291" fill="#BAE6FD" font-size="15" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">55만원</text>
+  <rect x="52" y="330" width="256" height="34" rx="17" fill="#10213A"/>
+  <text x="72" y="352" fill="#38BDF8" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">차종별 월 납입금 즉시 확인</text>
+</svg>

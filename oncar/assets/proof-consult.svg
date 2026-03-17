@@ -1,0 +1,24 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="24" y1="22" x2="606" y2="394" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D172A"/>
+      <stop offset="1" stop-color="#07111E"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="28" fill="url(#bg)"/>
+  <rect x="24" y="24" width="592" height="372" rx="24" fill="#0F1A30" stroke="#243754"/>
+  <text x="52" y="68" fill="#E2E8F0" font-size="24" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">상담 진행 화면</text>
+  <text x="52" y="96" fill="#7B89A5" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">상담 대기, 연결, 완료 상태를 직관적으로 보여주는 구조입니다</text>
+  <rect x="52" y="130" width="536" height="64" rx="22" fill="#111D34"/>
+  <circle cx="88" cy="162" r="16" fill="#06B6D4" opacity="0.25"/>
+  <text x="120" y="166" fill="#E2E8F0" font-size="15" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">상담 요청 접수</text>
+  <text x="470" y="166" fill="#A5F3FC" font-size="14" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">즉시 진행</text>
+  <rect x="52" y="210" width="536" height="64" rx="22" fill="#111D34"/>
+  <circle cx="88" cy="242" r="16" fill="#2563EB" opacity="0.28"/>
+  <text x="120" y="246" fill="#E2E8F0" font-size="15" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">전문 상담사 연결</text>
+  <text x="462" y="246" fill="#BFDBFE" font-size="14" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">대기 1분</text>
+  <rect x="52" y="290" width="536" height="64" rx="22" fill="#111D34"/>
+  <circle cx="88" cy="322" r="16" fill="#34D399" opacity="0.3"/>
+  <text x="120" y="326" fill="#E2E8F0" font-size="15" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">최저가 조건 전달</text>
+  <text x="444" y="326" fill="#A7F3D0" font-size="14" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">전달 완료</text>
+</svg>

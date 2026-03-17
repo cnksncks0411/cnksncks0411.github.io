@@ -1,0 +1,33 @@
+<svg width="640" height="420" viewBox="0 0 640 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="20" y1="18" x2="606" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E1830"/>
+      <stop offset="1" stop-color="#07111E"/>
+    </linearGradient>
+    <linearGradient id="line" x1="96" y1="0" x2="492" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="28" fill="url(#bg)"/>
+  <rect x="24" y="24" width="592" height="372" rx="24" fill="#0F1A30" stroke="#243754"/>
+  <text x="52" y="68" fill="#E2E8F0" font-size="24" font-weight="800" font-family="Pretendard, 'Malgun Gothic', sans-serif">딜러 경쟁 구조 그래프</text>
+  <text x="52" y="96" fill="#7B89A5" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">경쟁이 시작될수록 월 납입금이 내려가는 흐름을 시각화했습니다</text>
+  <g opacity="0.12" stroke="white">
+    <path d="M84 144H572"/>
+    <path d="M84 194H572"/>
+    <path d="M84 244H572"/>
+    <path d="M84 294H572"/>
+    <path d="M84 344H572"/>
+  </g>
+  <path d="M104 140C152 156 185 180 230 206C274 231 322 250 370 262C418 274 468 280 536 286" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="104" cy="140" r="8" fill="#60A5FA"/>
+  <circle cx="230" cy="206" r="8" fill="#38BDF8"/>
+  <circle cx="370" cy="262" r="8" fill="#22D3EE"/>
+  <circle cx="536" cy="286" r="8" fill="#67E8F9"/>
+  <text x="88" y="126" fill="#BFDBFE" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">1개 견적</text>
+  <text x="208" y="192" fill="#BFDBFE" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">5개 견적</text>
+  <text x="348" y="248" fill="#A5F3FC" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">9개 견적</text>
+  <text x="474" y="272" fill="#A5F3FC" font-size="13" font-family="Pretendard, 'Malgun Gothic', sans-serif">14개 견적</text>
+  <text x="96" y="362" fill="#38BDF8" font-size="14" font-weight="700" font-family="Pretendard, 'Malgun Gothic', sans-serif">경쟁이 커질수록 가격은 내려갑니다</text>
+</svg>
