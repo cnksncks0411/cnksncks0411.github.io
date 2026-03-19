@@ -3,22 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>소소문 테스트 결제</title>
+    <title>소소문 결제 연결 중</title>
     <style>
       :root {
-        color-scheme: light;
-        --bg: #fff9f1;
-        --card: #fffdf8;
-        --ink: #1f2937;
-        --muted: #667085;
-        --line: #eadfce;
-        --primary: #e76f51;
-        --primary-strong: #c75a40;
-        --accent: #f4a261;
-        --ok: #1d9b6c;
-        --warn: #b45309;
-        --danger: #c2410c;
-        --shadow: 0 30px 80px rgba(124, 58, 35, 0.12);
+        color-scheme: dark;
+        --bg-top: #111827;
+        --bg-bottom: #050816;
+        --card: rgba(15, 23, 42, 0.86);
+        --line: rgba(148, 163, 184, 0.16);
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --primary: #7c3aed;
+        --primary-2: #4f46e5;
+        --error: #fda4af;
+        --error-bg: rgba(127, 29, 29, 0.26);
+        --shadow: 0 30px 90px rgba(3, 7, 18, 0.55);
       }
 
       * {
@@ -28,12 +27,12 @@
       body {
         margin: 0;
         min-height: 100vh;
+        color: var(--text);
         font-family: 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
-        color: var(--ink);
         background:
-          radial-gradient(circle at top left, rgba(244, 162, 97, 0.28), transparent 28%),
-          radial-gradient(circle at right center, rgba(231, 111, 81, 0.22), transparent 30%),
-          linear-gradient(180deg, #fff9f1 0%, #fff3e5 100%);
+          radial-gradient(circle at top right, rgba(124, 58, 237, 0.28), transparent 28%),
+          radial-gradient(circle at left center, rgba(79, 70, 229, 0.18), transparent 30%),
+          linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
       }
 
       .layout {
@@ -41,84 +40,141 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 24px;
+        padding: 20px;
       }
 
-      .panel {
+      .card {
         width: 100%;
-        max-width: 460px;
+        max-width: 420px;
+        border-radius: 32px;
+        background: var(--card);
         border: 1px solid var(--line);
-        border-radius: 28px;
-        background: rgba(255, 253, 248, 0.96);
         box-shadow: var(--shadow);
-        overflow: hidden;
+        backdrop-filter: blur(16px);
+        padding: 28px 24px 24px;
       }
 
-      .hero {
-        padding: 28px 28px 18px;
-        background:
-          linear-gradient(135deg, rgba(231, 111, 81, 0.14), rgba(244, 162, 97, 0.08)),
-          linear-gradient(180deg, #fffdf8 0%, #fff7ee 100%);
-      }
-
-      .eyebrow {
+      .badge {
         display: inline-flex;
         align-items: center;
         gap: 8px;
         height: 32px;
         padding: 0 12px;
         border-radius: 999px;
-        background: rgba(231, 111, 81, 0.1);
-        color: var(--primary-strong);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #ddd6fe;
+        background: rgba(124, 58, 237, 0.18);
       }
 
       h1 {
-        margin: 16px 0 8px;
+        margin: 18px 0 8px;
         font-size: 30px;
-        line-height: 1.2;
+        line-height: 1.22;
+        letter-spacing: -0.04em;
       }
 
       .desc {
         margin: 0;
         color: var(--muted);
-        line-height: 1.7;
         font-size: 15px;
+        line-height: 1.7;
       }
 
-      .amount-card {
+      .amount {
         margin-top: 22px;
-        padding: 18px 20px;
-        border-radius: 22px;
-        border: 1px solid rgba(231, 111, 81, 0.18);
-        background: rgba(255, 255, 255, 0.72);
+        padding: 18px 18px 16px;
+        border-radius: 24px;
+        border: 1px solid rgba(124, 58, 237, 0.18);
+        background: rgba(30, 41, 59, 0.55);
       }
 
       .amount-label {
+        font-size: 12px;
         color: var(--muted);
-        font-size: 13px;
       }
 
       .amount-value {
-        margin-top: 6px;
-        font-size: 38px;
+        margin-top: 8px;
+        font-size: 36px;
         font-weight: 800;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.04em;
       }
 
-      .body {
-        padding: 24px 28px 28px;
+      .progress-wrap {
+        margin-top: 22px;
+        padding: 18px;
+        border-radius: 24px;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid var(--line);
+      }
+
+      .spinner {
+        width: 58px;
+        height: 58px;
+        border-radius: 999px;
+        border: 4px solid rgba(148, 163, 184, 0.18);
+        border-top-color: #c4b5fd;
+        animation: spin 0.9s linear infinite;
+      }
+
+      .progress-head {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .progress-title {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .progress-sub {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .step-list {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #cbd5e1;
+        font-size: 14px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #a78bfa, #7c3aed);
+        box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.12);
       }
 
       .status {
-        padding: 16px 18px;
+        margin-top: 18px;
+        padding: 14px 16px;
         border-radius: 18px;
-        background: #fff4e8;
-        border: 1px solid #f5dcc4;
-        color: #9a4d21;
-        font-size: 14px;
+        background: rgba(30, 41, 59, 0.82);
+        border: 1px solid var(--line);
+        color: #e2e8f0;
         line-height: 1.6;
+      }
+
+      .status.error {
+        background: var(--error-bg);
+        border-color: rgba(244, 63, 94, 0.26);
+        color: var(--error);
       }
 
       .actions {
@@ -129,154 +185,120 @@
 
       button {
         width: 100%;
-        height: 54px;
+        min-height: 52px;
         border: 0;
         border-radius: 18px;
-        padding: 0 18px;
         font: inherit;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 700;
         cursor: pointer;
-        transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
-      }
-
-      button:hover {
-        transform: translateY(-1px);
-      }
-
-      button:active {
-        transform: translateY(0);
       }
 
       button.primary {
-        color: #ffffff;
-        background: linear-gradient(135deg, var(--primary), var(--accent));
+        color: white;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
       }
 
       button.secondary {
-        color: var(--ink);
-        background: #fff7ee;
+        color: #e2e8f0;
+        background: rgba(30, 41, 59, 0.85);
         border: 1px solid var(--line);
       }
 
-      .meta {
+      details {
         margin-top: 18px;
-        display: grid;
-        gap: 10px;
       }
 
-      .meta-item {
-        padding: 12px 14px;
-        border-radius: 16px;
-        background: #fffaf4;
-        border: 1px solid var(--line);
-      }
-
-      .meta-label {
-        display: block;
-        color: var(--muted);
-        font-size: 12px;
-        margin-bottom: 6px;
-      }
-
-      .meta-value {
-        word-break: break-all;
+      summary {
+        cursor: pointer;
+        color: #cbd5e1;
         font-size: 13px;
-        line-height: 1.6;
       }
 
       .logs {
-        margin-top: 18px;
-        padding: 16px;
+        margin-top: 12px;
+        padding: 14px;
         border-radius: 18px;
-        background: #1f2937;
-        color: #e5e7eb;
-        min-height: 220px;
-      }
-
-      .logs-title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 12px;
-      }
-
-      .logs-title strong {
-        font-size: 14px;
-      }
-
-      .hint {
-        color: #cbd5e1;
-        font-size: 12px;
+        background: #020617;
+        border: 1px solid rgba(148, 163, 184, 0.12);
       }
 
       pre {
         margin: 0;
         white-space: pre-wrap;
         word-break: break-word;
+        color: #cbd5e1;
         font-family: 'Cascadia Code', 'Consolas', monospace;
         font-size: 12px;
         line-height: 1.65;
       }
 
-      @media (max-width: 540px) {
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      @media (max-width: 480px) {
         .layout {
           padding: 12px;
         }
 
-        .hero,
-        .body {
-          padding-left: 18px;
-          padding-right: 18px;
+        .card {
+          padding: 24px 18px 20px;
         }
 
         h1 {
           font-size: 26px;
-        }
-
-        .amount-value {
-          font-size: 32px;
         }
       }
     </style>
   </head>
   <body>
     <div class="layout">
-      <section class="panel">
-        <div class="hero">
-          <span class="eyebrow">NICEPAY TEST CHECKOUT</span>
-          <h1>소소문 포인트 결제</h1>
-          <p class="desc">
-            브라우저 콘솔과 아래 로그 패널에 동일한 디버그 로그가 남습니다.
-            문제가 생기면 <code>[NicePayCheckout]</code> 로그를 그대로 공유해 주세요.
-          </p>
-          <div class="amount-card">
-            <div class="amount-label">충전 예정 포인트</div>
-            <div class="amount-value" id="amountText">-</div>
-          </div>
+      <section class="card">
+        <div class="badge">SOSOMUN x NICEPAY</div>
+        <h1>나이스페이먼츠를 불러오는 중</h1>
+        <p class="desc">
+          결제창이 자동으로 열립니다. 잠시만 기다려 주세요.
+          열리지 않으면 아래 버튼으로 다시 시도할 수 있습니다.
+        </p>
+
+        <div class="amount">
+          <div class="amount-label">충전 예정 포인트</div>
+          <div class="amount-value" id="amountText">-</div>
         </div>
 
-        <div class="body">
-          <div class="status" id="statusBox">
-            결제 설정을 읽는 중입니다.
+        <div class="progress-wrap">
+          <div class="progress-head">
+            <div class="spinner" aria-hidden="true"></div>
+            <div>
+              <div class="progress-title">결제창 연결 준비 중</div>
+              <div class="progress-sub" id="progressSub">
+                나이스페이 결제 환경을 확인하고 있습니다.
+              </div>
+            </div>
           </div>
+
+          <ul class="step-list">
+            <li class="step"><span class="dot"></span><span>결제 요청 정보를 확인합니다.</span></li>
+            <li class="step"><span class="dot"></span><span>나이스페이 SDK를 불러옵니다.</span></li>
+            <li class="step"><span class="dot"></span><span>결제창을 열고 인증을 시작합니다.</span></li>
+          </ul>
+
+          <div class="status" id="statusBox">결제 정보를 읽는 중입니다.</div>
 
           <div class="actions">
-            <button id="payBtn" class="primary" type="button">결제 진행하기</button>
+            <button id="payBtn" class="primary" type="button">결제창 다시 열기</button>
             <button id="copyBtn" class="secondary" type="button">로그 복사하기</button>
           </div>
+        </div>
 
-          <div class="meta" id="meta"></div>
-
+        <details>
+          <summary>문제가 있을 때만 로그 보기</summary>
           <div class="logs">
-            <div class="logs-title">
-              <strong>브라우저 로그</strong>
-              <span class="hint">키워드: NicePayCheckout</span>
-            </div>
             <pre id="logOutput">로그를 준비하는 중입니다...</pre>
           </div>
-        </div>
+        </details>
       </section>
     </div>
 
@@ -284,8 +306,8 @@
       (function () {
         const logOutput = document.getElementById('logOutput');
         const statusBox = document.getElementById('statusBox');
-        const metaBox = document.getElementById('meta');
         const amountText = document.getElementById('amountText');
+        const progressSub = document.getElementById('progressSub');
         const payButton = document.getElementById('payBtn');
         const copyButton = document.getElementById('copyBtn');
         const logLines = [];
@@ -293,9 +315,9 @@
         let sdkPromise = null;
 
         function appendLog(level, message, meta) {
-          const time = new Date().toISOString();
-          const serializedMeta = meta === undefined ? '' : ' ' + JSON.stringify(meta);
-          const line = '[' + time + '] [' + level + '] ' + message + serializedMeta;
+          const line =
+            '[' + new Date().toISOString() + '] [' + level + '] ' + message +
+            (meta === undefined ? '' : ' ' + JSON.stringify(meta));
           logLines.push(line);
           logOutput.textContent = logLines.join('\n');
 
@@ -310,39 +332,16 @@
 
         function setStatus(message, tone) {
           statusBox.textContent = message;
-          statusBox.style.background =
-            tone === 'error' ? '#fff1f0' : tone === 'success' ? '#edfdf5' : '#fff4e8';
-          statusBox.style.borderColor =
-            tone === 'error' ? '#f5c2bd' : tone === 'success' ? '#b7ebd0' : '#f5dcc4';
-          statusBox.style.color =
-            tone === 'error' ? '#b42318' : tone === 'success' ? '#067647' : '#9a4d21';
+          statusBox.className = tone === 'error' ? 'status error' : 'status';
+          progressSub.textContent =
+            tone === 'error'
+              ? '결제창을 다시 열거나 로그를 복사해 공유해 주세요.'
+              : '브라우저가 나이스페이 결제창으로 곧 전환됩니다.';
         }
 
         function getParam(name) {
           const value = new URLSearchParams(window.location.search).get(name);
           return value ? value.trim() : '';
-        }
-
-        function renderMeta(config) {
-          metaBox.innerHTML = '';
-          [
-            ['주문번호', config.orderId],
-            ['결제 금액', config.amount.toLocaleString() + '원'],
-            ['상품명', config.goodsName],
-            ['returnUrl', config.returnUrl],
-            ['scriptUrl', config.scriptUrl],
-            ['모드', config.mode],
-          ].forEach(function (entry) {
-            const label = entry[0];
-            const value = entry[1];
-            const wrapper = document.createElement('div');
-            wrapper.className = 'meta-item';
-            wrapper.innerHTML =
-              '<span class="meta-label">' + label + '</span>' +
-              '<div class="meta-value"></div>';
-            wrapper.querySelector('.meta-value').textContent = value;
-            metaBox.appendChild(wrapper);
-          });
         }
 
         function loadConfig() {
@@ -366,14 +365,7 @@
             mode: config.mode,
           });
 
-          if (
-            !config.clientId ||
-            !config.orderId ||
-            !config.amount ||
-            !config.goodsName ||
-            !config.returnUrl ||
-            !config.scriptUrl
-          ) {
+          if (!config.clientId || !config.orderId || !config.amount || !config.goodsName || !config.returnUrl || !config.scriptUrl) {
             throw new Error('필수 결제 파라미터가 누락되었습니다.');
           }
 
@@ -402,20 +394,18 @@
               appendLog('info', 'sdk.load:onload');
 
               let attempts = 0;
-              const maxAttempts = 40;
-
               function poll() {
-                const authniceType = typeof window.AUTHNICE;
-                appendLog('info', 'sdk.load:poll', { attempts, authniceType: authniceType });
+                const ready = !!(window.AUTHNICE && typeof window.AUTHNICE.requestPay === 'function');
+                appendLog('info', 'sdk.load:poll', { attempts: attempts, ready: ready });
 
-                if (window.AUTHNICE && typeof window.AUTHNICE.requestPay === 'function') {
+                if (ready) {
                   appendLog('info', 'sdk.load:ready');
                   resolve(window.AUTHNICE);
                   return;
                 }
 
                 attempts += 1;
-                if (attempts >= maxAttempts) {
+                if (attempts >= 40) {
                   reject(new Error('NICEPAY SDK loaded but AUTHNICE.requestPay is unavailable'));
                   return;
                 }
@@ -455,8 +445,7 @@
 
           requested = true;
           amountText.textContent = config.amount.toLocaleString() + 'P';
-          renderMeta(config);
-          setStatus('NICEPAY 결제창을 준비하는 중입니다.', 'info');
+          setStatus('나이스페이 결제창을 준비하는 중입니다.', 'info');
           appendLog('info', 'payment.request:start', {
             orderId: config.orderId,
             amount: config.amount,
@@ -497,20 +486,20 @@
           }
         }
 
+        payButton.addEventListener('click', function () {
+          startPayment();
+        });
+
         copyButton.addEventListener('click', async function () {
           try {
             await navigator.clipboard.writeText(logLines.join('\n'));
             appendLog('info', 'logs.copy:success');
-            setStatus('로그를 클립보드에 복사했습니다.', 'success');
+            setStatus('로그를 클립보드에 복사했습니다.', 'info');
           } catch (error) {
             const message = error instanceof Error ? error.message : String(error);
             appendLog('error', 'logs.copy:failed', { error: message });
             setStatus('로그 복사에 실패했습니다.', 'error');
           }
-        });
-
-        payButton.addEventListener('click', function () {
-          startPayment();
         });
 
         window.addEventListener('error', function (event) {
@@ -531,15 +520,14 @@
         window.addEventListener('load', function () {
           appendLog('info', 'window.load', {
             href: window.location.href,
-            userAgent: window.navigator.userAgent,
+            userAgent: navigator.userAgent,
           });
 
           try {
             const config = loadConfig();
             amountText.textContent = config.amount.toLocaleString() + 'P';
-            renderMeta(config);
-            setStatus('자동으로 결제를 시작합니다. 열리지 않으면 아래 버튼을 눌러 주세요.', 'info');
-            window.setTimeout(startPayment, 250);
+            setStatus('결제창을 곧 열겠습니다. 잠시만 기다려 주세요.', 'info');
+            window.setTimeout(startPayment, 180);
           } catch (error) {
             const message = error instanceof Error ? error.message : String(error);
             appendLog('error', 'window.load:configError', { error: message });
