@@ -13,6 +13,7 @@
 <body class="subpage">
   <header class="site-header" data-header>
     <a class="wordmark" href="index.html" aria-label="NUADE 홈"><span>NUADE</span></a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="gnb" aria-label="주요 메뉴">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -26,19 +27,13 @@
   </header>
 
   <main>
-    <section class="page-hero">
+    <section class="page-hero compact-hero">
       <p class="section-kicker">Services</p>
       <h1>얼굴의 분위기를 만드는 네 가지 케어.</h1>
       <p>시술 가격과 리터치 안내는 상담 후 개인 상태에 맞춰 확인합니다.</p>
     </section>
 
     <section class="catalog-section">
-      <div class="category-nav" aria-label="시술 카테고리">
-        <a href="#semi">반영구</a>
-        <a href="#lash">속눈썹</a>
-        <a href="#waxing">왁싱</a>
-        <a href="#removal">잔흔제거</a>
-      </div>
       <div class="category-summary-grid" aria-label="시술 카테고리 요약">
         <a href="#semi">
           <span>01</span>
@@ -69,9 +64,9 @@
             <p>눈썹, 입술 등 얼굴의 인상을 만드는 요소를 자연스럽게 정리합니다.</p>
           </div>
           <ul class="price-list">
-            <li><strong>내추럴 브로우</strong><span>상담 문의</span></li>
-            <li><strong>콤보 브로우</strong><span>상담 문의</span></li>
-            <li><strong>립 블러링</strong><span>상담 문의</span></li>
+            <li><div><strong>내추럴 브로우</strong><p>결을 살린 자연스러운 눈썹 디자인</p></div><span>상담 문의</span></li>
+            <li><div><strong>콤보 브로우</strong><p>선과 음영을 함께 잡는 맞춤 디자인</p></div><span>상담 문의</span></li>
+            <li><div><strong>립 블러링</strong><p>얼굴 톤에 맞춰 생기를 더하는 입술 케어</p></div><span>상담 문의</span></li>
           </ul>
         </article>
         <article class="catalog-item" id="lash">
@@ -81,9 +76,9 @@
             <p>눈매와 라이프스타일에 맞춰 펌, 연장, 케어를 제안합니다.</p>
           </div>
           <ul class="price-list">
-            <li><strong>래쉬 펌</strong><span>상담 문의</span></li>
-            <li><strong>블랙 틴팅</strong><span>상담 문의</span></li>
-            <li><strong>래쉬 케어</strong><span>상담 문의</span></li>
+            <li><div><strong>래쉬 펌</strong><p>눈매와 모질에 맞춘 자연스러운 컬</p></div><span>상담 문의</span></li>
+            <li><div><strong>블랙 틴팅</strong><p>또렷한 인상을 위한 컬러 보강</p></div><span>상담 문의</span></li>
+            <li><div><strong>래쉬 케어</strong><p>손상도를 고려한 기본 관리</p></div><span>상담 문의</span></li>
           </ul>
         </article>
         <article class="catalog-item" id="waxing">
@@ -93,9 +88,9 @@
             <p>위생적인 환경에서 피부 컨디션을 살피며 부위별 케어를 진행합니다.</p>
           </div>
           <ul class="price-list">
-            <li><strong>페이스 왁싱</strong><span>상담 문의</span></li>
-            <li><strong>바디 왁싱</strong><span>상담 문의</span></li>
-            <li><strong>브로우 정리</strong><span>상담 문의</span></li>
+            <li><div><strong>페이스 왁싱</strong><p>피부 컨디션을 확인한 얼굴 라인 케어</p></div><span>상담 문의</span></li>
+            <li><div><strong>바디 왁싱</strong><p>프라이버시를 고려한 부위별 케어</p></div><span>상담 문의</span></li>
+            <li><div><strong>브로우 정리</strong><p>눈썹 라인을 깔끔하게 정돈하는 관리</p></div><span>상담 문의</span></li>
           </ul>
         </article>
         <article class="catalog-item" id="removal">
@@ -105,9 +100,9 @@
             <p>남아 있는 색소와 피부 상태를 확인하고 단계별 계획을 세웁니다.</p>
           </div>
           <ul class="price-list">
-            <li><strong>눈썹 잔흔 상담</strong><span>상담 문의</span></li>
-            <li><strong>부분 케어</strong><span>상담 문의</span></li>
-            <li><strong>회차 관리</strong><span>상담 문의</span></li>
+            <li><div><strong>눈썹 잔흔 상담</strong><p>남은 색소와 피부 상태를 먼저 확인</p></div><span>상담 문의</span></li>
+            <li><div><strong>부분 케어</strong><p>필요한 영역만 단계적으로 관리</p></div><span>상담 문의</span></li>
+            <li><div><strong>회차 관리</strong><p>피부 반응에 맞춘 반복 케어 플랜</p></div><span>상담 문의</span></li>
           </ul>
         </article>
       </div>
@@ -128,9 +123,9 @@
   </main>
 
   <aside class="floating-actions" aria-label="빠른 문의">
-    <a href="#" aria-label="네이버 예약">N</a>
+    <a href="#" aria-label="네이버 플레이스">P</a>
     <a href="#" aria-label="카카오 채널">K</a>
-    <a href="tel:" aria-label="전화 문의">T</a>
+    <a href="#" aria-label="인스타그램">I</a>
   </aside>
   <script src="assets/js/main.js"></script>
 </body>

@@ -13,6 +13,7 @@
 <body class="subpage">
   <header class="site-header" data-header>
     <a class="wordmark" href="index.html" aria-label="NUADE 홈"><span>NUADE</span></a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="gnb" aria-label="주요 메뉴">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -26,51 +27,65 @@
   </header>
 
   <main>
-    <section class="page-hero">
+    <section class="page-hero compact-hero">
       <p class="section-kicker">News</p>
       <h1>운영 안내와 시즌 혜택을 전합니다.</h1>
       <p>휴무, 가격 변경, 이벤트 소식은 이곳에서 확인할 수 있습니다.</p>
     </section>
 
     <section class="board-section">
-      <div class="board-filter" aria-label="게시글 분류">
-        <button type="button">전체</button>
-        <button type="button">공지</button>
-        <button type="button">이벤트</button>
+      <div class="board-filter" aria-label="게시글 분류" data-board-filter>
+        <button type="button" data-filter="all" aria-pressed="true">전체</button>
+        <button type="button" data-filter="notice" aria-pressed="false">공지</button>
+        <button type="button" data-filter="event" aria-pressed="false">이벤트</button>
       </div>
-      <div class="board-table" role="table" aria-label="공지 이벤트 게시판">
+      <div class="board-table" role="table" aria-label="공지 이벤트 게시판" data-board-list>
         <div class="board-row board-head" role="row">
           <span>구분</span>
           <span>제목</span>
           <span>등록일</span>
           <span>상태</span>
         </div>
-        <a class="board-row" href="#" role="row">
+        <a class="board-row" href="news-detail.html" role="row" data-type="notice">
           <span class="post-badge">공지</span>
           <strong>NUADE 홈페이지 리뉴얼 준비 중</strong>
           <time datetime="2026-06-16">2026.06.16</time>
           <em>공개</em>
         </a>
-        <a class="board-row" href="#" role="row">
+        <a class="board-row" href="news-detail.html" role="row" data-type="event">
           <span class="post-badge event">이벤트</span>
           <strong>첫 방문 상담 이벤트</strong>
           <time datetime="2026-06-16">2026.06.16</time>
           <em>진행중</em>
         </a>
-        <a class="board-row" href="#" role="row">
+        <a class="board-row" href="news-detail.html" role="row" data-type="notice">
           <span class="post-badge">공지</span>
           <strong>예약 변경 및 취소 안내</strong>
           <time datetime="2026-06-16">2026.06.16</time>
           <em>공개</em>
         </a>
+        <a class="board-row" href="news-detail.html" role="row" data-type="event">
+          <span class="post-badge event">이벤트</span>
+          <strong>당첨자 확인 안내</strong>
+          <time datetime="2026-06-16">2026.06.16</time>
+          <em>확인 필요</em>
+        </a>
+        <a class="board-row" href="news-detail.html" role="row" data-type="notice"><span class="post-badge">공지</span><strong>영업시간 안내</strong><time datetime="2026-06-16">2026.06.16</time><em>공개</em></a>
+        <a class="board-row" href="news-detail.html" role="row" data-type="notice"><span class="post-badge">공지</span><strong>주차 안내 업데이트</strong><time datetime="2026-06-16">2026.06.16</time><em>공개</em></a>
+        <a class="board-row" href="news-detail.html" role="row" data-type="event"><span class="post-badge event">이벤트</span><strong>시즌 케어 프로모션</strong><time datetime="2026-06-16">2026.06.16</time><em>진행중</em></a>
+        <a class="board-row" href="news-detail.html" role="row" data-type="notice"><span class="post-badge">공지</span><strong>수강 문의 운영 안내</strong><time datetime="2026-06-16">2026.06.16</time><em>공개</em></a>
+        <a class="board-row" href="news-detail.html" role="row" data-type="notice"><span class="post-badge">공지</span><strong>리터치 예약 안내</strong><time datetime="2026-06-16">2026.06.16</time><em>공개</em></a>
+        <a class="board-row" href="news-detail.html" role="row" data-type="event"><span class="post-badge event">이벤트</span><strong>리뷰 참여 이벤트</strong><time datetime="2026-06-16">2026.06.16</time><em>진행중</em></a>
+        <a class="board-row" href="news-detail.html" role="row" data-type="notice"><span class="post-badge">공지</span><strong>가격표 개편 안내</strong><time datetime="2026-06-16">2026.06.16</time><em>공개</em></a>
       </div>
+      <nav class="pagination" aria-label="게시글 페이지" data-pagination></nav>
     </section>
   </main>
 
   <aside class="floating-actions" aria-label="빠른 문의">
-    <a href="#" aria-label="네이버 예약">N</a>
+    <a href="#" aria-label="네이버 플레이스">P</a>
     <a href="#" aria-label="카카오 채널">K</a>
-    <a href="tel:" aria-label="전화 문의">T</a>
+    <a href="#" aria-label="인스타그램">I</a>
   </aside>
   <script src="assets/js/main.js"></script>
 </body>

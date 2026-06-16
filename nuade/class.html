@@ -13,6 +13,7 @@
 <body class="subpage">
   <header class="site-header" data-header>
     <a class="wordmark" href="index.html" aria-label="NUADE 홈"><span>NUADE</span></a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span><span></span></button>
     <nav class="gnb" aria-label="주요 메뉴">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
@@ -35,17 +36,31 @@
       <img src="assets/img/hero-salon-placeholder.png" alt="수강 페이지 임시 이미지">
     </section>
 
-    <section class="course-section">
-      <article class="course-feature">
-        <p class="section-kicker">One Day</p>
-        <h2>듀얼펌 원데이</h2>
-        <p>상담, 디자인, 시술 흐름, 유지 관리 안내까지 한 번에 정리하는 실전 중심 과정입니다.</p>
-        <a class="btn btn-primary" href="contact.html">수강 문의</a>
-      </article>
-      <div class="course-points">
-        <div><span>01</span><strong>디자인 기준</strong><p>눈매와 모질을 읽고 방향을 잡는 법을 익힙니다.</p></div>
-        <div><span>02</span><strong>시술 흐름</strong><p>준비, 진행, 마무리까지 안정적인 순서를 정리합니다.</p></div>
-        <div><span>03</span><strong>응대 방식</strong><p>상담과 사후 안내의 문장까지 함께 다룹니다.</p></div>
+    <section class="course-menu-section">
+      <div class="section-head">
+        <p class="section-kicker">Class Menu</p>
+        <h2>수강 메뉴</h2>
+        <a href="contact.html">수강 문의</a>
+      </div>
+      <div class="course-card-grid">
+        <article class="course-card">
+          <img src="assets/img/hero-salon-placeholder.png" alt="듀얼펌 원데이 수강 이미지">
+          <div>
+            <span>One Day</span>
+            <h3>듀얼펌 원데이</h3>
+            <p>상담, 디자인, 시술 흐름, 유지 관리 안내까지 한 번에 정리하는 실전 중심 과정입니다.</p>
+            <strong>상담 문의</strong>
+          </div>
+        </article>
+        <article class="course-card">
+          <img src="assets/img/hero-salon-placeholder.png" alt="실무 보강 클래스 수강 이미지">
+          <div>
+            <span>Workshop</span>
+            <h3>실무 보강 클래스</h3>
+            <p>현장에서 자주 만나는 케이스와 응대 문장을 함께 정리하는 보강 과정입니다.</p>
+            <strong>상담 문의</strong>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -81,9 +96,9 @@
   </main>
 
   <aside class="floating-actions" aria-label="빠른 문의">
-    <a href="#" aria-label="네이버 예약">N</a>
+    <a href="#" aria-label="네이버 플레이스">P</a>
     <a href="#" aria-label="카카오 채널">K</a>
-    <a href="tel:" aria-label="전화 문의">T</a>
+    <a href="#" aria-label="인스타그램">I</a>
   </aside>
   <script src="assets/js/main.js"></script>
 </body>
