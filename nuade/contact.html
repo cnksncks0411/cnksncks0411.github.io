@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | NUADE</title>
+  <meta name="description" content="NUADE 예약과 1:1 문의">
+  <meta property="og:title" content="Contact NUADE">
+  <meta property="og:description" content="예약과 문의는 편한 채널로 남겨주세요">
+  <meta property="og:image" content="assets/img/hero-salon-placeholder.png">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="subpage">
+  <header class="site-header" data-header>
+    <a class="wordmark" href="index.html" aria-label="NUADE 홈"><span>NUADE</span></a>
+    <nav class="gnb" aria-label="주요 메뉴">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="class.html">Class</a>
+      <a href="news.html">News</a>
+      <a href="location.html">Location</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <a class="header-reserve" href="contact.html">예약 문의</a>
+  </header>
+
+  <main>
+    <section class="page-hero page-hero-visual">
+      <div>
+        <p class="section-kicker">Contact</p>
+        <h1>예약과 문의는 편한 채널로 남겨주세요.</h1>
+      </div>
+      <p>확인 후 순차적으로 안내드립니다. 빠른 예약은 네이버 예약 또는 카카오 채널을 이용해 주세요.</p>
+      <img src="assets/img/hero-salon-placeholder.png" alt="문의 페이지 임시 이미지">
+    </section>
+
+    <section class="contact-page-section">
+      <div class="contact-card">
+        <p class="section-kicker">Direct</p>
+        <h2>바로 연결</h2>
+        <div class="stack-actions">
+          <a class="btn btn-primary" href="#">네이버 예약</a>
+          <a class="btn btn-secondary dark" href="#">카카오 채널</a>
+          <a class="btn btn-secondary dark" href="tel:">전화 문의</a>
+        </div>
+      </div>
+      <form class="inquiry-form" action="#" method="post" data-inquiry-form>
+        <div>
+          <label for="name">이름</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="성함을 입력해 주세요" required>
+        </div>
+        <div>
+          <label for="phone">연락처</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="연락 가능한 번호" required>
+        </div>
+        <div>
+          <label for="type">문의 유형</label>
+          <select id="type" name="type">
+            <option>일반 문의</option>
+            <option>시술 문의</option>
+            <option>수강 문의</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">문의 내용</label>
+          <textarea id="message" name="message" rows="7" placeholder="원하시는 시술, 희망 일정, 궁금한 점을 남겨 주세요" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">문의 남기기</button>
+        <p class="form-status" data-form-status hidden>문의가 접수되었습니다. 확인 후 순차적으로 안내드릴게요.</p>
+      </form>
+    </section>
+  </main>
+
+  <aside class="floating-actions" aria-label="빠른 문의">
+    <a href="#" aria-label="네이버 예약">N</a>
+    <a href="#" aria-label="카카오 채널">K</a>
+    <a href="tel:" aria-label="전화 문의">T</a>
+  </aside>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

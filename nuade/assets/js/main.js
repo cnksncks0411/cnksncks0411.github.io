@@ -3,6 +3,8 @@
   var popup = document.querySelector("[data-popup]");
   var closeButton = document.querySelector("[data-popup-close]");
   var todayButton = document.querySelector("[data-popup-today]");
+  var inquiryForm = document.querySelector("[data-inquiry-form]");
+  var formStatus = document.querySelector("[data-form-status]");
   var popupKey = "nuade_popup_closed_today";
 
   function updateHeader() {
@@ -55,4 +57,12 @@
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") hidePopup();
   });
+
+  if (inquiryForm) {
+    inquiryForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (formStatus) formStatus.hidden = false;
+      inquiryForm.reset();
+    });
+  }
 })();

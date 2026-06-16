@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>시술 관리 | NUADE Admin</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body class="admin-page">
+  <aside class="admin-sidebar">
+    <a class="admin-brand" href="services.html">NUADE</a>
+    <nav aria-label="관리자 메뉴">
+      <a href="services.html" aria-current="page">시술 관리</a>
+      <a href="classes.html">수강 관리</a>
+      <a href="posts.html">공지 · 이벤트</a>
+      <a href="#">문의</a>
+      <a href="#">기본 설정</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div>
+        <p class="section-kicker">Admin</p>
+        <h1>시술 관리</h1>
+      </div>
+      <button class="btn btn-primary" type="button">새 시술 추가</button>
+    </header>
+
+    <section class="admin-grid">
+      <article class="admin-panel">
+        <div class="admin-panel-head">
+          <div>
+            <p class="section-kicker">Categories</p>
+            <h2>시술 카테고리</h2>
+          </div>
+          <button class="btn btn-secondary dark" type="button">카테고리 추가</button>
+        </div>
+        <div class="admin-table" role="table" aria-label="시술 카테고리 관리">
+          <div class="admin-row admin-row-head" role="row">
+            <span>순서</span>
+            <span>카테고리</span>
+            <span>설명</span>
+            <span>노출</span>
+          </div>
+          <div class="admin-row" role="row">
+            <span>10</span>
+            <strong>반영구</strong>
+            <span>눈썹, 입술 등 얼굴의 인상을 만드는 케어</span>
+            <span class="status-on">ON</span>
+          </div>
+          <div class="admin-row" role="row">
+            <span>20</span>
+            <strong>속눈썹</strong>
+            <span>펌, 연장, 케어 중심 카테고리</span>
+            <span class="status-on">ON</span>
+          </div>
+          <div class="admin-row" role="row">
+            <span>30</span>
+            <strong>왁싱</strong>
+            <span>페이스와 바디 왁싱 안내</span>
+            <span class="status-on">ON</span>
+          </div>
+          <div class="admin-row" role="row">
+            <span>40</span>
+            <strong>잔흔제거</strong>
+            <span>색소와 피부 상태를 확인하는 상담형 케어</span>
+            <span class="status-on">ON</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="admin-panel">
+        <div class="admin-panel-head">
+          <div>
+            <p class="section-kicker">Service Form</p>
+            <h2>시술 등록</h2>
+          </div>
+        </div>
+        <form class="admin-form" action="#" method="post">
+          <label>
+            카테고리
+            <select name="category">
+              <option>반영구</option>
+              <option>속눈썹</option>
+              <option>왁싱</option>
+              <option>잔흔제거</option>
+            </select>
+          </label>
+          <label>
+            시술명
+            <input name="name" type="text" placeholder="예: 내추럴 브로우">
+          </label>
+          <label>
+            가격 표시
+            <input name="price_text" type="text" placeholder="예: 상담 문의">
+          </label>
+          <label>
+            설명
+            <textarea name="description" rows="5" placeholder="공개 페이지에 노출될 설명"></textarea>
+          </label>
+          <div class="admin-form-row">
+            <label>
+              노출 순서
+              <input name="sort_order" type="number" value="10">
+            </label>
+            <label>
+              공개 여부
+              <select name="is_visible">
+                <option>공개</option>
+                <option>숨김</option>
+              </select>
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit">저장</button>
+        </form>
+      </article>
+    </section>
+
+    <section class="admin-panel">
+      <div class="admin-panel-head">
+        <div>
+          <p class="section-kicker">Services</p>
+          <h2>시술 목록</h2>
+        </div>
+      </div>
+      <div class="admin-table service-admin-table" role="table" aria-label="시술 목록">
+        <div class="admin-row admin-row-head" role="row">
+          <span>카테고리</span>
+          <span>시술명</span>
+          <span>가격</span>
+          <span>리터치</span>
+          <span>노출</span>
+        </div>
+        <div class="admin-row" role="row">
+          <span>반영구</span>
+          <strong>내추럴 브로우</strong>
+          <span>상담 문의</span>
+          <span>별도 안내</span>
+          <span class="status-on">ON</span>
+        </div>
+        <div class="admin-row" role="row">
+          <span>속눈썹</span>
+          <strong>래쉬 펌</strong>
+          <span>상담 문의</span>
+          <span>없음</span>
+          <span class="status-on">ON</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
