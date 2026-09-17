@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/material_blue.css" />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="partner" data-page="drowsy-claim">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 협력업체지원 좌측 메뉴 인클루드 영역: /admin/include/lnb-partner.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-partner" data-page="drowsy-claim"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>접수내역</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/partner/regular-checkup-list.html">협력업체지원</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/partner/drowsy-claim-list.html">졸음운전예방장치장착청구</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">접수내역</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="drowsy-claim-view-title">
+              <table class="board-form-table text-center">
+                <caption>
+                  졸음운전예방장치장착청구 접수내역
+                </caption>
+                <colgroup>
+                  <col width="12%" />
+                  <col width="21.333%" />
+                  <col width="12%" />
+                  <col width="21.333%" />
+                  <col width="12%" />
+                  <col width="21.334%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">신청번호</th>
+                    <td>00000324</td>
+                    <th scope="row">접수번호</th>
+                    <td>00005029</td>
+                    <th scope="row">접수상태</th>
+                    <td>접수완료</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <section class="panel" aria-label="접수내역 상세 내용">
+              <div class="board-tabs" data-board-tabs>
+                <!-- 탭 버튼 -->
+                <div class="board-tab-list" role="tablist" aria-label="접수내역 서류">
+                  <button
+                    type="button"
+                    class="board-tab active"
+                    id="receptionApplicationTab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="receptionApplicationPanel"
+                    data-board-tab="receptionApplicationPanel"
+                  >
+                    졸음운전예방장치 설치지원 시범사업 신청서
+                  </button>
+                  <button
+                    type="button"
+                    class="board-tab"
+                    id="receptionDocumentTab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="receptionDocumentPanel"
+                    data-board-tab="receptionDocumentPanel"
+                  >
+                    복지사업 서류등록
+                  </button>
+                  <button
+                    type="button"
+                    class="board-tab"
+                    id="receptionAgreementTab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="receptionAgreementPanel"
+                    data-board-tab="receptionAgreementPanel"
+                  >
+                    동의서약서
+                  </button>
+                </div>
+
+                <div class="board-tab-panels">
+                  <!-- 탭 영역 : 졸음운전예방장치 설치지원 시범사업 신청서 -->
+                  <div
+                    class="board-tab-panel"
+                    id="receptionApplicationPanel"
+                    role="tabpanel"
+                    aria-labelledby="receptionApplicationTab"
+                    data-board-tab-panel
+                  >
+                    <form action="" method="post" class="flex flex-col gap-4">
+                      <h3 class="board-panel-title">졸음운전예방장치 설치지원 시범사업 신청서</h3>
+                      <section class="board-section" aria-labelledby="application-driver-info-title">
+                        <h3 class="board-section-title" id="application-driver-info-title">화물운전자 인적사항</h3>
+                        <table class="board-form-table">
+                          <caption>
+                            졸음운전예방장치 설치지원 시범사업 신청서 화물운전자 인적사항
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">청구년월<span class="required-mark">*</span></th>
+                              <td>2026년 11월</td>
+                              <th scope="row">차량번호</th>
+                              <td>경기80아2923</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="claimVehicleTon">차량운수<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-unit">
+                                  <input
+                                    id="claimVehicleTon"
+                                    name="claimVehicleTon"
+                                    type="text"
+                                    class="form-control"
+                                    required
+                                  />
+                                  <span class="board-unit-text">톤(t)</span>
+                                </div>
+                              </td>
+                              <th scope="row">사업구분<span class="required-mark">*</span></th>
+                              <td>
+                                <div class="board-form-options">
+                                  <label class="radio-label">
+                                    <input type="radio" name="claimBusinessType" value="" checked required />
+                                    <span class="radio-label-text">개인</span>
+                                  </label>
+                                  <label class="radio-label">
+                                    <input type="radio" name="claimBusinessType" value="" required />
+                                    <span class="radio-label-text">법인(일반화물)</span>
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="claimPostcode">주소</label>
+                              </th>
+                              <td colspan="3">
+                                <div class="flex flex-col gap-2">
+                                  <div class="flex items-center gap-2 row-type-field w-half">
+                                    <input
+                                      id="claimPostcode"
+                                      name="claimPostcode"
+                                      type="text"
+                                      class="form-control"
+                                      aria-label="우편번호"
+                                      readonly
+                                    />
+                                    <button type="button" class="btn variant-outline color-navy rounded-md size-input">
+                                      우편번호 찾기
+                                    </button>
+                                  </div>
+                                  <input
+                                    id="claimAddress"
+                                    name="claimAddress"
+                                    type="text"
+                                    class="form-control"
+                                    aria-label="주소"
+                                    placeholder="주소 입력"
+                                    readonly
+                                  />
+                                  <input
+                                    id="claimAddressDetail"
+                                    name="claimAddressDetail"
+                                    type="text"
+                                    class="form-control"
+                                    aria-label="상세주소"
+                                    placeholder="상세주소 입력"
+                                  />
+                                  <span class="board-form-note">번지를 포함한 나머지 주소</span>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">지역</th>
+                              <td>세종</td>
+                              <th scope="row">운전자명</th>
+                              <td><span class="font-bold">홍길동</span></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="claimInstallPoint">장착지점<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <input
+                                  id="claimInstallPoint"
+                                  name="claimInstallPoint"
+                                  type="text"
+                                  class="form-control w-full"
+                                  required
+                                />
+                              </td>
+                              <th scope="row">
+                                <label for="claimInstallDate">장착일자<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="board-search-date-range">
+                                  <div class="board-search-date-field" data-datepicker-wrap>
+                                    <input
+                                      id="claimInstallDate"
+                                      name="claimInstallDate"
+                                      type="text"
+                                      class="form-control"
+                                      data-datepicker-input
+                                      data-input
+                                      required
+                                    />
+                                    <button
+                                      type="button"
+                                      class="btn-calendar"
+                                      aria-label="장착일자 선택"
+                                      data-datepicker-toggle
+                                      data-toggle
+                                    >
+                                      <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                                    </button>
+                                  </div>
+                                  <button
+                                    type="button"
+                                    class="btn variant-outline color-navy rounded-md size-input"
+                                    data-datepicker-today
+                                  >
+                                    오늘
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">장착구분<span class="required-mark">*</span></th>
+                              <td>
+                                <div class="board-form-options">
+                                  <label class="radio-label">
+                                    <input type="radio" name="claimInstallType" value="" checked required />
+                                    <span class="radio-label-text">방문</span>
+                                  </label>
+                                  <label class="radio-label">
+                                    <input type="radio" name="claimInstallType" value="" required />
+                                    <span class="radio-label-text">출장</span>
+                                  </label>
+                                </div>
+                              </td>
+                              <th scope="row">
+                                <label for="claimProductSerial">제품일련번호<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <input
+                                  id="claimProductSerial"
+                                  name="claimProductSerial"
+                                  type="text"
+                                  class="form-control w-full"
+                                  required
+                                />
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="claimMemo">메모</label>
+                              </th>
+                              <td colspan="3">
+                                <textarea id="claimMemo" name="claimMemo" class="textarea" rows="4"></textarea>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+                      <div class="board-form-actions justify-center">
+                        <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                          저장하기
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- 탭 영역 : 복지사업 서류등록 -->
+                  <div
+                    class="board-tab-panel flex flex-col gap-4"
+                    id="receptionDocumentPanel"
+                    role="tabpanel"
+                    aria-labelledby="receptionDocumentTab"
+                    data-board-tab-panel
+                    hidden
+                  >
+                    <h3 class="board-panel-title">복지사업 서류등록</h3>
+                    <section class="board-section" aria-labelledby="registered-document-title">
+                      <h4 class="board-section-title" id="registered-document-title">등록서류목록</h4>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                      <!-- 목록 있는 경우 -->
+                      <ul class="board-document-grid">
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">기타증빙서류.jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a href="#" class="btn variant-outline color-navy rounded-md size-sm" download>
+                                다운로드
+                              </a>
+                              <button type="button" class="btn variant-soft color-red rounded-md size-sm">삭제</button>
+                            </div>
+                          </figure>
+                        </li>
+                      </ul>
+                    </section>
+
+                    <section class="board-section" aria-labelledby="required-document-title">
+                      <h4 class="board-section-title" id="required-document-title">서류목록</h4>
+                      <!-- 필요 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <p class="board-content-empty" hidden>등록할 서류 정보가 없습니다.</p>
+                      <!-- 등록 시: 서류별 개별 업로드/저장 -->
+                      <form action="" method="post" enctype="multipart/form-data">
+                        <table class="board-form-table">
+                          <caption>
+                            복지사업 서류등록 서류목록
+                          </caption>
+                          <colgroup>
+                            <col width="22%" />
+                            <col width="78%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">
+                                <label for="documentFile1">차량정면사진 [필수]</label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-file">
+                                  <input id="documentFile1" name="documentFile" type="file" class="form-control" />
+                                  <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                                    저장
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="documentFile2">장착사진 [필수]</label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-file">
+                                  <input id="documentFile2" name="documentFile" type="file" class="form-control" />
+                                  <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                                    저장
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="documentFile3">기타(증빙서류) [선택]</label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-file">
+                                  <input id="documentFile3" name="documentFile" type="file" class="form-control" />
+                                  <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                                    저장
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </form>
+                    </section>
+                  </div>
+                  <!-- 탭 영역 : 동의서약서 -->
+                  <div
+                    class="board-tab-panel"
+                    id="receptionAgreementPanel"
+                    role="tabpanel"
+                    aria-labelledby="receptionAgreementTab"
+                    data-board-tab-panel
+                    hidden
+                  >
+                    <h3 class="board-panel-title">동의서약서</h3>
+                    <!-- 동의서약서 내용 미정 -->
+                    <p class="board-content-empty">등록된 내용이 없습니다.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="board-view-actions">
+              <a
+                href="/admin/partner/drowsy-claim-list.html"
+                class="btn variant-outline color-navy rounded-md size-board-action"
+              >
+                목록보기
+              </a>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

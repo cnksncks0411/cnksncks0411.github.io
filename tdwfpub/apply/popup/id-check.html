@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>회원 아이디 중복확인 | 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body class="check-popup id-check">
+    <main class="check-wrap">
+      <h1 class="popup-title">회원 아이디 중복확인</h1>
+
+      <form class="check-form" action="#" method="get">
+        <label for="check-id">회원 아이디</label>
+        <div class="check-field">
+          <input id="check-id" class="form-control size-md" type="text" name="userId" placeholder="아이디를 입력하세요." />
+          <button type="submit" class="btn variant-outline color-navy size-md rounded-md">중복확인</button>
+        </div>
+      </form>
+
+      <!-- 중복확인 전 -->
+      <div class="check-note">
+        <p>
+          아이디를 입력 후 중복확인 버튼을 클릭해서<br />
+          아이디 <strong>중복확인</strong>을 하셔야<br />
+          회원님께서 입력하신 아이디를 사용하실 수 있습니다.
+        </p>
+      </div>
+
+      <!-- 중복확인 후 -->
+      <div class="check-note check-result">
+        <!-- 중복 통과 -->
+        <p><strong>abcdefg001</strong>(은) 사용 가능한 아이디입니다.</p>
+        <!-- 중복 아이디 존재 -->
+        <p class="text-blue">
+          <strong>abcdefg001</strong>(은) 이미 사용중인 아이디입니다. <br />
+          다른 아이디를 입력 후 중복확인 버튼을 클릭 해 주세요.
+        </p>
+        <button type="button" class="btn variant-solid color-blue size-md rounded-md">회원 아이디 사용</button>
+      </div>
+    </main>
+  </body>
+</html>

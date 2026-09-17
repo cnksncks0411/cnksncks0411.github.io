@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>본인인증 | 회원가입 | 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="member" data-page="join">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>회원가입</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 회원 LNB 인클루드 영역: common/include/apply/lnb-member.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-member" data-page="join"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">회원가입</h1>
+              <div class="sub-intro">
+                <p>회원가입으로 더 많은 정보 혜택을 누려보세요.</p>
+              </div>
+            </div>
+
+            <div class="sub-content join-auth-content join-flow">
+              <ol class="join-steps" aria-label="회원가입 진행 단계">
+                <li class="step-item">
+                  <span class="step-number">STEP 01</span>
+                  <strong>약관동의</strong>
+                </li>
+                <li class="step-item active" aria-current="step">
+                  <span class="step-number">STEP 02</span>
+                  <strong>본인인증</strong>
+                </li>
+                <li class="step-item">
+                  <span class="step-number">STEP 03</span>
+                  <strong>회원정보</strong>
+                </li>
+                <li class="step-item">
+                  <span class="step-number">STEP 04</span>
+                  <strong>가입완료</strong>
+                </li>
+              </ol>
+
+              <div class="auth-guide">
+                <span class="guide-icon material-symbols-rounded" aria-hidden="true">priority_high</span>
+                <div>
+                  <p>화물복지재단에서는 홈페이지를 원활하게 사용하게 위해 본인인증 절차를 거치도록 하고 있습니다.</p>
+                  <p class="mt-1">휴대폰 인증, 인증서 인증 또는 카드 인증으로 본인인증을 진행해 주시기 바랍니다.</p>
+                </div>
+              </div>
+
+              <div class="auth-methods">
+                <article class="auth-method">
+                  <span class="material-symbols-rounded" aria-hidden="true">smartphone</span>
+                  <h2>휴대폰 본인인증</h2>
+                  <a href="#" class="btn variant-solid color-blue size-lg">
+                    <span class="btn-label">인증하기</span>
+                  </a>
+                  <p>고객님 명의의 휴대폰을 통한 본인인증 서비스입니다.</p>
+                </article>
+
+                <article class="auth-method">
+                  <span class="material-symbols-rounded" aria-hidden="true">key</span>
+                  <h2>인증서 본인인증</h2>
+                  <a href="#" class="btn variant-solid color-blue size-lg">
+                    <span class="btn-label">인증하기</span>
+                  </a>
+                  <p>고객님 명의의 인증서를 통한 본인인증 서비스입니다.</p>
+                </article>
+
+                <article class="auth-method">
+                  <span class="material-symbols-rounded" aria-hidden="true">credit_card</span>
+                  <h2>카드 본인인증</h2>
+                  <a href="#" class="btn variant-solid color-blue size-lg">
+                    <span class="btn-label">인증하기</span>
+                  </a>
+                  <p>고객님 명의의 신용/체크카드를 통한 본인인증 서비스입니다.</p>
+                </article>
+              </div>
+
+              <section class="card-guide" aria-labelledby="card-guide-title">
+                <div class="card-copy">
+                  <div class="card-head">
+                    <p id="card-guide-title">
+                      본인 명의 인증서가 없는 경우, 카드 인증을 통해 진행할 수 있습니다. 카드 인증 시, 아래의 절차에
+                      따라 진행해 주시기 바랍니다.
+                    </p>
+                    <a
+                      href="/apply/popup/card-guide.html"
+                      target="_blank"
+                      rel="noopener"
+                      class="btn variant-solid color-navy size-md"
+                      data-popup="cardGuidePopup"
+                      data-size="500,700"
+                    >
+                      <span class="btn-label">카드인증 안내</span>
+                    </a>
+                  </div>
+                  <ol class="card-steps">
+                    <li>카드 인증 클릭 후, 본인확인을 위해 이용할 카드사를 선택</li>
+                    <li>일반인증(ARS) 메뉴의 하단 ‘홈페이지 인증’을 클릭 후 인증 진행</li>
+                  </ol>
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

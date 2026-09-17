@@ -1,0 +1,2446 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="report" data-page="dashboard-status">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 레포트관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-report.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-report" data-page="dashboard-status"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>기금채권현황</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/report/application-status.html">레포트관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">기금채권현황</span>
+              </nav>
+            </div>
+
+            <div class="board-tabs" data-board-tabs>
+              <!-- 기금 구분 탭: 개발 시 각 기금 유형에 맞는 데이터 조회 기능 연결 -->
+              <div class="board-tab-list" role="tablist" aria-label="대시보드 기금 구분">
+                <button
+                  type="button"
+                  class="board-tab active"
+                  id="welfareFundTab"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="welfareFundPanel"
+                  data-board-tab="welfareFundPanel"
+                >
+                  복지기금
+                </button>
+                <button
+                  type="button"
+                  class="board-tab"
+                  id="cardFundTab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="cardFundPanel"
+                  data-board-tab="cardFundPanel"
+                >
+                  카드기금
+                </button>
+                <button
+                  type="button"
+                  class="board-tab"
+                  id="depositBondTab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="depositBondPanel"
+                  data-board-tab="depositBondPanel"
+                >
+                  예금채권
+                </button>
+                <button
+                  type="button"
+                  class="board-tab"
+                  id="etcFundTab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="etcFundPanel"
+                  data-board-tab="etcFundPanel"
+                >
+                  기타기금
+                </button>
+              </div>
+
+              <div class="board-tab-panels">
+                <!-- 복지기금 탭 패널 -->
+                <div
+                  class="board-tab-panel"
+                  id="welfareFundPanel"
+                  role="tabpanel"
+                  aria-labelledby="welfareFundTab"
+                  data-board-tab-panel
+                >
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-labelledby="dashboard-search-title">
+                      <h2 class="board-list-title sr-only" id="dashboard-search-title">조회조건</h2>
+                      <div class="flex justify-center gap-2">
+                        <form
+                          class="flex justify-center gap-2"
+                          role="search"
+                          action="/admin/report/dashboard-status.html"
+                          method="get"
+                        >
+                          <table class="board-search-table w-auto">
+                            <caption>
+                              대시보드 정산년월 조회조건
+                            </caption>
+                            <colgroup>
+                              <col width="120" />
+                              <col width="*" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="settlementStartMonth">정산년월</label></th>
+                                <td>
+                                  <div class="board-search-date-range">
+                                    <div class="board-search-date-field">
+                                      <input
+                                        id="settlementStartMonth"
+                                        name="settlementStartMonth"
+                                        type="text"
+                                        class="form-control"
+                                        aria-label="정산 시작년월"
+                                      />
+                                    </div>
+                                    <span class="board-search-date-separator">~</span>
+                                    <div class="board-search-date-field">
+                                      <input
+                                        id="settlementEndMonth"
+                                        name="settlementEndMonth"
+                                        type="text"
+                                        class="form-control"
+                                        aria-label="정산 종료년월"
+                                      />
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                        </form>
+                        <!-- 신규 버튼: 클릭 시 복지기금 정산내역 등록/수정 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-gradient rounded-md size-board-auto"
+                          data-popup-open="welfare-fund-popup"
+                          aria-haspopup="dialog"
+                        >
+                          신규
+                        </button>
+                      </div>
+                    </section>
+
+                    <section class="panel" aria-labelledby="welfare-fund-list-title">
+                      <div class="board-info-row">
+                        <h2 class="board-list-title" id="welfare-fund-list-title">정산내역</h2>
+                        <div class="board-info-actions">
+                          <p>(금액단위 : 1,000원)</p>
+                          <!-- 엑셀 다운로드 버튼: 개발 시 복지기금 정산내역 다운로드 기능 연결 -->
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                            <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                            엑셀 다운로드
+                          </button>
+                          <select class="form-control" aria-label="목록 표시 개수">
+                            <option>10개 보기</option>
+                            <option selected>20개 보기</option>
+                            <option>30개 보기</option>
+                            <option>50개 보기</option>
+                            <option>100개 보기</option>
+                            <option>300개 보기</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="board-table-wrap overflow-visible">
+                        <table class="board-table">
+                          <caption>
+                            복지기금 정산내역
+                          </caption>
+                          <colgroup>
+                            <col width="9%" />
+                            <col width="12%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="9%" />
+                            <col width="10%" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col">정산년월</th>
+                              <th scope="col">합계금액</th>
+                              <th scope="col">장학사업</th>
+                              <th scope="col">건강검진</th>
+                              <th scope="col">4대중증</th>
+                              <th scope="col">교통사고</th>
+                              <th scope="col">수탁사업</th>
+                              <th scope="col">기타</th>
+                              <th scope="col">메모</th>
+                              <th scope="col">내역확인</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td colspan="10" class="board-content-empty">등록된 정산내역이 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 복지기금 정산내역 행 -->
+                            <tr>
+                              <td>202605</td>
+                              <td>273,378</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>273,378</td>
+                              <td></td>
+                              <td>
+                                <!-- 수정 버튼: 클릭 시 복지기금 정산내역 등록/수정 팝업 노출 -->
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="welfare-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>202604</td>
+                              <td>405,553</td>
+                              <td>0</td>
+                              <td>149,117</td>
+                              <td>100,500</td>
+                              <td>25,000</td>
+                              <td>9,000</td>
+                              <td>121,936</td>
+                              <td></td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="welfare-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>202603</td>
+                              <td>3,081,033</td>
+                              <td>2,885,000</td>
+                              <td>0</td>
+                              <td>96,000</td>
+                              <td>0</td>
+                              <td>100,000</td>
+                              <td>33</td>
+                              <td></td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="welfare-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>202602</td>
+                              <td>2,829,450</td>
+                              <td>0</td>
+                              <td>1,574,944</td>
+                              <td>954,000</td>
+                              <td>187,000</td>
+                              <td>11,000</td>
+                              <td>102,506</td>
+                              <td>
+                                <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                                <div class="tooltip type-memo" data-tooltip="마우스를 올리면 메모 내용 표출" tabindex="0">
+                                  <div class="board-cell-title">2022년 1월 복지기금 정산 메모 내용</div>
+                                </div>
+                              </td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="welfare-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>202601</td>
+                              <td>1,234,567</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td></td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="welfare-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <nav class="board-pagination" aria-label="복지기금 정산내역 페이지 이동">
+                        <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                            keyboard_double_arrow_left
+                          </span>
+                        </a>
+                        <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                        </a>
+                        <ol class="board-pagination-list">
+                          <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                          <li><a href="#" class="board-page-button">2</a></li>
+                          <li><a href="#" class="board-page-button">3</a></li>
+                          <li><a href="#" class="board-page-button">4</a></li>
+                          <li><a href="#" class="board-page-button">5</a></li>
+                          <li><a href="#" class="board-page-button">6</a></li>
+                          <li><a href="#" class="board-page-button">7</a></li>
+                          <li><a href="#" class="board-page-button">8</a></li>
+                          <li><a href="#" class="board-page-button">9</a></li>
+                          <li><a href="#" class="board-page-button">10</a></li>
+                        </ol>
+                        <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                        </a>
+                        <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                            keyboard_double_arrow_right
+                          </span>
+                        </a>
+                      </nav>
+                    </section>
+                  </div>
+                </div>
+
+                <!-- 카드기금 탭 패널 -->
+                <div
+                  class="board-tab-panel"
+                  id="cardFundPanel"
+                  role="tabpanel"
+                  aria-labelledby="cardFundTab"
+                  data-board-tab-panel
+                  hidden
+                >
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-labelledby="card-fund-search-title">
+                      <h2 class="board-list-title sr-only" id="card-fund-search-title">조회조건</h2>
+                      <div class="flex justify-center gap-2">
+                        <form
+                          class="flex justify-center gap-2"
+                          role="search"
+                          action="/admin/report/dashboard-status.html"
+                          method="get"
+                        >
+                          <table class="board-search-table w-auto">
+                            <caption>
+                              카드기금 정산년월 조회조건
+                            </caption>
+                            <colgroup>
+                              <col width="120" />
+                              <col width="*" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="cardSettlementStartMonth">정산년월</label></th>
+                                <td>
+                                  <div class="board-search-date-range">
+                                    <div class="board-search-date-field">
+                                      <input
+                                        id="cardSettlementStartMonth"
+                                        name="cardSettlementStartMonth"
+                                        type="text"
+                                        class="form-control"
+                                        aria-label="정산 시작년월"
+                                      />
+                                    </div>
+                                    <span class="board-search-date-separator">~</span>
+                                    <div class="board-search-date-field">
+                                      <input
+                                        id="cardSettlementEndMonth"
+                                        name="cardSettlementEndMonth"
+                                        type="text"
+                                        class="form-control"
+                                        aria-label="정산 종료년월"
+                                      />
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                        </form>
+                        <!-- 신규 버튼: 클릭 시 카드기금 정산내역 등록/수정 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-gradient rounded-md size-board-auto"
+                          data-popup-open="card-fund-popup"
+                          aria-haspopup="dialog"
+                        >
+                          신규
+                        </button>
+                      </div>
+                    </section>
+
+                    <section class="panel" aria-labelledby="card-fund-list-title">
+                      <div class="board-info-row align-right">
+                        <p>(금액단위 : 1,000원)</p>
+                      </div>
+
+                      <div class="board-table-wrap">
+                        <table class="board-table">
+                          <caption>
+                            카드기금 카드사별 정산 합계
+                          </caption>
+                          <colgroup>
+                            <col width="16.66%" />
+                            <col width="16.66%" />
+                            <col width="16.66%" />
+                            <col width="16.66%" />
+                            <col width="16.66%" />
+                            <col width="16.7%" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col">합계</th>
+                              <th scope="col">신한카드</th>
+                              <th scope="col">우리카드</th>
+                              <th scope="col">국민카드</th>
+                              <th scope="col">삼성카드</th>
+                              <th scope="col">현대카드</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td colspan="6" class="board-content-empty">등록된 정산 합계가 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 카드기금 카드사별 정산 합계 행 -->
+                            <tr>
+                              <td>36,642,886</td>
+                              <td>11,981,772</td>
+                              <td>8,469,437</td>
+                              <td>5,211,700</td>
+                              <td>9,895,872</td>
+                              <td>1,084,105</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="board-info-row mt-6">
+                        <h2 class="board-list-title" id="card-fund-list-title">정산내역</h2>
+                        <div class="board-info-actions">
+                          <p>(금액단위 : 1,000원)</p>
+                          <!-- 엑셀 다운로드 버튼: 개발 시 카드기금 정산내역 다운로드 기능 연결 -->
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                            <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                            엑셀 다운로드
+                          </button>
+                          <select class="form-control" aria-label="목록 표시 개수">
+                            <option>10개 보기</option>
+                            <option selected>20개 보기</option>
+                            <option>30개 보기</option>
+                            <option>50개 보기</option>
+                            <option>100개 보기</option>
+                            <option>300개 보기</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="board-table-wrap overflow-visible">
+                        <table class="board-table">
+                          <caption>
+                            카드기금 정산내역
+                          </caption>
+                          <colgroup>
+                            <col width="10%" />
+                            <col width="12%" />
+                            <col width="11%" />
+                            <col width="11%" />
+                            <col width="11%" />
+                            <col width="11%" />
+                            <col width="11%" />
+                            <col width="13%" />
+                            <col width="10%" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col">정산년월</th>
+                              <th scope="col">합계금액</th>
+                              <th scope="col">신한카드</th>
+                              <th scope="col">우리카드</th>
+                              <th scope="col">국민카드</th>
+                              <th scope="col">삼성카드</th>
+                              <th scope="col">현대카드</th>
+                              <th scope="col">메모</th>
+                              <th scope="col">내역확인</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td colspan="9" class="board-content-empty">등록된 정산내역이 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 카드기금 정산내역 행 -->
+                            <tr>
+                              <td>202605</td>
+                              <td>273,378</td>
+                              <td>98,420</td>
+                              <td>61,235</td>
+                              <td>45,880</td>
+                              <td>52,143</td>
+                              <td>15,700</td>
+                              <td></td>
+                              <td>
+                                <!-- 수정 버튼: 클릭 시 카드기금 정산내역 등록/수정 팝업 노출 -->
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="card-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>202604</td>
+                              <td>405,553</td>
+                              <td>142,870</td>
+                              <td>96,410</td>
+                              <td>71,225</td>
+                              <td>68,340</td>
+                              <td>26,708</td>
+                              <td></td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="card-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>202603</td>
+                              <td>3,081,033</td>
+                              <td>1,024,560</td>
+                              <td>728,140</td>
+                              <td>553,920</td>
+                              <td>612,470</td>
+                              <td>161,943</td>
+                              <td></td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="card-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>202602</td>
+                              <td>2,829,450</td>
+                              <td>942,300</td>
+                              <td>671,850</td>
+                              <td>508,720</td>
+                              <td>559,640</td>
+                              <td>146,940</td>
+                              <td>
+                                <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                                <div class="tooltip type-memo" data-tooltip="마우스를 올리면 메모 내용 표출" tabindex="0">
+                                  <div class="board-cell-title">2022년 1월 카드기금 정산 메모 내용</div>
+                                </div>
+                              </td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="card-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>202601</td>
+                              <td>1,234,567</td>
+                              <td>421,300</td>
+                              <td>296,480</td>
+                              <td>218,750</td>
+                              <td>234,120</td>
+                              <td>63,917</td>
+                              <td></td>
+                              <td>
+                                <button
+                                  type="button"
+                                  class="btn variant-soft color-blue rounded-md size-sm"
+                                  data-popup-open="card-fund-popup"
+                                  aria-haspopup="dialog"
+                                >
+                                  수정
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <nav class="board-pagination" aria-label="카드기금 정산내역 페이지 이동">
+                        <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                            keyboard_double_arrow_left
+                          </span>
+                        </a>
+                        <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                        </a>
+                        <ol class="board-pagination-list">
+                          <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                          <li><a href="#" class="board-page-button">2</a></li>
+                          <li><a href="#" class="board-page-button">3</a></li>
+                          <li><a href="#" class="board-page-button">4</a></li>
+                          <li><a href="#" class="board-page-button">5</a></li>
+                          <li><a href="#" class="board-page-button">6</a></li>
+                          <li><a href="#" class="board-page-button">7</a></li>
+                          <li><a href="#" class="board-page-button">8</a></li>
+                          <li><a href="#" class="board-page-button">9</a></li>
+                          <li><a href="#" class="board-page-button">10</a></li>
+                        </ol>
+                        <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                        </a>
+                        <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                            keyboard_double_arrow_right
+                          </span>
+                        </a>
+                      </nav>
+                    </section>
+                  </div>
+                </div>
+
+                <!-- 예금채권 탭 패널 -->
+                <div
+                  class="board-tab-panel"
+                  id="depositBondPanel"
+                  role="tabpanel"
+                  aria-labelledby="depositBondTab"
+                  data-board-tab-panel
+                  hidden
+                >
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-labelledby="deposit-bond-search-title">
+                      <h2 class="board-list-title sr-only" id="deposit-bond-search-title">조회조건</h2>
+                      <div class="flex justify-center gap-2">
+                        <form
+                          class="flex justify-center gap-2"
+                          role="search"
+                          action="/admin/report/dashboard-status.html"
+                          method="get"
+                        >
+                          <table class="board-search-table w-auto">
+                            <caption>
+                              예금채권 정산년월 조회조건
+                            </caption>
+                            <colgroup>
+                              <col width="120" />
+                              <col width="*" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="depositSettlementStartMonth">정산년월</label></th>
+                                <td>
+                                  <div class="board-search-date-range">
+                                    <div class="board-search-date-field">
+                                      <input
+                                        id="depositSettlementStartMonth"
+                                        name="depositSettlementStartMonth"
+                                        type="text"
+                                        class="form-control"
+                                        aria-label="정산 시작년월"
+                                      />
+                                    </div>
+                                    <span class="board-search-date-separator">~</span>
+                                    <div class="board-search-date-field">
+                                      <input
+                                        id="depositSettlementEndMonth"
+                                        name="depositSettlementEndMonth"
+                                        type="text"
+                                        class="form-control"
+                                        aria-label="정산 종료년월"
+                                      />
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                        </form>
+                        <!-- 신규 버튼: 클릭 시 예금채권 정산내역 등록 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-gradient rounded-md size-board-auto"
+                          data-popup-open="deposit-bond-popup"
+                          aria-haspopup="dialog"
+                        >
+                          신규
+                        </button>
+                      </div>
+                    </section>
+
+                    <section class="panel" aria-labelledby="deposit-bond-list-title">
+                      <div class="board-info-row">
+                        <h2 class="board-list-title" id="deposit-bond-list-title">정산내역</h2>
+                        <div class="board-info-actions">
+                          <p>(금액단위 : 1,000원)</p>
+                          <!-- 엑셀 다운로드 버튼: 개발 시 예금채권 정산내역 다운로드 기능 연결 -->
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                            <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                            엑셀 다운로드
+                          </button>
+                          <select class="form-control" aria-label="목록 표시 개수">
+                            <option>10개 보기</option>
+                            <option selected>20개 보기</option>
+                            <option>30개 보기</option>
+                            <option>50개 보기</option>
+                            <option>100개 보기</option>
+                            <option>300개 보기</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="board-table-wrap overflow-visible">
+                        <table class="board-table">
+                          <caption>
+                            예금채권 정산내역
+                          </caption>
+                          <colgroup>
+                            <col width="10%" />
+                            <col width="12%" />
+                            <col width="11%" />
+                            <col width="13%" />
+                            <col width="11%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="13%" />
+                            <col width="10%" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col">정산년월</th>
+                              <th scope="col">합계금액</th>
+                              <th scope="col">정기예금</th>
+                              <th scope="col">단기운용예금</th>
+                              <th scope="col">보통예금</th>
+                              <th scope="col">채권</th>
+                              <th scope="col">기타</th>
+                              <th scope="col">메모</th>
+                              <th scope="col">내역확인</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td colspan="9" class="board-content-empty">등록된 정산내역이 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 예금채권 정산내역 행 -->
+                            <tr>
+                            <td>202605</td>
+                            <td>273,378</td>
+                            <td>120,000</td>
+                            <td>62,540</td>
+                            <td>38,215</td>
+                            <td>41,320</td>
+                            <td>11,303</td>
+                            <td></td>
+                            <td>
+                              <!-- 수정 버튼: 클릭 시 예금채권 정산내역 등록/수정 팝업 노출 -->
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="deposit-bond-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>202604</td>
+                            <td>405,553</td>
+                            <td>180,000</td>
+                            <td>92,450</td>
+                            <td>56,730</td>
+                            <td>61,240</td>
+                            <td>15,133</td>
+                            <td></td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="deposit-bond-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>202603</td>
+                            <td>3,081,033</td>
+                            <td>1,350,000</td>
+                            <td>702,480</td>
+                            <td>431,650</td>
+                            <td>468,920</td>
+                            <td>127,983</td>
+                            <td></td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="deposit-bond-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>202602</td>
+                            <td>2,829,450</td>
+                            <td>1,240,000</td>
+                            <td>645,300</td>
+                            <td>396,470</td>
+                            <td>430,180</td>
+                            <td>117,500</td>
+                            <td>
+                              <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                              <div class="tooltip type-memo" data-tooltip="마우스를 올리면 메모 내용 표출" tabindex="0">
+                                <div class="board-cell-title">2022년 1월 예금채권 정산 메모 내용</div>
+                              </div>
+                            </td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="deposit-bond-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>202601</td>
+                            <td>1,234,567</td>
+                            <td>540,000</td>
+                            <td>281,340</td>
+                            <td>172,890</td>
+                            <td>187,450</td>
+                            <td>52,887</td>
+                            <td></td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="deposit-bond-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <nav class="board-pagination" aria-label="예금채권 정산내역 페이지 이동">
+                        <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                            keyboard_double_arrow_left
+                          </span>
+                        </a>
+                        <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                        </a>
+                        <ol class="board-pagination-list">
+                          <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                          <li><a href="#" class="board-page-button">2</a></li>
+                          <li><a href="#" class="board-page-button">3</a></li>
+                          <li><a href="#" class="board-page-button">4</a></li>
+                          <li><a href="#" class="board-page-button">5</a></li>
+                          <li><a href="#" class="board-page-button">6</a></li>
+                          <li><a href="#" class="board-page-button">7</a></li>
+                          <li><a href="#" class="board-page-button">8</a></li>
+                          <li><a href="#" class="board-page-button">9</a></li>
+                          <li><a href="#" class="board-page-button">10</a></li>
+                        </ol>
+                        <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                        </a>
+                        <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                            keyboard_double_arrow_right
+                          </span>
+                        </a>
+                      </nav>
+                    </section>
+                  </div>
+                </div>
+
+                <!-- 기타기금 탭 패널 -->
+                <div
+                  class="board-tab-panel"
+                  id="etcFundPanel"
+                  role="tabpanel"
+                  aria-labelledby="etcFundTab"
+                  data-board-tab-panel
+                  hidden
+                >
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-labelledby="etc-fund-search-title">
+                      <h2 class="board-list-title sr-only" id="etc-fund-search-title">조회조건</h2>
+                      <div class="flex justify-center gap-2">
+                        <form
+                          class="flex justify-center gap-2"
+                          role="search"
+                          action="/admin/report/dashboard-status.html"
+                          method="get"
+                        >
+                          <table class="board-search-table w-auto">
+                            <caption>
+                              기타기금 정산년월 조회조건
+                            </caption>
+                            <colgroup>
+                              <col width="120" />
+                              <col width="*" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="etcSettlementStartMonth">정산년월</label></th>
+                                <td>
+                                  <div class="board-search-date-range">
+                                    <div class="board-search-date-field">
+                                      <input
+                                        id="etcSettlementStartMonth"
+                                        name="etcSettlementStartMonth"
+                                        type="text"
+                                        class="form-control"
+                                        aria-label="정산 시작년월"
+                                      />
+                                    </div>
+                                    <span class="board-search-date-separator">~</span>
+                                    <div class="board-search-date-field">
+                                      <input
+                                        id="etcSettlementEndMonth"
+                                        name="etcSettlementEndMonth"
+                                        type="text"
+                                        class="form-control"
+                                        aria-label="정산 종료년월"
+                                      />
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                        </form>
+                        <!-- 신규 버튼: 클릭 시 기타기금 정산내역 등록/수정 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-gradient rounded-md size-board-auto"
+                          data-popup-open="etc-fund-popup"
+                          aria-haspopup="dialog"
+                        >
+                          신규
+                        </button>
+                      </div>
+                    </section>
+
+                    <section class="panel" aria-labelledby="etc-fund-list-title">
+                      <div class="board-info-row align-right">
+                        <p>(금액단위 : 1,000원)</p>
+                      </div>
+
+                      <div class="board-table-wrap">
+                        <table class="board-table">
+                          <caption>
+                            기타기금 항목별 정산 합계
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="14%" />
+                            <col width="14%" />
+                            <col width="14%" />
+                            <col width="14%" />
+                            <col width="14%" />
+                            <col width="14%" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col">합계</th>
+                              <th scope="col">기부금액</th>
+                              <th scope="col">이자수입 환급세금</th>
+                              <th scope="col">임대수입</th>
+                              <th scope="col">화물정보망</th>
+                              <th scope="col">금융사업</th>
+                              <th scope="col">기타</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td colspan="7" class="board-content-empty">등록된 정산 합계가 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 기타기금 항목별 정산 합계 행 -->
+                            <tr>
+                              <td>30,260,750</td>
+                              <td>12,450,300</td>
+                              <td>3,872,140</td>
+                              <td>5,640,880</td>
+                              <td>2,318,760</td>
+                              <td>4,905,220</td>
+                              <td>1,073,450</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="board-info-row mt-6">
+                        <h2 class="board-list-title" id="etc-fund-list-title">정산내역</h2>
+                        <div class="board-info-actions">
+                          <p>(금액단위 : 1,000원)</p>
+                          <!-- 엑셀 다운로드 버튼: 개발 시 기타기금 정산내역 다운로드 기능 연결 -->
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                            <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                            엑셀 다운로드
+                          </button>
+                          <select class="form-control" aria-label="목록 표시 개수">
+                            <option>10개 보기</option>
+                            <option selected>20개 보기</option>
+                            <option>30개 보기</option>
+                            <option>50개 보기</option>
+                            <option>100개 보기</option>
+                            <option>300개 보기</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="board-table-wrap overflow-visible">
+                        <table class="board-table">
+                          <caption>
+                            기타기금 정산내역
+                          </caption>
+                          <colgroup>
+                            <col width="9%" />
+                            <col width="11%" />
+                            <col width="10%" />
+                            <col width="12%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="10%" />
+                            <col width="9%" />
+                            <col width="10%" />
+                            <col width="9%" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col">정산년월</th>
+                              <th scope="col">합계금액</th>
+                              <th scope="col">기부금액</th>
+                              <th scope="col">이자수입 환급세금</th>
+                              <th scope="col">임대수입</th>
+                              <th scope="col">화물정보망</th>
+                              <th scope="col">금융사업</th>
+                              <th scope="col">기타</th>
+                              <th scope="col">메모</th>
+                              <th scope="col">내역확인</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td colspan="10" class="board-content-empty">등록된 정산내역이 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 기타기금 정산내역 행 -->
+                            <tr>
+                            <td>202605</td>
+                            <td>273,378</td>
+                            <td>95,000</td>
+                            <td>42,180</td>
+                            <td>58,420</td>
+                            <td>24,350</td>
+                            <td>41,120</td>
+                            <td>12,308</td>
+                            <td></td>
+                            <td>
+                              <!-- 수정 버튼: 클릭 시 기타기금 정산내역 등록/수정 팝업 노출 -->
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="etc-fund-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>202604</td>
+                            <td>405,553</td>
+                            <td>140,000</td>
+                            <td>62,470</td>
+                            <td>86,530</td>
+                            <td>36,180</td>
+                            <td>61,040</td>
+                            <td>19,333</td>
+                            <td></td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="etc-fund-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>202603</td>
+                            <td>3,081,033</td>
+                            <td>1,060,000</td>
+                            <td>474,320</td>
+                            <td>657,180</td>
+                            <td>274,650</td>
+                            <td>463,290</td>
+                            <td>151,593</td>
+                            <td></td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="etc-fund-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>202602</td>
+                            <td>2,829,450</td>
+                            <td>975,000</td>
+                            <td>435,860</td>
+                            <td>603,740</td>
+                            <td>252,310</td>
+                            <td>425,600</td>
+                            <td>136,940</td>
+                            <td>
+                              <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                              <div class="tooltip type-memo" data-tooltip="마우스를 올리면 메모 내용 표출" tabindex="0">
+                                <div class="board-cell-title">2022년 1월 기타기금 정산 메모 내용</div>
+                              </div>
+                            </td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="etc-fund-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                            <tr>
+                            <td>202601</td>
+                            <td>1,234,567</td>
+                            <td>425,000</td>
+                            <td>190,140</td>
+                            <td>263,380</td>
+                            <td>110,050</td>
+                            <td>185,640</td>
+                            <td>60,357</td>
+                            <td></td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-sm"
+                                data-popup-open="etc-fund-popup"
+                                aria-haspopup="dialog"
+                              >
+                                수정
+                              </button>
+                            </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <nav class="board-pagination" aria-label="기타기금 정산내역 페이지 이동">
+                        <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                            keyboard_double_arrow_left
+                          </span>
+                        </a>
+                        <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                        </a>
+                        <ol class="board-pagination-list">
+                          <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                          <li><a href="#" class="board-page-button">2</a></li>
+                          <li><a href="#" class="board-page-button">3</a></li>
+                          <li><a href="#" class="board-page-button">4</a></li>
+                          <li><a href="#" class="board-page-button">5</a></li>
+                          <li><a href="#" class="board-page-button">6</a></li>
+                          <li><a href="#" class="board-page-button">7</a></li>
+                          <li><a href="#" class="board-page-button">8</a></li>
+                          <li><a href="#" class="board-page-button">9</a></li>
+                          <li><a href="#" class="board-page-button">10</a></li>
+                        </ol>
+                        <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                        </a>
+                        <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                          <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                            keyboard_double_arrow_right
+                          </span>
+                        </a>
+                      </nav>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 복지기금 정산내역 등록/수정 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="welfare-fund-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="welfare-fund-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="welfare-fund-popup-title">복지기금 정산내역 등록/수정</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/report/dashboard-status.html" method="post">
+                  <div class="popup-body">
+                    <section aria-labelledby="welfare-fund-summary-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="welfare-fund-summary-title">내역합계</h3>
+                        <div class="board-info-actions">
+                          <!-- 초기화 버튼: 개발 시 내역합계 입력값 초기화 기능 연결 -->
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                            <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+                            초기화
+                          </button>
+                        </div>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          복지기금 정산내역 합계
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="82%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="welfareFundSettlementYear">정산년월</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="welfareFundSettlementYear"
+                                  name="welfareFundSettlementYear"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  maxlength="4"
+                                  placeholder="YYYY"
+                                  inputmode="numeric"
+                                />
+                                <span>년</span>
+                                <input
+                                  id="welfareFundSettlementMonth"
+                                  name="welfareFundSettlementMonth"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  maxlength="2"
+                                  placeholder="MM"
+                                  inputmode="numeric"
+                                />
+                                <span>월</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="welfareFundTotalCount">합계금액</label></th>
+                            <td>
+                              <!-- 합계금액: 개발 시 일반내역과 기타내역 입력값 합계 자동 계산 -->
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="welfareFundTotalCount"
+                                  name="welfareFundTotalCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                  readonly
+                                />
+                                <span>명</span>
+                                <input
+                                  id="welfareFundTotalAmount"
+                                  name="welfareFundTotalAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                  readonly
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="welfare-fund-general-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="welfare-fund-general-title">일반내역</h3>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          복지기금 일반내역
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="welfareFundScholarshipCount">장학사업</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="welfareFundScholarshipCount"
+                                  name="welfareFundScholarshipCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>명</span>
+                                <input
+                                  id="welfareFundScholarshipAmount"
+                                  name="welfareFundScholarshipAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="welfareFundCheckupCount">검진사업</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="welfareFundCheckupCount"
+                                  name="welfareFundCheckupCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>명</span>
+                                <input
+                                  id="welfareFundCheckupAmount"
+                                  name="welfareFundCheckupAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="welfareFundSevereCount">4대중증</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="welfareFundSevereCount"
+                                  name="welfareFundSevereCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>명</span>
+                                <input
+                                  id="welfareFundSevereAmount"
+                                  name="welfareFundSevereAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="welfareFundAccidentCount">교통사고</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="welfareFundAccidentCount"
+                                  name="welfareFundAccidentCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>명</span>
+                                <input
+                                  id="welfareFundAccidentAmount"
+                                  name="welfareFundAccidentAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="welfareFundEntrustedCount">수탁사업</label></th>
+                            <td colspan="3">
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="welfareFundEntrustedCount"
+                                  name="welfareFundEntrustedCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>명</span>
+                                <input
+                                  id="welfareFundEntrustedAmount"
+                                  name="welfareFundEntrustedAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="welfare-fund-etc-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="welfare-fund-etc-title">기타내역</h3>
+                        <div class="board-info-actions">
+                          <!-- 추가, 삭제 버튼: 개발 시 기타내역 행 추가, 삭제 기능 연결 -->
+                          <button type="button" class="btn variant-solid color-blue rounded-md size-board-auto">
+                            추가
+                          </button>
+                          <button type="button" class="btn variant-solid color-red rounded-md size-board-auto">
+                            삭제
+                          </button>
+                        </div>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          복지기금 기타내역
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <!-- 반복: 기타내역 행 -->
+                          <tr>
+                            <th scope="row"><label for="welfareFundEtcCount1">기타금액</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="welfareFundEtcCount1"
+                                  name="welfareFundEtcCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>명</span>
+                                <input
+                                  id="welfareFundEtcAmount1"
+                                  name="welfareFundEtcAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="welfareFundEtcMemo1">메모</label></th>
+                            <td>
+                              <input
+                                id="welfareFundEtcMemo1"
+                                name="welfareFundEtcMemo"
+                                type="text"
+                                class="form-control w-full"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="welfare-fund-memo-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="welfare-fund-memo-title">메모입력</h3>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          복지기금 정산내역 메모
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="82%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="welfareFundMemo">메모</label></th>
+                            <td>
+                              <textarea id="welfareFundMemo" name="welfareFundMemo" class="textarea" rows="5"></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      등록하기
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      취소하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 카드기금 정산내역 등록/수정 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="card-fund-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="card-fund-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="card-fund-popup-title">카드기금 정산내역 등록/수정</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/report/dashboard-status.html" method="post">
+                  <div class="popup-body">
+                    <section aria-labelledby="card-fund-summary-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="card-fund-summary-title">내역합계</h3>
+                        <div class="board-info-actions">
+                          <!-- 초기화 버튼: 개발 시 내역합계 입력값 초기화 기능 연결 -->
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                            <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+                            초기화
+                          </button>
+                        </div>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          카드기금 정산내역 합계
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="82%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="cardFundSettlementYear">정산년월</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="cardFundSettlementYear"
+                                  name="cardFundSettlementYear"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  maxlength="4"
+                                  placeholder="YYYY"
+                                  inputmode="numeric"
+                                />
+                                <span>년</span>
+                                <input
+                                  id="cardFundSettlementMonth"
+                                  name="cardFundSettlementMonth"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  maxlength="2"
+                                  placeholder="MM"
+                                  inputmode="numeric"
+                                />
+                                <span>월</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="cardFundTotalCount">합계금액</label></th>
+                            <td>
+                              <!-- 합계금액: 개발 시 일반내역 입력값 합계 자동 계산 -->
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="cardFundTotalCount"
+                                  name="cardFundTotalCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                  readonly
+                                />
+                                <span>명</span>
+                                <input
+                                  id="cardFundTotalAmount"
+                                  name="cardFundTotalAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                  readonly
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="card-fund-general-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="card-fund-general-title">일반내역</h3>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          카드기금 일반내역
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="cardFundShinhanAmount">신한카드</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="cardFundShinhanAmount"
+                                  name="cardFundShinhanAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="cardFundWooriAmount">우리카드</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="cardFundWooriAmount"
+                                  name="cardFundWooriAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="cardFundKbAmount">국민카드</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="cardFundKbAmount"
+                                  name="cardFundKbAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="cardFundSamsungAmount">삼성카드</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="cardFundSamsungAmount"
+                                  name="cardFundSamsungAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="cardFundHyundaiAmount">현대카드</label></th>
+                            <td colspan="3">
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="cardFundHyundaiAmount"
+                                  name="cardFundHyundaiAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="card-fund-memo-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="card-fund-memo-title">메모입력</h3>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          카드기금 정산내역 메모
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="82%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="cardFundMemo">메모</label></th>
+                            <td>
+                              <textarea id="cardFundMemo" name="cardFundMemo" class="textarea" rows="5"></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      등록하기
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      취소하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 예금채권 정산내역 등록/수정 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="deposit-bond-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="deposit-bond-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="deposit-bond-popup-title">예금채권 정산내역 등록/수정</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/report/dashboard-status.html" method="post">
+                  <div class="popup-body">
+                    <section aria-labelledby="deposit-bond-summary-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="deposit-bond-summary-title">내역합계</h3>
+                        <div class="board-info-actions">
+                          <!-- 초기화 버튼: 개발 시 내역합계 입력값 초기화 기능 연결 -->
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                            <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+                            초기화
+                          </button>
+                        </div>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          예금채권 정산내역 합계
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="82%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="depositBondSettlementYear">정산년월</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="depositBondSettlementYear"
+                                  name="depositBondSettlementYear"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  maxlength="4"
+                                  placeholder="YYYY"
+                                  inputmode="numeric"
+                                />
+                                <span>년</span>
+                                <input
+                                  id="depositBondSettlementMonth"
+                                  name="depositBondSettlementMonth"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  maxlength="2"
+                                  placeholder="MM"
+                                  inputmode="numeric"
+                                />
+                                <span>월</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="depositBondTotalCount">합계금액</label></th>
+                            <td>
+                              <!-- 합계금액: 개발 시 일반내역과 기타내역 입력값 합계 자동 계산 -->
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="depositBondTotalCount"
+                                  name="depositBondTotalCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                  readonly
+                                />
+                                <span>명</span>
+                                <input
+                                  id="depositBondTotalAmount"
+                                  name="depositBondTotalAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                  readonly
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="deposit-bond-general-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="deposit-bond-general-title">일반내역</h3>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          예금채권 일반내역
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="depositBondTimeDepositAmount">정기예금</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="depositBondTimeDepositAmount"
+                                  name="depositBondTimeDepositAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="depositBondShortTermAmount">단기운용예금</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="depositBondShortTermAmount"
+                                  name="depositBondShortTermAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="depositBondOrdinaryAmount">보통예금</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="depositBondOrdinaryAmount"
+                                  name="depositBondOrdinaryAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="depositBondBondAmount">채권</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="depositBondBondAmount"
+                                  name="depositBondBondAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="deposit-bond-etc-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="deposit-bond-etc-title">기타내역</h3>
+                        <div class="board-info-actions">
+                          <!-- 추가, 삭제 버튼: 개발 시 기타내역 행 추가, 삭제 기능 연결 -->
+                          <button type="button" class="btn variant-solid color-blue rounded-md size-board-auto">
+                            추가
+                          </button>
+                          <button type="button" class="btn variant-solid color-red rounded-md size-board-auto">
+                            삭제
+                          </button>
+                        </div>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          예금채권 기타내역
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <!-- 반복: 기타내역 행 -->
+                          <tr>
+                            <th scope="row"><label for="depositBondEtcCount1">기타금액</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="depositBondEtcCount1"
+                                  name="depositBondEtcCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>명</span>
+                                <input
+                                  id="depositBondEtcAmount1"
+                                  name="depositBondEtcAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="depositBondEtcMemo1">메모</label></th>
+                            <td>
+                              <input
+                                id="depositBondEtcMemo1"
+                                name="depositBondEtcMemo"
+                                type="text"
+                                class="form-control w-full"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="deposit-bond-memo-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="deposit-bond-memo-title">메모입력</h3>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          예금채권 정산내역 메모
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="82%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="depositBondMemo">메모</label></th>
+                            <td>
+                              <textarea id="depositBondMemo" name="depositBondMemo" class="textarea" rows="5"></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      등록하기
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      취소하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 기타기금 정산내역 등록/수정 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="etc-fund-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="etc-fund-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="etc-fund-popup-title">기타기금 정산내역 등록/수정</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/report/dashboard-status.html" method="post">
+                  <div class="popup-body">
+                    <section aria-labelledby="etc-fund-summary-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="etc-fund-summary-title">내역합계</h3>
+                        <div class="board-info-actions">
+                          <!-- 초기화 버튼: 개발 시 내역합계 입력값 초기화 기능 연결 -->
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                            <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+                            초기화
+                          </button>
+                        </div>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          기타기금 정산내역 합계
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="82%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="etcFundSettlementYear">정산년월</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="etcFundSettlementYear"
+                                  name="etcFundSettlementYear"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  maxlength="4"
+                                  placeholder="YYYY"
+                                  inputmode="numeric"
+                                />
+                                <span>년</span>
+                                <input
+                                  id="etcFundSettlementMonth"
+                                  name="etcFundSettlementMonth"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  maxlength="2"
+                                  placeholder="MM"
+                                  inputmode="numeric"
+                                />
+                                <span>월</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="etcFundTotalCount">합계금액</label></th>
+                            <td>
+                              <!-- 합계금액: 개발 시 일반내역과 기타내역 입력값 합계 자동 계산 -->
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="etcFundTotalCount"
+                                  name="etcFundTotalCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                  readonly
+                                />
+                                <span>명</span>
+                                <input
+                                  id="etcFundTotalAmount"
+                                  name="etcFundTotalAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                  readonly
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="etc-fund-general-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="etc-fund-general-title">일반내역</h3>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          기타기금 일반내역
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="etcFundDonationAmount">기부금액</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="etcFundDonationAmount"
+                                  name="etcFundDonationAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="etcFundInterestAmount">이자수입 및 환급세금</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="etcFundInterestAmount"
+                                  name="etcFundInterestAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="etcFundRentalAmount">임대사업</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="etcFundRentalAmount"
+                                  name="etcFundRentalAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="etcFundLogisticsAmount">화물정보망</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="etcFundLogisticsAmount"
+                                  name="etcFundLogisticsAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="etcFundFinanceAmount">금융사업</label></th>
+                            <td colspan="3">
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="etcFundFinanceAmount"
+                                  name="etcFundFinanceAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="etc-fund-etc-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="etc-fund-etc-title">기타내역</h3>
+                        <div class="board-info-actions">
+                          <!-- 추가, 삭제 버튼: 개발 시 기타내역 행 추가, 삭제 기능 연결 -->
+                          <button type="button" class="btn variant-solid color-blue rounded-md size-board-auto">
+                            추가
+                          </button>
+                          <button type="button" class="btn variant-solid color-red rounded-md size-board-auto">
+                            삭제
+                          </button>
+                        </div>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          기타기금 기타내역
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <!-- 반복: 기타내역 행 -->
+                          <tr>
+                            <th scope="row"><label for="etcFundEtcCount1">기타금액</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="etcFundEtcCount1"
+                                  name="etcFundEtcCount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>명</span>
+                                <input
+                                  id="etcFundEtcAmount1"
+                                  name="etcFundEtcAmount"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="9"
+                                  inputmode="numeric"
+                                />
+                                <span>원</span>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="etcFundEtcMemo1">메모</label></th>
+                            <td>
+                              <input
+                                id="etcFundEtcMemo1"
+                                name="etcFundEtcMemo"
+                                type="text"
+                                class="form-control w-full"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="etc-fund-memo-title">
+                      <div class="board-info-row">
+                        <h3 class="board-section-title" id="etc-fund-memo-title">메모입력</h3>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          기타기금 정산내역 메모
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="82%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="etcFundMemo">메모</label></th>
+                            <td>
+                              <textarea id="etcFundMemo" name="etcFundMemo" class="textarea" rows="5"></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      등록하기
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      취소하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

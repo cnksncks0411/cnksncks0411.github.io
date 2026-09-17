@@ -1,0 +1,568 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="ui"  uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%
+  /**
+  * @Class Name : accidentSupportForm02.jsp
+  * @Description : 교통사고 지원폼 화면
+  * @Modification Information
+  * 
+  *   수정일         수정자                   수정내용
+  *  -------    --------    ---------------------------
+  *  2017.02.22            최초 생성
+  */
+%>
+
+<script type="text/javascript">
+var procFlag = false;
+var verifyFlag = true;
+
+function nextActionSubmit() {
+	if(procFlag){ return; }
+	
+	if(!checkValid()){ return ; }
+	
+	// 유효성 체크 후 이상이 없다면, 해당 값을 넣어준다.
+   	var carNo = $("#carNo1 option:selected").val() 
+   			  + $("#carNo2").val() 
+   			  + $("#carNo3 option:selected").val() 
+   			  + $("#carNo4").val();
+   	
+   	$("input[name=carNo]").val(carNo);
+   	
+    if(confirm("작성하신 신청서를 저장하시겠습니까?")){
+		document.accidentForm.action="<c:url value='/welfare/accidentSupportForm01Proc.do' />";
+	    document.accidentForm.submit();
+	    procFlag = true;
+	}
+}
+
+function checkValid() {
+    if( !fn_comm_chkfield($("#driverNm").val()) ){
+    	alert("운전자 성명을 입력하세요.");
+    	$("#driverNm").focus();
+    	return false;
+    }
+    
+    if( !fn_comm_chkfield($("#driverBirth").val()) ){
+    	alert("운전자 생년월일을 입력하세요."); 
+    	$("#driverBirth").focus();
+    	return false;
+    }
+    
+    if( $("#driverBirth").val().length != 8 ){
+    	alert("생년월일을 8자리로 입력하세요."); 
+    	$("#driverBirth").focus();
+    	return false;
+    }
+    
+    if( $("#licenseNo").val().length > 0 && $("#licenseNo").val().length != 9 ){
+    	alert("자격증번호를 9자리로 입력해주시기 바랍니다.");
+    	$("#licenseNo").focus();
+    	return false;
+    }
+    if($("#licenseNo").val().length == 9 && !verifyFlag){
+    	if(!confirm("자격증번호 초기화 후 검증하지 않았습니다. \n진행하시겠습니까?")){
+    		return false;
+    	}
+    }
+    
+    if($("#verifyCheck").is(":checked")){
+		if( !fn_comm_chkfield($("#verifyNm").val()) ){
+	    	alert("명의자 성명을 입력하세요.");
+	    	$("#verifyNm").focus();
+	    	return false;
+		}
+		
+		if( !fn_comm_chkfield($("#verifyBirth").val()) ){
+			alert("명의자 생년월일을 입력하세요.");
+	    	$("#verifyBirth").focus();
+	    	return false;
+		}
+		
+		if( $("#verifyBirth").val().length != 8 ){
+	    	alert("명의자 생년월일을 8자리로 입력하세요."); 
+	    	$("#verifyBirth").focus();
+	    	return false;
+	    }
+	}
+    
+    return true;
+}
+
+function fn_return_zip(zip , addr , ctrpvnCd){
+    $("#applicantZip").val(zip);
+    $("#applicantAddr1").val(addr);
+}
+
+function fn_return_zip2(zip , addr , ctrpvnCd){
+    $("#driverZip").val(zip);
+    $("#driverAddr1").val(addr);
+}
+
+function fn_lic_verify(){
+	if(procFlag){
+		alert("처리중입니다.");
+		return;
+	}
+	
+	if(!LicChkVaild()) return;
+	
+	$("#userNm").val($("#driverNm").val());
+	$("#userBirth").val($("#driverBirth").val().substr(2,6));
+	$("#userLicNo").val($("#licenseNo").val());
+	
+	procFlag = true;
+	
+	// 사용자쪽으로 요청
+	trionsoft.ajaxCall("<c:url value='/realTime/driverLicInfoAjax.do'/>", $("#accidentForm"), null, "json", false, null, null, callback_validation);
+}
+
+function LicChkVaild() {
+	
+	if( !fn_comm_chkfield($("#driverNm").val()) ){
+    	alert("운전자 성명을 입력하세요.");
+    	$("#driverNm").focus();
+    	return false;
+    }
+    
+    if( !fn_comm_chkfield($("#driverBirth").val()) ){
+    	alert("운전자 생년월일을 입력하세요."); 
+    	$("#driverBirth").focus();
+    	return false;
+    }
+    
+    if( $("#driverBirth").val().length != 8 ){
+    	alert("생년월일을 8자리로 입력하세요."); 
+    	$("#driverBirth").focus();
+    	return false;
+    }
+    
+    if( !fn_comm_chkfield($("#licenseNo").val()) ){
+    	alert("화물운송종사자격증 번호를 입력해주시기 바랍니다."); 
+    	$("#licenseNo").focus();
+    	return false;
+    }
+    
+    if( $("#licenseNo").val().length != 9 ){
+    	alert("자격증번호를 9자리로 입력해주시기 바랍니다."); 
+    	$("#licenseNo").focus();
+    	return false;
+    }
+    
+    return true;
+}
+
+function callback_validation(response, statusText) {
+	if( !trionsoft.checkAjaxStatus(response, statusText) ) return;
+	
+	var resultCode  = response.data.result;
+	
+	$("#licenseNo").attr("readOnly", true);
+	$("#btnLicChk").hide();
+	$("#btnLicClear").show();
+	
+	$("#licenseChkNm").html("");
+	$("#licenseNm").val($("#driverNm").val());
+	
+	if(resultCode == "Y"){
+		$("#licenseChkNm").text("검증성공");
+		$("#licenseChk").val("01");
+		$("#licenseChkNm").css({"color":"blue"});
+	}else if(resultCode == "N"){
+		$("#licenseChkNm").text("검증실패");
+		$("#licenseChk").val("02");
+		$("#licenseChkNm").css({"color":"red"});
+	}else if(resultCode == "R"){
+		$("#licenseChkNm").text("재발급");
+		$("#licenseChk").val("03");
+		$("#licenseChkNm").css({"color":"green"});
+	}else{ 
+		alert("오류가 발생했습니다.\n관리자에게 문의해주시기 바랍니다.");
+		$("#licenseChkNm").text("검증오류");
+		$("#licenseChk").val("04");
+		$("#licenseChkNm").css({"color":"red"});
+	}
+	
+	procFlag = false;
+	verifyFlag = true;
+}
+
+function fn_lic_clear(){
+	$("#licenseNo").val("");
+	$("#licenseNm").val("");
+	$("#licenseChk").val("00");
+	$("#licenseChkNm").text("");
+	
+	$("#licenseNo").attr("readOnly", false);
+	$("#btnLicChk").show();
+	$("#btnLicClear").hide();
+	
+	verifyFlag = false;
+}
+
+$(document).ready(function(){	
+	// 명의자 입력기능 추가 2020.06.04
+	if($("#driverAgreeFlag").val() == "04"){
+		$("#emptyTbl").hide();
+		$("#verifyTbl").show();
+	}else{
+		$("#emptyTbl").show();
+		$("#verifyTbl").hide();
+	}
+	
+	if( $("#licenseNo").val() != "" ){
+		$("#licenseNo").attr("readOnly", true);
+		$("#btnLicChk").hide();
+		$("#btnLicClear").show();
+	}else{
+		$("#licenseNo").attr("readOnly", false);
+		$("#btnLicChk").show();
+		$("#btnLicClear").hide();
+	}
+	
+	$("#verifyCheck").change(function(){
+		if($("#verifyCheck").is(":checked")){
+			$("#driverAgreeFlag").val("04");
+			$("#driverVerify").val("N");
+			
+			$("#verifyNm").val("${result.verifyNm}");
+			$("#verifyBirth").val("${result.verifyBirth}");
+			
+			$("#emptyTbl").hide();
+			$("#verifyTbl").show();
+		}else{
+			$("#driverAgreeFlag").val("");
+			$("#driverVerify").val("");
+			
+			$("#verifyNm").val("");
+			$("#verifyBirth").val("");
+			
+			$("#emptyTbl").show();
+			$("#verifyTbl").hide();
+		}
+	});
+	
+	$('.isNumber').bind('keyup',function(e){
+		event = e || window.event;			
+		var charCode = window.event.keyCode; 
+		
+		if ( charCode == 8 || charCode == 46 || charCode == 37 || charCode == 39 ) return;
+		else event.target.value = event.target.value.replace(/[^0-9]/g, "");
+	});
+	
+	$('.isDemical').bind('keyup',function(e){
+		event = e || window.event;
+		var charCode = event.keyCode;
+		
+		if ( charCode == 8 || charCode == 46 || charCode == 37 || charCode == 39 || charCode == 110  || charCode == 190) return;
+		else event.target.value = event.target.value.replace(/[^0-9\\.]/g, "");
+	});
+	
+	$('.isDemical').bind('blur',function(e){
+		event = e || window.event;
+		
+		var _id = event.target.id;
+		var _value = event.target.value;
+		var _pattern = /^\d*[.]\d{1,2}$/;
+    
+		if(_value.indexOf(".") != -1){
+			if (!_pattern.test(_value)) {
+	            alert("소수 입력시, 소수점 둘째자리까지 입력해주시기 바랍니다.");
+	            $("#"+ _id).val("");
+	            $("#"+ _id).focus();  
+	            return false;
+	        }
+		}else if(_value.indexOf(".") > 1){
+			alert("소수점은 한개만 입력 가능합니다.");
+			$("#"+ _id).val("");
+			$("#"+ _id).focus(); 
+			return false;
+		}    
+	});
+});
+
+</script>
+
+<div id="content_mod">
+    <form name="accidentForm" id="accidentForm" method="post">
+        <input type="hidden" name="menuId"           id="menuId"           	value="<c:out value='${param.menuId}'/>" 				/>
+		<input type="hidden" name="currentDocGrpSeq" id="currentDocGrpSeq" 	value="<c:out value='${welfareVO.currentDocGrpSeq}'/>" 	/>
+    	<input type="hidden" name="currentDocSeq"    id="currentDocSeq"    	value="<c:out value='${welfareVO.currentDocSeq}'/>"		/>
+    	
+        <input type="hidden" name="bizId"      		 id="bizId"				value="<c:out value='${welfareVO.bizId}'/>"      		/>
+	    <input type="hidden" name="yearDeg"    		 id="yearDeg"			value="<c:out value='${welfareVO.yearDeg}'/>"    		/>
+	    <input type="hidden" name="subsctNo"   		 id="subsctNo"			value="<c:out value='${welfareVO.subsctNo}'/>"   		/>
+	    <input type="hidden" name="subsctDay"  		 id="subsctDay"			value="<c:out value='${welfareVO.subsctDay}'/>"  		/>
+	    <input type="hidden" name="acceptNo"   		 id="acceptNo"			value="<c:out value='${welfareVO.acceptNo}'/>"  		/>
+	    <input type="hidden" name="progStat"   		 id="progStat"			value="<c:out value='${welfareVO.progStat}'/>"   		/>
+	    <input type="hidden" name="startDay"   		 id="startDay"			value="<c:out value='${welfareVO.startDay}'/>"   		/>
+	    <input type="hidden" name="endDay"     		 id="endDay"			value="<c:out value='${welfareVO.endDay}'/>"     		/>
+	    <input type="hidden" name="mberId"           id="mberId"			value="<c:out value='${welfareVO.mberId}'/>" 	 		/>
+	    <input type="hidden" name="docuDivCod" 		 id="docuDivCod"		value="<c:out value='${welfareVO.docuDivCod}'/>" 		/>
+        
+        <input type="hidden" name="carNo"            id="carNo"           	value="" />
+		<input type="hidden" name="verifySex"		 id="verifySex"         value="<c:out value='${result.verifySex}'/>" 			/>
+		<input type="hidden" name="driverVerify"	 id="driverVerify"      value="<c:out value='${result.driverVerify}'/>" 		/>
+		<input type="hidden" name="driverAgreeFlag"	 id="driverAgreeFlag"   value="<c:out value='${result.driverAgreeFlag}'/>" 		/>
+		
+		<!-- 운수종사 자격검증 -->
+		<input type="hidden" name="userNm"			 id="userNm"      		value="" />
+		<input type="hidden" name="userBirth"		 id="userBirth"     	value="" />
+		<input type="hidden" name="userLicNo"		 id="userLicNo"      	value="" />
+		<input type="hidden" name="licenseNm"	 	 id="licenseNm"      	value="<c:out value='${result.licenseNm}'/>" 		/>
+		<input type="hidden" name="licenseChk"	 	 id="licenseChk"      	value="<c:out value='${result.licenseChk}'/>" 		/>
+		
+		  
+        <jsp:useBean id="now" class="java.util.Date" />
+        <fmt:formatDate value="${now}" pattern="yyyy" var="nowYear" />
+
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th align="right" scope="col">
+                    <c:if test="${docu_flags eq 'include'}">
+                        <img id="btnUpdate" onclick="javascript:fn_search_accept_detail('${bizId}', '${yearDeg}', '${subsctNo}', '${acceptNo}');" src="<c:url value='/images/biz/board/btn_update.gif' />"  style="vertical-align:middle;" alt="수정하기" />
+                    </c:if>
+                    <c:if test="${docu_flags eq null}">
+                        <img id="btnSave" onclick="javascript:nextActionSubmit();" src="<c:url value='/images/biz/admin/btn_save.gif' />" style="vertical-align:middle;" alt="저장하기" />
+                    </c:if>
+                </th>
+            </tr>
+        </table><br/>
+        
+        <div id="t_info">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup>
+                	<col width="22%">
+					<col width="36%">
+					<col width="20%">
+					<col width="22%">
+                </colgroup>
+                <tbody>
+	                <tr>
+	                    <th>신청일시</th>
+				        <td><strong><c:out value='${welfareVO.subsctDay}'/></strong></td>
+				        <th>신청번호</th>
+				        <td><c:out value='${welfareVO.subsctNo}'/>&nbsp;</td>
+	                </tr>
+                </tbody>
+            </table>
+        </div><br/><br/>
+        
+        <div id="t_info">
+            <img align="left" src="<c:url value='/images/biz/content/t_welfare_4_1_3.gif' />" alt="사고당사자(화물운전자) 정보" /><br/><br/>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup>
+                	<col width="22%">
+					<col width="36%">
+					<col width="20%">
+					<col width="22%">
+                </colgroup>
+				<tbody>
+	                <tr>
+	                    <th><img src="<c:url value='/images/biz/content/icon_point.gif' />" alt="*" width="7" height="7" /> 성 명</th>
+	                    <td colspan="3"><input name="driverNm" type="text" class="input maxLen_26 isKorean" id="driverNm" size="20" value="<c:out value='${result.driverNm}'/>" style="ime-mode:active;" /></td>
+	                </tr>
+	                <tr>
+	                    <th> 생년월일 </th>
+	                    <td>
+	                        <input name="driverBirth" type="text" class="maxLen_8 isNumber" id="driverBirth" size="8" value="<c:out value='${result.driverBirth}'/>" /> (ex: 19800101)
+	                    </td>
+	                    <th> 성별</th>
+	                    <td>
+	                        <select name="driverSex" id="driverSex">
+	                            <option <c:if test="${result.driverSex == ''}">selected</c:if> value="">선택</option>
+	                            <option <c:if test="${result.driverSex == 'M'}">selected</c:if> value="M">남</option>
+	                            <option <c:if test="${result.driverSex == 'F'}">selected</c:if> value="F">여</option>
+	                        </select>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <th>자격증번호</th>
+	                    <td>
+	                    	<input name="licenseNo" type="text" class="input maxLen_9 isNumber" id="licenseNo" size="20" value="<c:out value='${result.licenseNo}' />" />
+	                    	<img id="btnLicChk" onclick="fn_lic_verify();"  src="<c:url value='/images/biz/admin/btn_check.gif' />" alt="조회"  height="21" style="margin-bottom:-5px; display:none;" />
+	                    	<img id="btnLicClear" onclick="fn_lic_clear();" src="<c:url value='/images/biz/admin/btn_clear.gif' />" alt="초기화" height="21" style="margin-bottom:-5px; display:none;" />
+	                    </td>
+	                    <th>검증결과</th>
+	                    <td><b><span id="licenseChkNm"><c:out value="${result.licenseChkNm}" /></span></b></td>
+	                </tr>
+	                <tr>
+	                    <th>차량번호</th>
+	                    <td>
+	                        <select name="carNo1" id="carNo1">
+	                            <option value=''>선택</option>
+	                            <c:forEach var="code" items="${area_items}" varStatus="status">
+	                                <option value='<c:out value="${code.codeNm}"/>' <c:if test="${code.codeNm == fn:substring(result.carNo,0,2)}">selected</c:if>><c:out value="${code.codeNm}" /></option>
+	                            </c:forEach>
+	                        </select>
+	                        <input name="carNo2" value="<c:out value='${fn:substring(result.carNo,2,4)}'/>" type="text" class="maxLen_2 isNumber" id="carNo2" size="3" />
+	                        <select name="carNo3" id="carNo3">
+	                            <option value=''>선택</option>
+	                            <option value="바" <c:if test="${'바' == fn:substring(result.carNo,4,5)}">selected</c:if>>바</option>
+	                            <option value="사" <c:if test="${'사' == fn:substring(result.carNo,4,5)}">selected</c:if>>사</option>
+	                            <option value="아" <c:if test="${'아' == fn:substring(result.carNo,4,5)}">selected</c:if>>아</option>
+	                            <option value="자" <c:if test="${'자' == fn:substring(result.carNo,4,5)}">selected</c:if>>자</option>
+	                            <option value="배" <c:if test="${'배' == fn:substring(result.carNo,4,5)}">selected</c:if>>배</option>
+	                        </select>
+	                        <input name="carNo4" value="<c:out value='${fn:substring(result.carNo,5,9)}'/>" type="text" class="maxLen_4 isNumber" id="carNo4" size="4" />
+	                    </td>
+	                    <th> 차종</th>
+	                    <td>
+	                        <select name="carModel" id="carModel">
+	                            <option selected value=''>선택</option>
+	                            <c:forEach var="resultCodeCate" items="${car_items}" varStatus="status">
+	                                <option value='<c:out value="${resultCodeCate.code}"/>' <c:if test="${resultCodeCate.code == result.carModel}">selected</c:if>><c:out value="${resultCodeCate.codeNm}" /></option>
+	                            </c:forEach>
+	                        </select>
+	                    </td>
+	                </tr>
+	                <tr>
+	                	<th>업종</th>
+	                    <td>
+	                        <select name="categoryDiv" id="categoryDiv" style="width:210px;">
+	                            <option selected value=''>선택</option>
+	                            <c:forEach var="resultCodeCate" items="${cate_items}" varStatus="status">
+	                                <option value='<c:out value="${resultCodeCate.code}"/>' <c:if test="${resultCodeCate.code == result.categoryDiv}">selected</c:if>><c:out value="${resultCodeCate.codeNm}" /></option>
+	                            </c:forEach>
+	                        </select>
+	                    </td>
+	                    <td colspan="2" style="padding-left:12px;">
+							타인명의 유류복지카드 사용여부
+							<input type="checkbox" id="verifyCheck" name="verifyCheck" <c:if test="${result.driverAgreeFlag == '04'}"> checked </c:if> style="widht:14px; height:14px; position:relative; top:2px;">
+						</td>
+	                </tr>
+	                <tr>
+	                    <th>톤수</th>
+	                    <td>
+	                        <input name="carWeight" type="text" class="input maxLen_20 isDemical" id="carWeight" size="17" value="<c:out value='${result.carWeight}'/>" />&nbsp;톤
+	                    </td>
+	                    <td colspan="2" rowspan="2" style="padding-left:0px;">
+							<table id="emptyTbl" style="width:100%; border-top:none;">
+								<tr><td colspan="2" style="height:26px;"></td></tr>
+								<tr><td colspan="2" style="border-bottom:none; height:24px;"></td></tr>
+							</table>
+							<table id="verifyTbl" style="width:100%; border-top:none; display:none;">
+								<tr>
+									<th style="width:48%; height:26px; border-left:solid 1px #e0e0e0;">
+										<img src="<c:url value='/images/biz/content/icon_point.gif' />" alt="*" width="7" height="7" /> 명의자 성명
+									</th>
+									<td style="width:52%;">
+										<input id="verifyNm" name="verifyNm" type="text" class="input maxLen_26 isKorean" size="10" maxLength="5" value="<c:out value='${result.verifyNm}'/>" style="ime-mode:active;" />
+									</td>
+								</tr>
+								<tr>
+									<th style="border-bottom:none; width:48%; height:27px; border-left:solid 1px #e0e0e0;">
+										<img src="<c:url value='/images/biz/content/icon_point.gif' />" alt="*" width="7" height="7" /> 생년월일
+									</th>
+									<td style="border-bottom:none; width:52%;">
+										<input id="verifyBirth" name="verifyBirth" type="text" class="input maxLen_8 isNumber" size="10" maxLength="8" value="<c:out value='${result.verifyBirth}'/>"/>
+									</td>
+								</tr>
+							</table>
+						</td>
+	                </tr>
+	                <tr>
+	                    <th>관리번호</th>
+	                    <td colspan="3">
+	                        <input name="manageNo" type="text" class="input" size="17" value="<c:out value='${result.manageNo}'/>" />
+	                    </td>
+	                </tr>
+	        	</tbody>
+            </table>
+        </div><br/><br/>
+        
+        <div id="t_info">
+            <img align="left" src="<c:url value='/images/biz/content/t_welfare_4_1_2.gif' />" alt="지원금신청(유가족) 정보" /><br /><br />
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <colgroup>
+                	<col width="22%">
+					<col width="36%">
+					<col width="20%">
+					<col width="22%">
+                </colgroup>
+                <tbody>
+                	<tr>
+	                    <th><img src="<c:url value='/images/biz/content/icon_point.gif' />" alt="*" width="7" height="7" /> 성명</th>
+	                    <td><input name="applicantNm" type="text" class="input maxLen_26 isKorean" id="applicantNm" size="20" value="<c:out value='${result.applicantNm}'/>" style="ime-mode:active;" /></td>
+	                	<th><img src="<c:url value='/images/biz/content/icon_point.gif' />" alt="*" width="7" height="7" /> 관계</th>
+	                    <td>
+	                        <select name="applicantRelation" id="applicantRelation" style="width:68px;">
+	                            <option value="">선택</option>
+	                            <c:forEach var="resultCode" items="${fami_items}" varStatus="status">
+	                                <c:if test="${resultCode.code ne '00'}">
+	                                	<option value='<c:out value="${resultCode.code}"/>' <c:if test="${resultCode.code == result.applicantRelation}">selected</c:if>><c:out value="${resultCode.codeNm}" /></option>
+	                                </c:if>
+	                            </c:forEach>
+	                        </select>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <th><img src="<c:url value='/images/biz/content/icon_point.gif' />" alt="*" width="7" height="7" /> 생년월일</th>
+	                    <td><input name="applicantBirth" type="text" class="maxLen_8 isNumber" id="applicantBirth" size="8" value="<c:out value='${result.applicantBirth}'/>" /> (ex: 19800101)</td>
+	                    <th><img src="<c:url value='/images/biz/content/icon_point.gif' />" alt="*" width="7" height="7" /> 성별</th>
+	                    <td>
+	                        <select name="applicantSex" id="applicantSex" style="width:68px;">
+	                            <option <c:if test="${result.applicantSex == ''}">selected</c:if> value="">선택</option>
+	                            <option <c:if test="${result.applicantSex == 'M'}">selected</c:if> value="M">남</option>
+	                            <option <c:if test="${result.applicantSex == 'F'}">selected</c:if> value="F">여</option>
+	                        </select>
+	                    </td>
+	                </tr>
+	                <%-- <tr>
+	                    <th>자택 전화번호</th>
+	                    <td colspan="3">
+	                        <select name="applicantContactHome1" id="applicantContactHome1">
+	                            <option value="">선택</option>
+	                            <c:forEach var="resultCode" items="${tele_items}" varStatus="status">
+	                                <option value='<c:out value="${resultCode.code}"/>' <c:if test="${resultCode.code == result.applicantContactHome1}">selected</c:if>><c:out value="${resultCode.codeNm}" /></option>
+	                            </c:forEach>
+	                        </select> -
+	                        <input name="applicantContactHome2" type="text" class="input maxLen_4 isNumber" id="applicantContactHome2" size="5" value="<c:out value='${result.applicantContactHome2}'/>" />-
+	                        <input name="applicantContactHome3" type="text" class="input maxLen_4 isNumber" id="applicantContactHome3" size="5" value="<c:out value='${result.applicantContactHome3}'/>" />
+	                    </td>
+	                </tr> --%>
+	                <tr>
+	                    <th>휴대폰</th>
+	                    <td colspan="3">
+	                        <select name="applicantContactHp1" id="applicantContactHp1">
+	                            <option value="">선택</option>
+	                            <c:forEach var="resultCode" items="${mobi_items}" varStatus="status">
+	                                <option value='<c:out value="${resultCode.code}"/>' <c:if test="${resultCode.code == result.applicantContactHp1}">selected</c:if>><c:out value="${resultCode.codeNm}" /></option>
+	                            </c:forEach>
+	                        </select> -
+	                        <input name="applicantContactHp2" type="text" class="input maxLen_4 isNumber" id="applicantContactHp2" size="5" value="<c:out value='${result.applicantContactHp2}'/>" />-
+	                        <input name="applicantContactHp3" type="text" class="input maxLen_4 isNumber" id="applicantContactHp3" size="5" value="<c:out value='${result.applicantContactHp3}'/>" />
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <th>긴급</th>
+	                    <td colspan="3">
+	                        <select name="applicantContactEmer1" id="applicantContactEmer1">
+	                            <option value="">선택</option>
+	                            <c:forEach var="resultCode" items="${mobi_items}" varStatus="status">
+	                                <option value='<c:out value="${resultCode.code}"/>' <c:if test="${resultCode.code == result.applicantContactEmer1}">selected</c:if>><c:out value="${resultCode.codeNm}" /></option>
+	                            </c:forEach>
+	                        </select> -
+	                        <input name="applicantContactEmer2" type="text" class="input maxLen_4 isNumber" id="applicantContactEmer2" size="5" value="<c:out value='${result.applicantContactEmer2}'/>" />-
+	                        <input name="applicantContactEmer3" type="text" class="input maxLen_4 isNumber" id="applicantContactEmer3" size="5" value="<c:out value='${result.applicantContactEmer3}'/>" />
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <th>자택주소</th>
+	                    <td colspan="3">
+	                        <input name="applicantZip" type="text" class="input maxLen_6 isNumber" id="applicantZip" size="5" readOnly value="<c:out value='${result.applicantZip}'/>" onClick="fn_comm_zipSearch();" />
+	                        <img id="btnApplicantZip" onClick="fn_comm_zipSearch();" src="<c:url value='/images/biz/content/btn_post.gif' />" alt="우편번호찾기" width="79" height="19" align="absmiddle" /><br />
+	                        <input name="applicantAddr1" type="text" class="input maxLen_100" id="applicantAddr1" size="55" readOnly value="<c:out value='${result.applicantAddr1}'/>" onClick="fn_comm_zipSearch();" /> <br />
+	                        <input name="applicantAddr2" type="text" class="input maxLen_100" id="applicantAddr2" size="55" value="<c:out value='${result.applicantAddr2}'/>" />
+	                    </td>
+	                </tr>
+                </tbody>
+            </table>
+        </div><br/><br/>
+    </form>
+</div>

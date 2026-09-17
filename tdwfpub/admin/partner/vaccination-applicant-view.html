@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="partner" data-page="vaccination-applicant">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 협력관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-partner.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-partner" data-page="vaccination-applicant"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>예방접종 협약병원</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/partner/regular-checkup-list.html">협력관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/partner/vaccination-applicant-list.html">예방접종 협약병원</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">상세내역</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="예방접종신청자 상세내역">
+              <table class="board-form-table">
+                <caption>
+                  예방접종신청자 상세내역
+                </caption>
+                <colgroup>
+                  <col width="16%" />
+                  <col width="34%" />
+                  <col width="16%" />
+                  <col width="34%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">의료기관명</th>
+                    <td colspan="3">가천대 길병원(인천 남동구)</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">대상자명</th>
+                    <td>정인완</td>
+                    <th scope="row">생년월일</th>
+                    <td>1975.05.05</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">차량번호</th>
+                    <td>인천85아2445</td>
+                    <th scope="row">성별</th>
+                    <td>남</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">자택주소</th>
+                    <td>인천 미추홀구 주승로197번길 6 (관교동) 302동</td>
+                    <th scope="row">휴대전화번호</th>
+                    <td>010-1234-5678</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">접종유형</th>
+                    <td>파상풍</td>
+                    <th scope="row">접종회차</th>
+                    <td>1회차</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <label for="vaccinationDate">접종일자</label>
+                    </th>
+                    <td>
+                      <div class="board-search-date-field" data-datepicker-wrap>
+                        <input
+                          type="text"
+                          id="vaccinationDate"
+                          name="vaccinationDate"
+                          class="form-control"
+                          value="2026-02-27"
+                          disabled
+                          data-datepicker-input
+                          data-input
+                        />
+                        <button
+                          type="button"
+                          class="btn-calendar"
+                          aria-label="접종일자 선택"
+                          data-datepicker-toggle
+                          data-toggle
+                        >
+                          <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                        </button>
+                      </div>
+                    </td>
+                    <th scope="row">접종여부</th>
+                    <td>접종완료</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <label for="claimMonth">청구정보</label>
+                    </th>
+                    <td>
+                      <div class="flex items-center gap-2 row-type-field">
+                        <select id="claimMonth" name="claimMonth" class="form-control">
+                          <option value="">선택</option>
+                          <option value="">미청구</option>
+                          <option value="">02월</option>
+                          <option value="">03월</option>
+                          <option value="">04월</option>
+                          <option value="">05월</option>
+                          <option value="">06월</option>
+                          <option value="">07월</option>
+                          <option value="">08월</option>
+                          <option value="">09월</option>
+                          <option value="">10월</option>
+                          <option value="">11월</option>
+                          <option value="">12월</option>
+                        </select>
+                        <span>청구예정</span>
+                      </div>
+                    </td>
+                    <th scope="row">
+                      <label for="claimAmount">청구금액</label>
+                    </th>
+                    <td>
+                      <div class="flex items-center gap-2 row-type-unit">
+                        <input id="claimAmount" name="claimAmount" type="text" class="form-control" />
+                        <span>원</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <label for="claimMemo">청구메모</label>
+                    </th>
+                    <td colspan="3">
+                      <textarea id="claimMemo" name="claimMemo" class="textarea" rows="5"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">지급메모</th>
+                    <td colspan="3"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- 예방접종 처리 단계: 완료된 단계는 .status-done 클래스 사용 -->
+              <ol class="board-status-steps" aria-label="예방접종 처리 단계">
+                <li class="status-done">미처리</li>
+                <li class="status-done">예약완료</li>
+                <li>검진완료</li>
+                <li>결과입력완료(청구)</li>
+              </ol>
+            </section>
+
+            <section class="panel flex flex-col gap-4" aria-label="예방접종신청자 서류정보">
+              <section class="board-section" aria-labelledby="vaccination-applicant-registered-document-title">
+                <div class="board-info-row">
+                  <h3 class="board-list-title" id="vaccination-applicant-registered-document-title">등록서류목록</h3>
+                </div>
+                <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                <!-- 목록 있는 경우 -->
+                <ul class="board-document-list">
+                  <li class="board-document-row">
+                    <span class="board-document-number">1</span>
+                    <a
+                      href="/common/images/main/info-image.png"
+                      class="board-document-name"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="이미지 크게 보기"
+                    >
+                      협약병원 청구자료_3.jpg
+                    </a>
+                    <div class="board-table-actions">
+                      <a href="#" class="btn variant-outline color-navy rounded-md size-input" download>다운로드</a>
+                      <button type="button" class="btn variant-soft color-red rounded-md size-input">삭제</button>
+                    </div>
+                  </li>
+                  <li class="board-document-row">
+                    <span class="board-document-number">2</span>
+                    <a
+                      href="/common/images/main/info-image.png"
+                      class="board-document-name"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="이미지 크게 보기"
+                    >
+                      협약병원 청구자료_4.jpg
+                    </a>
+                    <div class="board-table-actions">
+                      <a href="#" class="btn variant-outline color-navy rounded-md size-input" download>다운로드</a>
+                      <button type="button" class="btn variant-soft color-red rounded-md size-input">삭제</button>
+                    </div>
+                  </li>
+                </ul>
+              </section>
+
+              <section class="board-section" aria-labelledby="vaccination-applicant-required-document-title">
+                <div class="board-info-row">
+                  <h3 class="board-list-title" id="vaccination-applicant-required-document-title">서류목록</h3>
+                </div>
+                <!-- 필요 없는 경우: hidden 속성을 제거하고 표시 -->
+                <p class="board-content-empty" hidden>등록할 서류 정보가 없습니다.</p>
+                <!-- 등록 시: 서류별 개별 업로드/저장 -->
+                <form action="" method="post" enctype="multipart/form-data">
+                  <table class="board-form-table">
+                    <caption>
+                      예방접종신청자 서류목록
+                    </caption>
+                    <colgroup>
+                      <col width="20%" />
+                      <col width="*" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <label for="documentFile1">협약병원 청구자료_1</label>
+                        </th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input id="documentFile1" name="documentFile" type="file" class="form-control" />
+                            <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                              저장
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="documentFile2">협약병원 청구자료_2</label>
+                        </th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input id="documentFile2" name="documentFile" type="file" class="form-control" />
+                            <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                              저장
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="documentFile3">협약병원 청구자료_3</label>
+                        </th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input id="documentFile3" name="documentFile" type="file" class="form-control" />
+                            <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                              저장
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="documentFile4">협약병원 청구자료_4</label>
+                        </th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input id="documentFile4" name="documentFile" type="file" class="form-control" />
+                            <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                              저장
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="documentFile5">협약병원 청구자료_5</label>
+                        </th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input id="documentFile5" name="documentFile" type="file" class="form-control" />
+                            <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                              저장
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </section>
+              <div class="board-view-actions">
+                <a
+                  href="/admin/partner/vaccination-applicant-list.html"
+                  class="btn variant-outline color-navy rounded-md size-board-action"
+                >
+                  목록보기
+                </a>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

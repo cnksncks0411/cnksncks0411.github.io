@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>회원정보 | 회원가입 | 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="member" data-page="join">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>회원가입</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 회원 LNB 인클루드 영역: common/include/apply/lnb-member.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-member" data-page="join"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">회원가입</h1>
+              <div class="sub-intro">
+                <p>회원가입으로 더 많은 정보 혜택을 누려보세요.</p>
+              </div>
+            </div>
+
+            <div class="sub-content join-info-content join-flow">
+              <ol class="join-steps" aria-label="회원가입 진행 단계">
+                <li class="step-item">
+                  <span class="step-number">STEP 01</span>
+                  <strong>약관동의</strong>
+                </li>
+                <li class="step-item">
+                  <span class="step-number">STEP 02</span>
+                  <strong>본인인증</strong>
+                </li>
+                <li class="step-item active" aria-current="step">
+                  <span class="step-number">STEP 03</span>
+                  <strong>회원정보</strong>
+                </li>
+                <li class="step-item">
+                  <span class="step-number">STEP 04</span>
+                  <strong>가입완료</strong>
+                </li>
+              </ol>
+
+              <p class="info-note">
+                <span class="required-mark" aria-hidden="true">*</span> 표시는 필수 입력 항목입니다.
+              </p>
+
+              <form class="info-form" action="/apply/member/join-complete.html" method="post">
+                <div class="table-wrap">
+                  <table class="board-form-table">
+                    <caption>
+                      회원가입 회원정보 입력
+                    </caption>
+                    <colgroup>
+                      <col width="24%" />
+                      <col width="76%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 이름</th>
+                        <td><span class="field-text">홍길동</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 생년월일</th>
+                        <td><span class="field-text">1974년 06월 07일</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="join-id"
+                            ><span class="required-mark" aria-hidden="true">*</span> 회원 아이디</label
+                          >
+                        </th>
+                        <td>
+                          <div class="field-row">
+                            <input
+                              id="join-id"
+                              class="form-control w-id"
+                              type="text"
+                              name="userId"
+                              minlength="4"
+                              maxlength="20"
+                              placeholder="아이디를 입력해 주세요."
+                              required
+                            />
+                            <a
+                              href="/apply/popup/id-check.html"
+                              class="btn variant-outline color-navy rounded-md size-md"
+                              target="_blank"
+                              data-popup="idCheckPopup"
+                              data-size="660,500"
+                            >
+                              <span class="btn-label">아이디 중복 확인</span>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="join-password"
+                            ><span class="required-mark" aria-hidden="true">*</span> 비밀번호</label
+                          >
+                        </th>
+                        <td>
+                          <input
+                            id="join-password"
+                            class="form-control w-id"
+                            type="password"
+                            name="password"
+                            autocomplete="new-password"
+                            placeholder="비밀번호를 입력하세요."
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="join-password-check">
+                            <span class="required-mark" aria-hidden="true">*</span> 비밀번호 재확인
+                          </label>
+                        </th>
+                        <td>
+                          <input
+                            id="join-password-check"
+                            class="form-control w-id"
+                            type="password"
+                            name="passwordCheck"
+                            autocomplete="new-password"
+                            placeholder="비밀번호를 재확인하세요."
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 주소</th>
+                        <td>
+                          <div class="form-cell">
+                            <div class="choice-list" role="radiogroup" aria-label="주소 구분">
+                              <label class="radio-label">
+                                <input type="radio" name="addressType" value="home" checked />
+                                <span class="radio-label-text">자택</span>
+                              </label>
+                              <label class="radio-label">
+                                <input type="radio" name="addressType" value="work" />
+                                <span class="radio-label-text">직장</span>
+                              </label>
+                            </div>
+                            <div class="field-row">
+                              <input
+                                id="join-postcode"
+                                class="form-control w-post"
+                                type="text"
+                                name="postcode"
+                                inputmode="numeric"
+                                placeholder="우편번호"
+                                readonly
+                                required
+                              />
+                              <a
+                                href="/apply/popup/address-search.html"
+                                class="btn variant-outline color-navy rounded-md size-md"
+                                target="_blank"
+                                data-popup="addressPopup"
+                                data-size="660,480"
+                              >
+                                <span class="btn-label">우편번호 찾기</span>
+                              </a>
+                            </div>
+                            <label class="sr-only" for="join-address">기본 주소</label>
+                            <input
+                              id="join-address"
+                              class="form-control"
+                              type="text"
+                              name="address"
+                              placeholder="기본 주소"
+                              readonly
+                              required
+                            />
+                            <label class="sr-only" for="join-address-detail">상세 주소</label>
+                            <input
+                              id="join-address-detail"
+                              class="form-control"
+                              type="text"
+                              name="addressDetail"
+                              placeholder="상세 주소를 입력하세요."
+                              required
+                            />
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 휴대폰번호</th>
+                        <td><span class="field-text">010-1234-5678</span></td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 회원구분</th>
+                        <td>
+                          <div class="choice-list" role="radiogroup" aria-label="회원구분">
+                            <label class="radio-label">
+                              <input type="radio" name="memberType" value="driver" checked />
+                              <span class="radio-label-text">화물운전자</span>
+                            </label>
+                            <label class="radio-label">
+                              <input type="radio" name="memberType" value="family" />
+                              <span class="radio-label-text">가족</span>
+                            </label>
+                            <label class="radio-label">
+                              <input type="radio" name="memberType" value="other" />
+                              <span class="radio-label-text">기타</span>
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <!-- 아래 3개 행은 화물운전자 선택 시 노출 -->
+                      <tr>
+                        <th scope="row">
+                          <label for="join-business"
+                            ><span class="required-mark" aria-hidden="true">*</span> 업종</label
+                          >
+                        </th>
+                        <td>
+                          <select id="join-business" class="form-control w-id" name="businessType" required>
+                            <option value="">선택하세요</option>
+                            <option value="">일반화물</option>
+                            <option value="">개인중대형화물(구, 개별화물)</option>
+                            <option value="">개인소형화물(구, 용달화물)</option>
+                            <option value="">기타</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="join-load"><span class="required-mark" aria-hidden="true">*</span> 적재량</label>
+                        </th>
+                        <td>
+                          <select id="join-load" class="form-control w-id" name="loadType" required>
+                            <option value="">선택하세요</option>
+                            <option value="">차량미보유</option>
+                            <option value="">1.0톤 이하</option>
+                            <option value="">1.2톤 이상~2.5톤 이하</option>
+                            <option value="">3.0톤 이상~4.0톤 이하</option>
+                            <option value="">4.5톤 이상~5.5톤 이하</option>
+                            <option value="">5.5톤 초과~8.5톤 이하</option>
+                            <option value="">8.5톤 초과~11톤 이하</option>
+                            <option value="">11톤 초과~15톤 이하</option>
+                            <option value="">15톤 초과~20톤 이하</option>
+                            <option value="">20톤 초과~24톤 이하</option>
+                            <option value="">25톤</option>
+                            <option value="">트랙터</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="join-license"
+                            ><span class="required-mark" aria-hidden="true">*</span> 화물운송종사 자격증 번호</label
+                          >
+                        </th>
+                        <td>
+                          <div class="field-row">
+                            <input
+                              id="join-license"
+                              class="form-control w-id"
+                              type="text"
+                              name="licenseNumber"
+                              placeholder="자격증 번호를 입력해 주세요."
+                              readonly
+                              required
+                            />
+                            <a
+                              href="/apply/popup/license-check.html"
+                              class="btn variant-outline color-navy rounded-md size-md"
+                              target="_blank"
+                              data-popup="licenseCheckPopup"
+                              data-size="660,500"
+                            >
+                              <span class="btn-label">확인</span>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="board-footer-actions type-grid">
+                  <button type="submit" class="btn variant-solid color-gradient rounded-md size-lg">
+                    <span class="btn-label">회원가입</span>
+                  </button>
+                  <a href="/apply/member/login.html" class="btn variant-solid color-navy rounded-md size-lg">
+                    <span class="btn-label">취소</span>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

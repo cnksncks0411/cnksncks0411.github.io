@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>사업공고 등록(제출서류 선택) | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="recruitment" data-page="project-notice">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업공고 및 마감 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-recruitment.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-recruitment" data-page="project-notice"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>사업공고 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/recruitment/project-notice-list.html">사업공고 및 마감</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/recruitment/project-notice-list.html">사업공고 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">사업공고 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="submission-document-title">
+              <form method="post">
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="submission-document-title">제출서류 선택</h2>
+                </div>
+
+                <table class="board-form-table board-item-table">
+                  <caption>
+                    제출서류 사용 여부
+                  </caption>
+                  <colgroup>
+                    <col width="36%" />
+                    <col width="28%" />
+                    <col width="36%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">서류명</th>
+                      <th scope="col">사용여부</th>
+                      <th scope="col">비고</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">화물운송종사자격</th>
+                      <td>
+                        <div class="board-form-options justify-center">
+                          <label class="radio-label">
+                            <input type="radio" name="driverQualificationDocumentUse" value="true" checked />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="driverQualificationDocumentUse" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>검증 실패 시 첨부 제출</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">유가보조금이력</th>
+                      <td>
+                        <div class="board-form-options justify-center">
+                          <label class="radio-label">
+                            <input type="radio" name="fuelHistoryDocumentUse" value="true" checked />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="fuelHistoryDocumentUse" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>검증 실패 시 첨부 제출</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">계좌사본</th>
+                      <td>
+                        <div class="board-form-options justify-center">
+                          <label class="radio-label">
+                            <input type="radio" name="accountCopyDocumentUse" value="true" checked />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="accountCopyDocumentUse" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>검증 실패 시 첨부 제출</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">가족관계증명서</th>
+                      <td>
+                        <div class="board-form-options justify-center">
+                          <label class="radio-label">
+                            <input type="radio" name="familyCertificateDocumentUse" value="true" checked />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="familyCertificateDocumentUse" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>연계 실패 시 첨부 제출</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">재학증명서</th>
+                      <td>
+                        <div class="board-form-options justify-center">
+                          <label class="radio-label">
+                            <input type="radio" name="enrollmentCertificateDocumentUse" value="true" checked />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="enrollmentCertificateDocumentUse" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">사업자등록증</th>
+                      <td>
+                        <div class="board-form-options justify-center">
+                          <label class="radio-label">
+                            <input type="radio" name="businessRegistrationDocumentUse" value="true" />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="businessRegistrationDocumentUse" value="false" checked />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">재직증명서</th>
+                      <td>
+                        <div class="board-form-options justify-center">
+                          <label class="radio-label">
+                            <input type="radio" name="employmentCertificateDocumentUse" value="true" />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="employmentCertificateDocumentUse" value="false" checked />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">고용보험 피보험자격 이력 내역서</th>
+                      <td>
+                        <div class="board-form-options justify-center">
+                          <label class="radio-label">
+                            <input type="radio" name="employmentInsuranceDocumentUse" value="true" />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="employmentInsuranceDocumentUse" value="false" checked />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>법인 소속인 경우</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <a
+                    href="/admin_bak/recruitment/project-notice-step5.html"
+                    class="btn variant-solid color-blue rounded-md size-board-action mr-auto"
+                  >
+                    이전단계
+                  </a>
+                  <!-- 
+                    퍼블리싱용 화면 이동 버튼입니다.
+                    개발 연동 시 아래 주석 처리된 버튼 사용해주세요.
+                  -->
+                  <a
+                    href="/admin_bak/recruitment/project-notice-step7.html"
+                    class="btn variant-solid color-navy rounded-md size-board-auto"
+                  >
+                    저장 후 다음단계
+                  </a>
+                  <!-- <button type="button" class="btn variant-solid color-navy rounded-md size-board-auto">
+                    저장 후 다음단계
+                  </button> -->
+                  <a
+                    href="/admin_bak/recruitment/project-notice-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    취소하기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

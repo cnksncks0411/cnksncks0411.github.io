@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="user" data-page="user">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 회원관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-user.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-user" data-page="user"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>사용자관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/user/user-list.html">회원관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">사용자관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="user-search-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="user-search-title">사용자회원관리</h2>
+                <div class="board-info-actions">
+                  <!-- 협력업체 계정생성 버튼: 협력업체 계정 생성 팝업 노출 -->
+                  <button
+                    type="button"
+                    class="btn variant-solid color-gradient rounded-md size-board-auto"
+                    data-popup-open="partner-account-create-popup"
+                    aria-haspopup="dialog"
+                  >
+                    협력업체 계정생성
+                  </button>
+                </div>
+              </div>
+              <form action="/admin/user/user-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      사용자회원 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="userId">사용자ID</label></th>
+                        <td><input id="userId" name="userId" type="text" class="form-control w-full" /></td>
+                        <th scope="row"><label for="userName">성명</label></th>
+                        <td><input id="userName" name="userName" type="text" class="form-control w-full" /></td>
+                        <th scope="row"><label for="useStatus">사용여부</label></th>
+                        <td>
+                          <select id="useStatus" name="useStatus" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">사용</option>
+                            <option value="">탈퇴</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="birthDate">생년월일</label></th>
+                        <td>
+                          <input
+                            id="birthDate"
+                            name="birthDate"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="userRole">사용권한</label></th>
+                        <td>
+                          <select id="userRole" name="userRole" class="form-control w-full">
+                            <option value="">일반사용자</option>
+                            <option value="">협력업체관리자</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="mobileNumber">휴대전화번호</label></th>
+                        <td><input id="mobileNumber" name="mobileNumber" type="text" class="form-control w-full" /></td>
+                        <th scope="row"><label for="siteStatus">사이트상태</label></th>
+                        <td>
+                          <select id="siteStatus" name="siteStatus" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">신청가능</option>
+                            <option value="">신청불가능</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="userType">사용자구분</label></th>
+                        <td>
+                          <select id="userType" name="userType" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">일반사이트</option>
+                            <option value="">관리사이트</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">출생년도</th>
+                        <td>
+                          <div class="flex items-center gap-2">
+                            <input
+                              id="birthYearStart"
+                              name="birthYearStart"
+                              type="text"
+                              class="form-control w-full"
+                              aria-label="출생 시작년도"
+                            />
+                            <span class="board-search-date-separator">~</span>
+                            <input
+                              id="birthYearEnd"
+                              name="birthYearEnd"
+                              type="text"
+                              class="form-control w-full"
+                              aria-label="출생 종료년도"
+                            />
+                          </div>
+                        </td>
+                        <th scope="row"><label for="searchBusinessType">업종구분</label></th>
+                        <td>
+                          <select id="searchBusinessType" name="searchBusinessType" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="applicationStatus">사업신청유무</label></th>
+                        <td>
+                          <select id="applicationStatus" name="applicationStatus" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="residenceName">거주지명</label></th>
+                        <td>
+                          <select id="residenceName" name="residenceName" class="form-control w-full">
+                            <option value="">지역선택</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="legacyLoadType">적재량구분(구)</label></th>
+                        <td>
+                          <select id="legacyLoadType" name="legacyLoadType" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="loadType">적재량구분</label></th>
+                        <td>
+                          <select id="loadType" name="loadType" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row">등록일자</th>
+                        <td colspan="3">
+                          <div class="board-search-date-range w-full">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="registrationStartDate"
+                                name="registrationStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="등록 시작일자"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="등록 시작일자 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="registrationEndDate"
+                                name="registrationEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="등록 종료일자"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="등록 종료일자 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-label="사용자회원 목록">
+              <div class="board-info-row">
+                <p class="board-total">총 <span class="font-bold text-blue">122,929</span>건</p>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option selected>20개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    사용자회원 목록
+                  </caption>
+                  <colgroup>
+                    <col width="13%" />
+                    <col width="10%" />
+                    <col width="14%" />
+                    <col width="15%" />
+                    <col width="9%" />
+                    <col width="11%" />
+                    <col width="13%" />
+                    <col width="15%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">사용자 ID</th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="성명 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>성명</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="권한 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>권한</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">휴대전화번호</th>
+                      <th scope="col">사용여부</th>
+                      <th scope="col">사이트 상태</th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="등록일 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>등록일</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">비밀번호 초기화</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 사용자 ID는 샘플값이며, 개발 시 실제 사용자 ID로 출력 -->
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user001</td>
+                      <td>홍*동</td>
+                      <td>일반사용자</td>
+                      <td>010-****-5678</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.05.05</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user002</td>
+                      <td>김*수</td>
+                      <td>협력업체관리자</td>
+                      <td>010-****-1248</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.05.03</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user003</td>
+                      <td>이*민</td>
+                      <td>일반사용자</td>
+                      <td>010-****-3891</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.04.29</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user004</td>
+                      <td>박*현</td>
+                      <td>일반사용자</td>
+                      <td>010-****-7755</td>
+                      <td>탈퇴</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.04.21</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user005</td>
+                      <td>최*진</td>
+                      <td>협력업체관리자</td>
+                      <td>010-****-8802</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.04.18</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user006</td>
+                      <td>정*완</td>
+                      <td>일반사용자</td>
+                      <td>010-****-9041</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.04.12</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user007</td>
+                      <td>한*우</td>
+                      <td>일반사용자</td>
+                      <td>010-****-0520</td>
+                      <td>탈퇴</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.04.07</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user008</td>
+                      <td>서*현</td>
+                      <td>협력업체관리자</td>
+                      <td>010-****-3210</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.03.29</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user009</td>
+                      <td>윤*호</td>
+                      <td>일반사용자</td>
+                      <td>010-****-5902</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.03.24</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user010</td>
+                      <td>송*빈</td>
+                      <td>일반사용자</td>
+                      <td>010-****-4365</td>
+                      <td>탈퇴</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.03.18</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user001</td>
+                      <td>홍*동</td>
+                      <td>일반사용자</td>
+                      <td>010-****-5678</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.05.05</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user002</td>
+                      <td>김*수</td>
+                      <td>협력업체관리자</td>
+                      <td>010-****-1248</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.05.03</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user003</td>
+                      <td>이*민</td>
+                      <td>일반사용자</td>
+                      <td>010-****-3891</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.04.29</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user004</td>
+                      <td>박*현</td>
+                      <td>일반사용자</td>
+                      <td>010-****-7755</td>
+                      <td>탈퇴</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.04.21</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user005</td>
+                      <td>최*진</td>
+                      <td>협력업체관리자</td>
+                      <td>010-****-8802</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.04.18</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user006</td>
+                      <td>정*완</td>
+                      <td>일반사용자</td>
+                      <td>010-****-9041</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.04.12</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user007</td>
+                      <td>한*우</td>
+                      <td>일반사용자</td>
+                      <td>010-****-0520</td>
+                      <td>탈퇴</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.04.07</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user008</td>
+                      <td>서*현</td>
+                      <td>협력업체관리자</td>
+                      <td>010-****-3210</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.03.29</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user009</td>
+                      <td>윤*호</td>
+                      <td>일반사용자</td>
+                      <td>010-****-5902</td>
+                      <td>사용</td>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <td>2026.03.24</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-popup-open="user-detail-popup"
+                      tabindex="0"
+                      role="button"
+                      aria-haspopup="dialog"
+                    >
+                      <td>user010</td>
+                      <td>송*빈</td>
+                      <td>일반사용자</td>
+                      <td>010-****-4365</td>
+                      <td>탈퇴</td>
+                      <td><span class="font-bold text-red">신청 불가능 X</span></td>
+                      <td>2026.03.18</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">초기화</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="사용자회원 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 협력업체 계정 생성 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="partner-account-create-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="partner-account-create-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="partner-account-create-popup-title">협력업체 계정 생성</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/user/user-list.html" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        협력업체 계정 생성 정보
+                      </caption>
+                      <colgroup>
+                        <col width="24%" />
+                        <col width="76%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">사이트상태</th>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="partnerAccountId">ID</label></th>
+                          <td>
+                            <div class="flex items-center gap-2">
+                              <input
+                                id="partnerAccountId"
+                                name="partnerAccountId"
+                                type="text"
+                                class="form-control w-half"
+                              />
+                              <button type="button" class="btn variant-solid color-navy rounded-md size-input">
+                                중복확인
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="partnerAccountName">성명</label></th>
+                          <td>
+                            <input
+                              id="partnerAccountName"
+                              name="partnerAccountName"
+                              type="text"
+                              class="form-control w-half"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="partnerAccountPassword">비밀번호</label></th>
+                          <td>
+                            <input
+                              id="partnerAccountPassword"
+                              name="partnerAccountPassword"
+                              type="password"
+                              class="form-control w-half"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="partnerAccountPasswordConfirm">비밀번호 확인</label></th>
+                          <td>
+                            <input
+                              id="partnerAccountPasswordConfirm"
+                              name="partnerAccountPasswordConfirm"
+                              type="password"
+                              class="form-control w-half"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="partnerAccountUserType">사용자구분</label></th>
+                          <td>
+                            <select
+                              id="partnerAccountUserType"
+                              name="partnerAccountUserType"
+                              class="form-control w-half"
+                            >
+                              <option value="" selected>선택</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="partnerAccountRole">권한</label></th>
+                          <td>
+                            <select id="partnerAccountRole" name="partnerAccountRole" class="form-control w-half">
+                              <option value="" selected>선택</option>
+                            </select>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      저장
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 사용자 목록 행 클릭 시 사용자정보 수정 팝업 노출 -->
+            <div
+              class="popup"
+              data-popup
+              id="user-detail-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="user-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="user-detail-popup-title">사용자정보 수정</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <section class="panel" id="user-detail-panel" aria-labelledby="user-detail-title">
+                    <div class="board-info-row">
+                      <h2 class="board-list-title" id="user-detail-title">사용자정보</h2>
+                    </div>
+                    <form action="" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    사용자 상세정보 수정
+                  </caption>
+                  <colgroup>
+                    <col width="13%" />
+                    <col width="37%" />
+                    <col width="13%" />
+                    <col width="37%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">사이트 상태</th>
+                      <td><span class="font-bold text-red">신청 가능 O</span></td>
+                      <th scope="row">ID</th>
+                      <td>user001</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">성명<span class="required-mark">*</span></th>
+                      <td>홍길동</td>
+                      <th scope="row">생년월일<span class="required-mark">*</span></th>
+                      <td>1954.04.04(남)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="newPassword">새 비밀번호<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input
+                          id="newPassword"
+                          name="newPassword"
+                          type="password"
+                          class="form-control w-full"
+                          required
+                        />
+                      </td>
+                      <th scope="row">
+                        <label for="newPasswordConfirm">새 비밀번호 확인<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input
+                          id="newPasswordConfirm"
+                          name="newPasswordConfirm"
+                          type="password"
+                          class="form-control w-full"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="4" style="padding: 10px 14px; text-align: center">
+                        <p class="board-form-note" style="margin: 0">
+                          * 띄어쓰기 없는 영문, 숫자, 특수문자(!,@,#,$,%,&amp;,*,+,=) 중 두 가지 이상으로 조합하여
+                          6~16자로 입력해 주십시오.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">휴대폰번호</th>
+                      <td>
+                        <div class="grid items-center gap-2 row-type-phone width-fixed">
+                          <input
+                            name="userPhoneFirst"
+                            type="text"
+                            class="form-control"
+                            value="010"
+                            aria-label="휴대폰번호 앞자리"
+                            readonly
+                          />
+                          <span aria-hidden="true">-</span>
+                          <input
+                            name="userPhoneMiddle"
+                            type="text"
+                            class="form-control"
+                            aria-label="휴대폰번호 중간자리"
+                          />
+                          <span aria-hidden="true">-</span>
+                          <input name="userPhoneLast" type="text" class="form-control" aria-label="휴대폰번호 끝자리" />
+                        </div>
+                      </td>
+                      <th scope="row">
+                        <label for="detailUserRole">권한<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="detailUserRole" name="detailUserRole" class="form-control w-full" required>
+                          <option value="">일반사용자</option>
+                          <option value="">협력업체관리자</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="detailUserType">사용자구분<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="detailUserType" name="detailUserType" class="form-control w-full" required>
+                          <option value="">일반사이트</option>
+                          <option value="">관리사이트</option>
+                        </select>
+                      </td>
+                      <th scope="row">회원구분<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="memberType" value="" required />
+                            <span class="radio-label-text">화물운전자</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="memberType" value="" required />
+                            <span class="radio-label-text">가족</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="memberType" value="" required />
+                            <span class="radio-label-text">기타</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="licenseNumber">자격증 번호</label></th>
+                      <td><input id="licenseNumber" name="licenseNumber" type="text" class="form-control w-full" /></td>
+                      <th scope="row">자격증 검증</th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="licenseVerified" value="true" />
+                            <span class="radio-label-text">검증</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="licenseVerified" value="false" />
+                            <span class="radio-label-text">미검증</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">자격 검증일자</th>
+                      <td>2026-07-10 10:27:01.0</td>
+                      <th scope="row"><label for="medicalInstitutionCode">의료기관코드</label></th>
+                      <td>
+                        <select id="medicalInstitutionCode" name="medicalInstitutionCode" class="form-control w-full">
+                          <option value="">선택</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="userPostcode">주소</label></th>
+                      <td colspan="3">
+                        <div class="flex flex-col gap-2">
+                          <div class="flex items-center gap-2 row-type-field w-half">
+                            <input
+                              id="userPostcode"
+                              name="userPostcode"
+                              type="text"
+                              class="form-control"
+                              value="05050"
+                              aria-label="우편번호"
+                              readonly
+                            />
+                            <button type="button" class="btn variant-outline color-navy rounded-md size-input">
+                              우편번호 찾기
+                            </button>
+                          </div>
+                          <input
+                            id="userAddress"
+                            name="userAddress"
+                            type="text"
+                            class="form-control"
+                            value="세종 태평로 56"
+                            aria-label="주소"
+                            readonly
+                          />
+                          <input
+                            id="userAddressDetail"
+                            name="userAddressDetail"
+                            type="text"
+                            class="form-control"
+                            value="111동 1503호"
+                            aria-label="상세주소"
+                          />
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="businessType">업종</label></th>
+                      <td>
+                        <select id="businessType" name="businessType" class="form-control w-full">
+                          <option value="">선택</option>
+                        </select>
+                      </td>
+                      <th scope="row"><label for="loadCapacity">적재량</label></th>
+                      <td>
+                        <select id="loadCapacity" name="loadCapacity" class="form-control w-full">
+                          <option value="">선택</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">사업신청유무</th>
+                      <td colspan="3">
+                        <!-- 
+                          사업신청이력이 있는 경우: Y와 검색 버튼을 함께 노출
+                          사업신청이력이 없는 경우 : 아래 span 텍스트를 N으로 대체
+                        -->
+                        <div class="flex items-center gap-2">
+                          <span>Y</span>
+                          <!-- 검색 버튼: 사업신청이력 팝업 노출 -->
+                          <button
+                            type="button"
+                            class="btn variant-solid color-navy rounded-md size-input"
+                            data-popup-open="application-history-popup"
+                            aria-haspopup="dialog"
+                          >
+                            검색
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">등록자ID</th>
+                      <td>user001</td>
+                      <th scope="row">등록일</th>
+                      <td>2026-07-10 10:27:01.0</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">수정자ID</th>
+                      <td>admin</td>
+                      <th scope="row">수정일</th>
+                      <td>2026-07-10 10:27:01.0</td>
+                    </tr>
+                  </tbody>
+                </table>
+                      <div class="board-form-actions">
+                        <button type="button" class="btn variant-solid color-red rounded-md size-board-action mr-auto">
+                          탈퇴
+                        </button>
+                        <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                          수정하기
+                        </button>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                          비밀번호 초기화
+                        </button>
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-action"
+                          data-popup-close
+                        >
+                          닫기
+                        </button>
+                      </div>
+                    </form>
+                  </section>
+                </div>
+              </section>
+            </div>
+
+            <!-- 사업신청이력 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="application-history-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="application-history-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="application-history-popup-title">사업신청이력</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="board-table-wrap">
+                    <table class="board-table">
+                      <caption>
+                        사업신청이력 목록
+                      </caption>
+                      <colgroup>
+                        <col width="52%" />
+                        <col width="24%" />
+                        <col width="24%" />
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th scope="col">공고명</th>
+                          <th scope="col">접수상태</th>
+                          <th scope="col">선발상태</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- 목록 없는 경우 hidden 제거 -->
+                        <tr hidden>
+                          <td colspan="3" class="board-content-empty">사업신청이력이 없습니다.</td>
+                        </tr>
+                        <!-- 반복: 사업신청이력 행 -->
+                        <tr>
+                          <td>2026년 예방접종지원사업</td>
+                          <td>접수완료</td>
+                          <td>예비선발자</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <nav class="board-pagination" aria-label="사업신청이력 페이지 이동">
+                    <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                      <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                        keyboard_double_arrow_left
+                      </span>
+                    </a>
+                    <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                      <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                    </a>
+                    <ol class="board-pagination-list">
+                      <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                      <li><a href="#" class="board-page-button">2</a></li>
+                      <li><a href="#" class="board-page-button">3</a></li>
+                      <li><a href="#" class="board-page-button">4</a></li>
+                      <li><a href="#" class="board-page-button">5</a></li>
+                    </ol>
+                    <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                      <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                    </a>
+                    <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                      <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                        keyboard_double_arrow_right
+                      </span>
+                    </a>
+                  </nav>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

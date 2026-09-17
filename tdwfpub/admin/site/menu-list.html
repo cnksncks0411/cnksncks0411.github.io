@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="menu-list">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="menu-list"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>메뉴 리스트</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">메뉴 리스트</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="menu-management-title">
+              <h2 id="menu-management-title" hidden>메뉴 리스트 등록 및 수정</h2>
+              <div class="site-menu-layout">
+                <section class="site-menu-section" aria-label="메뉴 관리" data-menu-tree>
+                  <div class="site-menu-tree-toolbar">
+                    <div class="site-menu-tree-buttons">
+                      <!-- 모두열기: 하위 메뉴를 모두 펼칩니다. -->
+                      <button type="button" class="btn variant-outline color-navy rounded-md size-sm" data-tree-open-all>
+                        모두열기
+                      </button>
+                      <!-- 모두닫기: 하위 메뉴를 모두 접습니다. -->
+                      <button
+                        type="button"
+                        class="btn variant-outline color-navy rounded-md size-sm"
+                        data-tree-close-all
+                      >
+                        모두닫기
+                      </button>
+                    </div>
+                    <!-- 선택 항목에 따라 하단 메뉴를 필터링해 노출합니다. -->
+                    <select class="form-control" aria-label="메뉴유형 선택">
+                      <option value="">전체</option>
+                      <option value="">재단홈</option>
+                      <option value="">사업신청</option>
+                      <option value="">협력업체</option>
+                      <option value="">관리자</option>
+                      <option value="">사용자 공통</option>
+                    </select>
+                  </div>
+                  <div class="site-menu-tree">
+                    <ul class="site-menu-tree-list">
+                      <li>
+                        <details open>
+                          <summary>
+                            <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                              account_tree
+                            </span>
+                            <span>root</span>
+                          </summary>
+                          <ul>
+                            <li>
+                              <details open>
+                                <summary>
+                                  <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                    folder_open
+                                  </span>
+                                  <span>인트로페이지</span>
+                                </summary>
+                                <ul>
+                                  <li>
+                                    <details open>
+                                      <summary>
+                                        <span
+                                          class="material-symbols-rounded site-menu-tree-icon"
+                                          aria-hidden="true"
+                                        >
+                                          folder_open
+                                        </span>
+                                        <span>복지사업신청</span>
+                                      </summary>
+                                      <ul>
+                                        <li>
+                                          <button type="button" class="site-menu-tree-page">
+                                            <span
+                                              class="material-symbols-rounded site-menu-tree-icon"
+                                              aria-hidden="true"
+                                            >
+                                              description
+                                            </span>
+                                            <span>복지사업 안내</span>
+                                          </button>
+                                        </li>
+                                        <li>
+                                          <details open class="site-menu-tree-page-group">
+                                            <summary>
+                                              <span
+                                                class="material-symbols-rounded site-menu-tree-icon"
+                                                aria-hidden="true"
+                                              >
+                                                description
+                                              </span>
+                                              <span>사업 신청</span>
+                                            </summary>
+                                            <ul>
+                                              <li>
+                                                <button type="button" class="site-menu-tree-page">
+                                                  <span
+                                                    class="material-symbols-rounded site-menu-tree-icon"
+                                                    aria-hidden="true"
+                                                  >
+                                                    description
+                                                  </span>
+                                                  <span>온라인 신청</span>
+                                                </button>
+                                              </li>
+                                              <li>
+                                                <button type="button" class="site-menu-tree-page">
+                                                  <span
+                                                    class="material-symbols-rounded site-menu-tree-icon"
+                                                    aria-hidden="true"
+                                                  >
+                                                    description
+                                                  </span>
+                                                  <span>신청내역 조회</span>
+                                                </button>
+                                              </li>
+                                            </ul>
+                                          </details>
+                                        </li>
+                                      </ul>
+                                    </details>
+                                  </li>
+                                  <li>
+                                    <details open>
+                                      <summary>
+                                        <span
+                                          class="material-symbols-rounded site-menu-tree-icon"
+                                          aria-hidden="true"
+                                        >
+                                          folder_open
+                                        </span>
+                                        <span>재단소개</span>
+                                      </summary>
+                                      <ul>
+                                        <li>
+                                          <button type="button" class="site-menu-tree-page">
+                                            <span
+                                              class="material-symbols-rounded site-menu-tree-icon"
+                                              aria-hidden="true"
+                                            >
+                                              description
+                                            </span>
+                                            <span>이사장 인사말</span>
+                                          </button>
+                                        </li>
+                                        <li>
+                                          <details open class="site-menu-tree-page-group">
+                                            <summary>
+                                              <span
+                                                class="material-symbols-rounded site-menu-tree-icon"
+                                                aria-hidden="true"
+                                              >
+                                                description
+                                              </span>
+                                              <span>재단소개</span>
+                                            </summary>
+                                            <ul>
+                                              <li>
+                                                <button type="button" class="site-menu-tree-page">
+                                                  <span
+                                                    class="material-symbols-rounded site-menu-tree-icon"
+                                                    aria-hidden="true"
+                                                  >
+                                                    description
+                                                  </span>
+                                                  <span>연혁</span>
+                                                </button>
+                                              </li>
+                                              <li>
+                                                <button type="button" class="site-menu-tree-page">
+                                                  <span
+                                                    class="material-symbols-rounded site-menu-tree-icon"
+                                                    aria-hidden="true"
+                                                  >
+                                                    description
+                                                  </span>
+                                                  <span>CI</span>
+                                                </button>
+                                              </li>
+                                              <li>
+                                                <button type="button" class="site-menu-tree-page">
+                                                  <span
+                                                    class="material-symbols-rounded site-menu-tree-icon"
+                                                    aria-hidden="true"
+                                                  >
+                                                    description
+                                                  </span>
+                                                  <span>임원소개</span>
+                                                </button>
+                                              </li>
+                                            </ul>
+                                          </details>
+                                        </li>
+                                        <li>
+                                          <button type="button" class="site-menu-tree-page">
+                                            <span
+                                              class="material-symbols-rounded site-menu-tree-icon"
+                                              aria-hidden="true"
+                                            >
+                                              description
+                                            </span>
+                                            <span>오시는길</span>
+                                          </button>
+                                        </li>
+                                        <li>
+                                          <button type="button" class="site-menu-tree-page">
+                                            <span
+                                              class="material-symbols-rounded site-menu-tree-icon"
+                                              aria-hidden="true"
+                                            >
+                                              description
+                                            </span>
+                                            <span>회의실대관</span>
+                                          </button>
+                                        </li>
+                                      </ul>
+                                    </details>
+                                  </li>
+                                </ul>
+                              </details>
+                            </li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section class="site-menu-section" aria-label="메뉴리스트정보">
+                  <form id="menu-list-form" action="/admin/site/menu-list.html" method="post">
+                    <table class="board-form-table">
+                      <caption>
+                        메뉴 리스트 등록 및 수정 정보
+                      </caption>
+                      <colgroup>
+                        <col width="28%" />
+                        <col width="72%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">
+                            <label for="parentMenuNumber">상위메뉴 No<span class="required-mark">*</span></label>
+                          </th>
+                          <td>
+                            <div class="flex items-center gap-2 row-type-field">
+                              <input
+                                type="text"
+                                id="parentMenuNumber"
+                                name="parentMenuNumber"
+                                class="form-control"
+                                aria-label="상위메뉴 No"
+                                required
+                              />
+                              <input
+                                type="text"
+                                id="parentMenuName"
+                                name="parentMenuName"
+                                class="form-control"
+                                aria-label="상위메뉴명"
+                              />
+                              <button type="button" class="btn variant-outline color-navy rounded-md size-input">
+                                상위메뉴 검색
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="menuNumber">메뉴 No<span class="required-mark">*</span></label>
+                          </th>
+                          <td>
+                            <input type="text" id="menuNumber" name="menuNumber" class="form-control w-half" required />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="menuName">메뉴명<span class="required-mark">*</span></label>
+                          </th>
+                          <td>
+                            <input type="text" id="menuName" name="menuName" class="form-control w-full" required />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="menuOrder">메뉴순서<span class="required-mark">*</span></label>
+                          </th>
+                          <td>
+                            <input type="text" id="menuOrder" name="menuOrder" class="form-control w-half" required />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="menuType">메뉴유형<span class="required-mark">*</span></label>
+                          </th>
+                          <td>
+                            <select id="menuType" name="menuType" class="form-control w-half" required>
+                              <option value="">선택</option>
+                              <option value="">재단홈</option>
+                              <option value="">사업신청</option>
+                              <option value="">협력업체</option>
+                              <option value="">관리자</option>
+                              <option value="">사용자 공통</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="menuFileName">프로그램파일명<span class="required-mark">*</span></label>
+                          </th>
+                          <td>
+                            <div class="flex items-center gap-2 row-type-field">
+                              <input
+                                type="text"
+                                id="menuFileName"
+                                name="menuFileName"
+                                class="form-control"
+                                aria-label="프로그램파일명"
+                                required
+                                readonly
+                              />
+                              <input
+                                type="text"
+                                id="menuProgramName"
+                                name="menuProgramName"
+                                class="form-control"
+                                aria-label="프로그램명"
+                                readonly
+                              />
+                              <!-- 프로그램파일명 검색 버튼: 프로그램파일명 검색 팝업을 노출합니다. -->
+                              <button
+                                type="button"
+                                class="btn variant-outline color-navy rounded-md size-input"
+                                data-popup-open="program-file-search-popup"
+                                aria-haspopup="dialog"
+                              >
+                                프로그램파일명 검색
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">사용여부<span class="required-mark">*</span></th>
+                          <td>
+                            <div class="board-form-options">
+                              <label class="radio-label">
+                                <input type="radio" name="menuUseYn" value="" checked required />
+                                <span class="radio-label-text">사용중</span>
+                              </label>
+                              <label class="radio-label">
+                                <input type="radio" name="menuUseYn" value="" required />
+                                <span class="radio-label-text">사용중지</span>
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="relatedImageName">관련이미지명</label></th>
+                          <td>
+                            <input
+                              type="text"
+                              id="relatedImageName"
+                              name="relatedImageName"
+                              class="form-control w-full"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="relatedImagePath">관련이미지경로</label></th>
+                          <td>
+                            <input
+                              type="text"
+                              id="relatedImagePath"
+                              name="relatedImagePath"
+                              class="form-control w-full"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="menuDescription">메뉴설명</label></th>
+                          <td>
+                            <textarea
+                              id="menuDescription"
+                              name="menuDescription"
+                              class="textarea"
+                              rows="8"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <div class="board-form-actions">
+                      <!-- 입력값 초기화 -->
+                      <button type="reset" class="btn variant-outline color-navy rounded-md size-board-action">
+                        초기화
+                      </button>
+                      <!-- 입력값으로 수정 -->
+                      <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                        수정
+                      </button>
+                      <!-- 상위메뉴 No 를 고정한 채 동일 레벨 메뉴를 신규 등록 -->
+                      <button type="button" class="btn variant-solid color-blue rounded-md size-board-action">
+                        동일레벨 메뉴 신규추가
+                      </button>
+                      <!-- 메뉴 권한 설정 팝업 노출: 팝업 화면 확정 후 data-popup-open 연결 -->
+                      <button type="button" class="btn variant-solid color-navy rounded-md size-board-action">
+                        권한설정
+                      </button>
+                      <button type="button" class="btn variant-solid color-red rounded-md size-board-action">
+                        삭제
+                      </button>
+                    </div>
+                  </form>
+                </section>
+              </div>
+            </section>
+
+            <!-- 프로그램파일명 검색 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="program-file-search-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="program-file-search-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="program-file-search-popup-title">프로그램파일명 검색</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/site/menu-list.html" method="get">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        프로그램 파일명 검색
+                      </caption>
+                      <colgroup>
+                        <col width="18%" />
+                        <col width="82%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">
+                            <label for="programFileNameSearch">
+                              프로그램명/파일명<span class="required-mark">*</span>
+                            </label>
+                          </th>
+                          <td>
+                            <div class="flex items-center gap-2 row-type-field">
+                              <select
+                                id="programMenuTypeSearch"
+                                name="programMenuTypeSearch"
+                                class="form-control w-auto"
+                                aria-label="메뉴유형 선택"
+                              >
+                                <option value="">전체</option>
+                                <option value="">재단홈</option>
+                                <option value="">사업신청</option>
+                                <option value="">협력업체</option>
+                                <option value="">관리자</option>
+                                <option value="">사용자 공통</option>
+                              </select>
+                              <input
+                                type="text"
+                                id="programFileNameSearch"
+                                name="programFileNameSearch"
+                                class="form-control"
+                                required
+                              />
+                              <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                                조회
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <div class="board-table-wrap mt-4">
+                      <table class="board-table">
+                        <caption>
+                          프로그램 파일명 목록
+                        </caption>
+                        <colgroup>
+                          <col width="12%" />
+                          <col width="20%" />
+                          <col width="28%" />
+                          <col width="40%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">번호</th>
+                            <th scope="col">메뉴유형</th>
+                            <th scope="col">프로그램파일명</th>
+                            <th scope="col">프로그램명</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- 목록 없는 경우 hidden 제거 -->
+                          <tr hidden>
+                            <td colspan="4" class="board-content-empty">조회된 프로그램 파일명이 없습니다.</td>
+                          </tr>
+                          <!-- 반복: 프로그램 파일명 목록 행. 행 클릭 시 부모 화면 입력창에 값을 넣습니다. -->
+                          <tr class="board-row-selectable" tabindex="0" aria-label="선택한 프로그램파일명 입력">
+                            <td>87</td>
+                            <td>재단홈</td>
+                            <td>H1010000</td>
+                            <td>HOME</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <nav class="board-pagination" aria-label="프로그램 파일명 목록 페이지 이동">
+                      <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                          keyboard_double_arrow_left
+                        </span>
+                      </a>
+                      <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                      </a>
+                      <ol class="board-pagination-list">
+                        <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                        <li><a href="#" class="board-page-button">2</a></li>
+                        <li><a href="#" class="board-page-button">3</a></li>
+                        <li><a href="#" class="board-page-button">4</a></li>
+                        <li><a href="#" class="board-page-button">5</a></li>
+                        <li><a href="#" class="board-page-button">6</a></li>
+                        <li><a href="#" class="board-page-button">7</a></li>
+                        <li><a href="#" class="board-page-button">8</a></li>
+                        <li><a href="#" class="board-page-button">9</a></li>
+                        <li><a href="#" class="board-page-button">10</a></li>
+                      </ol>
+                      <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                      </a>
+                      <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                          keyboard_double_arrow_right
+                        </span>
+                      </a>
+                    </nav>
+                  </div>
+                  <div class="popup-actions">
+                    <button
+                      type="button"
+                      class="btn variant-solid color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

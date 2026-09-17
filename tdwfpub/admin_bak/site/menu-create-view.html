@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>메뉴 생성 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="menu-create">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="menu-create"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>메뉴 생성관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/menu-create-list.html">메뉴 생성관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">메뉴 생성</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="menu-create-form-title">
+              <form action="/admin_bak/site/menu-create-view.html" method="post">
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="menu-create-form-title">메뉴 생성</h2>
+                  <div class="board-info-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      메뉴생성
+                    </button>
+                    <a
+                      href="/admin_bak/site/menu-create-list.html"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                    >
+                      목록
+                    </a>
+                  </div>
+                </div>
+
+                <table class="board-form-table">
+                  <caption>
+                    메뉴 생성 보안설정대상 정보
+                  </caption>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="80%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="menuCreateSecurityTargetId">
+                          보안설정대상 ID<span class="required-mark">*</span>
+                        </label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="menuCreateSecurityTargetId"
+                          name="menuCreateSecurityTargetId"
+                          class="form-control w-full"
+                          value="IS_AUTHENTICATED_ANONYMOUSLY"
+                          readonly
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="site-menu-tree mt-4" aria-label="생성할 메뉴 선택" data-check-group>
+                  <ul class="site-menu-tree-list">
+                    <!-- 전체선택 -->
+                    <li class="mb-2">
+                      <label class="check-label w-full">
+                        <input type="checkbox" name="menuPermission" value="menu-list" data-check-all />
+                        <span class="check-label-text f-14">메뉴목록</span>
+                      </label>
+                    </li>
+                    <!-- 폴더구조 -->
+                    <li>
+                      <details open>
+                        <summary>
+                          <label class="check-label">
+                            <input type="checkbox" name="menuPermission" value="foundation" data-check-item />
+                            <span class="check-label-text">
+                              <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                folder_open
+                              </span>
+                              <span>재단소개</span>
+                            </span>
+                          </label>
+                        </summary>
+                        <ul>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input type="checkbox" name="menuPermission" value="greeting" data-check-item />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>이사장 인사말</span>
+                              </span>
+                            </label>
+                          </li>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input
+                                type="checkbox"
+                                name="menuPermission"
+                                value="foundation-introduction"
+                                data-check-item
+                              />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>재단소개</span>
+                              </span>
+                            </label>
+                          </li>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input type="checkbox" name="menuPermission" value="history" data-check-item />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>연혁</span>
+                              </span>
+                            </label>
+                          </li>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input type="checkbox" name="menuPermission" value="ci" data-check-item />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>CI</span>
+                              </span>
+                            </label>
+                          </li>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input type="checkbox" name="menuPermission" value="executives" data-check-item />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>임원소개</span>
+                              </span>
+                            </label>
+                          </li>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input type="checkbox" name="menuPermission" value="location" data-check-item />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>오시는길</span>
+                              </span>
+                            </label>
+                          </li>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input type="checkbox" name="menuPermission" value="meeting-room" data-check-item />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>회의실대관</span>
+                              </span>
+                            </label>
+                          </li>
+                        </ul>
+                      </details>
+                    </li>
+                    <li>
+                      <details open>
+                        <summary>
+                          <label class="check-label">
+                            <input type="checkbox" name="menuPermission" value="transport-welfare" data-check-item />
+                            <span class="check-label-text">
+                              <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                folder_open
+                              </span>
+                              <span>고유목적사업</span>
+                            </span>
+                          </label>
+                        </summary>
+                        <ul>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input type="checkbox" name="menuPermission" value="project-notice" data-check-item />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>사업전체공고</span>
+                              </span>
+                            </label>
+                          </li>
+                          <li>
+                            <label class="check-label site-menu-tree-page">
+                              <input type="checkbox" name="menuPermission" value="all-resources" data-check-item />
+                              <span class="check-label-text">
+                                <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                  description
+                                </span>
+                                <span>전체자료실</span>
+                              </span>
+                            </label>
+                          </li>
+                          <li>
+                            <details open>
+                              <summary>
+                                <label class="check-label">
+                                  <input
+                                    type="checkbox"
+                                    name="menuPermission"
+                                    value="education-support"
+                                    data-check-item
+                                  />
+                                  <span class="check-label-text">
+                                    <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                      folder_open
+                                    </span>
+                                    <span>학업지원</span>
+                                  </span>
+                                </label>
+                              </summary>
+                              <ul>
+                                <li>
+                                  <label class="check-label site-menu-tree-page">
+                                    <input type="checkbox" name="menuPermission" value="scholarship" data-check-item />
+                                    <span class="check-label-text">
+                                      <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                        description
+                                      </span>
+                                      <span>재단장학사업</span>
+                                    </span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <label class="check-label site-menu-tree-page">
+                                    <input
+                                      type="checkbox"
+                                      name="menuPermission"
+                                      value="special-scholarship"
+                                      data-check-item
+                                    />
+                                    <span class="check-label-text">
+                                      <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                        description
+                                      </span>
+                                      <span>특별장학사업</span>
+                                    </span>
+                                  </label>
+                                </li>
+                                <li>
+                                  <label class="check-label site-menu-tree-page">
+                                    <input
+                                      type="checkbox"
+                                      name="menuPermission"
+                                      value="uniform-support"
+                                      data-check-item
+                                    />
+                                    <span class="check-label-text">
+                                      <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                        description
+                                      </span>
+                                      <span>교복지원사업</span>
+                                    </span>
+                                  </label>
+                                </li>
+                              </ul>
+                            </details>
+                          </li>
+                          <li>
+                            <details open>
+                              <summary>
+                                <label class="check-label">
+                                  <input
+                                    type="checkbox"
+                                    name="menuPermission"
+                                    value="medical-support"
+                                    data-check-item
+                                  />
+                                  <span class="check-label-text">
+                                    <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                      folder_open
+                                    </span>
+                                    <span>의료지원</span>
+                                  </span>
+                                </label>
+                              </summary>
+                              <ul>
+                                <li>
+                                  <label class="check-label site-menu-tree-page">
+                                    <input
+                                      type="checkbox"
+                                      name="menuPermission"
+                                      value="health-checkup"
+                                      data-check-item
+                                    />
+                                    <span class="check-label-text">
+                                      <span class="material-symbols-rounded site-menu-tree-icon" aria-hidden="true">
+                                        description
+                                      </span>
+                                      <span>건강검진사업</span>
+                                    </span>
+                                  </label>
+                                </li>
+                              </ul>
+                            </details>
+                          </li>
+                        </ul>
+                      </details>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

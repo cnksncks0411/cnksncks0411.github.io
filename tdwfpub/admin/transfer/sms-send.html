@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="transfer" data-page="sms-register">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 보조기능 좌측 메뉴 인클루드 영역: /admin/include/lnb-transfer.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-transfer" data-page="sms-register"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>문자전송등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/transfer/sms-register.html">보조기능</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">문자전송등록</span>
+              </nav>
+            </div>
+
+            <div class="sms-send-layout">
+              <section class="panel sms-compose-panel" aria-labelledby="sms-compose-title">
+                <h2 class="sr-only" id="sms-compose-title">문자 작성</h2>
+                <form action="/admin/transfer/sms-send.html" method="post" enctype="multipart/form-data">
+                  <div class="sms-send-mode" role="radiogroup" aria-label="발송방식">
+                    <label class="radio-label">
+                      <input type="radio" name="sendMode" value="immediate" checked data-sms-send-mode />
+                      <span class="radio-label-text">즉시발송</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="sendMode" value="reservation" data-sms-send-mode />
+                      <span class="radio-label-text">예약발송</span>
+                    </label>
+                  </div>
+
+                  <div class="sms-schedule-fields">
+                    <div class="board-search-date-field w-full" data-datepicker-wrap>
+                      <input
+                        id="smsReservationDate"
+                        name="smsReservationDate"
+                        type="text"
+                        class="form-control"
+                        placeholder="연도-월-일"
+                        aria-label="예약 발송일자"
+                        data-sms-schedule
+                        data-datepicker-input
+                        data-input
+                        disabled
+                      />
+                      <button
+                        type="button"
+                        class="btn-calendar"
+                        aria-label="예약 발송일자 선택"
+                        data-datepicker-toggle
+                        data-toggle
+                        disabled
+                      >
+                        <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                      </button>
+                    </div>
+                    <div class="sms-time-field">
+                      <input
+                        id="smsReservationTime"
+                        name="smsReservationTime"
+                        type="time"
+                        step="1"
+                        class="form-control"
+                        aria-label="예약 발송시간"
+                        data-sms-schedule
+                        disabled
+                      />
+                    </div>
+                  </div>
+
+                  <div class="sms-compose-fields">
+                    <div class="sms-compose-field">
+                      <label for="smsCallbackNumber">회신번호</label>
+                      <input
+                        id="smsCallbackNumber"
+                        name="smsCallbackNumber"
+                        type="text"
+                        class="form-control"
+                        value="027610270"
+                      />
+                    </div>
+
+                    <div class="sms-compose-field">
+                      <label for="smsTemplate">템플릿</label>
+                      <select id="smsTemplate" name="smsTemplate" class="form-control w-full">
+                        <option value="document">제출서류 안내 템플릿</option>
+                      </select>
+                    </div>
+
+                    <div class="sms-compose-field">
+                      <label for="smsMessage">문자 내용</label>
+                      <textarea
+                        id="smsMessage"
+                        name="smsMessage"
+                        class="textarea sms-message-textarea"
+                        placeholder="문자 내용을 입력하세요."
+                      ></textarea>
+                    </div>
+
+                    <div class="sms-attachment-row">
+                      <label for="smsImageFile" class="btn variant-outline color-navy rounded-md size-input">
+                        <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                        이미지 첨부
+                      </label>
+                      <input
+                        id="smsImageFile"
+                        name="smsImageFile"
+                        type="file"
+                        class="board-file-input"
+                        accept="image/jpeg,image/jpg"
+                      />
+                      <span class="sms-attachment-chip">
+                        <span>notice.jpg</span>
+                        <button type="button" aria-label="첨부 이미지 삭제">
+                          <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="sms-compose-footer">
+                    <div class="sms-byte-status">
+                      <strong>MMS</strong>
+                      <span><b>128</b> / 2,000 byte</span>
+                    </div>
+                    <div class="sms-compose-actions">
+                      <button
+                        type="button"
+                        class="btn variant-outline color-navy rounded-md size-board-auto"
+                        data-popup-open="sms-preview-popup"
+                        aria-haspopup="dialog"
+                      >
+                        <span class="material-symbols-rounded" aria-hidden="true">visibility</span>
+                        미리보기
+                      </button>
+                      <button type="submit" class="btn variant-solid color-blue rounded-md size-board-auto">
+                        <span class="material-symbols-rounded" aria-hidden="true">send</span>
+                        문자전송
+                      </button>
+                    </div>
+                  </div>
+                  <p class="sms-conversion-guide">
+                    텍스트 90byte 이하 SMS · 초과 LMS · 이미지 첨부 시 MMS 자동 전환
+                  </p>
+                </form>
+              </section>
+
+              <div class="sms-recipient-column">
+                <section class="panel sms-recipient-add-panel" aria-label="수신자 연락처 등록">
+                  <div class="sms-recipient-add-row">
+                    <label for="smsRecipientNumber">연락처</label>
+                    <input
+                      id="smsRecipientNumber"
+                      name="smsRecipientNumber"
+                      type="tel"
+                      class="form-control"
+                      aria-label="수신자 연락처"
+                    />
+                    <button
+                      type="button"
+                      class="btn variant-solid color-gradient rounded-md size-board-auto"
+                    >
+                      연락처 추가
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-auto"
+                      data-popup-open="sms-recipient-excel-popup"
+                      aria-haspopup="dialog"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">upload_file</span>
+                      엑셀 업로드
+                    </button>
+                  </div>
+                </section>
+
+                <section class="panel sms-recipient-panel" aria-labelledby="sms-recipient-title">
+
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="sms-recipient-title">수신자 목록</h2>
+                  <div class="board-info-actions">
+                    <select class="form-control" aria-label="수신자 목록 표시 개수">
+                      <option value="10">10개 보기</option>
+                      <option value="20">20개 보기</option>
+                      <option value="30" selected>30개 보기</option>
+                      <option value="50">50개 보기</option>
+                      <option value="100">100개 보기</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="board-table-wrap">
+                  <table class="board-table" aria-labelledby="sms-recipient-title">
+                    <caption>
+                      문자전송 수신자 목록
+                    </caption>
+                    <colgroup>
+                      <col width="14%" />
+                      <col width="68%" />
+                      <col width="18%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col">순번</th>
+                        <th scope="col">수신번호</th>
+                        <th scope="col">삭제</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="3" class="board-content-empty">등록된 문자전송 수신자가 없습니다.</td>
+                      </tr>
+                      <!-- 반복: 문자전송 수신자 행 -->
+                      <tr>
+                        <td>1</td>
+                        <td>01012345678</td>
+                        <td>
+                          <button type="button" class="btn variant-soft color-red rounded-md size-sm">
+                            삭제
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>01012345678</td>
+                        <td>
+                          <button type="button" class="btn variant-soft color-red rounded-md size-sm">
+                            삭제
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                </section>
+              </div>
+            </div>
+
+            <!-- 문자전송 수신번호 엑셀 업로드 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="sms-recipient-excel-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="sms-recipient-excel-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="sms-recipient-excel-popup-title">문자전송 수신번호 엑셀 업로드</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/transfer/sms-send.html" method="post" enctype="multipart/form-data">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        문자전송 수신번호 엑셀 파일 등록
+                      </caption>
+                      <colgroup>
+                        <col width="15%" />
+                        <col width="35%" />
+                        <col width="15%" />
+                        <col width="35%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row"><label for="smsRecipientExcelFile">파일등록</label></th>
+                          <td>
+                            <div class="flex items-center gap-2 row-type-file">
+                              <input
+                                id="smsRecipientExcelFile"
+                                name="smsRecipientExcelFile"
+                                type="file"
+                                class="form-control w-full"
+                                accept=".xls,.xlsx"
+                              />
+                            </div>
+                          </td>
+                          <th scope="row">엑셀양식</th>
+                          <td>
+                            <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                              <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                              엑셀양식 다운로드
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="popup-guide text-center">
+                      <p>등록할 엑셀파일을 업로드 하시기 바랍니다.</p>
+                      <p>엑셀양식 버튼을 누르면 양식을 다운로드 할 수 있습니다.</p>
+                      <br />
+                      <p class="font-bold text-red">반드시 지정된 엑셀양식으로 업로드하시기 바랍니다.</p>
+                    </div>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">등록하기</button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      취소하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 문자 발송 미리보기 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="sms-preview-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="sms-preview-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel sms-preview-popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="sms-preview-popup-title">발송 미리보기</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body sms-preview-body">
+                  <div class="sms-preview-phone-wrap">
+                    <div class="sms-preview-phone">
+                      <p class="sms-preview-sender">발신 027-610-270</p>
+                      <div class="sms-preview-message">
+                        <strong data-sms-preview-title>[화물복지재단] 제출서류 안내</strong>
+                        <div class="sms-preview-image">
+                          <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                        </div>
+                        <p data-sms-preview-message>
+                          김윤진님, 장학사업 제출서류 안내드립니다. 기한 내 홈페이지에서 등록해 주세요.
+                        </p>
+                      </div>
+                      <time>오전 9:00</time>
+                    </div>
+                    <p>첫 수신자(김윤진) 기준 미리보기</p>
+                  </div>
+                  <dl class="sms-preview-summary">
+                    <div>
+                      <dt>발송유형</dt>
+                      <dd><strong class="sms-preview-type" data-sms-preview-type>MMS</strong></dd>
+                    </div>
+                    <div><dt>수신자</dt><dd><span data-sms-preview-recipient-count>6</span>명</dd></div>
+                    <div><dt>발송방식</dt><dd data-sms-preview-mode>즉시발송</dd></div>
+                    <div><dt>회신번호</dt><dd data-sms-preview-callback>027-610-270</dd></div>
+                    <div><dt>용량</dt><dd><span data-sms-preview-byte>128</span> / 2,000 byte</dd></div>
+                    <div><dt>첨부</dt><dd data-sms-preview-file>notice.jpg</dd></div>
+                    <p>치환변수(#{이름})는 수신자별로 각각 적용되어 발송됩니다. 이미지 첨부로 MMS로 발송됩니다.</p>
+                  </dl>
+                </div>
+                <div class="popup-actions justify-end">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-action" data-popup-close>
+                    닫기
+                  </button>
+                  <button type="button" class="btn variant-solid color-blue rounded-md size-board-action">
+                    <span class="material-symbols-rounded" aria-hidden="true">send</span>
+                    발송하기
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+    <script src="/admin/js/sms-send.js"></script>
+  </body>
+</html>

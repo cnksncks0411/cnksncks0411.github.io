@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>개명신청 | 화물복지재단 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="mypage" data-page="name-change">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li>
+                <a href="/apply/mypage/application-list.html">마이페이지</a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>개명신청</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 마이페이지 LNB 인클루드 영역: common/include/apply/lnb-mypage.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-mypage" data-page="name-change"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">개명신청</h1>
+              <div class="sub-intro">
+                <strong>개명을 하신 경우 <em>증빙서류와 함께 신청</em>해 주시기 바랍니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <div class="board-area">
+                <div class="board-table-wrap">
+                  <table class="board-table">
+                    <caption>
+                      개명신청 내역
+                    </caption>
+                    <colgroup>
+                      <col width="30%" />
+                      <col width="30%" />
+                      <col width="20%" />
+                      <col width="20%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col">변경 전 이름<br />(생년월일)</th>
+                        <th scope="col">변경 후 이름<br />(생년월일)</th>
+                        <th scope="col">신청일</th>
+                        <th scope="col">처리상태</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="4" class="board-content-empty">개명 신청하신 내역이 없습니다.</td>
+                      </tr>
+                      <!-- 반복: 개명신청 내역 행 -->
+                      <tr>
+                        <td>홍길동<br />(19720607)</td>
+                        <td>홍길이<br />(19720608)</td>
+                        <td>2026.07.09</td>
+                        <td><span class="font-bold">처리완료</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <form
+                  class="board-write-form"
+                  action="/apply/mypage/name-change.html"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  <p class="board-write-note">
+                    <span class="required-mark" aria-hidden="true">*</span> 표시는 필수 입력 항목입니다.
+                  </p>
+
+                  <div class="table-wrap">
+                    <table class="board-form-table">
+                      <caption>
+                        개명신청 정보 입력
+                      </caption>
+                      <colgroup>
+                        <col width="18%" />
+                        <col width="32%" />
+                        <col width="18%" />
+                        <col width="32%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">아이디</th>
+                          <td colspan="3">abcdefg123</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">변경 전 이름</th>
+                          <td>홍길동</td>
+                          <th scope="row">
+                            <label for="name-change-before-birth">
+                              변경 전 생년월일 <span class="required-mark" aria-hidden="true">*</span>
+                            </label>
+                          </th>
+                          <td>
+                            <div class="flex items-center flex-wrap gap-2">
+                              <input
+                                id="name-change-before-birth"
+                                class="form-control w-half mobile-w-full"
+                                type="text"
+                                name="beforeBirthDate"
+                                inputmode="numeric"
+                                placeholder="YYYYMMDD"
+                                required
+                              />
+                              <span class="nowrap">(예: 19720607)</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="name-change-after-name">
+                              변경 후 이름 <span class="required-mark" aria-hidden="true">*</span>
+                            </label>
+                          </th>
+                          <td>
+                            <input
+                              id="name-change-after-name"
+                              class="form-control w-full"
+                              type="text"
+                              name="afterName"
+                              required
+                            />
+                          </td>
+                          <th scope="row">
+                            <label for="name-change-after-birth">
+                              변경 후 생년월일 <span class="required-mark" aria-hidden="true">*</span>
+                            </label>
+                          </th>
+                          <td>
+                            <div class="flex items-center flex-wrap gap-2">
+                              <input
+                                id="name-change-after-birth"
+                                class="form-control w-half mobile-w-full"
+                                type="text"
+                                name="afterBirthDate"
+                                inputmode="numeric"
+                                placeholder="YYYYMMDD"
+                                required
+                              />
+                              <span class="nowrap">(예: 19720607)</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="name-change-file-1">
+                              증빙서류 1 <span class="required-mark" aria-hidden="true">*</span>
+                            </label>
+                          </th>
+                          <td colspan="3">
+                            <div class="board-write-file">
+                              <input
+                                id="name-change-file-1"
+                                class="form-control flex-1"
+                                type="file"
+                                name="evidenceFile1"
+                                accept=".jpg,.jpeg,.gif,.png,.pdf"
+                                required
+                              />
+                              <span class="board-form-note mt-0">jpg, gif, png, pdf 파일, 20MB 이하</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="name-change-file-2">증빙서류 2</label>
+                          </th>
+                          <td colspan="3">
+                            <div class="board-write-file">
+                              <input
+                                id="name-change-file-2"
+                                class="form-control flex-1"
+                                type="file"
+                                name="evidenceFile2"
+                                accept=".jpg,.jpeg,.gif,.png,.pdf"
+                              />
+                              <span class="board-form-note mt-0">jpg, gif, png, pdf 파일, 20MB 이하</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="name-change-file-3">증빙서류 3</label>
+                          </th>
+                          <td colspan="3">
+                            <div class="board-write-file">
+                              <input
+                                id="name-change-file-3"
+                                class="form-control flex-1"
+                                type="file"
+                                name="evidenceFile3"
+                                accept=".jpg,.jpeg,.gif,.png,.pdf"
+                              />
+                              <span class="board-form-note mt-0">jpg, gif, png, pdf 파일, 20MB 이하</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="flex justify-center gap-2 mt-4">
+                    <button type="submit" class="btn variant-solid color-blue size-lg">신청하기</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

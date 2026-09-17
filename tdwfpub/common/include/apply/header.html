@@ -1,0 +1,347 @@
+<nav class="top-bar type-apply" aria-label="상단 바로가기">
+  <div class="inner">
+    <div class="top-tab-list" aria-label="사이트 바로가기">
+      <a href="/apply/" class="top-tab-item active" aria-current="page">사업신청</a>
+      <a href="/main/" class="top-tab-item">재단홈</a>
+    </div>
+    <div class="top-link-list">
+      <a href="/apply/member/login.html" class="top-link-item top-login-item"> 로그인 </a>
+    </div>
+  </div>
+</nav>
+
+<header class="site-header type-apply" data-site-header>
+  <div class="inner">
+    <div class="flex items-center gap-3">
+      <a href="/apply/" class="brand-logo">
+        <img src="/common/images/logo.png" alt="" class="brand-logo-mark" />
+        <span class="brand-logo-text">사업신청</span>
+      </a>
+      <!-- 나에게 맞는 사업 찾기 버튼 클릭 시 팝업창을 노출합니다. -->
+      <button type="button" class="header-find" data-popup-open="business-find-popup" aria-haspopup="dialog">
+        <span>나에게 맞는 사업 찾기</span>
+      </button>
+    </div>
+
+    <nav class="gnb" aria-label="사업신청 메뉴">
+      <ul class="gnb-list">
+        <li class="gnb-item" data-gnb-item data-section="home">
+          <a href="/apply/"> Home </a>
+        </li>
+
+        <li class="gnb-item" data-gnb-item data-section="business">
+          <a href="/apply/business/notice.html"> 지원사업정보 </a>
+          <div class="gnb-submenu">
+            <div class="inner">
+              <div class="gnb-submenu-title">
+                <strong>지원사업정보</strong>
+              </div>
+              <div class="gnb-submenu-list">
+                <div class="gnb-submenu-item">
+                  <a href="/apply/business/notice.html" class="gnb-submenu-link"> 사업전체공고 </a>
+                  <div class="gnb-depth-list">
+                    <a href="/apply/business/notice.html#all" class="gnb-depth-item"> 전체 </a>
+                    <a href="/apply/business/notice.html#scholarship" class="gnb-depth-item"> 학업지원 </a>
+                    <a href="/apply/business/notice.html#medical" class="gnb-depth-item"> 의료지원 </a>
+                    <a href="/apply/business/notice.html#livelihood" class="gnb-depth-item"> 생계지원 </a>
+                    <a href="/apply/business/notice.html#lifecycle" class="gnb-depth-item"> 생애지원 </a>
+                    <a href="/apply/business/notice.html#legal" class="gnb-depth-item"> 법률지원 </a>
+                    <a href="/apply/business/notice.html#entrusted" class="gnb-depth-item"> 수탁사업 </a>
+                    <a href="/apply/business/notice.html#traffic" class="gnb-depth-item"> 교통지원 </a>
+                    <a href="/apply/business/notice.html#finance" class="gnb-depth-item"> 금융지원 </a>
+                    <a href="/apply/business/notice.html#other" class="gnb-depth-item"> 기타지원 </a>
+                  </div>
+                </div>
+                <div class="gnb-submenu-item">
+                  <a href="/apply/business/archive.html" class="gnb-submenu-link"> 서식 및 매뉴얼 </a>
+                  <div class="gnb-depth-list">
+                    <a href="/apply/business/archive.html#all" class="gnb-depth-item"> 전체 </a>
+                    <a href="/apply/business/archive.html#scholarship" class="gnb-depth-item"> 학업지원 </a>
+                    <a href="/apply/business/archive.html#medical" class="gnb-depth-item"> 의료지원 </a>
+                    <a href="/apply/business/archive.html#livelihood" class="gnb-depth-item"> 생계지원 </a>
+                    <a href="/apply/business/archive.html#lifecycle" class="gnb-depth-item"> 생애지원 </a>
+                    <a href="/apply/business/archive.html#legal" class="gnb-depth-item"> 법률지원 </a>
+                    <a href="/apply/business/archive.html#entrusted" class="gnb-depth-item"> 수탁사업 </a>
+                    <a href="/apply/business/archive.html#traffic" class="gnb-depth-item"> 교통지원 </a>
+                    <a href="/apply/business/archive.html#finance" class="gnb-depth-item"> 금융지원 </a>
+                    <a href="/apply/business/archive.html#other" class="gnb-depth-item"> 기타사업 </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="gnb-item" data-gnb-item data-section="mypage">
+          <a href="/apply/mypage/application-list.html"> 마이페이지 </a>
+          <div class="gnb-submenu">
+            <div class="inner">
+              <div class="gnb-submenu-title">
+                <strong>마이페이지</strong>
+              </div>
+              <div class="gnb-submenu-list">
+                <div class="gnb-submenu-item">
+                  <a href="/apply/mypage/application-list.html" class="gnb-submenu-link"> 나의 접수 내역/결과 </a>
+                </div>
+                <div class="gnb-submenu-item">
+                  <a href="/apply/mypage/member-info.html" class="gnb-submenu-link"> 회원 정보 </a>
+                </div>
+                <div class="gnb-submenu-item">
+                  <a href="/apply/mypage/my-post.html" class="gnb-submenu-link"> 내 글 보기 </a>
+                </div>
+                <div class="gnb-submenu-item">
+                  <a href="/apply/mypage/qna.html" class="gnb-submenu-link"> 질문과 답변 </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="gnb-actions">
+      <a href="/apply/member/login.html" class="btn-login-icon" aria-label="로그인">
+        <span class="material-symbols-rounded" aria-hidden="true">account_circle</span>
+      </a>
+      <!-- 로그아웃 아이콘
+        <a href="#" class="btn-login-icon" aria-label="로그아웃">
+          <span class="material-symbols-rounded" aria-hidden="true">logout</span>
+        </a>
+        -->
+      <button
+        type="button"
+        class="btn-menu-all"
+        data-menu-all
+        aria-label="전체메뉴 열기"
+        aria-expanded="false"
+        aria-controls="apply-sitemap"
+      >
+        <span aria-hidden="true"></span>
+        <em>전체메뉴</em>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- 나에게 맞는 사업 찾기 버튼 클릭 시 노출되는 팝업창 -->
+<div
+  class="common-popup"
+  data-common-popup
+  id="business-find-popup"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="business-find-popup-title"
+  aria-hidden="true"
+>
+  <div class="common-popup-backdrop" data-popup-close></div>
+  <section class="common-popup-panel size-lg" role="document">
+    <div class="common-popup-header">
+      <h2 class="common-popup-title" id="business-find-popup-title">나에게 맞는 사업 찾기</h2>
+      <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+        <span class="material-symbols-rounded" aria-hidden="true">close</span>
+      </button>
+    </div>
+
+    <div class="common-popup-body">
+      <form class="grid gap-4">
+        <div class="board-table-wrap">
+          <table class="board-table">
+            <caption>
+              나에게 맞는 사업 찾기 질문 목록
+            </caption>
+            <colgroup>
+              <col width="65%" />
+              <col width="35%" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">질문</th>
+                <th scope="col">선택항목</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="board-cell-title border-right">1. 화물운송종사 자격증을 취득 및 소지하고 계십니까?</td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindLicense" value="yes" />
+                      <span class="radio-label-text">예</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindLicense" value="no" />
+                      <span class="radio-label-text">아니오</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="board-cell-title border-right">2. 화물운송업무 경력은?</td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindCareer" value="over-six-months" />
+                      <span class="radio-label-text">6개월 이상</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindCareer" value="over-one-year" />
+                      <span class="radio-label-text">1년 이상</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindCareer" value="under-six-months" />
+                      <span class="radio-label-text">6개월 미만</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="board-cell-title border-right">3. 유류복지카드를 사용하십니까?</td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindFuelCard" value="yes" />
+                      <span class="radio-label-text">예</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindFuelCard" value="no" />
+                      <span class="radio-label-text">아니오</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="board-cell-title border-right">4. 중/고/대학교에 재학중인 자녀가 있습니까?</td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindScholarshipChild" value="yes" />
+                      <span class="radio-label-text">예</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindScholarshipChild" value="no" />
+                      <span class="radio-label-text">아니오</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="board-cell-title border-right">5. 대학교에 재학중인 자녀가 있습니까?</td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindHopeScholarshipChild" value="yes" />
+                      <span class="radio-label-text">예</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindHopeScholarshipChild" value="no" />
+                      <span class="radio-label-text">아니오</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="board-cell-title border-right">
+                  5.1. 배려자가정에 해당되십니까?(저소득/장애인/다문화/다자녀)
+                </td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindConsiderationFamily" value="yes" />
+                      <span class="radio-label-text">예</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindConsiderationFamily" value="no" />
+                      <span class="radio-label-text">아니오</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="board-cell-title border-right">
+                  6. 최근 암/심혈관/뇌혈관/희귀난치성질환 판정을 받으신 적이 있습니까?
+                </td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindMajorDisease" value="yes" />
+                      <span class="radio-label-text">예</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindMajorDisease" value="no" />
+                      <span class="radio-label-text">아니오</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="board-cell-title border-right">7. 차량 구입 계획이 있습니까?</td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindVehiclePurchase" value="yes" />
+                      <span class="radio-label-text">예</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindVehiclePurchase" value="no" />
+                      <span class="radio-label-text">아니오</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="board-cell-title border-right">8. 구입 예정 차량의 톤수?</td>
+                <td>
+                  <div class="flex flex-wrap items-center gap-3">
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindVehicleTon" value="small" />
+                      <span class="radio-label-text">5.5톤 이하(소형)</span>
+                    </label>
+                    <label class="radio-label">
+                      <input type="radio" name="businessFindVehicleTon" value="medium-large" />
+                      <span class="radio-label-text">5.5톤 초과(중대형)</span>
+                    </label>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="flex justify-center">
+          <button type="button" class="btn variant-solid color-blue rounded-md size-md">확인</button>
+        </div>
+
+        <!-- 확인 버튼 클릭 시 선택한 답변에 따른 지원 가능 사업 결과를 노출합니다. -->
+        <div class="board-table-wrap">
+          <table class="board-table">
+            <caption>
+              지원 가능한 사업 결과
+            </caption>
+            <colgroup>
+              <col width="16%" />
+              <col width="84%" />
+            </colgroup>
+            <tbody>
+              <tr>
+                <th scope="row">지원 가능한 사업</th>
+                <td class="board-cell-title">
+                  <div class="flex flex-wrap gap-2">
+                  <a href="#" class="font-bold text-underline">희망바퀴장학</a>
+                  <a href="#" class="font-bold text-underline">건강검진</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    </div>
+
+    <div class="common-popup-actions">
+      <button type="button" class="btn variant-solid color-navy rounded-md size-sm" data-popup-close>닫기</button>
+    </div>
+  </section>
+</div>
+
+<!-- 사이트맵 인클루드 영역: common/include/apply/sitemap.html 파일을 불러옵니다. -->
+<div id="include-sitemap" data-include="sitemap-apply"></div>

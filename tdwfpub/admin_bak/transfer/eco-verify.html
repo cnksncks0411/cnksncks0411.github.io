@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>친환경수혜검증 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="transfer" data-page="eco-verify">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 전송/검증 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-transfer.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-transfer" data-page="eco-verify"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>친환경수혜검증</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/transfer/sms-register.html">전송/검증</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">친환경수혜검증</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="eco-verify-list-title">
+              <div class="board-info-row align-right">
+                <h2 class="board-list-title sr-only" id="eco-verify-list-title">조회항목</h2>
+                <div class="board-info-actions">
+                  <!-- 초기화 버튼: 개발 시 친환경수혜 검증 목록 초기화 기능 연결 -->
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">restart_alt</span>
+                    초기화
+                  </button>
+                  <!-- 등록 버튼: 친환경물류지원사업 검증 엑셀 업로드 팝업 노출 -->
+                  <button
+                    type="button"
+                    class="btn variant-outline color-navy rounded-md size-board-auto"
+                    data-popup-open="eco-verify-upload-popup"
+                    aria-haspopup="dialog"
+                  >
+                    <span class="material-symbols-rounded" aria-hidden="true">upload_file</span>
+                    등록
+                  </button>
+                  <!-- 엑셀 다운로드 버튼: 개발 시 검증 목록 다운로드 기능 연결 -->
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    친환경수혜 검증 목록
+                  </caption>
+                  <colgroup>
+                    <col width="10%" />
+                    <col width="12%" />
+                    <col width="11%" />
+                    <col width="12%" />
+                    <col width="10%" />
+                    <col width="11%" />
+                    <col width="11%" />
+                    <col width="11%" />
+                    <col width="12%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">접수번호</th>
+                      <th scope="col">사업자번호</th>
+                      <th scope="col">차량번호</th>
+                      <th scope="col">차대번호</th>
+                      <th scope="col">기수혜여부</th>
+                      <th scope="col">사업자<br />중복여부</th>
+                      <th scope="col">차량<br />중복여부</th>
+                      <th scope="col">패널티<br />대상여부</th>
+                      <th scope="col">추가확인<br />검토대상</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: 데이터가 추가되면 해당 행을 제거하거나 hidden 처리 -->
+                    <tr>
+                      <td colspan="9" class="board-content-empty">등록된 데이터가 없습니다.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 친환경물류지원사업 검증 엑셀 업로드 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="eco-verify-upload-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="eco-verify-upload-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="eco-verify-upload-popup-title">친환경물류지원 사업 검증</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form
+                  class="popup-form"
+                  action="/admin_bak/transfer/eco-verify.html"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        친환경물류지원사업 검증 엑셀 파일 등록
+                      </caption>
+                      <colgroup>
+                        <col width="15%" />
+                        <col width="35%" />
+                        <col width="15%" />
+                        <col width="35%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row"><label for="ecoVerifyExcelFile">파일등록</label></th>
+                          <td>
+                            <div class="flex items-center gap-2 row-type-file">
+                              <input
+                                id="ecoVerifyExcelFile"
+                                name="ecoVerifyExcelFile"
+                                type="file"
+                                class="form-control w-full"
+                              />
+                            </div>
+                          </td>
+                          <th scope="row">엑셀양식</th>
+                          <td>
+                            <!-- 엑셀양식 다운로드 버튼: 개발 시 양식 파일 경로 연결 -->
+                            <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                              <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                              엑셀양식 다운로드
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="popup-guide text-center">
+                      <p>등록할 엑셀파일을 업로드 하시기 바랍니다.</p>
+                      <p>엑셀양식 버튼을 누르면 양식을 다운로드 할 수 있습니다.</p>
+                      <br />
+                      <p class="font-bold text-red">반드시 지정된 엑셀양식으로 업로드하시기 바랍니다.</p>
+                    </div>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      등록하기
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      취소하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

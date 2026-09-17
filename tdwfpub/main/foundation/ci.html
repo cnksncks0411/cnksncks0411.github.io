@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CI | 화물복지재단</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/main.css" />
+  </head>
+  <body data-site="main" data-section="foundation" data-page="ci">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 메인 헤더 인클루드 영역: common/include/main/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-main"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/main/index.html">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li>
+                <a href="/main/foundation/greeting.html">재단소개</a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>CI</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 재단소개 LNB 인클루드 영역: common/include/main/lnb-foundation.html 파일을 불러옵니다. -->
+          <div data-include="lnb-foundation" data-page="ci"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">CI</h1>
+              <div class="sub-intro">
+                <strong
+                  >화물복지재단의 심볼마크는 <br /><em>화물운전자의 복지향상과 번영을 위해 설립된</em> 재단의
+                  상징입니다.</strong
+                >
+              </div>
+            </div>
+
+            <div class="sub-content ci-content">
+              <section class="ci-section grid gap-5" aria-labelledby="ci-symbol-title">
+                <h2 id="ci-symbol-title" class="sub-section-title">심볼마크</h2>
+                <div>
+                  <img src="/common/images/contents/ci_01.jpg">
+                </div>
+                <p>
+                  화물운전자에게 친근한 이미지로 다가가는 화물복지재단을 형상화한 심벌입니다.<br /><br />
+                  화물복지재단에서 'ㅎ'과 'ㅁ'을 모티브로 트럭을 형상화 하였습니다. 초록색은 복지, 주황색은 번영,
+                  하늘색은 소통을 의미합니다. 굵은선은 재단의 단단함을, 곡선은 화물운전자를 따뜻하게 감싸주는 재단을
+                  표현하였습니다.
+                </p>
+              </section>
+
+              <section class="ci-section grid gap-5" aria-labelledby="ci-signature-title">
+                <h2 id="ci-signature-title" class="sub-section-title">시그니처</h2>
+                <div>
+                  <img src="/common/images/contents/ci_02.jpg">
+                </div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/main/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-main"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/main.js"></script>
+  </body>
+</html>

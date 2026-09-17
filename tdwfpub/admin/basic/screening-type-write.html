@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="basic" data-page="screening-type">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 기초관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-basic.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-basic" data-page="screening-type"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <!-- 수정인 경우 '전형유형 수정'으로 변경 -->
+              <h1>전형유형 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/basic/project-name-list.html">기초관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">전형유형 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="screening-type-form-title">
+              <!-- 수정인 경우 제목을 '전형유형 수정 입력폼'으로 변경 -->
+              <h2 id="screening-type-form-title" hidden>전형유형 등록 입력폼</h2>
+              <form action="/admin/basic/screening-type-list.html" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    전형유형 등록 정보
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="82%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="screeningProject">사업명<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="screeningProject" name="screeningProject" class="form-control w-half" required>
+                          <option value="">선택</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="screeningField">부문명<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="screeningField" name="screeningField" class="form-control w-half" required>
+                          <option value="">선택</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="screeningTypeId">유형ID</label></th>
+                      <td>
+                        <input
+                          id="screeningTypeId"
+                          name="screeningTypeId"
+                          type="text"
+                          class="form-control w-quarter"
+                          readonly
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="screeningTypeName">유형명<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input
+                          id="screeningTypeName"
+                          name="screeningTypeName"
+                          type="text"
+                          class="form-control w-full"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">사용여부<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="true" checked required />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="screeningDescription">유형설명</label></th>
+                      <td>
+                        <input
+                          id="screeningDescription"
+                          name="screeningDescription"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <!-- 수정인 경우 '수정하기'로 변경하고, 아래 삭제하기 버튼의 hidden 속성을 제거 -->
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                    등록하기
+                  </button>
+                  <button type="submit" class="btn variant-soft color-red rounded-md size-board-action" hidden>
+                    삭제하기
+                  </button>
+                  <a
+                    href="/admin/basic/screening-type-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    취소하기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

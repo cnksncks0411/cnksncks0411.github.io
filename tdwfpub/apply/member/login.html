@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>로그인 | 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="member" data-page="login">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>로그인</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 회원 LNB 인클루드 영역: common/include/apply/lnb-member.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-member" data-page="login"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">로그인</h1>
+              <div class="sub-intro">
+                <p>로그인을 위해 아이디와 패스워드를 입력해 주세요.</p>
+              </div>
+            </div>
+
+            <div class="sub-content login-content">
+              <div class="join-guide">
+                <p>회원가입을 하시면 더 많은 혜택과 서비스를 안전하게 이용할 수 있습니다.</p>
+                <a href="/apply/member/join.html" class="btn variant-solid color-navy size-lg">
+                  <span class="btn-label">회원가입</span>
+                  <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+                </a>
+              </div>
+
+              <div class="login-panel">
+                <h2>로그인</h2>
+                <form id="apply-login-form" class="login-form" action="/apply/member/login.html" method="post">
+                  <label for="login-id" class="sr-only">아이디</label>
+                  <input
+                    id="login-id"
+                    class="form-control size-lg"
+                    type="text"
+                    name="userId"
+                    autocomplete="username"
+                    placeholder="아이디"
+                    required
+                  />
+                  <label for="login-password" class="sr-only">비밀번호</label>
+                  <input
+                    id="login-password"
+                    class="form-control size-lg"
+                    type="password"
+                    name="password"
+                    autocomplete="current-password"
+                    placeholder="비밀번호"
+                    required
+                  />
+                  <button type="submit" class="btn variant-solid color-gradient size-lg member-login-submit">
+                    <span class="btn-label">로그인</span>
+                  </button>
+                </form>
+
+                <div class="member-find-guide">
+                  <p class="member-find-title">아이디, 비밀번호를 분실하셨습니까?</p>
+                  <p class="member-find-desc">
+                    아래의 버튼을 이용하여 아이디와 비밀번호를 찾을 수 있으며 어려움이 있으시면 <br />고객센터 :
+                    <strong>02)761-0199</strong> 로 문의해 주시면 친절히 안내 드리겠습니다.
+                  </p>
+                  <div class="member-find-actions">
+                    <a href="/apply/member/find-id.html" class="btn variant-solid color-orange size-lg">
+                      <span class="btn-label">아이디 찾기</span>
+                    </a>
+                    <a href="/apply/member/find-password.html" class="btn variant-solid color-orange size-lg">
+                      <span class="btn-label">비밀번호 찾기</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

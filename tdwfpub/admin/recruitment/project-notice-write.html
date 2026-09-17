@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>사업공고 등록(기본정보) | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="recruitment" data-page="project-notice">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업공고 및 마감 좌측 메뉴 인클루드 영역: /admin/include/lnb-recruitment.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-recruitment" data-page="project-notice"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>사업공고 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/recruitment/project-notice-list.html">사업공고 및 마감</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/recruitment/project-notice-list.html">사업공고 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">사업공고 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="project-notice-form-title">
+              <form method="post">
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="project-notice-form-title">기본정보</h2>
+                </div>
+                <table class="board-form-table">
+                  <caption>
+                    사업공고 기본정보
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="32%" />
+                    <col width="18%" />
+                    <col width="32%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="projectName">사업명<span class="required-mark">*</span></label>
+                      </th>
+                      <td colspan="3">
+                        <select id="projectName" name="projectName" class="form-control" required>
+                          <option value="">선택</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="projectYear">연도<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="projectYear" name="projectYear" class="form-control" required>
+                          <option value="">선택</option>
+                        </select>
+                      </td>
+                      <th scope="row">
+                        <label for="projectRound">회차<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="projectRound" name="projectRound" class="form-control" required>
+                          <option value="">선택</option>
+                          <option value="" selected>1회차</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">사용여부<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="true" checked required />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                      <th scope="row">
+                        <label for="projectStatus">진행상태<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="projectStatus" name="projectStatus" class="form-control" required>
+                          <option value="">선택</option>
+                          <option value="" selected>접수중</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="recruitmentType">모집구분<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="recruitmentType" name="recruitmentType" class="form-control" required>
+                          <option value="">선택</option>
+                          <option value="" selected>수시</option>
+                        </select>
+                      </td>
+                      <th scope="row">
+                        <label for="selectionCount">선발인원<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <input
+                            id="selectionCount"
+                            name="selectionCount"
+                            type="text"
+                            class="form-control w-auto"
+                            size="2"
+                            required
+                          />
+                          <span class="board-unit-text">명</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="projectStartDate">시작일<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <div class="board-search-date-field" data-datepicker-wrap>
+                          <input
+                            id="projectStartDate"
+                            name="projectStartDate"
+                            type="text"
+                            class="form-control"
+                            required
+                            data-datepicker-input
+                            data-input
+                          />
+                          <button
+                            type="button"
+                            class="btn-calendar"
+                            aria-label="시작일 선택"
+                            data-datepicker-toggle
+                            data-toggle
+                          >
+                            <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                          </button>
+                        </div>
+                      </td>
+                      <th scope="row">
+                        <label for="projectEndDate">종료일<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <div class="board-search-date-field" data-datepicker-wrap>
+                          <input
+                            id="projectEndDate"
+                            name="projectEndDate"
+                            type="text"
+                            class="form-control"
+                            required
+                            data-datepicker-input
+                            data-input
+                          />
+                          <button
+                            type="button"
+                            class="btn-calendar"
+                            aria-label="종료일 선택"
+                            data-datepicker-toggle
+                            data-toggle
+                          >
+                            <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="fuelVerificationDate">
+                          유가보조금검증일자<span class="required-mark">*</span>
+                        </label>
+                      </th>
+                      <td colspan="3">
+                        <div class="board-search-date-field" data-datepicker-wrap>
+                          <input
+                            id="fuelVerificationDate"
+                            name="fuelVerificationDate"
+                            type="text"
+                            class="form-control"
+                            required
+                            data-datepicker-input
+                            data-input
+                          />
+                          <button
+                            type="button"
+                            class="btn-calendar"
+                            aria-label="유가보조금검증일자 선택"
+                            data-datepicker-toggle
+                            data-toggle
+                          >
+                            <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="noticeTitle">공고제목</label></th>
+                      <td colspan="3">
+                        <input id="noticeTitle" name="noticeTitle" type="text" class="form-control" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="noticeContent">내용</label></th>
+                      <td colspan="3">
+                        <!-- 에디터 추가 위치 -->
+                        <textarea id="noticeContent" name="noticeContent" class="textarea"></textarea>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <!-- 
+                    퍼블리싱용 화면 이동 버튼입니다.
+                    개발 연동 시 아래 주석 처리된 버튼 사용해주세요.
+                  -->
+                  <a
+                    href="/admin/recruitment/project-notice-step2.html"
+                    class="btn variant-solid color-navy rounded-md size-board-auto"
+                  >
+                    저장 후 다음단계
+                  </a>
+                  <!-- <button type="button" class="btn variant-solid color-navy rounded-md size-board-auto">
+                    저장 후 다음단계
+                  </button> -->
+                  <a
+                    href="/admin/recruitment/project-notice-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    취소하기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

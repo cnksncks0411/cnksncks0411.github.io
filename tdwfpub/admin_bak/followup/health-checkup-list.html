@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>건강검진자관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="health-checkup">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="health-checkup"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>건강검진자관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/followup/health-checkup-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">건강검진자관리</span>
+              </nav>
+            </div>
+
+            <div class="board-tab-list" aria-label="건강검진 유형">
+              <button type="button" class="board-tab active" aria-pressed="true">정기검진</button>
+              <button type="button" class="board-tab" aria-pressed="false">수시검진</button>
+            </div>
+
+            <section class="panel" aria-label="정기검진 지급현황">
+              <form action="/admin_bak/followup/health-checkup-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      정기검진 지급현황 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="13%" />
+                      <col width="87%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="healthProject">사업공고명</label></th>
+                        <td>
+                          <select id="healthProject" name="healthProject" class="form-control w-full">
+                            <option value="2026" selected>2026년 건강검진사업</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+
+              <div class="board-table-wrap mt-2">
+                <table class="board-table">
+                  <caption>
+                    정기검진 지급현황
+                  </caption>
+                  <colgroup>
+                    <col width="13%" />
+                    <col width="9%" />
+                    <col width="9%" />
+                    <col width="9%" />
+                    <col width="13%" />
+                    <col width="9%" />
+                    <col width="9%" />
+                    <col width="10%" />
+                    <col width="13%" />
+                    <col width="6%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">공고년도/회차</th>
+                      <th scope="col">대상자수</th>
+                      <th scope="col">예약자수</th>
+                      <th scope="col">검진자수</th>
+                      <th scope="col">검진입력<br />완료자수</th>
+                      <th scope="col">지급자수</th>
+                      <th scope="col">검진포기</th>
+                      <th scope="col">기간<br />내미검진</th>
+                      <th scope="col">총지급금액</th>
+                      <th scope="col">목록보기</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="10" class="board-content-empty">등록된 지급현황이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 정기검진 지급현황 행 -->
+                    <tr>
+                      <td><a href="#" class="board-link-text">2026년 1회차</a></td>
+                      <td>6,400</td>
+                      <td>322</td>
+                      <td>487</td>
+                      <td>1,036</td>
+                      <td>1,372</td>
+                      <td>51</td>
+                      <td>0</td>
+                      <td>685,145,210</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">보기</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="health-payment-list-title">
+              <form action="/admin_bak/followup/health-checkup-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      정기검진 지급대상자 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="10%" />
+                      <col width="10%" />
+                      <col width="10%" />
+                      <col width="10%" />
+                      <col width="10%" />
+                      <col width="10%" />
+                      <col width="10%" />
+                      <col width="10%" />
+                      <col width="10%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="hospitalType">병원분류</label></th>
+                        <td>
+                          <select id="hospitalType" name="hospitalType" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="checkupStatus">검진상태</label></th>
+                        <td>
+                          <select id="checkupStatus" name="checkupStatus" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="checkupHospital">검진병원</label></th>
+                        <td>
+                          <select id="checkupHospital" name="checkupHospital" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="healthRecipientName">대상자명</label></th>
+                        <td>
+                          <input
+                            id="healthRecipientName"
+                            name="healthRecipientName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="healthRecipientBirth">대상자 생년월일</label></th>
+                        <td>
+                          <input
+                            id="healthRecipientBirth"
+                            name="healthRecipientBirth"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+
+              <div class="board-info-row mt-2">
+                <h2 class="board-list-title" id="health-payment-list-title">지급대상자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    정기검진 지급대상자 목록
+                  </caption>
+                  <colgroup>
+                    <col width="11%" />
+                    <col width="9%" />
+                    <col width="12%" />
+                    <col width="27%" />
+                    <col width="18%" />
+                    <col width="9%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">대상자<br />생년월일</th>
+                      <th scope="col">대상자<br />성명</th>
+                      <th scope="col">차량번호</th>
+                      <th scope="col">의료기관</th>
+                      <th scope="col">검진상태</th>
+                      <th scope="col">지급액</th>
+                      <th scope="col">수정</th>
+                      <th scope="col">의료지원</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 지급대상자가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 정기검진 지급대상자 목록 행 -->
+                    <tr>
+                      <td>19571111</td>
+                      <td>김*국</td>
+                      <td>대구87바2222</td>
+                      <td>가천대 길병원(인천 남동구)</td>
+                      <td>결과입력완료(청구)</td>
+                      <td>500,000</td>
+                      <td>
+                        <!-- 수정 버튼: 건강검진자관리 수정 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-soft color-blue rounded-md size-sm"
+                          data-popup-open="health-checkup-edit-popup"
+                          aria-haspopup="dialog"
+                        >
+                          수정
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">보기</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="정기검진 지급대상자 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 건강검진자관리 수정 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="health-checkup-edit-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="health-checkup-edit-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="health-checkup-edit-popup-title">건강검진자관리 수정</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin_bak/followup/health-checkup-list.html" method="post">
+                  <div class="popup-body">
+                    <section aria-labelledby="health-checkup-result-title">
+                      <h3 class="popup-section-title" id="health-checkup-result-title">검진결과</h3>
+                      <div class="board-table-wrap">
+                        <table class="board-table">
+                          <caption>
+                            건강검진 결과
+                          </caption>
+                          <colgroup>
+                            <col width="15%" />
+                            <col width="20%" />
+                            <col width="65%" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col">질병명</th>
+                              <th scope="col">원인</th>
+                              <th scope="col">비고</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td colspan="3" class="board-content-empty">등록된 검진결과가 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 건강검진 결과 행 -->
+                            <tr>
+                              <td>기타</td>
+                              <td>해당사항없음</td>
+                              <td class="health-checkup-result-note">
+                                고혈압, 간수치 높음 등등 고혈압, 간수치 높음 등등 고혈압, 간수치 높음 등등 고혈압,
+                                간수치 높음 등등 고혈압, 간수치 높음 등등 고혈압, 간수치 높음 등등 고혈압, 간수치 높음
+                                등등 고혈압, 간수치 높음 등등 고혈압, 간수치 높음 등등 고혈압, 간수치 높음 등등 고혈압,
+                                간수치 높음 등등 고혈압, 간수치 높음 등등
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="health-checkup-payment-title">
+                      <h3 class="popup-section-title" id="health-checkup-payment-title">지급대상자 결과변경</h3>
+                      <table class="board-form-table">
+                        <caption>
+                          건강검진 지급대상자 결과변경 정보
+                        </caption>
+                        <colgroup>
+                          <col width="16%" />
+                          <col width="34%" />
+                          <col width="16%" />
+                          <col width="34%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">지급상태</th>
+                            <td>결과입력완료(청구)</td>
+                            <th scope="row">검진병원</th>
+                            <td>지급완료</td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="healthCheckupChangeStatus">변경상태</label></th>
+                            <td>
+                              <select
+                                id="healthCheckupChangeStatus"
+                                name="healthCheckupChangeStatus"
+                                class="form-control w-full"
+                              >
+                                <option value="claim" selected>결과입력완료(청구)</option>
+                                <option value="paid">지불완료</option>
+                                <option value="canceled">자격취소(기간내미검진)</option>
+                                <option value="abandoned">검진포기</option>
+                              </select>
+                            </td>
+                            <th scope="row"><label for="healthCheckupPaymentAmount">지급금액</label></th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <input
+                                  type="text"
+                                  id="healthCheckupPaymentAmount"
+                                  name="healthCheckupPaymentAmount"
+                                  class="form-control w-half"
+                                  value="5000000"
+                                />
+                                <label class="check-label" aria-label="지급금액 확인">
+                                  <input type="checkbox" name="healthCheckupPaymentConfirm" />
+                                  <span class="check-label-text"></span>
+                                </label>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="healthCheckupMemo">비고</label></th>
+                            <td colspan="3">
+                              <textarea
+                                id="healthCheckupMemo"
+                                name="healthCheckupMemo"
+                                class="textarea"
+                                rows="5"
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      수정
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

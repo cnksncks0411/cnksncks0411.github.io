@@ -1,0 +1,1541 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="green-logistics">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 실적관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="green-logistics"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>녹색물류지원사업</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/followup/green-logistics-list.html">실적관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">녹색물류지원사업</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="green-logistics-list-title">
+              <form action="/admin/followup/green-logistics-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      녹색물류지원사업 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="8%" />
+                      <col width="17%" />
+                      <col width="8%" />
+                      <col width="17%" />
+                      <col width="8%" />
+                      <col width="17%" />
+                      <col width="8%" />
+                      <col width="17%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="greenLogisticsRecruitYear">모집년도</label></th>
+                        <td>
+                          <select
+                            id="greenLogisticsRecruitYear"
+                            name="greenLogisticsRecruitYear"
+                            class="form-control w-full"
+                          >
+                            <option value="">전체</option>
+                            <option value="">2026001</option>
+                            <option value="">2025001</option>
+                            <option value="">2024001</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="greenLogisticsApplicantName">신청자명</label></th>
+                        <td>
+                          <input
+                            id="greenLogisticsApplicantName"
+                            name="greenLogisticsApplicantName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="greenLogisticsProcessStatus">처리상태</label></th>
+                        <td>
+                          <select
+                            id="greenLogisticsProcessStatus"
+                            name="greenLogisticsProcessStatus"
+                            class="form-control w-full"
+                          >
+                            <option value="">전체</option>
+                            <option value="">미처리</option>
+                            <option value="">제출완료</option>
+                            <option value="">보완요청</option>
+                            <option value="">검토진행</option>
+                            <option value="">검토완료</option>
+                            <option value="">사업포기</option>
+                            <option value="">지급불가</option>
+                            <option value="">검토보류</option>
+                            <option value="">지급보류</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="greenLogisticsCompanyName">회사상호</label></th>
+                        <td>
+                          <input
+                            id="greenLogisticsCompanyName"
+                            name="greenLogisticsCompanyName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="greenLogisticsPhoneNumber">휴대폰번호</label></th>
+                        <td>
+                          <input
+                            id="greenLogisticsPhoneNumber"
+                            name="greenLogisticsPhoneNumber"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="greenLogisticsBusinessNumber">사업자등록번호</label></th>
+                        <td>
+                          <input
+                            id="greenLogisticsBusinessNumber"
+                            name="greenLogisticsBusinessNumber"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="greenLogisticsInstallationType">장착분류</label></th>
+                        <td>
+                          <select
+                            id="greenLogisticsInstallationType"
+                            name="greenLogisticsInstallationType"
+                            class="form-control w-full"
+                          >
+                            <option value="">선택</option>
+                            <option value="">히터</option>
+                            <option value="">에어컨</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="greenLogisticsVehicleNumber">사업자차량번호</label></th>
+                        <td>
+                          <input
+                            id="greenLogisticsVehicleNumber"
+                            name="greenLogisticsVehicleNumber"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="greenLogisticsReceiptOrder">접수순번</label></th>
+                        <td>
+                          <select
+                            id="greenLogisticsReceiptOrder"
+                            name="greenLogisticsReceiptOrder"
+                            class="form-control w-full"
+                          >
+                            <option value="">선택</option>
+                            <option value="">홀수</option>
+                            <option value="">짝수</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="greenLogisticsPaymentRound">지급차수</label></th>
+                        <td>
+                          <select
+                            id="greenLogisticsPaymentRound"
+                            name="greenLogisticsPaymentRound"
+                            class="form-control w-full"
+                          >
+                            <option value="">전체</option>
+                            <option value="">1차</option>
+                            <option value="">2차</option>
+                            <option value="">3차</option>
+                            <option value="">4차</option>
+                            <option value="">5차</option>
+                            <option value="">6차</option>
+                            <option value="">7차</option>
+                            <option value="">8차</option>
+                            <option value="">9차</option>
+                            <option value="">10차</option>
+                            <option value="">11차</option>
+                            <option value="">12차</option>
+                            <option value="">13차</option>
+                            <option value="">14차</option>
+                            <option value="">15차</option>
+                          </select>
+                        </td>
+                        <th scope="row">접수일자</th>
+                        <td colspan="3">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="greenLogisticsReceiptStartDate"
+                                name="greenLogisticsReceiptStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="접수일자 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="접수일자 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="greenLogisticsReceiptEndDate"
+                                name="greenLogisticsReceiptEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="접수일자 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="접수일자 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+
+              <div class="board-info-row mt-2">
+                <h2 class="board-list-title" id="green-logistics-list-title">대상자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option selected>20개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap scroll-x">
+                <table class="board-table" aria-labelledby="green-logistics-list-title">
+                  <caption>
+                    녹색물류교부 대상자목록
+                  </caption>
+                  <colgroup>
+                    <col width="6%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="5%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="6%" />
+                    <col width="6%" />
+                    <col width="6%" />
+                    <col width="5%" />
+                    <col width="5%" />
+                    <col width="5%" />
+                    <col width="5%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">신청<br />번호</th>
+                      <th scope="col">대표자<br />성명</th>
+                      <th scope="col">사업자<br />상호명</th>
+                      <th scope="col">사업자<br />차량번호</th>
+                      <th scope="col">사업자<br />등록번호</th>
+                      <th scope="col">접수<br />완료일자</th>
+                      <th scope="col">부품<br />유형</th>
+                      <th scope="col">부품<br />장착일자</th>
+                      <th scope="col">부품<br />결제금액</th>
+                      <th scope="col">지급<br />신청금액</th>
+                      <th scope="col">접수<br />내역</th>
+                      <th scope="col">지급<br />처리</th>
+                      <th scope="col">지급<br />상태</th>
+                      <th scope="col">지급<br />차수</th>
+                      <th scope="col">신청서<br />출력</th>
+                      <th scope="col">준공계<br />출력</th>
+                      <th scope="col">보고서<br />출력</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="17" class="board-content-empty">등록된 녹색물류교부 대상자가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 녹색물류교부 대상자 목록 행 -->
+                    <tr>
+                      <td>00000506</td>
+                      <td>
+                        <!-- 대표자 성명 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="board-link-text font-bold"
+                          data-popup-open="green-logistics-detail-popup"
+                        >
+                          김*규
+                        </button>
+                      </td>
+                      <td>삼진상사</td>
+                      <td>전남81바8210</td>
+                      <td>7424101367</td>
+                      <td>2026.05.23</td>
+                      <td>에어컨</td>
+                      <td>2026.05.23</td>
+                      <td>1,760,000</td>
+                      <td>800,000</td>
+                      <td>
+                        <!-- 접수내역 버튼: 신청서 정보 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="green-logistics-application-info-popup"
+                        >
+                          조회
+                        </button>
+                      </td>
+                      <td>
+                        <!-- 지급처리 수정 버튼: 지급대상자 심사결과 변경 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-soft color-blue rounded-md size-sm"
+                          data-popup-open="green-logistics-review-popup"
+                          aria-haspopup="dialog"
+                        >
+                          수정
+                        </button>
+                      </td>
+                      <td>검토완료</td>
+                      <td>1</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">조회</button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">조회</button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">조회</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>히터</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="녹색물류교부 대상자 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 지급대상자 심사결과 변경 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="green-logistics-review-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="green-logistics-review-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="green-logistics-review-popup-title">지급대상자 심사결과 변경</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/followup/green-logistics-list.html" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        지급대상자 심사결과 변경 정보
+                      </caption>
+                      <colgroup>
+                        <col width="22%" />
+                        <col width="78%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">지급상태</th>
+                          <td>검토완료</td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="greenLogisticsReviewStatus">변경상태</label></th>
+                          <td>
+                            <select
+                              id="greenLogisticsReviewStatus"
+                              name="greenLogisticsReviewStatus"
+                              class="form-control w-full"
+                            >
+                              <option value="" selected>검토완료</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="greenLogisticsReviewPaymentRound">지급차수</label></th>
+                          <td>
+                            <select
+                              id="greenLogisticsReviewPaymentRound"
+                              name="greenLogisticsReviewPaymentRound"
+                              class="form-control w-full"
+                            >
+                              <option value="" selected>2025년 1차</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="greenLogisticsReviewPaymentAmount">지급금액</label></th>
+                          <td>
+                            <div class="flex items-center gap-2">
+                              <input
+                                type="text"
+                                id="greenLogisticsReviewPaymentAmount"
+                                name="greenLogisticsReviewPaymentAmount"
+                                class="form-control w-half"
+                                value="800000"
+                                inputmode="numeric"
+                                readonly
+                              />
+                              <span>원</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="greenLogisticsReviewReason">변경사유</label></th>
+                          <td>
+                            <textarea
+                              id="greenLogisticsReviewReason"
+                              name="greenLogisticsReviewReason"
+                              class="textarea"
+                              rows="10"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      수정
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 접수내역 상세 팝업 -->
+            <div
+              class="popup"
+              id="green-logistics-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="green-logistics-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="green-logistics-detail-popup-title">접수내역상세</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-label="녹색물류교부 접수현황">
+                      <table class="board-form-table text-center">
+                        <caption>
+                          녹색물류교부 접수현황
+                        </caption>
+                        <colgroup>
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.334%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">신청번호</th>
+                            <td>00000125</td>
+                            <th scope="row">접수번호</th>
+                            <td>00000085</td>
+                            <th scope="row">접수상태</th>
+                            <td>접수완료</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="panel" aria-label="녹색물류교부 접수내역 상세 내용">
+                      <div class="board-tabs" data-board-tabs>
+                        <div class="board-tab-list" role="tablist" aria-label="녹색물류교부 접수내역 서류">
+                          <button
+                            type="button"
+                            class="board-tab active"
+                            id="greenLogisticsApplicationTab"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="greenLogisticsApplicationPanel"
+                            data-board-tab="greenLogisticsApplicationPanel"
+                          >
+                            녹색물류신청서
+                          </button>
+                          <button
+                            type="button"
+                            class="board-tab"
+                            id="greenLogisticsDocumentTab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="greenLogisticsDocumentPanel"
+                            data-board-tab="greenLogisticsDocumentPanel"
+                          >
+                            녹색물류 서류등록
+                          </button>
+                          <button
+                            type="button"
+                            class="board-tab"
+                            id="greenLogisticsPledgeTab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="greenLogisticsPledgePanel"
+                            data-board-tab="greenLogisticsPledgePanel"
+                          >
+                            동의서약서
+                          </button>
+                        </div>
+
+                        <div class="board-tab-panels">
+                          <div
+                            class="board-tab-panel"
+                            id="greenLogisticsApplicationPanel"
+                            role="tabpanel"
+                            aria-labelledby="greenLogisticsApplicationTab"
+                            data-board-tab-panel
+                          >
+                            <form action="" method="post" class="flex flex-col gap-4">
+                              <h2 class="board-panel-title">녹색물류신청서</h2>
+
+                              <section class="board-section" aria-labelledby="green-logistics-driver-title">
+                                <h3 class="board-section-title" id="green-logistics-driver-title">
+                                  화물운전자 인적사항
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    화물운전자 인적사항
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="greenLogisticsDetailBusinessNumber">사업자등록번호</label>
+                                      </th>
+                                      <td>
+                                        <input
+                                          id="greenLogisticsDetailBusinessNumber"
+                                          name="greenLogisticsBusinessNumber"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="1388131317"
+                                        />
+                                      </td>
+                                      <th scope="row">
+                                        <label for="greenLogisticsDetailVehicleNumber">차량번호</label>
+                                      </th>
+                                      <td>
+                                        <input
+                                          id="greenLogisticsDetailVehicleNumber"
+                                          name="greenLogisticsVehicleNumber"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="전남81바1234"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="greenLogisticsDetailCompanyName">회사상호</label></th>
+                                      <td>
+                                        <input
+                                          id="greenLogisticsDetailCompanyName"
+                                          name="greenLogisticsCompanyName"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="㈜패스넷"
+                                        />
+                                      </td>
+                                      <th scope="row">
+                                        <label for="greenLogisticsRepresentativeName">대표자명</label>
+                                      </th>
+                                      <td>
+                                        <input
+                                          id="greenLogisticsRepresentativeName"
+                                          name="greenLogisticsRepresentativeName"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="김대표"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">휴대폰번호</th>
+                                      <td>
+                                        <div class="grid items-center gap-2 row-type-phone">
+                                          <input
+                                            name="greenLogisticsPhoneFirst"
+                                            type="text"
+                                            class="form-control"
+                                            value="010"
+                                            aria-label="휴대폰번호 앞자리"
+                                            readonly
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="greenLogisticsPhoneMiddle"
+                                            type="text"
+                                            class="form-control"
+                                            value="1234"
+                                            aria-label="휴대폰번호 가운데자리"
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="greenLogisticsPhoneLast"
+                                            type="text"
+                                            class="form-control"
+                                            value="5678"
+                                            aria-label="휴대폰번호 끝자리"
+                                          />
+                                        </div>
+                                      </td>
+                                      <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="greenLogisticsInstallationPoint">장착지점</label></th>
+                                      <td>
+                                        <select
+                                          id="greenLogisticsInstallationPoint"
+                                          name="greenLogisticsInstallationPoint"
+                                          class="form-control w-full"
+                                        >
+                                          <option value="">주하</option>
+                                        </select>
+                                      </td>
+                                      <th scope="row">
+                                        <label for="greenLogisticsInstallationDate">
+                                          장착일자<span class="required-mark" aria-hidden="true">*</span>
+                                        </label>
+                                      </th>
+                                      <td>
+                                        <div class="board-search-date-range">
+                                          <div class="board-search-date-field w-full" data-datepicker-wrap>
+                                            <input
+                                              id="greenLogisticsInstallationDate"
+                                              name="greenLogisticsInstallationDate"
+                                              type="text"
+                                              class="form-control"
+                                              value="2025-05-23"
+                                              data-datepicker-input
+                                              data-input
+                                              required
+                                            />
+                                            <button
+                                              type="button"
+                                              class="btn-calendar"
+                                              aria-label="장착일자 선택"
+                                              data-datepicker-toggle
+                                              data-toggle
+                                            >
+                                              <span class="material-symbols-rounded" aria-hidden="true"
+                                                >calendar_month</span
+                                              >
+                                            </button>
+                                          </div>
+                                          <button
+                                            type="button"
+                                            class="btn variant-outline color-navy rounded-md size-input"
+                                            data-datepicker-today
+                                          >
+                                            오늘
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="greenLogisticsPostcode">자택주소</label></th>
+                                      <td colspan="3">
+                                        <div class="flex flex-col gap-2">
+                                          <div class="flex items-center gap-2 row-type-field w-half">
+                                            <input
+                                              id="greenLogisticsPostcode"
+                                              name="greenLogisticsPostcode"
+                                              type="text"
+                                              class="form-control"
+                                              value="30153"
+                                              aria-label="우편번호"
+                                              readonly
+                                            />
+                                            <button
+                                              type="button"
+                                              class="btn variant-outline color-navy rounded-md size-input"
+                                            >
+                                              우편번호 찾기
+                                            </button>
+                                          </div>
+                                          <input
+                                            id="greenLogisticsAddress"
+                                            name="greenLogisticsAddress"
+                                            type="text"
+                                            class="form-control"
+                                            value="세종 태평로 56 (태평동, 해들마을 5단지)"
+                                            aria-label="주소"
+                                            readonly
+                                          />
+                                          <input
+                                            id="greenLogisticsAddressDetail"
+                                            name="greenLogisticsAddressDetail"
+                                            type="text"
+                                            class="form-control"
+                                            value="111동 1503호"
+                                            aria-label="상세주소"
+                                          />
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <section class="board-section" aria-labelledby="green-logistics-confirmation-title">
+                                <h3 class="board-section-title" id="green-logistics-confirmation-title">
+                                  화물운전자 확인정보
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    화물운전자 확인정보
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">신청품목</th>
+                                      <td>에어컨</td>
+                                      <th scope="row">협약일자</th>
+                                      <td>2025-05-23</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">준공기간</th>
+                                      <td colspan="3">2025-05-23 ~ 202509-30</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="greenLogisticsConfirmationInstallationDate">
+                                          장착일자<span class="required-mark" aria-hidden="true">*</span>
+                                        </label>
+                                      </th>
+                                      <td>
+                                        <div class="board-search-date-range">
+                                          <div class="board-search-date-field w-full" data-datepicker-wrap>
+                                            <input
+                                              id="greenLogisticsConfirmationInstallationDate"
+                                              name="greenLogisticsConfirmationInstallationDate"
+                                              type="text"
+                                              class="form-control"
+                                              value="2025-05-24"
+                                              data-datepicker-input
+                                              data-input
+                                              required
+                                            />
+                                            <button
+                                              type="button"
+                                              class="btn-calendar"
+                                              aria-label="확인정보 장착일자 선택"
+                                              data-datepicker-toggle
+                                              data-toggle
+                                            >
+                                              <span class="material-symbols-rounded" aria-hidden="true"
+                                                >calendar_month</span
+                                              >
+                                            </button>
+                                          </div>
+                                          <button
+                                            type="button"
+                                            class="btn variant-outline color-navy rounded-md size-input"
+                                            data-datepicker-today
+                                          >
+                                            오늘
+                                          </button>
+                                        </div>
+                                      </td>
+                                      <th scope="row">
+                                        결제유형<span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td>카드결제</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="greenLogisticsPaymentAmount">결제금액</label></th>
+                                      <td>
+                                        <div class="flex items-center gap-2">
+                                          <input
+                                            id="greenLogisticsPaymentAmount"
+                                            name="greenLogisticsPaymentAmount"
+                                            type="text"
+                                            class="form-control w-half"
+                                            value="242000"
+                                            inputmode="numeric"
+                                          />
+                                          <span>원</span>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="greenLogisticsMutualInvestment" value="true" />
+                                            <span class="check-label-text">상호출자기업 체크</span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <th scope="row"><label for="greenLogisticsApplicationAmount">신청금액</label></th>
+                                      <td>
+                                        <div class="flex items-center gap-2">
+                                          <input
+                                            id="greenLogisticsApplicationAmount"
+                                            name="greenLogisticsApplicationAmount"
+                                            type="text"
+                                            class="form-control w-half"
+                                            value="800000"
+                                            inputmode="numeric"
+                                          />
+                                          <span>원</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <section class="board-section" aria-labelledby="green-logistics-account-title">
+                                <h3 class="board-section-title" id="green-logistics-account-title">
+                                  화물운전자 계좌번호
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    화물운전자 계좌번호
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="greenLogisticsBankName">
+                                          은행명<span class="required-mark" aria-hidden="true">*</span>
+                                        </label>
+                                      </th>
+                                      <td colspan="3">
+                                        <select
+                                          id="greenLogisticsBankName"
+                                          name="greenLogisticsBankName"
+                                          class="form-control w-half"
+                                          required
+                                        >
+                                          <option value="kb" selected>국민은행</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="greenLogisticsAccountHolder">
+                                          예금주<span class="required-mark" aria-hidden="true">*</span>
+                                        </label>
+                                      </th>
+                                      <td>
+                                        <input
+                                          id="greenLogisticsAccountHolder"
+                                          name="greenLogisticsAccountHolder"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="김회원"
+                                          required
+                                        />
+                                      </td>
+                                      <th scope="row"><label for="greenLogisticsAccountAlias">부기명</label></th>
+                                      <td>
+                                        <input
+                                          id="greenLogisticsAccountAlias"
+                                          name="greenLogisticsAccountAlias"
+                                          type="text"
+                                          class="form-control w-full"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="greenLogisticsAccountNumber">
+                                          계좌번호<span class="required-mark" aria-hidden="true">*</span>
+                                        </label>
+                                      </th>
+                                      <td colspan="3">
+                                        <div class="flex items-center gap-2 row-type-field">
+                                          <input
+                                            id="greenLogisticsAccountNumber"
+                                            name="greenLogisticsAccountNumber"
+                                            type="text"
+                                            class="form-control w-half"
+                                            value="53200101012598"
+                                            inputmode="numeric"
+                                            required
+                                          />
+                                          <span class="board-form-note">
+                                            (‘-’)를 제외한 숫자만 입력, 예금주명에 회사명이 기재된 경우, 회사명까지 입력
+                                          </span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <div class="board-form-actions justify-center mt-0">
+                                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                                  저장하기
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+
+                          <div
+                            class="board-tab-panel flex flex-col gap-4"
+                            id="greenLogisticsDocumentPanel"
+                            role="tabpanel"
+                            aria-labelledby="greenLogisticsDocumentTab"
+                            data-board-tab-panel
+                            hidden
+                          >
+                            <section class="board-section" aria-labelledby="green-logistics-document-list-title">
+                              <h2 class="board-section-title" id="green-logistics-document-list-title">
+                                등록 서류목록
+                              </h2>
+
+                              <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                              <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+
+                              <ul class="board-document-grid">
+                                <!-- 반복: 녹색물류 등록 서류 카드 -->
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">사업자등록증.jpg</figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">자동차등록증.jpg</figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">통장사본.jpg</figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">장착확인서jpg</figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">결제영수증.jpg</figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <div class="board-document-thumb type-empty">
+                                      <span>썸네일 없음</span>
+                                    </div>
+                                    <figcaption class="board-document-name">장착증빙사진(지정양식).hwp</figcaption>
+                                    <div class="board-table-actions">
+                                      <a href="#" class="btn variant-outline color-navy rounded-md size-sm" download>
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                              </ul>
+                            </section>
+                          </div>
+
+                          <div
+                            class="board-tab-panel"
+                            id="greenLogisticsPledgePanel"
+                            role="tabpanel"
+                            aria-labelledby="greenLogisticsPledgeTab"
+                            data-board-tab-panel
+                            hidden
+                          >
+                            <section class="scholar-pledge" aria-labelledby="green-logistics-pledge-title">
+                              <h2 class="board-panel-title" id="green-logistics-pledge-title">동의서약서</h2>
+
+                              <ol class="scholar-pledge-list">
+                                <li>
+                                  (재)화물복지재단에서 실시하는 친환경물류 지원사업의 수혜자로 선정되었으며, 사업의
+                                  원활한 추진을 위하여 보조금 지급에 필요한 개인정보를 활용하는 것에 동의합니다.
+                                </li>
+                                <li class="text-blue">
+                                  본인은 제출한 신청서 및 관련 증빙서류가 사실에 근거한 것이며, 해당 서류의 내용이
+                                  허위이거나 사실과 상이하여 수혜 혜택(금전적·비금전적 혜택 포함)의 반납을 통보받을 시
+                                  지체 없이 이를 반납할 것을 서약합니다.
+                                </li>
+                                <li class="text-blue">
+                                  (재)화물복지재단에서 시행하는 기타 복지사업에 대한 정보 제공을 위하여 안내 문자 등을
+                                  수신하는 데 동의하며, 이를 통해 복지사업 관련 정보를 제공받는 것에 동의합니다.
+                                </li>
+                              </ol>
+
+                              <div class="scholar-pledge-confirm">
+                                <label class="check-label">
+                                  <input type="checkbox" checked disabled />
+                                  <span class="check-label-text"
+                                    >서약서 내용을 숙지하였으며 이에 동의함을 서약합니다.</span
+                                  >
+                                </label>
+                                <div class="scholar-pledge-signature">
+                                  <p><time datetime="2026-06-23">2026년 06월 23일</time></p>
+                                  <p>서약자 : 김회원</p>
+                                </div>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <!-- 신청서 정보 상세 팝업 -->
+            <div
+              class="popup"
+              id="green-logistics-application-info-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="green-logistics-application-info-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="green-logistics-application-info-popup-title">신청서 정보</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-labelledby="green-logistics-application-info-title">
+                      <div class="board-info-row sr-only">
+                        <h2 class="board-list-title" id="green-logistics-application-info-title">신청서 정보</h2>
+                      </div>
+                      <table class="board-form-table">
+                        <caption>
+                          녹색물류지원사업 신청서 정보
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">접수상태</th>
+                            <td><span class="font-bold">접수완료</span></td>
+                            <th scope="row">처리상태</th>
+                            <td><span class="font-bold">결재완료</span></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">차량번호</th>
+                            <td>서울96바2234</td>
+                            <th scope="row">최대적재량</th>
+                            <td>미등록</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">사업자번호</th>
+                            <td>742-41-12122</td>
+                            <th scope="row">결제금액</th>
+                            <td>17,60,000</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">사업자상호</th>
+                            <td>삼진상사</td>
+                            <th scope="row">신청금액</th>
+                            <td>800,000</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">예금주명</th>
+                            <td>김사장</td>
+                            <th scope="row">은행계좌</th>
+                            <td>신한은행 / 110225469500</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="panel flex flex-col gap-4" aria-label="녹색물류지원사업 서류정보">
+                      <section class="board-section" aria-labelledby="green-logistics-registered-document-title">
+                        <div class="board-info-row">
+                          <h2 class="board-section-title" id="green-logistics-registered-document-title">
+                            등록 서류목록
+                          </h2>
+                        </div>
+
+                        <form
+                          action="/admin/followup/green-logistics-list.html"
+                          method="post"
+                          enctype="multipart/form-data"
+                        >
+                          <table class="board-form-table">
+                            <caption>
+                              녹색물류교부 등록 서류 선택 및 파일 첨부
+                            </caption>
+                            <colgroup>
+                              <col width="18%" />
+                              <col width="82%" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="greenLogisticsDocumentType">서류선택</label></th>
+                                <td>
+                                  <div class="flex items-center gap-2 row-type-file">
+                                    <select
+                                      id="greenLogisticsDocumentType"
+                                      name="greenLogisticsDocumentType"
+                                      class="form-control w-quarter"
+                                    >
+                                      <option value="">선택</option>
+                                    </select>
+                                    <input
+                                      id="greenLogisticsDocumentFile"
+                                      name="greenLogisticsDocumentFile"
+                                      type="file"
+                                      class="form-control"
+                                      aria-label="첨부파일 선택"
+                                    />
+                                    <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                                      저장
+                                    </button>
+                                    <button
+                                      type="button"
+                                      class="btn variant-outline color-navy rounded-md size-board-auto"
+                                    >
+                                      <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                                      일괄다운로드
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </form>
+
+                        <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                        <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+
+                        <ul class="board-document-grid mt-2">
+                          <!-- 반복: 녹색물류 등록 서류 카드 -->
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">차량등록증.jpg</figcaption>
+                              <div class="board-table-actions">
+                                <a
+                                  href="/common/images/main/info-image.png"
+                                  class="btn variant-outline color-navy rounded-md size-sm"
+                                  download
+                                >
+                                  다운로드
+                                </a>
+                              </div>
+                            </figure>
+                          </li>
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">사업자등록증.jpg</figcaption>
+                              <div class="board-table-actions">
+                                <a
+                                  href="/common/images/main/info-image.png"
+                                  class="btn variant-outline color-navy rounded-md size-sm"
+                                  download
+                                >
+                                  다운로드
+                                </a>
+                              </div>
+                            </figure>
+                          </li>
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">재직증명서.jpg</figcaption>
+                              <div class="board-table-actions">
+                                <a
+                                  href="/common/images/main/info-image.png"
+                                  class="btn variant-outline color-navy rounded-md size-sm"
+                                  download
+                                >
+                                  다운로드
+                                </a>
+                              </div>
+                            </figure>
+                          </li>
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">
+                                고용보험피보험자격 이력 내역서(법인소속).jpg
+                              </figcaption>
+                              <div class="board-table-actions">
+                                <a
+                                  href="/common/images/main/info-image.png"
+                                  class="btn variant-outline color-navy rounded-md size-sm"
+                                  download
+                                >
+                                  다운로드
+                                </a>
+                              </div>
+                            </figure>
+                          </li>
+                        </ul>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="green-logistics-unregistered-document-title">
+                        <div class="board-info-row">
+                          <h2 class="board-section-title" id="green-logistics-unregistered-document-title">
+                            미등록 서류목록
+                          </h2>
+                        </div>
+                        <table class="board-form-table text-center">
+                          <caption>
+                            녹색물류교부 미등록 서류목록
+                          </caption>
+                          <colgroup>
+                            <col width="100%" />
+                          </colgroup>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td class="board-content-empty">미등록 서류가 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 녹색물류 미등록 서류 행 -->
+                            <tr>
+                              <td>기타(증빙서류)</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+                    </section>
+
+                    <section class="panel" aria-labelledby="green-logistics-message-title">
+                      <div class="board-info-row">
+                        <h2 class="board-section-title" id="green-logistics-message-title">
+                          문자전송(수신 : 신청자 연락처 / 발신 : 02-761-0270)
+                        </h2>
+                      </div>
+                      <form action="/admin/followup/green-logistics-list.html" method="post">
+                        <table class="board-form-table">
+                          <caption>
+                            녹색물류교부 신청자 문자전송
+                          </caption>
+                          <colgroup>
+                            <col width="18%" />
+                            <col width="82%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row"><label for="greenLogisticsMessageContent">내용</label></th>
+                              <td>
+                                <div class="grid gap-2 row-type-message">
+                                  <textarea
+                                    id="greenLogisticsMessageContent"
+                                    name="greenLogisticsMessageContent"
+                                    class="textarea"
+                                    rows="4"
+                                  ></textarea>
+                                  <button
+                                    type="submit"
+                                    class="btn variant-solid color-navy rounded-md size-board-action"
+                                  >
+                                    문자전송
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="board-form-actions justify-center">
+                          <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                            미등록 메시지
+                          </button>
+                          <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                            서류오류 메시지
+                          </button>
+                          <button type="button" class="btn variant-soft color-red rounded-md size-board-auto">
+                            메시지 삭제
+                          </button>
+                        </div>
+                      </form>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

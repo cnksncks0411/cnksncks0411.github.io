@@ -1,0 +1,247 @@
+<header class="header">
+  <a href="/admin/admin-main.html" class="brand-logo">
+    <img src="/common/images/logo.png" alt="화물복지재단" class="brand-logo-mark" />
+    <strong class="brand-logo-text">화물복지재단 관리자</strong>
+  </a>
+  <nav class="gnb" id="admin-menu" aria-label="관리자 메뉴" data-menu>
+    <button type="button" class="btn-menu-close" aria-label="관리자 메뉴 닫기" data-menu-close>
+      <span class="material-symbols-rounded" aria-hidden="true">close</span>
+    </button>
+    <a href="/admin/admin-main.html" data-nav="home">Home</a>
+    <div class="gnb-menu-item" data-nav="community" data-menu-item>
+      <button
+        type="button"
+        class="btn-admin-submenu gnb-menu-link"
+        aria-expanded="false"
+        data-submenu-toggle
+        data-menu-target="/admin/community/notice-list.html"
+      >
+        <span>공통관리</span>
+        <span class="material-symbols-rounded" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="gnb-submenu" data-submenu-panel>
+        <a href="/admin/community/notice-list.html" data-nav="notice">공지사항</a>
+        <a href="/admin/community/press-list.html" data-nav="press">보도자료</a>
+        <a href="/admin/community/archive-list.html" data-nav="archive">자료실</a>
+        <a href="/admin/community/gallery-list.html" data-nav="gallery">포토갤러리</a>
+        <a href="/admin/community/form-list.html" data-nav="form">서식 및 매뉴얼</a>
+        <a href="/admin/community/donation-list.html" data-nav="donation">기부현황</a>
+        <a href="/admin/community/faq-list.html" data-nav="faq">자주찾는문의</a>
+        <a href="/admin/community/qna-list.html" data-nav="qna">질문과답변</a>
+        <a href="/admin/community/thanks-list.html" data-nav="thanks">감사의글</a>
+        <a href="/admin/community/bid-list.html" data-nav="bid">입찰공고</a>
+        <a href="/admin/community/recruit-list.html" data-nav="recruit">채용공고</a>
+        <a href="/admin/community/transparency-list.html" data-nav="transparency">투명경영</a>
+        <a href="/admin/community/truck-list.html" data-nav="truck">화물차구입정보</a>
+        <a href="/admin/community/board-list.html" data-nav="board">게시판관리</a>
+      </div>
+    </div>
+    <a href="/admin/user/user-list.html" data-nav="user" data-tab-page="user" data-tab-label="사용자관리"> 회원관리 </a>
+    <a
+      href="/admin/transfer/sms-register.html"
+      data-nav="transfer"
+      data-tab-page="sms-register"
+      data-tab-label="문자전송등록"
+    >
+      보조기능
+    </a>
+    <a
+      href="/admin/recruitment/project-notice-list.html"
+      data-nav="recruitment"
+      data-tab-page="project-notice"
+      data-tab-label="공고등록"
+    >
+      신청관리
+    </a>
+    <a
+      href="/admin/screening/selection-standard-list.html"
+      data-nav="screening"
+      data-tab-page="selection-standard"
+      data-tab-label="선발기준설정"
+    >
+      심사관리
+    </a>
+    <a
+      href="/admin/followup/foundation-scholar-list.html"
+      data-nav="followup"
+      data-tab-page="foundation-scholar"
+      data-tab-label="재단장학"
+    >
+      실적관리
+    </a>
+    <!-- 실적관리(종료사업): 퍼블리싱 확인을 위해 노출시켰으나 추후 숨김처리 필요합니다. -->
+    <a
+      href="/admin/followup-ended/musculoskeletal-payment-list.html"
+      data-nav="followup-ended"
+      data-tab-page="musculoskeletal-payment"
+      data-tab-label="근골격계지원사업"
+    >
+      실적관리(종료사업)
+    </a>
+    <div class="gnb-menu-item" data-nav="report" data-menu-item>
+      <button
+        type="button"
+        class="btn-admin-submenu gnb-menu-link"
+        aria-expanded="false"
+        data-submenu-toggle
+        data-menu-target="/admin/report/application-status.html"
+      >
+        <span>레포트관리</span>
+        <span class="material-symbols-rounded" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="gnb-submenu" data-submenu-panel>
+        <a href="/admin/report/application-status.html" data-nav="application-status">사업접수현황</a>
+        <a href="/admin/report/support-status.html" data-nav="support-status">사업지원현황</a>
+        <a href="/admin/report/dashboard-status.html" data-nav="dashboard-status">기금채권현황</a>
+      </div>
+    </div>
+    <div class="gnb-menu-item" data-nav="partner" data-menu-item>
+      <button
+        type="button"
+        class="btn-admin-submenu gnb-menu-link"
+        aria-expanded="false"
+        data-submenu-toggle
+        data-menu-target="/admin/partner/regular-checkup-list.html"
+      >
+        <span>협력관리</span>
+        <span class="material-symbols-rounded" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="gnb-submenu" data-submenu-panel>
+        <a href="/admin/partner/regular-checkup-list.html" data-nav="regular-checkup">건강검진 협약병원</a>
+        <a href="/admin/partner/vaccination-applicant-list.html" data-nav="vaccination-applicant">예방접종 협약병원</a>
+        <a href="/admin/partner/musculoskeletal-list.html" data-nav="musculoskeletal">근골격계질환접수관리</a>
+        <a href="/admin/partner/legal-case-list.html" data-nav="legal-case">법률구조사건현황</a>
+        <a href="/admin/partner/legal-execution-list.html" data-nav="legal-execution">법률구조집행현황</a>
+        <a href="/admin/partner/blind-claim-list.html" data-nav="blind-claim">교통안전장치청구</a>
+        <a href="/admin/partner/drowsy-claim-list.html" data-nav="drowsy-claim">졸음운전예방장치장착청구</a>
+      </div>
+    </div>
+    <a
+      href="/admin/basic/project-name-list.html"
+      data-nav="basic"
+      data-tab-page="project-name"
+      data-tab-label="사업생성"
+    >
+      기초관리
+    </a>
+    <a href="/admin/site/popup-list.html" data-nav="site" data-tab-page="popup" data-tab-label="팝업창관리">
+      사이트 관리
+    </a>
+    <a href="/admin/system/permission-list.html" data-nav="system" data-tab-page="permission" data-tab-label="권한관리">
+      시스템관리
+    </a>
+  </nav>
+  <div class="gnb-actions">
+    <a
+      href="/main/"
+      class="btn-admin-util tooltip"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="사이트 바로가기"
+      data-tooltip="사이트 바로가기"
+    >
+      <span class="material-symbols-rounded" aria-hidden="true">captive_portal</span>
+    </a>
+    <div class="header-favorite-menu" data-favorite-menu>
+      <button
+        type="button"
+        class="btn-admin-util tooltip"
+        aria-label="자주 찾는 메뉴"
+        aria-expanded="false"
+        aria-controls="header-favorite-panel"
+        data-tooltip="자주 찾는 메뉴"
+        data-favorite-menu-toggle
+      >
+        <span class="material-symbols-rounded" aria-hidden="true">favorite</span>
+      </button>
+      <div id="header-favorite-panel" class="header-favorite-panel" data-favorite-menu-panel hidden>
+        <ul class="header-favorite-list">
+          <!-- 반복: 자주 찾는 메뉴 항목 -->
+          <li class="header-favorite-item">
+            <a href="#">감사의글</a>
+            <button type="button" class="header-favorite-remove" aria-label="감사의글 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">입찰공고</a>
+            <button type="button" class="header-favorite-remove" aria-label="입찰공고 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">재단장학</a>
+            <button type="button" class="header-favorite-remove" aria-label="재단장학 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">차량구입지원(삼성카드)</a>
+            <button type="button" class="header-favorite-remove" aria-label="차량구입지원 삼성카드 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">대출보증대상자관리</a>
+            <button type="button" class="header-favorite-remove" aria-label="대출보증대상자관리 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">메뉴 6</a>
+            <button type="button" class="header-favorite-remove" aria-label="메뉴 6 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">메뉴 7</a>
+            <button type="button" class="header-favorite-remove" aria-label="메뉴 7 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">메뉴 8</a>
+            <button type="button" class="header-favorite-remove" aria-label="메뉴 8 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">메뉴 9</a>
+            <button type="button" class="header-favorite-remove" aria-label="메뉴 9 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <li class="header-favorite-item">
+            <a href="#">메뉴 10</a>
+            <button type="button" class="header-favorite-remove" aria-label="메뉴 10 삭제">
+              <span class="material-symbols-rounded" aria-hidden="true">close</span>
+            </button>
+          </li>
+          <!-- 등록된 메뉴가 없는 경우 -->
+          <li class="header-favorite-empty">등록된 메뉴가 없습니다.</li>
+        </ul>
+      </div>
+    </div>
+    <a
+      href="/admin/admin-login.html"
+      class="btn-admin-util tooltip login-switch"
+      aria-label="로그인"
+      data-tooltip="로그인"
+      data-hover-tooltip="로그아웃"
+    >
+      <span class="material-symbols-rounded login-icon" aria-hidden="true">account_circle</span>
+      <span class="material-symbols-rounded logout-icon" aria-hidden="true">logout</span>
+    </a>
+    <button
+      type="button"
+      class="btn-admin-menu tooltip"
+      aria-label="관리자 메뉴 열기"
+      aria-expanded="false"
+      aria-controls="admin-menu"
+      data-tooltip="메뉴"
+      data-menu-toggle
+    >
+      <span class="material-symbols-rounded" aria-hidden="true">menu</span>
+    </button>
+  </div>
+</header>

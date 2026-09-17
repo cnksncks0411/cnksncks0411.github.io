@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>회의실 대관 | 화물복지재단</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/common/css/main.css" />
+  </head>
+  <body data-site="main" data-section="foundation" data-page="meeting-room">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 메인 헤더 인클루드 영역: common/include/main/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-main"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/main/index.html">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li>
+                <a href="/main/foundation/greeting.html">재단소개</a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>회의실 대관</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 재단소개 LNB 인클루드 영역: common/include/main/lnb-foundation.html 파일을 불러옵니다. -->
+          <div data-include="lnb-foundation" data-page="meeting-room"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">회의실 대관</h1>
+              <div class="sub-intro">
+                <strong><em>업무 공간</em>을 빌려드립니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content meeting-room-content">
+              <div class="meeting-info grid gap-6">
+                <p class="grid gap-3">
+                  <strong>회의실 장소</strong><span class="point-text">서울시 강남구 언주로 560, 지하 2층</span>
+                </p>
+                <a
+                  href="https://map.naver.com/p/entry/place/13417680?c=15.00,0,0,0,dh&placePath=/ticket?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202606220948&locale=ko&svcName=map_pcv5"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn variant-solid color-navy"
+                >
+                  <span class="btn-label">회의실 예약 바로가기</span>
+                </a>
+              </div>
+
+              <div class="meeting-room-gallery">
+                <div class="meeting-room-slider swiper" data-meeting-room-slider aria-label="회의실 이미지 슬라이드">
+                  <div class="swiper-wrapper">
+                    <figure class="swiper-slide" data-meeting-room-slide>
+                      <figcaption class="badge blue meeting-room-slide-badge">1회의실 수용인원 : 4명</figcaption>
+                      <img src="/common/images/contents/room_01.jpg" alt="1회의실 수용인원 4명" />
+                    </figure>
+                    <figure class="swiper-slide" data-meeting-room-slide>
+                      <figcaption class="badge blue meeting-room-slide-badge">2회의실 수용인원 : 12명</figcaption>
+                      <img src="/common/images/contents/room_02.jpg" alt="2회의실 수용인원 12명" />
+                    </figure>
+                    <figure class="swiper-slide" data-meeting-room-slide>
+                      <figcaption class="badge blue meeting-room-slide-badge">회의실 : 수용인원 25명</figcaption>
+                      <img src="/common/images/contents/room_03.jpg" alt="회의실 수용인원 25명" />
+                    </figure>
+                    <figure class="swiper-slide" data-meeting-room-slide>
+                      <figcaption class="badge blue meeting-room-slide-badge">T HALL : 수용인원 36명</figcaption>
+                      <img src="/common/images/contents/room_04.jpg" alt="T HALL 수용인원 36명" />
+                    </figure>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn variant-solid color-navy rounded-full size-sm meeting-room-slider-prev"
+                    data-meeting-room-prev
+                    aria-label="이전 회의실 이미지"
+                  >
+                    <span class="material-symbols-rounded" aria-hidden="true">chevron_left</span>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn variant-solid color-navy rounded-full size-sm meeting-room-slider-next"
+                    data-meeting-room-next
+                    aria-label="다음 회의실 이미지"
+                  >
+                    <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
+                  </button>
+                  <div class="swiper-pagination" data-meeting-room-pagination></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/main/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-main"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/common/js/main.js"></script>
+  </body>
+</html>

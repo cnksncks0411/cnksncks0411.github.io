@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>추천검색어관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="keyword">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="keyword"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>추천검색어관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">추천검색어관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="추천검색어 설정">
+              <form action="/admin_bak/site/keyword-list.html" method="post" class="keyword-setting-form">
+                <label for="recommendKeyword" class="sr-only">추천검색어</label>
+                <input
+                  id="recommendKeyword"
+                  name="recommendKeyword"
+                  type="text"
+                  class="form-control"
+                  placeholder="#장학,#예방접종,#교통사고,#법률,#차량구입"
+                />
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">저장</button>
+              </form>
+
+              <p class="keyword-setting-guide">
+                #과 ,로 구분 <span>(ex: #장학,#예방접종,#교통사고,#법률,#차량구입)</span>
+              </p>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>아이디 찾기 결과 | 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="member" data-page="find-id">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>아이디 찾기</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 회원 LNB 인클루드 영역: common/include/apply/lnb-member.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-member" data-page="find-id"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">아이디 찾기</h1>
+              <div class="sub-intro">
+                <p>
+                  아이디나 비밀번호가 생각나지 않으세요? 회원님의 개인정보를 안전하게 되찾으실 수 있도록
+                  도와드리겠습니다.
+                </p>
+              </div>
+            </div>
+
+            <div class="sub-content find-id-content">
+              <nav class="sub-tab-list grid-cols-2" aria-label="회원정보 찾기 메뉴">
+                <a href="/apply/member/find-id.html" class="sub-tab-item active" aria-current="page">아이디 찾기</a>
+                <a href="/apply/member/find-password.html" class="sub-tab-item">비밀번호 찾기</a>
+              </nav>
+
+              <!-- 아이디 찾기 성공 시 노출 -->
+              <section class="find-result" role="status">
+                <span class="result-icon material-symbols-rounded" aria-hidden="true">check_circle</span>
+                <strong>아이디 찾기</strong>
+                <p class="result-id">1. <b>adh4958</b> (가입일자 : 2026.06.05)</p>
+                <div class="result-actions">
+                  <a href="/apply/member/login.html" class="btn variant-solid color-gradient size-lg">
+                    <span class="btn-label">로그인하기</span>
+                  </a>
+                </div>
+              </section>
+
+              <div class="find-empty">
+                <aside class="find-guide" aria-labelledby="find-guide-title">
+                  <strong id="find-guide-title">가입한 아이디가 보이지 않나요?</strong>
+                  <p>다른 방법으로 아이디 찾기를 해보세요.</p>
+                  <p>
+                    본인 명의 휴대전화를 이용하면 본인 명의로 가입된 아이디를 찾을 수 있고, <br />
+                    회원정보에 등록된 정보로 아이디 찾기를 하면, 명의와 관계 없이 등록한 정보가 일치하는 아이디를 찾을 수 있습니다.
+                  </p>
+                  <p>다른 방법으로도 아이디를 찾지 못했다면 회원가입을 진행해 주시기 바랍니다.</p>
+                  <div class="guide-actions">
+                    <a href="/apply/member/join.html" class="btn variant-solid color-navy size-lg">
+                      <span class="btn-label">회원가입</span>
+                    </a>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

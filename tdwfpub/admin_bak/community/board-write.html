@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="community" data-page="board">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 커뮤니티 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-community.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-community" data-page="board"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <!-- 수정인 경우 게시판 수정으로 변경 -->
+              <h1>게시판 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/community/board-list.html">커뮤니티 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/community/board-list.html">게시판관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <!-- 수정인 경우 게시판 수정으로 변경 -->
+                <span aria-current="page">게시판 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="write-form-title">
+              <h2 id="write-form-title" hidden>게시판관리 등록 입력폼</h2>
+              <form action="/admin_bak/community/board-list.html" method="post">
+                <table class="board-form-table">
+                  <colgroup>
+                    <col width="16%" />
+                    <col width="34%" />
+                    <col width="16%" />
+                    <col width="34%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">게시판명<span class="required-mark">*</span></th>
+                      <td colspan="3">
+                        <input
+                          class="form-control"
+                          type="text"
+                          name="boardName"
+                          aria-label="게시판명"
+                          placeholder="게시판명을 입력하세요."
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">게시판 유형<span class="required-mark">*</span></th>
+                      <td>
+                        <!-- 등록인 경우 select 사용, 수정인 경우 select 제거 후 아래 .board-form-value의 hidden 제거 -->
+                        <select class="form-control w-full" name="boardType" aria-label="게시판 유형" required>
+                          <option value="">선택</option>
+                          <option value="">일반게시판</option>
+                          <option value="">익명게시판</option>
+                          <option value="">공지게시판</option>
+                          <option value="">방명록</option>
+                        </select>
+                        <span class="board-form-value" hidden>공지게시판</span>
+                      </td>
+                      <th scope="row">게시판 속성<span class="required-mark">*</span></th>
+                      <td>
+                        <!-- 등록인 경우 select 사용, 수정인 경우 select 제거 후 아래 .board-form-value의 hidden 제거 -->
+                        <select class="form-control" name="boardProperty" aria-label="게시판 속성" required>
+                          <option value="">선택</option>
+                          <option value="">유효게시판</option>
+                          <option value="">갤러리</option>
+                          <option value="">일반게시판</option>
+                          <option value="">공공구매</option>
+                        </select>
+                        <span class="board-form-value" hidden>일반게시판</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">답변가능여부<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="answerAvailable" value="true" checked />
+                            <span class="radio-label-text">가능</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="answerAvailable" value="false" />
+                            <span class="radio-label-text">불가능</span>
+                          </label>
+                        </div>
+                      </td>
+                      <th scope="row">사용여부<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="true" checked />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="false" />
+                            <span class="radio-label-text">사용중지</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">파일첨부가능여부</th>
+                      <td>
+                        <div class="board-form-options" data-dependent-control="file-count">
+                          <label class="radio-label">
+                            <input type="radio" name="fileAvailable" value="true" checked />
+                            <span class="radio-label-text">가능</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="fileAvailable" value="false" />
+                            <span class="radio-label-text">불가능</span>
+                          </label>
+                        </div>
+                      </td>
+                      <th scope="row">첨부파일 숫자<span class="required-mark">*</span></th>
+                      <td>
+                        <!-- 파일첨부가능여부가 불가능인 경우 첨부파일 숫자는 선택할 수 없도록 disabled 처리 -->
+                        <select
+                          class="form-control"
+                          name="fileCount"
+                          aria-label="첨부파일 숫자"
+                          data-dependent-target="file-count"
+                          required
+                        >
+                          <option value="">1개</option>
+                          <option value="">2개</option>
+                          <option value="">3개</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">댓글 사용 여부</th>
+                      <td colspan="3">
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="commentUse" value="true" checked />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="commentUse" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <!-- TODO: 수정인 경우에만 존재?? '템플릿정보' 행 부분은 아직 기획에서 확인중 -->
+                    <tr hidden>
+                      <th scope="row">템플릿정보</th>
+                      <td colspan="3"><span class="board-form-value">게시판 기본템플릿</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">게시판 소개</th>
+                      <td colspan="3">
+                        <textarea class="textarea" name="description" rows="5" aria-label="게시판 소개"></textarea>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <!-- 수정인 경우 수정하기로 변경 -->
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                    등록하기
+                  </button>
+                  <a
+                    href="/admin_bak/community/board-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    취소하기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

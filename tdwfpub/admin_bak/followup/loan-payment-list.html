@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>대출변제금지급관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="loan-payment">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="loan-payment"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>대출변제금지급관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/followup/loan-payment-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">대출변제금지급관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="loan-payment-search-title">
+              <h2 class="board-list-title sr-only" id="loan-payment-search-title">대출변제금 지급대상자 조회조건</h2>
+
+              <form action="/admin_bak/followup/loan-payment-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      대출변제금 지급대상자 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="8%" />
+                      <col width="8%" />
+                      <col width="6%" />
+                      <col width="8%" />
+                      <col width="10%" />
+                      <col width="8%" />
+                      <col width="8%" />
+                      <col width="6%" />
+                      <col width="9%" />
+                      <col width="10%" />
+                      <col width="9%" />
+                      <col width="10%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentApplicantName">신청자 이름</label></th>
+                        <td colspan="2">
+                          <input
+                            id="loanPaymentApplicantName"
+                            name="loanPaymentApplicantName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="loanPaymentApplicantAccount">신청자 계정</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentApplicantAccount"
+                            name="loanPaymentApplicantAccount"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="loanPaymentApplicantBirth">신청자 생년월일</label></th>
+                        <td colspan="2">
+                          <input
+                            id="loanPaymentApplicantBirth"
+                            name="loanPaymentApplicantBirth"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="loanPaymentDetailSequence">대출순번</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentDetailSequence"
+                            name="loanPaymentSequence"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="loanPaymentNumber">대출번호</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentNumber"
+                            name="loanPaymentNumber"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentProgressStatus">대출진행상태</label></th>
+                        <td colspan="2">
+                          <select
+                            id="loanPaymentProgressStatus"
+                            name="loanPaymentProgressStatus"
+                            class="form-control w-full"
+                          >
+                            <option value="">전체</option>
+                            <option value="share">분담</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="loanPaymentSaleType">대출매각종류</label></th>
+                        <td colspan="2">
+                          <select id="loanPaymentSaleType" name="loanPaymentSaleType" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row">대출종류</th>
+                        <td colspan="5">
+                          <div class="board-form-options">
+                            <label class="check-label">
+                              <input type="checkbox" name="loanPaymentType" value="all" checked />
+                              <span class="check-label-text">전체선택</span>
+                            </label>
+                            <label class="check-label">
+                              <input type="checkbox" name="loanPaymentType" value="new" />
+                              <span class="check-label-text">신차구입</span>
+                            </label>
+                            <label class="check-label">
+                              <input type="checkbox" name="loanPaymentType" value="used-purchase" />
+                              <span class="check-label-text">중고구입</span>
+                            </label>
+                            <label class="check-label">
+                              <input type="checkbox" name="loanPaymentType" value="used-operation" />
+                              <span class="check-label-text">중고운영</span>
+                            </label>
+                            <label class="check-label">
+                              <input type="checkbox" name="loanPaymentType" value="hyundai" />
+                              <span class="check-label-text">현대차</span>
+                            </label>
+                            <label class="check-label">
+                              <input type="checkbox" name="loanPaymentType" value="direct" />
+                              <span class="check-label-text">다이렉트</span>
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">대출시작일</th>
+                        <td colspan="5">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="loanPaymentStartDateFrom"
+                                name="loanPaymentStartDateFrom"
+                                type="text"
+                                class="form-control"
+                                aria-label="대출시작일 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="대출시작일 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="loanPaymentStartDateTo"
+                                name="loanPaymentStartDateTo"
+                                type="text"
+                                class="form-control"
+                                aria-label="대출시작일 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="대출시작일 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                        <th scope="row">대출만료일</th>
+                        <td colspan="5">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="loanPaymentExpirationDateFrom"
+                                name="loanPaymentExpirationDateFrom"
+                                type="text"
+                                class="form-control"
+                                aria-label="대출만료일 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="대출만료일 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="loanPaymentExpirationDateTo"
+                                name="loanPaymentExpirationDateTo"
+                                type="text"
+                                class="form-control"
+                                aria-label="대출만료일 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="대출만료일 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="loan-payment-list-title">
+              <div class="board-info-row align-right">
+                <h2 class="board-list-title sr-only" id="loan-payment-list-title">대출변제금 지급대상자 목록</h2>
+                <div class="board-info-actions">
+                  <p>(금액단위 : 1,000원)</p>
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10</option>
+                    <option>30</option>
+                    <option>50</option>
+                    <option>100</option>
+                    <option>300</option>
+                  </select>
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">보기</button>
+                </div>
+              </div>
+
+              <div class="board-table-wrap overflow-visible">
+                <table class="board-table" aria-labelledby="loan-payment-list-title">
+                  <caption>
+                    대출변제금 지급대상자 목록
+                  </caption>
+                  <colgroup>
+                    <col width="6%" />
+                    <col width="9%" />
+                    <col width="9%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                    <col width="9%" />
+                    <col width="8%" />
+                    <col width="9%" />
+                    <col width="7%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="6%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">대출<br />순번</th>
+                      <th scope="col">대출<br />시작일자</th>
+                      <th scope="col">대출<br />만료일자</th>
+                      <th scope="col">이름</th>
+                      <th scope="col">생년<br />월일</th>
+                      <th scope="col">보증<br />금액</th>
+                      <th scope="col">손실<br />금액</th>
+                      <th scope="col">처리일자</th>
+                      <th scope="col">매각구분</th>
+                      <th scope="col">변제금<br />지급액</th>
+                      <th scope="col">지급일</th>
+                      <th scope="col">메모</th>
+                      <th scope="col">관리</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="13" class="board-content-empty">등록된 대출변제금 지급대상자가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 대출변제금 지급대상자 목록 행 -->
+                    <tr>
+                      <td>3675</td>
+                      <td>2024-03-29</td>
+                      <td>2028-03-25</td>
+                      <td>김*원</td>
+                      <td>78.06.08</td>
+                      <td>65,000,000</td>
+                      <td>34,373</td>
+                      <td>2024-08-29</td>
+                      <td>공매</td>
+                      <td>13,000</td>
+                      <td>2024-08-29</td>
+                      <td>
+                        <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                        <div class="tooltip type-memo" data-tooltip="여기에 메모가 노출됩니다." tabindex="0">
+                          <div class="board-cell-title">여기에 메모가 노출됩니다.</div>
+                        </div>
+                      </td>
+                      <td>
+                        <!-- 수정 버튼: 변제금지급이력 등록/수정 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-soft color-blue rounded-md size-sm"
+                          data-popup-open="loan-payment-detail-popup"
+                        >
+                          수정
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="대출변제금 지급대상자 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+            <!-- 변제금지급이력 등록/수정 팝업 -->
+            <div
+              class="popup"
+              id="loan-payment-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="loan-payment-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="loan-payment-detail-popup-title">변제금지급이력 등록/수정</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+            <form
+              action="/admin_bak/followup/loan-payment-list.html"
+              method="post"
+              enctype="multipart/form-data"
+              class="flex flex-col gap-4"
+            >
+              <section class="panel flex flex-col gap-4" aria-labelledby="loan-payment-history-title">
+                <section class="board-section" aria-labelledby="loan-payment-history-title">
+                  <h2 class="board-section-title" id="loan-payment-history-title">변제금지급이력 등록/수정</h2>
+                  <table class="board-form-table">
+                    <caption>
+                      변제금지급이력 등록 및 수정 정보
+                    </caption>
+                    <colgroup>
+                      <col width="16%" />
+                      <col width="34%" />
+                      <col width="16%" />
+                      <col width="34%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">대출번호</th>
+                        <td>AY52020A0000872</td>
+                        <th scope="row"><label for="loanPaymentDate">대출일자</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentDate"
+                            name="loanPaymentDate"
+                            type="text"
+                            class="form-control w-full"
+                            value="2020-04-10"
+                            readonly
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentSequence">대출순번</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentSequence"
+                            name="loanPaymentSequence"
+                            type="text"
+                            class="form-control w-full"
+                            value="2533"
+                            readonly
+                          />
+                        </td>
+                        <th scope="row"><label for="loanPaymentExpirationDate">만료일자</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentExpirationDate"
+                            name="loanPaymentExpirationDate"
+                            type="text"
+                            class="form-control w-full"
+                            value="2026-04-20"
+                            readonly
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentDetailApplicantName">성명</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentDetailApplicantName"
+                            name="loanPaymentApplicantName"
+                            type="text"
+                            class="form-control w-full"
+                            value="이순신"
+                            readonly
+                          />
+                        </td>
+                        <th scope="row"><label for="loanPaymentDetailApplicantBirth">생년월일</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentDetailApplicantBirth"
+                            name="loanPaymentApplicantBirth"
+                            type="text"
+                            class="form-control w-full"
+                            value="880512"
+                            readonly
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentGuaranteeAmount">보증금액</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentGuaranteeAmount"
+                            name="loanPaymentGuaranteeAmount"
+                            type="text"
+                            class="form-control w-full"
+                            value="170,000,000"
+                            readonly
+                          />
+                        </td>
+                        <th scope="row"><label for="loanPaymentGuaranteePeriod">보증기간(개월)</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentGuaranteePeriod"
+                            name="loanPaymentGuaranteePeriod"
+                            type="text"
+                            class="form-control w-full"
+                            value="72"
+                            readonly
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentLossAmount">손실금액</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentLossAmount"
+                            name="loanPaymentLossAmount"
+                            type="text"
+                            class="form-control w-full"
+                            value="39,525,865"
+                          />
+                        </td>
+                        <th scope="row"><label for="loanPaymentAmount">변제금 지급액</label></th>
+                        <td>
+                          <input
+                            id="loanPaymentAmount"
+                            name="loanPaymentAmount"
+                            type="text"
+                            class="form-control w-full"
+                            value="15,810,346"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentDetailSaleType">매각구분</label></th>
+                        <td>
+                          <select id="loanPaymentDetailSaleType" name="loanPaymentSaleType" class="form-control w-full">
+                            <option value="auction" selected>공매</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="loanPaymentPaidDate">지급일</label></th>
+                        <td>
+                          <div class="board-search-date-field w-full" data-datepicker-wrap>
+                            <input
+                              id="loanPaymentPaidDate"
+                              name="loanPaymentPaidDate"
+                              type="text"
+                              class="form-control"
+                              value="2023-12-21"
+                              data-datepicker-input
+                              data-input
+                            />
+                            <button
+                              type="button"
+                              class="btn-calendar"
+                              aria-label="지급일 선택"
+                              data-datepicker-toggle
+                              data-toggle
+                            >
+                              <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentMemo">메모</label></th>
+                        <td colspan="3">
+                          <textarea id="loanPaymentMemo" name="loanPaymentMemo" class="textarea" rows="6">장기연체/대손상각</textarea>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+                <section class="board-section" aria-labelledby="loan-payment-document-title">
+                  <div class="board-info-row">
+                    <h2 class="board-list-title" id="loan-payment-document-title">등록서류목록</h2>
+                  </div>
+                  <!-- 목록 없는 경우: 등록된 서류가 있을 때 hidden 속성을 추가합니다. -->
+                  <p class="board-content-empty">등록된 서류가 없습니다.</p>
+                </section>
+
+                <section class="board-section" aria-label="대출변제금 증빙서류 등록">
+                  <table class="board-form-table">
+                    <caption>
+                      대출변제금 증빙서류 등록 목록
+                    </caption>
+                    <colgroup>
+                      <col width="22%" />
+                      <col width="78%" />
+                    </colgroup>
+                    <tbody>
+                      <!-- 반복: 증빙서류 첨부 행 -->
+                      <tr>
+                        <th scope="row"><label for="loanPaymentDocumentFile1">기타(증빙서류)_1</label></th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input
+                              id="loanPaymentDocumentFile1"
+                              name="loanPaymentDocumentFile1"
+                              type="file"
+                              class="form-control"
+                            />
+                            <button type="button" class="btn variant-solid color-navy rounded-md size-input">저장</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentDocumentFile2">기타(증빙서류)_2</label></th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input
+                              id="loanPaymentDocumentFile2"
+                              name="loanPaymentDocumentFile2"
+                              type="file"
+                              class="form-control"
+                            />
+                            <button type="button" class="btn variant-solid color-navy rounded-md size-input">저장</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentDocumentFile3">기타(증빙서류)_3</label></th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input
+                              id="loanPaymentDocumentFile3"
+                              name="loanPaymentDocumentFile3"
+                              type="file"
+                              class="form-control"
+                            />
+                            <button type="button" class="btn variant-solid color-navy rounded-md size-input">저장</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentDocumentFile4">기타(증빙서류)_4</label></th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input
+                              id="loanPaymentDocumentFile4"
+                              name="loanPaymentDocumentFile4"
+                              type="file"
+                              class="form-control"
+                            />
+                            <button type="button" class="btn variant-solid color-navy rounded-md size-input">저장</button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loanPaymentDocumentFile5">기타(증빙서류)_5</label></th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <input
+                              id="loanPaymentDocumentFile5"
+                              name="loanPaymentDocumentFile5"
+                              type="file"
+                              class="form-control"
+                            />
+                            <button type="button" class="btn variant-solid color-navy rounded-md size-input">저장</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+
+                <div class="board-form-actions justify-center">
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                    등록하기
+                  </button>
+                  <button
+                    type="button"
+                    class="btn variant-outline color-navy rounded-md size-board-auto"
+                    data-popup-close
+                  >
+                    취소하기
+                  </button>
+                </div>
+              </section>
+            </form>
+                </div>
+              </section>
+            </div>
+
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

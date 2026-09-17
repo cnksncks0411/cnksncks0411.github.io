@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>신청서 이미지앨범 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="recruitment" data-page="application-album">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업공고 및 마감 좌측 메뉴 인클루드 영역: /admin/include/lnb-recruitment.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-recruitment" data-page="application-album"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>신청서 이미지앨범</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/recruitment/project-notice-list.html">사업공고 및 마감</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">신청서 이미지앨범</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="신청서 이미지앨범 조회">
+              <form class="flex gap-2" action="/admin/recruitment/application-album-list.html" method="get">
+                <table class="board-search-table">
+                  <caption>
+                    신청서 이미지앨범 조회조건
+                  </caption>
+                  <colgroup>
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.33%" />
+                    <col width="8.37%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row"><label for="applicationAlbumProjectName">사업명</label></th>
+                      <td colspan="3">
+                        <div class="flex items-center gap-2">
+                          <input
+                            id="applicationAlbumProjectName"
+                            name="projectName"
+                            type="text"
+                            class="form-control w-full"
+                            value="일반장학사업"
+                            readonly
+                          />
+                          <button type="button" class="btn variant-outline color-navy rounded-md size-search-input">
+                            공고조회
+                          </button>
+                        </div>
+                      </td>
+                      <th scope="row"><label for="applicationAlbumRound">년도회차</label></th>
+                      <td colspan="3">
+                        <input
+                          id="applicationAlbumRound"
+                          name="round"
+                          type="text"
+                          class="form-control w-full"
+                          value="2025001"
+                          readonly
+                        />
+                      </td>
+                      <th scope="row"><label for="applicationAlbumNoticeTitle">공고제목</label></th>
+                      <td colspan="3">
+                        <div class="flex items-center gap-2">
+                          <input
+                            id="applicationAlbumNoticeTitle"
+                            name="noticeTitle"
+                            type="text"
+                            class="form-control w-full"
+                            value="2025년 일반장학사업"
+                            readonly
+                          />
+                          <select
+                            name="applicationAlbumNoticeScope"
+                            class="form-control w-half"
+                            aria-label="공고제목 조회 범위"
+                          >
+                            <option value="">전체</option>
+                          </select>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="applicationAlbumProgress">진행상태</label></th>
+                      <td colspan="3">
+                        <input
+                          id="applicationAlbumProgress"
+                          name="progress"
+                          type="text"
+                          class="form-control w-full"
+                          value="최종선발자발표"
+                          readonly
+                        />
+                      </td>
+                      <th scope="row"><label for="applicationAlbumReceiptStatus">접수상태</label></th>
+                      <td colspan="3">
+                        <select
+                          id="applicationAlbumReceiptStatus"
+                          name="receiptStatus"
+                          class="form-control w-full"
+                        >
+                          <option value="">전체</option>
+                        </select>
+                      </td>
+                      <th scope="row"><label for="applicationAlbumProcessStatus">처리상태</label></th>
+                      <td colspan="3">
+                        <select
+                          id="applicationAlbumProcessStatus"
+                          name="processStatus"
+                          class="form-control w-full"
+                        >
+                          <option value="">전체</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="applicationAlbumDriverName">운전자명</label></th>
+                      <td colspan="2">
+                        <input
+                          id="applicationAlbumDriverName"
+                          name="driverName"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="applicationAlbumDriverBirth">운전자 생년월일</label></th>
+                      <td colspan="2">
+                        <input
+                          id="applicationAlbumDriverBirth"
+                          name="driverBirth"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="applicationAlbumDriverPhone">운전자 휴대폰번호</label></th>
+                      <td colspan="2">
+                        <input
+                          id="applicationAlbumDriverPhone"
+                          name="driverPhone"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="applicationAlbumApplicantName">대상자명</label></th>
+                      <td colspan="2">
+                        <input
+                          id="applicationAlbumApplicantName"
+                          name="applicantName"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="applicationAlbumApplicantBirth">대상자 생년월일</label></th>
+                      <td colspan="2">
+                        <input
+                          id="applicationAlbumApplicantBirth"
+                          name="applicantBirth"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="applicationAlbumRegistered">첨부파일 등록여부</label></th>
+                      <td colspan="2">
+                        <select
+                          id="applicationAlbumRegistered"
+                          name="documentRegistered"
+                          class="form-control w-full"
+                        >
+                          <option value="">전체</option>
+                        </select>
+                      </td>
+                      <th scope="row"><label for="applicationAlbumFileName">파일명</label></th>
+                      <td colspan="2">
+                        <input
+                          id="applicationAlbumFileName"
+                          name="fileName"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="applicationAlbumRegisteredDate">파일 등록일자</label></th>
+                      <td colspan="2">
+                        <div class="board-search-date-range w-full">
+                          <div class="board-search-date-field w-full" data-datepicker-wrap>
+                            <input
+                              id="applicationAlbumRegisteredDate"
+                              name="registeredDate"
+                              type="text"
+                              class="form-control"
+                              data-datepicker-input
+                              data-input
+                            />
+                            <button
+                              type="button"
+                              class="btn-calendar"
+                              aria-label="파일 등록일자 선택"
+                              data-datepicker-toggle
+                              data-toggle
+                            >
+                              <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+              </form>
+            </section>
+
+            <section class="panel" aria-label="신청서 이미지앨범 목록">
+              <div class="board-info-row align-right">
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap overflow-visible">
+                <table class="board-table">
+                  <caption>
+                    신청서 이미지앨범 목록
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="10%" />
+                    <col width="12%" />
+                    <col width="12%" />
+                    <col width="12%" />
+                    <col width="10%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">사업명</th>
+                      <th scope="col">선발부문</th>
+                      <th scope="col">선발전형</th>
+                      <th scope="col">운전자명</th>
+                      <th scope="col">생년월일</th>
+                      <th scope="col">탈락사유</th>
+                      <th scope="col">메모등록</th>
+                      <th scope="col">서류등록</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 신청서 이미지가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 신청서 이미지앨범 목록 행 -->
+                    <tr>
+                      <td>일반장학사업</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="application-album-memo-popup"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>
+                        <!-- 접수내역 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="application-album-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>일반장학사업</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                        <div
+                          class="tooltip type-memo"
+                          data-tooltip="신청자 제출서류를 확인한 후 보완 여부를 안내할 예정입니다."
+                          tabindex="0"
+                        >
+                          <div class="board-cell-title">
+                            신청자 제출서류를 확인한 후 보완 여부를 안내할 예정입니다.
+                          </div>
+                        </div>
+                      </td>
+                      <td>N</td>
+                    </tr>
+                    <tr>
+                      <td>일반장학사업</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                        <div class="tooltip type-memo" data-tooltip="자녀수 두명" tabindex="0">
+                          <div class="board-cell-title">자녀수 두명</div>
+                        </div>
+                      </td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>일반장학사업</td>
+                      <td>대학생-저소득가정</td>
+                      <td>저소득-대학 4학년</td>
+                      <td>홍*동</td>
+                      <td>1972.06.07</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <!-- 메모 팝업: 작성 버튼의 data-popup-open 값과 id 값을 맞춰 사용 -->
+            <div
+              class="popup"
+              data-popup
+              id="application-album-memo-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="application-album-memo-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="application-album-memo-popup-title">메모</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/recruitment/application-album-list.html" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        신청서 이미지앨범 메모 등록
+                      </caption>
+                      <colgroup>
+                        <col width="22%" />
+                        <col width="78%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">메모상태</th>
+                          <td>
+                            <div class="board-form-options">
+                              <label class="radio-label">
+                                <input type="radio" name="applicationAlbumMemoStatus" value="selected" />
+                                <span class="radio-label-text">선발</span>
+                              </label>
+                              <label class="radio-label">
+                                <input type="radio" name="applicationAlbumMemoStatus" value="pending" />
+                                <span class="radio-label-text">보류</span>
+                              </label>
+                              <label class="radio-label">
+                                <input type="radio" name="applicationAlbumMemoStatus" value="rejected" />
+                                <span class="radio-label-text">탈락</span>
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="applicationAlbumMemoContent">메모</label></th>
+                          <td>
+                            <textarea
+                              id="applicationAlbumMemoContent"
+                              name="applicationAlbumMemoContent"
+                              class="textarea"
+                              rows="8"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      저장
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+            <!-- 접수내역 상세 팝업 -->
+            <div
+              class="popup"
+              id="application-album-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="application-album-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="application-album-detail-popup-title">접수내역</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+            <section class="panel flex flex-col gap-4" aria-label="신청서 이미지앨범 접수내역">
+              <section class="board-section" aria-labelledby="application-album-application-title">
+                <h2 class="board-section-title sr-only" id="application-album-application-title">신청서 정보</h2>
+                <table class="board-form-table">
+                  <caption>
+                    신청서 이미지앨범 신청서 정보
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="32%" />
+                    <col width="18%" />
+                    <col width="32%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">운전자명(생년월일)</th>
+                      <td>홍길동(1958.02.18)</td>
+                      <th scope="row">화물운송자격증 이름</th>
+                      <td>홍길동</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">운전자 휴대폰번호</th>
+                      <td>010-1234-5678</td>
+                      <th scope="row">화물운송자격증 번호</th>
+                      <td>1-04-200000 <span class="text-blue font-bold">(검증성공)</span></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">접수상태</th>
+                      <td><span class="font-bold">접수완료</span></td>
+                      <th scope="row">유가보조이력 검증결과</th>
+                      <td>검증 <span class="text-blue font-bold">성공</span> (본인)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">차량번호</th>
+                      <td>경남99바1234</td>
+                      <th scope="row">유가보조이력 검증자명</th>
+                      <td>홍길동(1958.02.18)</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">화물업종</th>
+                      <td>개인중대형화물(구, 개별화물)</td>
+                      <th scope="row">가족관계증명 검증 결과</th>
+                      <td>가족관계증명 <span class="text-blue font-bold">(검증성공)</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section class="board-section" aria-labelledby="application-album-student-title">
+                <h2 class="board-section-title" id="application-album-student-title">학생정보</h2>
+                <div class="board-table-wrap">
+                  <table class="board-table">
+                    <caption>
+                      신청서 이미지앨범 학생정보
+                    </caption>
+                    <colgroup>
+                      <col width="8%" />
+                      <col width="13%" />
+                      <col width="13%" />
+                      <col width="16%" />
+                      <col width="12%" />
+                      <col width="12%" />
+                      <col width="12%" />
+                      <col width="14%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col">순번</th>
+                        <th scope="col">학생성명</th>
+                        <th scope="col">생년월일</th>
+                        <th scope="col">휴대폰번호</th>
+                        <th scope="col">학교구분</th>
+                        <th scope="col">학교학년</th>
+                        <th scope="col">최대학년</th>
+                        <th scope="col">학교이름</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="8" class="board-content-empty">등록된 학생정보가 없습니다.</td>
+                      </tr>
+                      <!-- 반복: 학생정보 행 -->
+                      <tr>
+                        <td>1</td>
+                        <td>홍아들</td>
+                        <td>2012.10.24</td>
+                        <td>010-1234-5678</td>
+                        <td>중학교</td>
+                        <td>1학년</td>
+                        <td>3학년</td>
+                        <td>천안월봉중학교</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="board-section" aria-labelledby="application-album-registered-document-title">
+                <div class="board-info-row">
+                  <h2 class="board-section-title" id="application-album-registered-document-title">등록 서류목록</h2>
+                </div>
+
+                <form
+                  action="/admin/recruitment/application-album-list.html"
+                  method="post"
+                  enctype="multipart/form-data"
+                >
+                  <table class="board-form-table">
+                    <caption>
+                      신청서 이미지앨범 등록 서류 선택 및 파일 첨부
+                    </caption>
+                    <colgroup>
+                      <col width="18%" />
+                      <col width="82%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="applicationAlbumDocumentType">서류선택</label></th>
+                        <td>
+                          <div class="flex items-center gap-2 row-type-file">
+                            <select
+                              id="applicationAlbumDocumentType"
+                              name="applicationAlbumDocumentType"
+                              class="form-control w-quarter"
+                            >
+                              <option value="">선택</option>
+                              <option value="family-relation">가족관계증명서(운전자명의로 발급)</option>
+                            </select>
+                            <input
+                              id="applicationAlbumDocumentFile"
+                              name="applicationAlbumDocumentFile"
+                              type="file"
+                              class="form-control"
+                              aria-label="첨부파일 선택"
+                            />
+                            <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                              저장
+                            </button>
+                            <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                              <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                              일괄다운로드
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+
+                <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                <!-- 목록 있는 경우 -->
+                <ul class="board-document-grid mt-2">
+                  <!-- 반복: 등록 서류 카드 -->
+                  <li class="board-document-item">
+                    <figure class="board-document-card">
+                      <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                      <a
+                        href="/common/images/main/info-image.png"
+                        class="board-document-thumb"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="파일 새창열기"
+                      >
+                        <img src="/common/images/main/info-image.png" alt="" />
+                      </a>
+                      <figcaption class="board-document-name">가족관계증명서(운전자명의로 발급).jpg</figcaption>
+                      <div class="board-table-actions">
+                        <a
+                          href="/common/images/main/info-image.png"
+                          class="btn variant-outline color-navy rounded-md size-sm"
+                          download
+                        >
+                          다운로드
+                        </a>
+                      </div>
+                    </figure>
+                  </li>
+                </ul>
+              </section>
+
+              <section class="board-section" aria-labelledby="application-album-unregistered-document-title">
+                <div class="board-info-row">
+                  <h2 class="board-section-title" id="application-album-unregistered-document-title">
+                    미등록 서류목록
+                  </h2>
+                </div>
+                <table class="board-form-table text-center">
+                  <caption>
+                    신청서 이미지앨범 미등록 서류목록
+                  </caption>
+                  <colgroup>
+                    <col width="100%" />
+                  </colgroup>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td class="board-content-empty">미등록 서류가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 미등록 서류 행 -->
+                    <tr>
+                      <td>추가가족증빙서류</td>
+                    </tr>
+                    <tr>
+                      <td>재학증명서_2</td>
+                    </tr>
+                    <tr>
+                      <td>재학증명서_3</td>
+                    </tr>
+                    <tr>
+                      <td>재학증명서_4</td>
+                    </tr>
+                    <tr>
+                      <td>재학증명서_5</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section class="board-section" aria-labelledby="application-album-message-title">
+                <div class="board-info-row">
+                  <h2 class="board-section-title" id="application-album-message-title">
+                    문자전송(수신 : 신청자 연락처 / 발신 : 02-761-0270)
+                  </h2>
+                </div>
+                <form action="/admin/recruitment/application-album-list.html" method="post">
+                  <table class="board-form-table">
+                    <caption>
+                      신청서 이미지앨범 신청자 문자전송
+                    </caption>
+                    <colgroup>
+                      <col width="18%" />
+                      <col width="82%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="applicationAlbumMessageContent">내용</label></th>
+                        <td>
+                          <div class="grid gap-2 row-type-message">
+                            <textarea
+                              id="applicationAlbumMessageContent"
+                              name="applicationAlbumMessageContent"
+                              class="textarea"
+                              rows="4"
+                            ></textarea>
+                            <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                              문자전송
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="board-form-actions justify-center">
+                    <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                      미등록 메시지
+                    </button>
+                    <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                      서류오류 메시지
+                    </button>
+                    <button type="button" class="btn variant-soft color-red rounded-md size-board-auto">
+                      메시지 삭제
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

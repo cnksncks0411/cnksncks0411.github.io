@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 협력업체 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="cooperation" data-section="partner" data-page="regular-checkup">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /cooperation/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 협력관리 좌측 메뉴 인클루드 영역: /cooperation/include/lnb-partner.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-partner" data-page="regular-checkup"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>건강검진 협약병원</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/cooperation/partner/regular-checkup-list.html">협력관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">건강검진 협약병원</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="regular-checkup-search-title">
+              <div class="board-info-row sr-only">
+                <h2 class="board-list-title" id="regular-checkup-search-title">조회조건</h2>
+              </div>
+              <form action="/cooperation/partner/regular-checkup-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      정기검진지원자 조건조회
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">모집구분</th>
+                        <td><span class="board-search-value">정기</span></td>
+                        <th scope="row"><label for="roundYear">년도회차</label></th>
+                        <td>
+                          <select id="roundYear" name="roundYear" class="form-control w-full">
+                            <option value="">2026001</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="hospitalName">병원명</label></th>
+                        <td>
+                          <select id="hospitalName" name="hospitalName" class="form-control w-full">
+                            <option value="">선택</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="checkupStatus">검진상태</label></th>
+                        <td>
+                          <select id="checkupStatus" name="checkupStatus" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">미처리</option>
+                            <option value="">예약완료</option>
+                            <option value="">검진완료</option>
+                            <option value="">결과입력완료(청구)</option>
+                            <option value="">지불완료</option>
+                            <option value="">자격취소(기간내미검진)</option>
+                            <option value="">검진포기</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="driverName">운전자명</label></th>
+                        <td>
+                          <input id="driverName" name="driverName" type="text" class="form-control w-full" autofocus />
+                        </td>
+                        <th scope="row"><label for="driverBirth">운전자 생년월일</label></th>
+                        <td>
+                          <input
+                            id="driverBirth"
+                            name="driverBirth"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                        <th scope="row"><label for="applicantName">대상자명</label></th>
+                        <td>
+                          <input id="applicantName" name="applicantName" type="text" class="form-control w-full" />
+                        </td>
+                        <th scope="row"><label for="applicantBirth">대상자 생년월일</label></th>
+                        <td>
+                          <input
+                            id="applicantBirth"
+                            name="applicantBirth"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">예약일자</th>
+                        <td colspan="3">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="reservationStartDate"
+                                name="reservationStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="예약일자 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="예약일자 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="reservationEndDate"
+                                name="reservationEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="예약일자 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="예약일자 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                        <th scope="row">검진일자</th>
+                        <td colspan="3">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="checkupStartDate"
+                                name="checkupStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="검진일자 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="검진일자 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="checkupEndDate"
+                                name="checkupEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="검진일자 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="검진일자 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="regular-checkup-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="regular-checkup-list-title">대상자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+              <div class="board-table-wrap scroll-x">
+                <table class="board-table">
+                  <caption>
+                    정기검진지원자 대상자목록
+                  </caption>
+                  <colgroup>
+                    <col width="5%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="9%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="11%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">회차</th>
+                      <th scope="col">운전자<br />생년월일</th>
+                      <th scope="col">운전자<br />성명</th>
+                      <th scope="col">연락처<br />(자택)</th>
+                      <th scope="col">연락처<br />(휴대폰)</th>
+                      <th scope="col">차량번호</th>
+                      <th scope="col">대상자<br />생년월일</th>
+                      <th scope="col">대상자<br />성명</th>
+                      <th scope="col">처리상태</th>
+                      <th scope="col">검진여부</th>
+                      <th scope="col">선발일자</th>
+                      <th scope="col">예약일자</th>
+                      <th scope="col">검진일자</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 내용 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="13" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 정기검진지원자 대상자목록 행 -->
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1991.01.28</td>
+                      <td>정*완</td>
+                      <td>031-1234-5678</td>
+                      <td>010-1234-5678</td>
+                      <td>대전87아2222</td>
+                      <td>1991.01.28</td>
+                      <td><span class="font-bold">정*완(남)</span></td>
+                      <td><span class="font-bold">결과입력완료(청구)</span></td>
+                      <td><span class="font-bold text-blue">검진</span></td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.09</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1988.04.12</td>
+                      <td>김*수</td>
+                      <td>02-1234-5678</td>
+                      <td>010-2345-6789</td>
+                      <td>서울80바1234</td>
+                      <td>1988.04.12</td>
+                      <td><span class="font-bold">김*수(남)</span></td>
+                      <td><span class="font-bold">예약완료</span></td>
+                      <td><span class="font-bold text-red">미검진</span></td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.12</td>
+                      <td></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1979.11.03</td>
+                      <td>박*영</td>
+                      <td>031-2222-5678</td>
+                      <td>010-3456-7890</td>
+                      <td>경기91사4567</td>
+                      <td>1979.11.03</td>
+                      <td><span class="font-bold">박*영(여)</span></td>
+                      <td><span class="font-bold">검진완료</span></td>
+                      <td><span class="font-bold text-blue">검진</span></td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.13</td>
+                      <td>2026.03.14</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1985.07.21</td>
+                      <td>이*호</td>
+                      <td>042-123-4567</td>
+                      <td>010-4567-8901</td>
+                      <td>대전82아7890</td>
+                      <td>1985.07.21</td>
+                      <td><span class="font-bold">이*호(남)</span></td>
+                      <td><span class="font-bold">미처리</span></td>
+                      <td><span class="font-bold text-red">미검진</span></td>
+                      <td>2026.03.09</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1993.02.18</td>
+                      <td>최*민</td>
+                      <td>051-987-6543</td>
+                      <td>010-5678-9012</td>
+                      <td>부산86자3456</td>
+                      <td>1993.02.18</td>
+                      <td><span class="font-bold">최*민(남)</span></td>
+                      <td><span class="font-bold">결과입력완료(청구)</span></td>
+                      <td><span class="font-bold text-blue">검진</span></td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.11</td>
+                      <td>2026.03.15</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1976.09.30</td>
+                      <td>장*희</td>
+                      <td>053-111-2222</td>
+                      <td>010-6789-0123</td>
+                      <td>대구90가1122</td>
+                      <td>1976.09.30</td>
+                      <td><span class="font-bold">장*희(여)</span></td>
+                      <td><span class="font-bold text-blue">지불완료</span></td>
+                      <td><span class="font-bold text-blue">검진</span></td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.10</td>
+                      <td>2026.03.13</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1990.12.05</td>
+                      <td>한*진</td>
+                      <td>062-555-6677</td>
+                      <td>010-7890-1234</td>
+                      <td>광주84하7788</td>
+                      <td>1990.12.05</td>
+                      <td><span class="font-bold">한*진(남)</span></td>
+                      <td><span class="font-bold text-red">검진포기</span></td>
+                      <td><span class="font-bold text-red">미검진</span></td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.16</td>
+                      <td></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1982.06.14</td>
+                      <td>오*석</td>
+                      <td>032-777-8888</td>
+                      <td>010-8901-2345</td>
+                      <td>인천88나9900</td>
+                      <td>1982.06.14</td>
+                      <td><span class="font-bold">오*석(남)</span></td>
+                      <td><span class="font-bold text-red">자격취소(기간내미검진)</span></td>
+                      <td><span class="font-bold text-red">미검진</span></td>
+                      <td>2026.03.09</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1995.05.09</td>
+                      <td>윤*아</td>
+                      <td>041-333-4444</td>
+                      <td>010-9012-3456</td>
+                      <td>충남81다3344</td>
+                      <td>1995.05.09</td>
+                      <td><span class="font-bold">윤*아(여)</span></td>
+                      <td><span class="font-bold">예약완료</span></td>
+                      <td><span class="font-bold text-red">미검진</span></td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.18</td>
+                      <td></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/regular-checkup-view.html"
+                      tabindex="0"
+                      aria-label="정기검진지원자 상세내역 보기"
+                    >
+                      <td>2026001</td>
+                      <td>1987.08.27</td>
+                      <td>서*준</td>
+                      <td>043-666-7777</td>
+                      <td>010-0123-4567</td>
+                      <td>충북89라5566</td>
+                      <td>1987.08.27</td>
+                      <td><span class="font-bold">서*준(남)</span></td>
+                      <td><span class="font-bold">검진완료</span></td>
+                      <td><span class="font-bold text-blue">검진</span></td>
+                      <td>2026.03.09</td>
+                      <td>2026.03.17</td>
+                      <td>2026.03.19</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <nav class="board-pagination" aria-label="정기검진지원자 대상자목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /cooperation/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/cooperation/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

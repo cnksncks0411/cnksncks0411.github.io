@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>대시보드현황 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="report" data-page="dashboard-status">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 레포트관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-report.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-report" data-page="dashboard-status"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>대시보드현황</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/report/application-status.html">레포트관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">대시보드현황</span>
+              </nav>
+            </div>
+
+            <nav class="board-tabs" aria-label="대시보드 기금 구분">
+              <!-- 기금 구분 탭: 개발 시 각 기금 유형에 맞는 데이터 조회 기능 연결 -->
+              <div class="board-tab-list">
+                <button type="button" class="board-tab active" aria-current="page">복지기금</button>
+                <button type="button" class="board-tab">카드기금</button>
+                <button type="button" class="board-tab">예금채권</button>
+                <button type="button" class="board-tab">기타기금</button>
+              </div>
+            </nav>
+
+            <section class="panel" aria-labelledby="dashboard-search-title">
+              <h2 class="board-list-title sr-only" id="dashboard-search-title">조회조건</h2>
+              <div class="flex justify-center gap-2">
+                <form
+                  class="flex justify-center gap-2"
+                  role="search"
+                  action="/admin_bak/report/dashboard-status.html"
+                  method="get"
+                >
+                  <table class="board-search-table w-auto">
+                    <caption>
+                      대시보드 정산년월 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="120" />
+                      <col width="*" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="settlementStartMonth">정산년월</label></th>
+                        <td>
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field">
+                              <input
+                                id="settlementStartMonth"
+                                name="settlementStartMonth"
+                                type="text"
+                                class="form-control"
+                                value="202601"
+                                aria-label="정산 시작년월"
+                              />
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field">
+                              <input
+                                id="settlementEndMonth"
+                                name="settlementEndMonth"
+                                type="text"
+                                class="form-control"
+                                value="202612"
+                                aria-label="정산 종료년월"
+                              />
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </form>
+                <!-- 신규 버튼: 개발 시 복지기금 정산내역 등록 기능 연결 -->
+                <button type="button" class="btn variant-solid color-gradient rounded-md size-board-auto">신규</button>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="welfare-fund-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="welfare-fund-list-title">정산내역</h2>
+                <!-- 엑셀 다운로드 버튼: 개발 시 복지기금 정산내역 다운로드 기능 연결 -->
+                <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                  <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                  엑셀 다운로드
+                </button>
+              </div>
+
+              <div class="board-table-wrap overflow-visible">
+                <table class="board-table">
+                  <caption>
+                    복지기금 정산내역
+                  </caption>
+                  <colgroup>
+                    <col width="9%" />
+                    <col width="12%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="9%" />
+                    <col width="10%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">정산년월</th>
+                      <th scope="col">합계금액</th>
+                      <th scope="col">장학사업</th>
+                      <th scope="col">건강검진</th>
+                      <th scope="col">4대중증</th>
+                      <th scope="col">교통사고</th>
+                      <th scope="col">수탁사업</th>
+                      <th scope="col">기타</th>
+                      <th scope="col">메모</th>
+                      <th scope="col">내역확인</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="10" class="board-content-empty">등록된 정산내역이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 복지기금 정산내역 행 -->
+                    <tr>
+                      <td>202605</td>
+                      <td>273,378</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>273,378</td>
+                      <td></td>
+                      <td>
+                        <!-- 수정 버튼: 개발 시 해당 정산년월 수정 기능 연결 -->
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">수정</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>202604</td>
+                      <td>405,553</td>
+                      <td>0</td>
+                      <td>149,117</td>
+                      <td>100,500</td>
+                      <td>25,000</td>
+                      <td>9,000</td>
+                      <td>121,936</td>
+                      <td></td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">수정</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>202603</td>
+                      <td>3,081,033</td>
+                      <td>2,885,000</td>
+                      <td>0</td>
+                      <td>96,000</td>
+                      <td>0</td>
+                      <td>100,000</td>
+                      <td>33</td>
+                      <td></td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">수정</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>202602</td>
+                      <td>2,829,450</td>
+                      <td>0</td>
+                      <td>1,574,944</td>
+                      <td>954,000</td>
+                      <td>187,000</td>
+                      <td>11,000</td>
+                      <td>102,506</td>
+                      <td>
+                        <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                        <div
+                          class="tooltip type-memo"
+                          data-tooltip="마우스를 올리면 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          <div class="board-cell-title">2022년 1월 복지기금 정산 메모 내용</div>
+                        </div>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">수정</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>202601</td>
+                      <td>1,234,567</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td></td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">수정</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="복지기금 정산내역 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="partner" data-page="legal-execution">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 협력관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-partner.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-partner" data-page="legal-execution"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>법률구조집행현황</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/partner/regular-checkup-list.html">협력관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">법률구조집행현황</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="legal-execution-search-title">
+              <div class="board-info-row align-right">
+                <h2 class="board-list-title sr-only" id="legal-execution-search-title">조회조건</h2>
+                <div class="board-info-actions">
+                  <!-- 일괄등록 버튼: 법률구조집행현황 일괄등록 팝업 노출 -->
+                  <button
+                    type="button"
+                    class="btn variant-outline color-navy rounded-md size-board-auto"
+                    data-popup-open="legal-execution-bulk-popup"
+                    aria-haspopup="dialog"
+                  >
+                    <span class="material-symbols-rounded" aria-hidden="true">upload_file</span>
+                    일괄등록
+                  </button>
+                </div>
+              </div>
+
+              <form action="/admin/partner/legal-execution-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      법률구조집행현황 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <label for="receptionOffice">접수처명</label>
+                        </th>
+                        <td>
+                          <input
+                            id="receptionOffice"
+                            name="receptionOffice"
+                            type="text"
+                            class="form-control w-full"
+                            value="법률구조공단"
+                            readonly
+                          />
+                        </td>
+                        <th scope="row">
+                          <label for="registrationYear">등록년도</label>
+                        </th>
+                        <td>
+                          <select id="registrationYear" name="registrationYear" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">2026년</option>
+                            <option value="">2025년</option>
+                            <option value="">2024년</option>
+                            <option value="">2023년</option>
+                            <option value="">2022년</option>
+                            <option value="">2021년</option>
+                            <option value="">2020년</option>
+                          </select>
+                        </td>
+                        <th scope="row">
+                          <label for="managementNumber">관리번호</label>
+                        </th>
+                        <td>
+                          <input
+                            id="managementNumber"
+                            name="managementNumber"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="cn000000000"
+                          />
+                        </td>
+                        <th scope="row">
+                          <label for="caseNumber">사건번호</label>
+                        </th>
+                        <td>
+                          <input id="caseNumber" name="caseNumber" type="text" class="form-control w-full" />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="legal-execution-summary-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="legal-execution-summary-title">집행현황금액집계</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+              <table class="board-table">
+                <caption>
+                  법률구조집행현황 금액 집계
+                </caption>
+                <colgroup>
+                  <col width="12.5%" />
+                  <col width="12.5%" />
+                  <col width="12.5%" />
+                  <col width="12.5%" />
+                  <col width="12.5%" />
+                  <col width="12.5%" />
+                  <col width="12.5%" />
+                  <col width="12.5%" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col" rowspan="2">구분</th>
+                    <th scope="colgroup" colspan="3">수입</th>
+                    <th scope="colgroup" colspan="3">지출</th>
+                    <th scope="col" rowspan="2">잔액</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">이자액</th>
+                    <th scope="col">회수금</th>
+                    <th scope="col">합계</th>
+                    <th scope="col">소송비용</th>
+                    <th scope="col">변호사비용</th>
+                    <th scope="col">합계</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 내용 없는 경우: hidden 속성을 제거하고 표시 -->
+                  <tr hidden>
+                    <td colspan="8" class="board-content-empty">등록된 내용이 없습니다.</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <!-- 월별 집계 링크: 클릭한 월 기준으로 하단 집행현황금액상세 데이터 조회/노출 -->
+                      <button
+                        type="button"
+                        class="board-link-text"
+                        data-detail-open
+                        aria-controls="legal-execution-detail"
+                        aria-expanded="false"
+                      >
+                        2026년 1월
+                      </button>
+                    </td>
+                    <td class="text-right">156,000</td>
+                    <td class="text-right">18,400</td>
+                    <td class="text-right">174,400</td>
+                    <td class="text-right">35,000</td>
+                    <td class="text-right">120,000</td>
+                    <td class="text-right">155,000</td>
+                    <td class="text-right">19,400</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <button
+                        type="button"
+                        class="board-link-text"
+                        data-detail-open
+                        aria-controls="legal-execution-detail"
+                        aria-expanded="false"
+                      >
+                        2026년 2월
+                      </button>
+                    </td>
+                    <td class="text-right">183,384</td>
+                    <td class="text-right">25,755</td>
+                    <td class="text-right">209,139</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">260,000</td>
+                    <td class="text-right">260,000</td>
+                    <td class="text-right">-50,861</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <button
+                        type="button"
+                        class="board-link-text"
+                        data-detail-open
+                        aria-controls="legal-execution-detail"
+                        aria-expanded="false"
+                      >
+                        2026년 3월
+                      </button>
+                    </td>
+                    <td class="text-right">210,500</td>
+                    <td class="text-right">31,200</td>
+                    <td class="text-right">241,700</td>
+                    <td class="text-right">42,000</td>
+                    <td class="text-right">180,000</td>
+                    <td class="text-right">222,000</td>
+                    <td class="text-right">19,700</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">
+                      <button
+                        type="button"
+                        class="board-link-text"
+                        data-detail-open
+                        aria-controls="legal-execution-detail"
+                        aria-expanded="false"
+                      >
+                        2026년 4월
+                      </button>
+                    </td>
+                    <td class="text-right">198,250</td>
+                    <td class="text-right">27,850</td>
+                    <td class="text-right">226,100</td>
+                    <td class="text-right">50,000</td>
+                    <td class="text-right">150,000</td>
+                    <td class="text-right">200,000</td>
+                    <td class="text-right">26,100</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <nav class="board-pagination" aria-label="법률구조집행현황 집계 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 집계의 구분 클릭 시 아래 집행현황금액상세 데이터 표시 -->
+            <section class="panel" id="legal-execution-detail" aria-labelledby="legal-execution-detail-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="legal-execution-detail-title">집행현황금액상세</h2>
+                <div class="board-info-actions">
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+              <table class="board-table">
+                <caption>
+                  법률구조집행현황 금액 상세
+                </caption>
+                <colgroup>
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th scope="col" rowspan="2">관리번호</th>
+                    <th scope="col" rowspan="2">사건번호</th>
+                    <th scope="col" rowspan="2">의뢰자명</th>
+                    <th scope="colgroup" colspan="3">수입</th>
+                    <th scope="colgroup" colspan="3">지출</th>
+                    <th scope="col" rowspan="2">잔액</th>
+                  </tr>
+                  <tr>
+                    <th scope="col">이자액</th>
+                    <th scope="col">회수금</th>
+                    <th scope="col">합계</th>
+                    <th scope="col">소송비용</th>
+                    <th scope="col">변호사비용</th>
+                    <th scope="col">합계</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                  <tr hidden>
+                    <td colspan="10" class="board-content-empty">등록된 내용이 없습니다.</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">cn241014001</td>
+                    <td class="text-center">2024민가07157</td>
+                    <td class="text-center">이순신</td>
+                    <td class="text-right">84,047</td>
+                    <td class="text-right">25,755</td>
+                    <td class="text-right">109,802</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                    <td class="text-right">0</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <nav class="board-pagination" aria-label="법률구조집행현황 상세 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 법률구조집행현황 일괄등록 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="legal-execution-bulk-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="legal-execution-bulk-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="legal-execution-bulk-popup-title">법률구조집행현황 일괄등록</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        법률구조집행현황 일괄등록
+                      </caption>
+                      <colgroup>
+                        <col width="13%" />
+                        <col width="37%" />
+                        <col width="13%" />
+                        <col width="37%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">
+                            <label for="executionBulkExcelFile">파일등록</label>
+                          </th>
+                          <td>
+                            <div class="flex items-center gap-2 row-type-file">
+                              <input
+                                id="executionBulkExcelFile"
+                                name="executionBulkExcelFile"
+                                type="file"
+                                class="form-control w-full"
+                              />
+                            </div>
+                          </td>
+                          <th scope="row">엑셀양식</th>
+                          <td>
+                            <!-- 엑셀양식다운로드 버튼: 개발 시 양식 파일 경로 연결 -->
+                            <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                              <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                              엑셀양식다운로드
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="popup-guide text-center">
+                      <p>등록할 엑셀파일을 업로드 하시기 바랍니다.</p>
+                      <p>엑셀양식 버튼을 누르면 양식을 다운로드 할 수 있습니다.</p>
+                      <br />
+                      <p class="font-bold text-red">반드시 지정된 엑셀양식으로 업로드하시기 바랍니다.</p>
+                    </div>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      등록하기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

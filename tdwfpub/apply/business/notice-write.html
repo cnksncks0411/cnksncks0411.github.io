@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>개인정보동의 | 사업신청 | 화물복지재단 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="business" data-page="notice">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li><a href="/apply/business/notice.html">지원사업정보</a></li>
+              <li><a href="/apply/business/notice.html">사업전체공고</a></li>
+              <li><a href="/apply/business/notice-view.html">공고상세</a></li>
+              <li aria-current="page" data-breadcrumb-current>사업신청</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 지원사업정보 LNB 인클루드 영역: common/include/apply/lnb-business.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-business" data-page="notice"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">사업신청</h1>
+              <div class="sub-intro">
+                <strong>화물복지재단에서 진행하는 <em>복지사업</em>입니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <div class="table-wrap">
+                <table class="board-form-table">
+                  <caption>
+                    신청 사업 정보
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="36%" />
+                    <col width="14%" />
+                    <col width="36%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">사업명</th>
+                      <td>2026년 일반장학사업</td>
+                      <th scope="row">신청기간</th>
+                      <td>2026-05-18 ~ 2026-06-30</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ol class="board-step-list" aria-label="사업신청 진행 단계">
+                <li class="board-step-item active" aria-current="step">개인정보 동의</li>
+                <li class="board-step-item">검증조회</li>
+                <li class="board-step-item">운전자정보</li>
+                <li class="board-step-item">지원자정보</li>
+                <li class="board-step-item">제출서류등록</li>
+                <li class="board-step-item">접수확인</li>
+                <li class="board-step-item">서약서</li>
+              </ol>
+
+              <form class="board-write-form" action="/apply/business/notice-write-step2.html" method="get" data-agree>
+                <h2 class="sub-section-title-style02">개인정보 수집·이용 및 제3자 제공 동의</h2>
+
+                <section class="board-write-section" aria-labelledby="all-agreement-title">
+                  <h2 id="all-agreement-title" class="sub-section-title">전체동의</h2>
+                  <label class="check-label" for="application-agree-all">
+                    <input
+                      id="application-agree-all"
+                      type="checkbox"
+                      aria-label="아래의 개인정보 수집·이용 및 제3자 제공 사항에 모두 동의합니다."
+                      data-agree-all
+                    />
+                    <span class="check-label-text">아래의 사항에 모두 동의합니다.</span>
+                  </label>
+
+                  <div class="grid gap-1">
+                    <p class="note-line text-warning">아래 사항에 대해 동의를 거부할 수 있습니다.</p>
+                    <p class="note-line text-warning">
+                      다만 동의가 없을 경우 대상자 심사 및 선발 진행이 불가능함을 알려드립니다.
+                    </p>
+                  </div>
+                </section>
+
+                <section class="board-write-section" aria-labelledby="collection-agreement-title">
+                  <h2 id="collection-agreement-title" class="sub-section-title">개인정보의 수집·이용 동의</h2>
+                  <div class="table-wrap">
+                    <table class="board-form-table">
+                      <caption>
+                        개인정보 수집 및 이용 안내
+                      </caption>
+                      <colgroup>
+                        <col width="22%" />
+                        <col width="78%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">수집·이용 목적</th>
+                          <td>
+                            <ul class="list-bullet">
+                              <li>
+                                신청내용 및 제출자료 진위확인, 신청과 관련한 자격사항 및 이력(유가보조금 지급 내역 등)
+                                조회·검증, 지급과 관련한 지급정보 조회·검증, 대상자 심사 및 선발 등 복지사업의 원활한
+                                수행
+                              </li>
+                              <li>지침에 따른 복지사업의 중복(이중) 수혜 방지 및 분쟁해결·민원처리</li>
+                              <li>
+                                통계작성, 이용자 만족도 조사, 이벤트 지급 등 복지사업 수행 및 관리에 필요한 제반 업무 등
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">수집·이용할 항목 (필수)</th>
+                          <td>
+                            <ul class="list-bullet">
+                              <li>
+                                성명, 생년월일, 화물운송종사자격번호, 차량번호, 업종, 차종, 신청자의 경력, 차량톤수,
+                                자택주소, 휴대폰번호, 은행명, 계좌정보와 신청인의 관계, 계좌 예금주, 계좌번호
+                              </li>
+                              <li>
+                                지원자 성명, 지원자와 신청인과의 관계, 지원자의 생년월일, 지원자의 휴대폰 번호, 지원자의
+                                학교 구분(중, 고, 대), 학교명, 학년 및 학기, 지원자의 전공(대학교 한정)
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">수집·이용할 항목 (선택)</th>
+                          <td>
+                            <ul class="list-bullet">
+                              <li>
+                                신청자와 지원자의 이메일, 회사상호, 자택 전화번호, 지원자 전화번호, 지원자의 전공, 편입
+                                및 복학 여부, 가족과 신청자와의 관계, 가족의 출생년월일, 가족의 성별, 후원사 주유보너스
+                                카드실적
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">보유·이용 기간</th>
+                          <td>
+                            <ul class="list-bullet">
+                              <li>
+                                위 개인(신용) 정보는 수집·이용에 관한 동의일로부터 복지사업 지원종료 후 3년까지 위 이용
+                                목적을 위하여 보유·이용하게 됩니다. 단, 이후에도 재단 복지사업의 지침 위배 사항 및
+                                타기관과의 중복(이중) 수혜 여부, 통계자료 작성, 기타 관계기관의 정보 요청에 대하여
+                                필요한 경우 최소한의 정보에 한하여 보유·이용할 수 있습니다.
+                              </li>
+                            </ul>
+                            <p class="note-line">
+                              필요에 의한 최소한의 정보 : 신청자(대상자) 성명, 생년월일, 은행, 예금주, 계좌번호 등
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>위와 같이 개인(신용)정보를 수집·이용하는 것에 동의합니다.</p>
+                  <label class="check-label" for="agree-collection">
+                    <input id="agree-collection" type="checkbox" name="agreeCollection" required data-agree-item />
+                    <span class="check-label-text">개인정보를 수집·이용하는 것에 동의합니다.</span>
+                  </label>
+                  <p class="note-line text-warning">
+                    상기 사항에 대해 동의를 거부할 수 있습니다. 다만 동의가 없을 경우 대상자 심사 및 선발 진행이
+                    불가능함을 알려드립니다.
+                  </p>
+                </section>
+
+                <section class="board-write-section" aria-labelledby="provision-agreement-title">
+                  <h2 id="provision-agreement-title" class="sub-section-title">개인정보 제3자 제공 동의</h2>
+                  <div class="table-wrap">
+                    <table class="board-form-table">
+                      <caption>
+                        개인정보 제3자 제공 안내
+                      </caption>
+                      <colgroup>
+                        <col width="22%" />
+                        <col width="78%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">제공·조회 대상기관</th>
+                          <td>
+                            <ul class="list-bullet">
+                              <li>
+                                전국화물자동차운송사업연합회 및 각 지부, 전국개인소형화물자동차운송사업연합회 및 각
+                                지부, 전국개인중대형화물자동차운송사업연합회 및 각 지부, 화물 연대 및 각 지부,
+                                국토교통부, 만족도 조사업체, 금융·정보·서비스업체
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">제공목적</th>
+                          <td>
+                            <ul class="list-bullet">
+                              <li>이중 수혜자 관리, 단체별 대상자 관리를 위한 목적, 통계 등 목적에 사용</li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">제공·조회할 항목</th>
+                          <td>
+                            <ul class="list-bullet">
+                              <li>
+                                성명, 생년월일, 연락처, 차량번호, 업종, 주소, 연락처, 은행명, 예금주, 계좌번호, 지원자
+                                성명, 관계, 생년월일, 지원자 연락처, 학교, 학년, 학기, 전공(대학생에 한함)
+                              </li>
+                            </ul>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">보유·이용 기간</th>
+                          <td>
+                            <ul class="list-bullet">
+                              <li>제공목적(장학금 신청 및 지급결과 확인, 장학증서 발송) 달성시</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>(필수) 위와 같이 개인정보를 제공·조회하는 것에 동의합니다.</p>
+                  <label class="check-label" for="agree-provision">
+                    <input id="agree-provision" type="checkbox" name="agreeProvision" required data-agree-item />
+                    <span class="check-label-text">개인정보를 제공·조회하는 것에 동의합니다.</span>
+                  </label>
+                  <p class="note-line text-warning">
+                    상기 사항에 대해 동의를 거부할 수 있습니다. 다만 동의가 없을 경우 대상자 심사 및 선발 진행이
+                    불가능함을 알려드립니다.
+                  </p>
+                </section>
+
+                <div class="board-guide-box mb-0">
+                  <div class="flex items-start justify-between gap-4 flex-wrap">
+                    <p class="board-write-confirm">
+                      본인은 “개인정보 수집·이용 및 제3자 제공 동의서” 내용을 자세히 읽고<br />
+                      명확히 이해하였으며, 이에 동의합니다.
+                    </p>
+                    <div class="board-write-sign">
+                      <p><time datetime="2026-06-17">2026년 06월 17일</time></p>
+                      <p>동의자: 김회원</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="board-footer-actions type-grid">
+                  <!-- 
+                    퍼블리싱용 화면 이동 버튼입니다.
+                    개발 연동 시 아래 주석 처리된 버튼 사용해주세요.
+                  -->
+                  <a href="/apply/business/notice-write-step2.html" class="btn variant-solid color-blue size-lg">
+                    저장 후 다음단계
+                  </a>
+                  <!-- <button type="submit" class="btn variant-solid color-blue size-lg">저장 후 다음단계</button> -->
+                  <!-- 클릭 시 신청취소 팝업창 열림 -->
+                  <button
+                    type="button"
+                    class="btn variant-solid color-red size-lg mobile-w-full"
+                    data-popup-open="application-cancel-popup"
+                  >
+                    신청취소
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 신청취소 확인 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="application-cancel-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="application-cancel-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-sm" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="application-cancel-popup-title">접수취소</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <p class="text-center">
+            접수 취소하시면 지금까지<br />
+            작성한 내용이 <span class="font-bold text-red">삭제</span>됩니다.<br />
+            <span class="font-bold text-red">정말 취소 하시겠습니까?</span>
+          </p>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-red size-sm" data-popup-close>확인</button>
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

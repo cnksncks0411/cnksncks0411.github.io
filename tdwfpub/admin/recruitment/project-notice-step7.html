@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="recruitment" data-page="project-notice">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 신청관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-recruitment.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-recruitment" data-page="project-notice"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>공고등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/recruitment/project-notice-list.html">신청관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">공고등록</span>
+              </nav>
+            </div>
+
+            <!-- 등록 단계 네비게이션: 현재 단계 li에 active, 지나온 단계 li에 done 클래스를 추가합니다. -->
+            <ol class="board-step-list" aria-label="사업공고 등록 단계">
+              <li class="step-item done">
+                <span class="step-num">Step 1</span>
+                <span class="step-name">공고등록</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 2</span>
+                <span class="step-name">선발부문</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 3</span>
+                <span class="step-name">전형유형</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 4</span>
+                <span class="step-name">개인정보동의</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 5</span>
+                <span class="step-name">검증조회</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 6</span>
+                <span class="step-name">운전자/지원자 정보</span>
+              </li>
+              <li class="step-item active">
+                <span class="step-num">Step 7</span>
+                <span class="step-name">제출서류</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">Step 8</span>
+                <span class="step-name">서약서</span>
+              </li>
+            </ol>
+
+            <form class="flex flex-col gap-1" method="post">
+              <section class="panel" aria-labelledby="submission-document-title">
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="submission-document-title">제출서류</h2>
+                  <div class="board-info-actions">
+                    <div class="board-button-options" role="radiogroup" aria-label="제출서류 사용 여부">
+                      <label class="button-option">
+                        <input type="radio" name="submissionDocumentUse" checked />
+                        <span class="button-option-text">사용</span>
+                      </label>
+                      <label class="button-option">
+                        <input type="radio" name="submissionDocumentUse" />
+                        <span class="button-option-text">미사용</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <table class="board-form-table">
+                  <caption>
+                    제출서류 조회
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="*" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">사업명</th>
+                      <td>일반장학사업</td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="documentKeyword">제출서류 조회</label></th>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <!-- 키워드 입력 시 아래 목록에서 일치하는 서류만 노출됩니다. 개발 연동 시 목록을 조회 결과로 교체합니다. -->
+                          <div class="board-suggest w-half" data-suggest>
+                            <input
+                              id="documentKeyword"
+                              name="documentKeyword"
+                              type="text"
+                              class="form-control w-full"
+                              placeholder="서류명을 입력하세요."
+                              autocomplete="off"
+                              role="combobox"
+                              aria-expanded="false"
+                              aria-autocomplete="list"
+                              aria-controls="documentSuggestList"
+                              data-suggest-input
+                            />
+                            <ul
+                              class="board-suggest-list"
+                              id="documentSuggestList"
+                              role="listbox"
+                              data-suggest-list
+                              hidden
+                            >
+                              <!-- 반복: 제출서류 후보 -->
+                              <li class="suggest-item" role="option" data-suggest-item>화물운송자격취득 확인서</li>
+                              <li class="suggest-item" role="option" data-suggest-item>화물운송자격취득 확인서_2</li>
+                              <li class="suggest-item" role="option" data-suggest-item>화물자동차 등록증</li>
+                              <li class="suggest-item" role="option" data-suggest-item>화물차 운행기록 증명서</li>
+                              <li class="suggest-item" role="option" data-suggest-item>주민등록등본</li>
+                              <li class="suggest-item" role="option" data-suggest-item>가족관계증명서</li>
+                              <li class="suggest-item" role="option" data-suggest-item>재학증명서</li>
+                              <li class="suggest-item" role="option" data-suggest-item>성적증명서</li>
+                              <li class="suggest-item" role="option" data-suggest-item>통장사본</li>
+                              <!-- 검색 결과 없는 경우 노출 -->
+                              <li class="suggest-empty" data-suggest-empty hidden>검색 결과가 없습니다.</li>
+                            </ul>
+                          </div>
+                          <button type="button" class="btn variant-solid color-navy rounded-md size-search-input">
+                            추가
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-table-wrap mt-2">
+                  <table class="board-table">
+                    <caption>
+                      선택한 제출서류 목록
+                    </caption>
+                    <colgroup>
+                      <col width="26%" />
+                      <col width="8%" />
+                      <col width="56%" />
+                      <col width="10%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col">제출서류명</th>
+                        <th scope="col">필수</th>
+                        <th scope="col">설명</th>
+                        <th scope="col">삭제</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="4" class="board-content-empty">
+                          제출 서류를 조회 후 추가 버튼을 클릭하여 제출 서류를 등록해 주세요.
+                        </td>
+                      </tr>
+                      <!-- 반복: 추가된 제출서류 행 -->
+                      <tr>
+                        <td>화물운송자격취득 확인서</td>
+                        <td>
+                          <label class="check-label">
+                            <input
+                              type="checkbox"
+                              name="documentRequired"
+                              value="1"
+                              checked
+                              aria-label="화물운송자격취득 확인서 필수"
+                            />
+                            <span class="check-label-text"></span>
+                          </label>
+                        </td>
+                        <td>전산조회 실패 시 ‘화물운송자격취득 확인서’ 발급 후 제출</td>
+                        <td>
+                          <button type="button" class="btn variant-soft color-red rounded-md size-sm">삭제</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <div class="board-form-actions mt-0">
+                <a
+                  href="/admin/recruitment/project-notice-step6.html"
+                  class="btn variant-solid color-blue rounded-md size-board-action mr-auto"
+                >
+                  이전단계
+                </a>
+                <!--
+                  퍼블리싱용 화면 이동 버튼입니다.
+                  개발 연동 시 아래 주석 처리된 버튼 사용해주세요.
+                -->
+                <a
+                  href="/admin/recruitment/project-notice-step8.html"
+                  class="btn variant-solid color-navy rounded-md size-board-action"
+                >
+                  저장 후 다음단계
+                </a>
+                <!-- <button type="button" class="btn variant-solid color-navy rounded-md size-board-action">
+                  저장 후 다음단계
+                </button> -->
+                <a
+                  href="/admin/recruitment/project-notice-list.html"
+                  class="btn variant-outline color-navy rounded-md size-board-action"
+                >
+                  취소하기
+                </a>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

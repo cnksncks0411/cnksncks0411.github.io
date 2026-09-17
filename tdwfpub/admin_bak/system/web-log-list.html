@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>웹로그관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="system" data-page="web-log">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 시스템관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-system.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-system" data-page="web-log"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>웹로그관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/system/permission-list.html">시스템관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">웹로그관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="web-log-search-title">
+              <h2 class="sr-only" id="web-log-search-title">웹로그 조회조건</h2>
+              <form class="flex gap-2" role="search" action="/admin_bak/system/web-log-list.html" method="get">
+                <table class="board-search-table">
+                  <caption>
+                    웹로그 조회조건
+                  </caption>
+                  <colgroup>
+                    <col width="15%" />
+                    <col width="25%" />
+                    <col width="15%" />
+                    <col width="45%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row"><label for="webLogSiteType">사이트 구분</label></th>
+                      <td>
+                        <select id="webLogSiteType" name="webLogSiteType" class="form-control w-full">
+                          <option value="" selected>선택</option>
+                          <option value="">사용자</option>
+                          <option value="">관리자</option>
+                          <option value="">협력업체</option>
+                        </select>
+                      </td>
+                      <th scope="row"><label for="webLogStartDate">기간</label></th>
+                      <td>
+                        <div class="board-search-date-range">
+                          <div class="board-search-date-field" data-datepicker-wrap>
+                            <input
+                              id="webLogStartDate"
+                              name="webLogStartDate"
+                              type="text"
+                              class="form-control"
+                              aria-label="조회 시작일"
+                              data-datepicker-input
+                              data-input
+                            />
+                            <button
+                              type="button"
+                              class="btn-calendar"
+                              aria-label="조회 시작일 선택"
+                              data-datepicker-toggle
+                              data-toggle
+                            >
+                              <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                            </button>
+                          </div>
+                          <span class="board-search-date-separator">~</span>
+                          <div class="board-search-date-field" data-datepicker-wrap>
+                            <input
+                              id="webLogEndDate"
+                              name="webLogEndDate"
+                              type="text"
+                              class="form-control"
+                              aria-label="조회 종료일"
+                              data-datepicker-input
+                              data-input
+                            />
+                            <button
+                              type="button"
+                              class="btn-calendar"
+                              aria-label="조회 종료일 선택"
+                              data-datepicker-toggle
+                              data-toggle
+                            >
+                              <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="web-log-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="web-log-list-title">로그 내역</h2>
+                <div class="board-info-actions">
+                  <!-- 엑셀 다운로드 버튼: 개발 시 웹로그 내역 다운로드 기능 연결 -->
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap mt-2">
+                <table class="board-table" aria-labelledby="web-log-list-title">
+                  <caption>
+                    웹로그 내역 목록
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="20%" />
+                    <col width="12%" />
+                    <col width="32%" />
+                    <col width="18%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">로그ID</th>
+                      <th scope="col">요청일시</th>
+                      <th scope="col">사이트 구분</th>
+                      <th scope="col">요청URL</th>
+                      <th scope="col">사용자 고유ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="5" class="board-content-empty">등록된 웹로그 내역이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 웹로그 내역 행 -->
+                    <tr>
+                      <td>WEBLOG_5394369</td>
+                      <td>2026-07-13 17:09:09</td>
+                      <td>협력업체</td>
+                      <td>/cooperation/<wbr />usermgmt/<wbr />selectHistoryInfoPaggingAjax.do</td>
+                      <td>USR_0000000000130570</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

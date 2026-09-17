@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>설문조사 등록 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="survey">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="survey"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>설문조사 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/survey-list.html">설문조사관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">설문조사 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="survey-write-title">
+              <h2 class="sr-only" id="survey-write-title">설문조사 등록</h2>
+              <form action="/admin_bak/site/survey-list.html" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    설문조사 기본정보
+                  </caption>
+                  <colgroup>
+                    <col width="17%" />
+                    <col width="83%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="surveyTitle">설문조사명<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input id="surveyTitle" name="surveyTitle" type="text" class="form-control w-full" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="surveyQuestionCount">문항수<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <select
+                            id="surveyQuestionCount"
+                            name="surveyQuestionCount"
+                            class="form-control w-auto"
+                            required
+                          >
+                            <option value="">선택</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5" selected>5</option>
+                          </select>
+                          <span>개</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">게시상태<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="surveyPublishStatus" value="public" checked required />
+                            <span class="radio-label-text">공개</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="surveyPublishStatus" value="private" />
+                            <span class="radio-label-text">비공개</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">게시기간<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="flex items-center gap-3" data-datepicker-range>
+                          <div class="flex items-center gap-2">
+                            <div class="board-search-date-field" data-datepicker-wrap>
+                              <input
+                                id="surveyStartDate"
+                                name="surveyStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="게시 시작 날짜"
+                                data-datepicker-input
+                                data-input
+                                required
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="게시 시작 날짜 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <select
+                              class="form-control w-auto"
+                              name="surveyStartHour"
+                              aria-label="게시 시작 시"
+                              required
+                            >
+                              <option value="00">00</option>
+                              <option value="09">09</option>
+                              <option value="12">12</option>
+                              <option value="18">18</option>
+                              <option value="23">23</option>
+                            </select>
+                            <span class="font-bold">H</span>
+                            <select
+                              class="form-control w-auto"
+                              name="surveyStartMinute"
+                              aria-label="게시 시작 분"
+                              required
+                            >
+                              <option value="00">00</option>
+                              <option value="10">10</option>
+                              <option value="20">20</option>
+                              <option value="30">30</option>
+                              <option value="40">40</option>
+                              <option value="50">50</option>
+                            </select>
+                            <span class="font-bold">M</span>
+                          </div>
+                          <span class="board-search-date-separator">~</span>
+                          <div class="flex items-center gap-2">
+                            <div class="board-search-date-field" data-datepicker-wrap>
+                              <input
+                                id="surveyEndDate"
+                                name="surveyEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="게시 종료 날짜"
+                                data-datepicker-input
+                                data-input
+                                required
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="게시 종료 날짜 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <select class="form-control w-auto" name="surveyEndHour" aria-label="게시 종료 시" required>
+                              <option value="00">00</option>
+                              <option value="09">09</option>
+                              <option value="12">12</option>
+                              <option value="18">18</option>
+                              <option value="23">23</option>
+                            </select>
+                            <span class="font-bold">H</span>
+                            <select
+                              class="form-control w-auto"
+                              name="surveyEndMinute"
+                              aria-label="게시 종료 분"
+                              required
+                            >
+                              <option value="00">00</option>
+                              <option value="10">10</option>
+                              <option value="20">20</option>
+                              <option value="30">30</option>
+                              <option value="40">40</option>
+                              <option value="50">50</option>
+                            </select>
+                            <span class="font-bold">M</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="surveyDescription">설문 안내 문구<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <textarea
+                          id="surveyDescription"
+                          name="surveyDescription"
+                          class="textarea"
+                          rows="7"
+                          required
+                        ></textarea>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions justify-center">
+                  <button type="button" class="btn variant-solid color-navy rounded-md size-board-action">
+                    생성하기
+                  </button>
+                </div>
+
+                <!-- 질문 입력 영역 -->
+                <div class="flex flex-col gap-4">
+                  <!-- 문항수에 따라 아래 survey-question-item 영역이 반복 생성됩니다. -->
+                  <div class="survey-question-item">
+                    <h3 class="board-section-title">질문 1</h3>
+                    <table class="board-form-table">
+                      <caption>
+                        질문 1 등록 정보
+                      </caption>
+                      <colgroup>
+                        <col width="12%" />
+                        <col width="88%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row"><label for="surveyQuestion1">질문</label></th>
+                          <td>
+                            <div class="flex items-center gap-2">
+                              <input
+                                id="surveyQuestion1"
+                                name="surveyQuestion1"
+                                type="text"
+                                class="form-control w-full"
+                              />
+                              <select
+                                id="surveyQuestionType1"
+                                name="surveyQuestionType1"
+                                class="form-control w-quarter"
+                                aria-label="질문 1 유형"
+                              >
+                                <option value="">질문유형선택</option>
+                                <option value="five">5지선다형</option>
+                                <option value="four">4지선다형</option>
+                                <option value="three">3지선다형</option>
+                                <option value="two">2지선다형</option>
+                                <option value="short">단답형</option>
+                                <option value="long">서술형</option>
+                              </select>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">5지선다형</th>
+                          <td>
+                            <div class="grid grid-cols-5 gap-3">
+                              <input
+                                type="text"
+                                name="surveyQuestion1FiveOption1"
+                                class="form-control w-full"
+                                placeholder="매우 만족"
+                                aria-label="5지선다형 첫 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1FiveOption2"
+                                class="form-control w-full"
+                                placeholder="만족"
+                                aria-label="5지선다형 두 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1FiveOption3"
+                                class="form-control w-full"
+                                placeholder="보통"
+                                aria-label="5지선다형 세 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1FiveOption4"
+                                class="form-control w-full"
+                                placeholder="불만족"
+                                aria-label="5지선다형 네 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1FiveOption5"
+                                class="form-control w-full"
+                                placeholder="매우 불만족"
+                                aria-label="5지선다형 다섯 번째 항목"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">4지선다형</th>
+                          <td>
+                            <div class="grid grid-cols-5 gap-3">
+                              <input
+                                type="text"
+                                name="surveyQuestion1FourOption1"
+                                class="form-control w-full"
+                                placeholder="만족"
+                                aria-label="4지선다형 첫 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1FourOption2"
+                                class="form-control w-full"
+                                placeholder="보통"
+                                aria-label="4지선다형 두 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1FourOption3"
+                                class="form-control w-full"
+                                placeholder="불만족"
+                                aria-label="4지선다형 세 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1FourOption4"
+                                class="form-control w-full"
+                                placeholder="기타"
+                                aria-label="4지선다형 네 번째 항목"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3지선다형</th>
+                          <td>
+                            <div class="grid grid-cols-5 gap-3">
+                              <input
+                                type="text"
+                                name="surveyQuestion1ThreeOption1"
+                                class="form-control w-full"
+                                placeholder="그렇다"
+                                aria-label="3지선다형 첫 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1ThreeOption2"
+                                class="form-control w-full"
+                                placeholder="보통이다"
+                                aria-label="3지선다형 두 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1ThreeOption3"
+                                class="form-control w-full"
+                                placeholder="그렇지 않다"
+                                aria-label="3지선다형 세 번째 항목"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2지선다형</th>
+                          <td>
+                            <div class="grid grid-cols-5 gap-3">
+                              <input
+                                type="text"
+                                name="surveyQuestion1TwoOption1"
+                                class="form-control w-full"
+                                placeholder="예"
+                                aria-label="2지선다형 첫 번째 항목"
+                              />
+                              <input
+                                type="text"
+                                name="surveyQuestion1TwoOption2"
+                                class="form-control w-full"
+                                placeholder="아니오"
+                                aria-label="2지선다형 두 번째 항목"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="surveyQuestion1Other">기타</label></th>
+                          <td>
+                            <div class="flex items-center gap-3">
+                              <input
+                                id="surveyQuestion1Other"
+                                name="surveyQuestion1Other"
+                                type="text"
+                                class="form-control w-half"
+                              />
+                              <label class="check-label">
+                                <input type="checkbox" name="surveyQuestion1OtherEnabled" value="enabled" />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="board-form-actions justify-center">
+                  <button
+                    type="button"
+                    class="btn variant-solid color-blue rounded-md size-board-action"
+                    data-popup-open="survey-preview-popup"
+                    aria-haspopup="dialog"
+                  >
+                    미리보기
+                  </button>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                    저장하기
+                  </button>
+                  <a
+                    href="/admin_bak/site/survey-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    목록으로
+                  </a>
+                </div>
+              </form>
+            </section>
+
+            <!-- 설문조사 미리보기 팝업: 미리보기 버튼의 data-popup-open 값과 id 값을 맞춰 사용 -->
+            <div
+              class="popup"
+              data-popup
+              id="survey-preview-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="survey-preview-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg survey-preview-popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="survey-preview-popup-title">설문조사 미리보기</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+
+                <div class="popup-body survey-preview-body">
+                  <div class="survey-preview-intro">
+                    <span class="survey-preview-label">설문조사</span>
+                    <h3>항상 화물복지재단에 관심을 가져주심에 감사드립니다.</h3>
+                    <p>
+                      본 조사는 화물복지재단에 대한 이용자의 만족도를 조사하고 다양한 의견을 수렴하여 향후 개선된
+                      서비스를 제공하기 위해 마련되었습니다.
+                    </p>
+                    <p>
+                      응답해 주신 소중한 답변은 통계자료에 귀중하게 사용될 것이며 수집된 정보는 통계분석 이외의 타
+                      목적으로 활용되거나 공개되지 않습니다.
+                    </p>
+                  </div>
+
+                  <div class="survey-preview-question-list">
+                    <section class="survey-preview-question" aria-labelledby="survey-preview-question-1">
+                      <h3 id="survey-preview-question-1">
+                        <span>1</span>
+                        정보시스템의 메뉴가 명확하게 구분되어 있는가?
+                      </h3>
+                      <div class="survey-preview-options">
+                        <label class="radio-label">
+                          <input type="radio" name="surveyPreviewQuestion1" value="very-satisfied" checked />
+                          <span class="radio-label-text">매우 만족</span>
+                        </label>
+                        <label class="radio-label">
+                          <input type="radio" name="surveyPreviewQuestion1" value="satisfied" />
+                          <span class="radio-label-text">만족</span>
+                        </label>
+                        <label class="radio-label">
+                          <input type="radio" name="surveyPreviewQuestion1" value="normal" />
+                          <span class="radio-label-text">보통</span>
+                        </label>
+                        <label class="radio-label">
+                          <input type="radio" name="surveyPreviewQuestion1" value="dissatisfied" />
+                          <span class="radio-label-text">불만족</span>
+                        </label>
+                        <label class="radio-label">
+                          <input type="radio" name="surveyPreviewQuestion1" value="very-dissatisfied" />
+                          <span class="radio-label-text">매우 불만족</span>
+                        </label>
+                      </div>
+                    </section>
+
+                    <section class="survey-preview-question" aria-labelledby="survey-preview-question-2">
+                      <h3 id="survey-preview-question-2">
+                        <span>2</span>
+                        가독성은 높은가?
+                      </h3>
+                      <div class="survey-preview-options">
+                        <label class="radio-label">
+                          <input type="radio" name="surveyPreviewQuestion2" value="satisfied" checked />
+                          <span class="radio-label-text">만족</span>
+                        </label>
+                        <label class="radio-label">
+                          <input type="radio" name="surveyPreviewQuestion2" value="normal" />
+                          <span class="radio-label-text">보통</span>
+                        </label>
+                        <label class="radio-label">
+                          <input type="radio" name="surveyPreviewQuestion2" value="dissatisfied" />
+                          <span class="radio-label-text">불만족</span>
+                        </label>
+                      </div>
+                    </section>
+
+                    <section class="survey-preview-question" aria-labelledby="survey-preview-question-3">
+                      <h3 id="survey-preview-question-3">
+                        <span>3</span>
+                        재단 홈페이지를 알게 된 경로는?
+                      </h3>
+                      <input type="text" class="form-control w-full" aria-label="재단 홈페이지를 알게 된 경로" />
+                    </section>
+
+                    <section class="survey-preview-question" aria-labelledby="survey-preview-question-4">
+                      <h3 id="survey-preview-question-4">
+                        <span>4</span>
+                        재단에 하고 싶은 말은?
+                      </h3>
+                      <textarea class="textarea" rows="5" aria-label="재단에 하고 싶은 말"></textarea>
+                    </section>
+                  </div>
+                </div>
+
+                <div class="popup-actions">
+                  <button
+                    type="button"
+                    class="btn variant-solid color-navy rounded-md size-board-action"
+                    data-popup-close
+                  >
+                    닫기
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

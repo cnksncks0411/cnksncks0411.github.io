@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>교통안전장치지급관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="safety-device">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="safety-device"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>교통안전장치지급관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/followup/safety-device-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">교통안전장치지급관리</span>
+              </nav>
+            </div>
+
+            <div class="board-tab-list" aria-label="교통안전장치 유형">
+              <button type="button" class="board-tab active" aria-pressed="true">DTG</button>
+              <button type="button" class="board-tab" aria-pressed="false">BSD</button>
+            </div>
+
+            <section class="panel" aria-label="DTG 지급현황">
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    DTG 지급현황
+                  </caption>
+                  <colgroup>
+                    <col width="15%" />
+                    <col width="11%" />
+                    <col width="11%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="11%" />
+                    <col width="12%" />
+                    <col width="14%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">공고년도/회차</th>
+                      <th scope="col">대상자수</th>
+                      <th scope="col">접수완료</th>
+                      <th scope="col">검토진행자수</th>
+                      <th scope="col">검토완료자수</th>
+                      <th scope="col">지급자수</th>
+                      <th scope="col">지급불가자수</th>
+                      <th scope="col">총지급금액</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 DTG 지급현황이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: DTG 지급현황 행 -->
+                    <tr>
+                      <td>
+                        <!-- 공고년도/회차 클릭 시 아래 지급대상자 목록 패널 열림 -->
+                        <button
+                          type="button"
+                          class="board-link-text"
+                          data-detail-open
+                          aria-controls="safety-device-list-panel"
+                          aria-expanded="false"
+                        >
+                          2026년 1회차
+                        </button>
+                      </td>
+                      <td>5,000</td>
+                      <td>0</td>
+                      <td>2</td>
+                      <td>99</td>
+                      <td>243</td>
+                      <td>18</td>
+                      <td>48,600,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel" id="safety-device-list-panel" aria-labelledby="safety-device-list-title" hidden>
+              <form action="/admin_bak/followup/safety-device-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      DTG 지급대상자 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="8%" />
+                      <col width="12%" />
+                      <col width="8%" />
+                      <col width="12%" />
+                      <col width="8%" />
+                      <col width="12%" />
+                      <col width="8%" />
+                      <col width="12%" />
+                      <col width="8%" />
+                      <col width="12%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="safetyDeviceApplicantName">신청자명</label></th>
+                        <td>
+                          <input
+                            id="safetyDeviceApplicantName"
+                            name="safetyDeviceApplicantName"
+                            type="text"
+                            class="form-control w-full"
+                            autofocus
+                          />
+                        </td>
+                        <th scope="row"><label for="safetyDeviceBirthDate">생년월일</label></th>
+                        <td>
+                          <input
+                            id="safetyDeviceBirthDate"
+                            name="safetyDeviceBirthDate"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="safetyDevicePhoneNumber">휴대폰 번호</label></th>
+                        <td>
+                          <input
+                            id="safetyDevicePhoneNumber"
+                            name="safetyDevicePhoneNumber"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="safetyDevicePaymentStatus">지급상태</label></th>
+                        <td>
+                          <select
+                            id="safetyDevicePaymentStatus"
+                            name="safetyDevicePaymentStatus"
+                            class="form-control w-full"
+                          >
+                            <option value="">전체</option>
+                            <option value="received">접수완료</option>
+                            <option value="reviewing">검토진행</option>
+                            <option value="supplement">보완요청</option>
+                            <option value="reviewed">검토완료</option>
+                            <option value="paid">지불완료</option>
+                            <option value="unavailable">지급불가</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="safetyDeviceVehicleNumber">차량번호</label></th>
+                        <td>
+                          <input
+                            id="safetyDeviceVehicleNumber"
+                            name="safetyDeviceVehicleNumber"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="safetyDeviceBusinessNumber">사업자번호</label></th>
+                        <td>
+                          <input
+                            id="safetyDeviceBusinessNumber"
+                            name="safetyDeviceBusinessNumber"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="safetyDeviceReceiptOrder">접수순번</label></th>
+                        <td>
+                          <select
+                            id="safetyDeviceReceiptOrder"
+                            name="safetyDeviceReceiptOrder"
+                            class="form-control w-full"
+                          >
+                            <option value="">선택</option>
+                            <option value="odd">홀수</option>
+                            <option value="even">짝수</option>
+                          </select>
+                        </td>
+                        <th scope="row">접수일자</th>
+                        <td colspan="5">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="safetyDeviceReceiptStartDate"
+                                name="safetyDeviceReceiptStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="접수일자 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="접수일자 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="safetyDeviceReceiptEndDate"
+                                name="safetyDeviceReceiptEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="접수일자 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="접수일자 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+
+              <div class="board-info-row mt-2">
+                <h2 class="board-list-title" id="safety-device-list-title">지급대상자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table" aria-labelledby="safety-device-list-title">
+                  <caption>
+                    DTG 지급대상자목록
+                  </caption>
+                  <colgroup>
+                    <col width="9%" />
+                    <col width="8%" />
+                    <col width="9%" />
+                    <col width="11%" />
+                    <col width="13%" />
+                    <col width="8%" />
+                    <col width="10%" />
+                    <col width="9%" />
+                    <col width="10%" />
+                    <col width="13%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">신청번호</th>
+                      <th scope="col">신청자<br />성명</th>
+                      <th scope="col">신청자<br />생년월일</th>
+                      <th scope="col">차량번호</th>
+                      <th scope="col">사업자<br />상호명</th>
+                      <th scope="col">접수내역</th>
+                      <th scope="col">지급상태</th>
+                      <th scope="col">지급액</th>
+                      <th scope="col">지급처리</th>
+                      <th scope="col">처리일자</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="10" class="board-content-empty">등록된 지급대상자가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: DTG 지급대상자 목록 행 -->
+                    <tr>
+                      <td>00000018</td>
+                      <td>홍*동</td>
+                      <td>19800607</td>
+                      <td>부산89사1234</td>
+                      <td>협진세라믹스</td>
+                      <td>
+                        <!-- 접수내역 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="safety-device-detail-popup"
+                        >
+                          조회
+                        </button>
+                      </td>
+                      <td><span class="text-blue font-bold">지불완료</span></td>
+                      <td>200,000</td>
+                      <td>
+                        <!-- 수정 버튼: 지급대상자 지급결과 변경 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-soft color-blue rounded-md size-sm"
+                          data-popup-open="safety-device-payment-popup"
+                          aria-haspopup="dialog"
+                        >
+                          수정
+                        </button>
+                      </td>
+                      <td>2026.05.22</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="DTG 지급대상자 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 지급대상자 지급결과 변경 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="safety-device-payment-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="safety-device-payment-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="safety-device-payment-popup-title">지급대상자 지급결과 변경</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin_bak/followup/safety-device-list.html" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        지급대상자 지급결과 변경 정보
+                      </caption>
+                      <colgroup>
+                        <col width="22%" />
+                        <col width="78%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">지급상태</th>
+                          <td>지급불가</td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="safetyDeviceChangeStatus">변경상태</label></th>
+                          <td>
+                            <select
+                              id="safetyDeviceChangeStatus"
+                              name="safetyDeviceChangeStatus"
+                              class="form-control w-half"
+                            >
+                              <option value="unavailable" selected>지급불가</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="safetyDeviceProcessDate">처리일자</label></th>
+                          <td>
+                            <div class="board-search-date-field w-half" data-datepicker-wrap>
+                              <input
+                                type="text"
+                                id="safetyDeviceProcessDate"
+                                name="safetyDeviceProcessDate"
+                                class="form-control"
+                                value="2026-04-09"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="처리일자 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="safetyDeviceChangeReason">변경사유</label></th>
+                          <td>
+                            <textarea
+                              id="safetyDeviceChangeReason"
+                              name="safetyDeviceChangeReason"
+                              class="textarea"
+                              rows="12"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      수정
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 접수내역 상세 팝업 -->
+            <div
+              class="popup"
+              id="safety-device-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="safety-device-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="safety-device-detail-popup-title">접수내역상세</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+                    <section class="panel flex flex-col gap-4" aria-label="교통안전장치 접수내역 상세">
+                      <section class="board-section" aria-labelledby="safety-device-applicant-title">
+                        <h2 class="board-section-title" id="safety-device-applicant-title">신청자 정보</h2>
+                        <table class="board-form-table">
+                          <caption>
+                            교통안전장치 신청자 정보
+                          </caption>
+                          <colgroup>
+                            <col width="18%" />
+                            <col width="32%" />
+                            <col width="18%" />
+                            <col width="32%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">신청자명</th>
+                              <td>홍길동</td>
+                              <th scope="row">사업자명(상호)</th>
+                              <td>협진세라믹스 1138</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">신청자 연락처</th>
+                              <td>010-1234-5678</td>
+                              <th scope="row">예금주명</th>
+                              <td>강감찬</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">접수상태</th>
+                              <td><span class="font-bold">접수완료</span></td>
+                              <th scope="row">은행계좌</th>
+                              <td>우리은행 / 21159641602001</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">처리상태</th>
+                              <td></td>
+                              <th scope="row">유가검증결과</th>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="safety-device-vehicle-title">
+                        <h2 class="board-section-title" id="safety-device-vehicle-title">차량 정보</h2>
+                        <table class="board-form-table">
+                          <caption>
+                            교통안전장치 차량 정보
+                          </caption>
+                          <colgroup>
+                            <col width="18%" />
+                            <col width="32%" />
+                            <col width="18%" />
+                            <col width="32%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">차량소유주</th>
+                              <td>주식회사협진세라믹스</td>
+                              <th scope="row">차종</th>
+                              <td>대형 특수(직접입력)</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">차량번호</th>
+                              <td>부산98사1183</td>
+                              <th scope="row">최대적재량</th>
+                              <td>16500kg (직접입력)</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">차대번호</th>
+                              <td colspan="3">YV2AG40C9BA718390</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="safety-device-install-title">
+                        <h2 class="board-section-title" id="safety-device-install-title">장착 정보</h2>
+                        <table class="board-form-table">
+                          <caption>
+                            교통안전장치 장착 정보
+                          </caption>
+                          <colgroup>
+                            <col width="18%" />
+                            <col width="32%" />
+                            <col width="18%" />
+                            <col width="32%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">장착유형</th>
+                              <td>DTG</td>
+                              <th scope="row">통신사약정기간</th>
+                              <td>60개월</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">장착모델</th>
+                              <td>AMT5810LG</td>
+                              <th scope="row">통신사이용번호</th>
+                              <td>012-4572-1184</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">통신사</th>
+                              <td>LG U+</td>
+                              <th scope="row">통신요금(월납부액)</th>
+                              <td>1만원 ~ 1.2만원</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">통신사가입일자</th>
+                              <td>2026.03.16</td>
+                              <th scope="row">관제서비스 이용여부</th>
+                              <td>N</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="safety-device-registered-document-title">
+                        <div class="board-info-row">
+                          <h2 class="board-section-title" id="safety-device-registered-document-title">
+                            등록 서류목록
+                          </h2>
+                        </div>
+
+                        <form
+                          action="/admin_bak/followup/safety-device-list.html"
+                          method="post"
+                          enctype="multipart/form-data"
+                        >
+                          <table class="board-form-table">
+                            <caption>
+                              교통안전장치 등록 서류 선택 및 파일 첨부
+                            </caption>
+                            <colgroup>
+                              <col width="18%" />
+                              <col width="82%" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="safetyDeviceDocumentType">서류선택</label></th>
+                                <td>
+                                  <div class="flex items-center gap-2 row-type-file">
+                                    <select
+                                      id="safetyDeviceDocumentType"
+                                      name="safetyDeviceDocumentType"
+                                      class="form-control w-quarter"
+                                    >
+                                      <option value="">선택</option>
+                                      <option value="supplement1">보완서류_1</option>
+                                    </select>
+                                    <input
+                                      id="safetyDeviceDocumentFile"
+                                      name="safetyDeviceDocumentFile"
+                                      type="file"
+                                      class="form-control"
+                                      aria-label="첨부파일 선택"
+                                    />
+                                    <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                                      저장
+                                    </button>
+                                    <button
+                                      type="button"
+                                      class="btn variant-outline color-navy rounded-md size-board-auto"
+                                    >
+                                      <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                                      일괄다운로드
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </form>
+
+                        <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                        <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                        <!-- 목록 있는 경우 -->
+                        <ul class="board-document-grid mt-2">
+                          <!-- 반복: 등록 서류 카드 -->
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">차량등록증.jpg</figcaption>
+                              <div class="board-table-actions">
+                                <a
+                                  href="/common/images/main/info-image.png"
+                                  class="btn variant-outline color-navy rounded-md size-sm"
+                                  download
+                                >
+                                  다운로드
+                                </a>
+                              </div>
+                            </figure>
+                          </li>
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">사업자등록증.jpg</figcaption>
+                              <div class="board-table-actions">
+                                <a
+                                  href="/common/images/main/info-image.png"
+                                  class="btn variant-outline color-navy rounded-md size-sm"
+                                  download
+                                >
+                                  다운로드
+                                </a>
+                              </div>
+                            </figure>
+                          </li>
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">재직증명서.jpg</figcaption>
+                              <div class="board-table-actions">
+                                <a
+                                  href="/common/images/main/info-image.png"
+                                  class="btn variant-outline color-navy rounded-md size-sm"
+                                  download
+                                >
+                                  다운로드
+                                </a>
+                              </div>
+                            </figure>
+                          </li>
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <a
+                                href="#"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image02.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">
+                                고용보험피보험자격 이력 내역서(법인소속).pdf
+                              </figcaption>
+                              <div class="board-table-actions">
+                                <a href="#" class="btn variant-outline color-navy rounded-md size-sm" download
+                                  >다운로드</a
+                                >
+                              </div>
+                            </figure>
+                          </li>
+                        </ul>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="safety-device-unregistered-document-title">
+                        <div class="board-info-row">
+                          <h2 class="board-section-title" id="safety-device-unregistered-document-title">
+                            미등록 서류목록
+                          </h2>
+                        </div>
+                        <table class="board-form-table text-center">
+                          <caption>
+                            교통안전장치 미등록 서류목록
+                          </caption>
+                          <colgroup>
+                            <col width="100%" />
+                          </colgroup>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td class="board-content-empty">미등록 서류가 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 미등록 서류 행 -->
+                            <tr>
+                              <td>보완서류_1</td>
+                            </tr>
+                            <tr>
+                              <td>보완서류_2</td>
+                            </tr>
+                            <tr>
+                              <td>보완서류_3</td>
+                            </tr>
+                            <tr>
+                              <td>보완서류_4</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="safety-device-message-title">
+                        <div class="board-info-row">
+                          <h2 class="board-section-title" id="safety-device-message-title">
+                            문자전송(수신 : 신청자 연락처 / 발신 : 02-761-0270)
+                          </h2>
+                        </div>
+                        <form action="/admin_bak/followup/safety-device-list.html" method="post">
+                          <table class="board-form-table">
+                            <caption>
+                              교통안전장치 신청자 문자전송
+                            </caption>
+                            <colgroup>
+                              <col width="18%" />
+                              <col width="82%" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="safetyDeviceMessageContent">내용</label></th>
+                                <td>
+                                  <div class="grid gap-2 row-type-message">
+                                    <textarea
+                                      id="safetyDeviceMessageContent"
+                                      name="safetyDeviceMessageContent"
+                                      class="textarea"
+                                      rows="4"
+                                    ></textarea>
+                                    <button
+                                      type="submit"
+                                      class="btn variant-solid color-navy rounded-md size-board-action"
+                                    >
+                                      문자전송
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="board-form-actions justify-center">
+                            <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                              미등록 메시지
+                            </button>
+                            <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                              서류오류 메시지
+                            </button>
+                            <button type="button" class="btn variant-soft color-red rounded-md size-board-auto">
+                              메시지 삭제
+                            </button>
+                          </div>
+                        </form>
+                      </section>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

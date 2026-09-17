@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="keyword">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="keyword"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>추천검색어관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">추천검색어관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="추천검색어 설정">
+              <form action="/admin/site/keyword-list.html" method="post" class="keyword-setting-form">
+                <label for="recommendKeyword" class="sr-only">추천검색어</label>
+                <input
+                  id="recommendKeyword"
+                  name="recommendKeyword"
+                  type="text"
+                  class="form-control"
+                  value="#장학,#예방접종,#교통사고,#법률,#차량구입"
+                  placeholder="#장학,#예방접종,#교통사고,#법률,#차량구입"
+                />
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">저장</button>
+              </form>
+            </section>
+
+            <!-- 추천검색어 변경 시 남는 이력 목록 -->
+            <section class="panel" aria-labelledby="keyword-history-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="keyword-history-title">추천검색어 변경 이력</h2>
+                <div class="board-info-actions">
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    추천검색어 변경 이력 목록
+                  </caption>
+                  <colgroup>
+                    <col width="7%" />
+                    <col width="16%" />
+                    <col width="17%" />
+                    <col width="50%" />
+                    <col width="10%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">번호</th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="수정일시 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>수정일시</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="수정자명 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>수정자명</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="추천검색어 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>추천검색어</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="사용여부 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>사용여부</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="5" class="board-content-empty">변경 이력이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 추천검색어 변경 이력 행 -->
+                    <tr>
+                      <td>50</td>
+                      <td><time datetime="2026-07-28T14:14">2026-07-28 14:14</time></td>
+                      <td>패스넷(pass001)</td>
+                      <td>#장학, #예방접종, #교통사고, #법률, #차량구입, #생계</td>
+                      <td>사용</td>
+                    </tr>
+                    <tr>
+                      <td>49</td>
+                      <td><time datetime="2026-07-20T09:32">2026-07-20 09:32</time></td>
+                      <td>패스넷(pass001)</td>
+                      <td>#장학, #예방접종, #교통사고, #법률, #차량구입</td>
+                      <td>미사용</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="추천검색어 변경 이력 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

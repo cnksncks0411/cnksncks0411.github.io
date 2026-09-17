@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>질문과 답변 보기 | 화물복지재단 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="mypage" data-page="qna">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li>
+                <a href="/apply/mypage/application-list.html">마이페이지</a>
+              </li>
+              <li>
+                <a href="/apply/mypage/qna.html">질문과 답변</a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>글 보기</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 마이페이지 LNB 인클루드 영역: common/include/apply/lnb-mypage.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-mypage" data-page="qna"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">질문과 답변</h1>
+              <div class="sub-intro">
+                <strong>
+                  궁금하신 질문들을 올리시기 전
+                  <a href="/main/archive/faq.html" class="text-blue text-underline">자주하는 질문</a>에서 원하는 내용이 있는지
+                  확인해 보세요.
+                </strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <article class="board-view">
+                <header class="board-view-head">
+                  <h2 class="board-view-title">문의드립니다.</h2>
+                  <dl class="board-view-meta">
+                    <dt>작성자</dt>
+                    <dd>홍*동</dd>
+                    <dt>등록일</dt>
+                    <dd><time datetime="2026-05-22">2026-05-22</time></dd>
+                    <dt>조회수</dt>
+                    <dd>158</dd>
+                  </dl>
+                </header>
+
+                <div class="board-view-body">
+                  <!-- 글 내용 부분: 에디터에서 작성된 HTML이 출력되는 영역입니다. -->
+                  <div>
+                    <p>
+                      홈페이지 이용 중 확인이 필요한 부분에 대해 문의드립니다. 확인 후 답변 부탁드립니다.
+                    </p>
+                  </div>
+                  <!-- // 글 내용 부분 -->
+                </div>
+
+                <div class="board-comment-area">
+                  <ul class="board-comment-list" aria-label="댓글 목록">
+                    <li class="board-comment-item">
+                      <div class="board-comment-meta">
+                        <strong>재단관리자</strong>
+                        <time datetime="2026-05-23">2026-05-23</time>
+                      </div>
+                      <p class="board-comment-content">
+                        문의하신 내용을 확인했습니다. 자세한 사항은 안내해 드린 내용을 참고해 주세요.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+
+                <nav class="board-post-nav" aria-label="이전글 다음글">
+                  <div class="board-nav-row">
+                    <strong>이전글</strong>
+                    <span class="board-post-nav-title">이전 글이 없습니다.</span>
+                  </div>
+                  <div class="board-nav-row">
+                    <strong>다음글</strong>
+                    <a href="#" class="board-post-nav-title">다음 문의글입니다.</a>
+                  </div>
+                </nav>
+
+                <div class="board-footer-actions type-grid">
+                  <a href="/apply/mypage/qna.html" class="btn variant-solid color-navy size-lg">목록보기</a>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

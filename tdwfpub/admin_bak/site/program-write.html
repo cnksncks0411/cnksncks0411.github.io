@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>프로그램목록 등록 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="program">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="program"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>프로그램목록 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/program-list.html">프로그램목록관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">프로그램목록 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="program-write-title">
+              <h2 class="sr-only" id="program-write-title">프로그램 목록 등록</h2>
+              <form action="/admin_bak/site/program-write.html" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    프로그램 목록 등록 정보
+                  </caption>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="80%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="programFileName">
+                          프로그램파일명<span class="required-mark">*</span>
+                        </label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="programFileName"
+                          name="programFileName"
+                          class="form-control w-full"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="programSavePath">
+                          저장경로<span class="required-mark">*</span>
+                        </label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="programSavePath"
+                          name="programSavePath"
+                          class="form-control w-full"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="programKoreanName">
+                          한글명<span class="required-mark">*</span>
+                        </label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="programKoreanName"
+                          name="programKoreanName"
+                          class="form-control w-full"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="programUrl">URL<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input type="text" id="programUrl" name="programUrl" class="form-control w-full" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="programDescription">프로그램설명</label></th>
+                      <td>
+                        <input
+                          type="text"
+                          id="programDescription"
+                          name="programDescription"
+                          class="form-control w-full"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <button type="submit" class="btn variant-soft color-blue rounded-md size-board-action">
+                    수정하기
+                  </button>
+                  <button type="button" class="btn variant-soft color-red rounded-md size-board-action">
+                    삭제하기
+                  </button>
+                  <a
+                    href="/admin_bak/site/program-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    목록보기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

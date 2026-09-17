@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="partner" data-page="spot-checkup">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 협력업체지원 좌측 메뉴 인클루드 영역: /admin/include/lnb-partner.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-partner" data-page="spot-checkup"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>수시검진지원자관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/partner/spot-checkup-list.html">협력업체지원</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/partner/spot-checkup-list.html">수시검진지원자관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">상세내역</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="spot-checkup-view-title">
+              <div class="board-info-row sr-only">
+                <h2 class="board-list-title" id="spot-checkup-view-title">상세내역</h2>
+              </div>
+              <table class="board-form-table">
+                <caption>
+                  수시검진지원자 상세내역
+                </caption>
+                <colgroup>
+                  <col width="16%" />
+                  <col width="34%" />
+                  <col width="16%" />
+                  <col width="34%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">의료기관명</th>
+                    <td colspan="3">가천대 길병원(인천 남동구)</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">대상자명</th>
+                    <td>정인환</td>
+                    <th scope="row">생년월일</th>
+                    <td>1975.05.05</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">차량번호</th>
+                    <td>인천85아2445</td>
+                    <th scope="row">성별</th>
+                    <td>남</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">자택전화번호</th>
+                    <td>--</td>
+                    <th scope="row">휴대폰</th>
+                    <td>010-1234-5667</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">주소</th>
+                    <td colspan="3">인천 미추홀구 주승로197번길 6 (관교동) 302동</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">이메일</th>
+                    <td>abcdefg@naver.com</td>
+                    <th scope="row">검진여부</th>
+                    <td>미검진</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <label for="reservationDate">예약일자</label>
+                    </th>
+                    <td>
+                      <div class="board-search-date-field" data-datepicker-wrap>
+                        <input
+                          type="text"
+                          id="reservationDate"
+                          name="reservationDate"
+                          class="form-control"
+                          data-datepicker-input
+                          data-input
+                        />
+                        <button
+                          type="button"
+                          class="btn-calendar"
+                          aria-label="예약일자 선택"
+                          data-datepicker-toggle
+                          data-toggle
+                        >
+                          <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                        </button>
+                      </div>
+                    </td>
+                    <th scope="row">
+                      <label for="checkupDate">검진일자</label>
+                    </th>
+                    <td>
+                      <div class="board-search-date-field" data-datepicker-wrap>
+                        <input
+                          type="text"
+                          id="checkupDate"
+                          name="checkupDate"
+                          class="form-control"
+                          data-datepicker-input
+                          data-input
+                        />
+                        <button
+                          type="button"
+                          class="btn-calendar"
+                          aria-label="검진일자 선택"
+                          data-datepicker-toggle
+                          data-toggle
+                        >
+                          <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- 검진 진행 단계: 완료된 단계는 .status-done 클래스 사용 -->
+              <ol class="board-status-steps" aria-label="검진 진행 단계">
+                <li class="status-done">미처리</li>
+                <li>예약완료</li>
+                <li>건진완료</li>
+                <li>결과입력완료(청구)</li>
+              </ol>
+            </section>
+
+            <section class="panel" aria-labelledby="checkup-disease-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="checkup-disease-title">검진질환정보</h2>
+                <!-- 등록 버튼: 검진질환정보 등록 팝업 노출 -->
+                <button
+                  type="button"
+                  class="btn variant-solid color-navy rounded-md size-board-auto"
+                  data-popup-open="checkup-disease-popup"
+                  aria-haspopup="dialog"
+                >
+                  등록
+                </button>
+              </div>
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    검진질환정보 목록
+                  </caption>
+                  <colgroup>
+                    <col width="25%" />
+                    <col width="20%" />
+                    <col width="*" />
+                    <col width="14%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">의료기관명</th>
+                      <th scope="col">질병명</th>
+                      <th scope="col">원인</th>
+                      <th scope="col">관리</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 내용 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="4" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 입력 아이템 -->
+                    <tr>
+                      <td>가천대 길병원(인천 남동구)</td>
+                      <td>비뇨기계질환</td>
+                      <td>해당사항없음</td>
+                      <td>
+                        <div class="board-table-actions">
+                          <!-- 수정 버튼: 검진질환정보 등록 팝업 노출 -->
+                          <button
+                            type="button"
+                            class="btn variant-soft color-blue rounded-md size-sm"
+                            data-popup-open="checkup-disease-popup"
+                            aria-haspopup="dialog"
+                          >
+                            수정
+                          </button>
+                          <button type="button" class="btn variant-soft color-red rounded-md size-sm">삭제</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <div class="board-view-actions">
+              <a
+                href="/admin/partner/spot-checkup-list.html"
+                class="btn variant-outline color-navy rounded-md size-board-action"
+              >
+                목록보기
+              </a>
+            </div>
+
+            <!-- 검진질환정보 등록 팝업: 등록/수정 버튼의 data-popup-open 값과 id 값을 맞춰 사용 -->
+            <div
+              class="popup"
+              data-popup
+              id="checkup-disease-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="checkup-disease-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="checkup-disease-popup-title">검진질환정보 등록</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        검진질환정보 등록
+                      </caption>
+                      <colgroup>
+                        <col width="18%" />
+                        <col width="82%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">
+                            <label for="popupDiseaseName">질병명</label>
+                          </th>
+                          <td>
+                            <input
+                              type="text"
+                              id="popupDiseaseName"
+                              name="popupDiseaseName"
+                              class="form-control w-full"
+                              required
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="popupDiseaseCause">원인</label>
+                          </th>
+                          <td>
+                            <textarea
+                              id="popupDiseaseCause"
+                              name="popupDiseaseCause"
+                              class="textarea"
+                              rows="5"
+                              required
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      확인
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

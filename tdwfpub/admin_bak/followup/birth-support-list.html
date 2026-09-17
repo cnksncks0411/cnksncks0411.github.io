@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>출생축하지원자관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="birth-support">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="birth-support"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>출생축하지원자관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/followup/birth-support-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">출생축하지원자관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="출생축하지원 지급현황">
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    출생축하지원 지급현황 목록
+                  </caption>
+                  <colgroup>
+                    <col width="16%" />
+                    <col width="12%" />
+                    <col width="14%" />
+                    <col width="12%" />
+                    <col width="11%" />
+                    <col width="11%" />
+                    <col width="12%" />
+                    <col width="12%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">공고년도/회차</th>
+                      <th scope="col">신청자수</th>
+                      <th scope="col">서류보완요청자수</th>
+                      <th scope="col">지급대기수</th>
+                      <th scope="col">지급자수</th>
+                      <th scope="col">지급제외수</th>
+                      <th scope="col">총지급인원</th>
+                      <th scope="col">총지급액</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 지급현황이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 출생축하지원 지급현황 행 -->
+                    <tr>
+                      <td>
+                        <!-- 공고년도/회차 클릭 시 아래 지급대상자 목록 패널 노출 -->
+                        <button
+                          type="button"
+                          class="board-link-text"
+                          data-detail-open
+                          aria-controls="birth-support-list-panel"
+                          aria-expanded="false"
+                        >
+                          2026년 1회차
+                        </button>
+                      </td>
+                      <td>339</td>
+                      <td>3</td>
+                      <td>327</td>
+                      <td>0</td>
+                      <td>3</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel" id="birth-support-list-panel" aria-labelledby="birth-support-list-title" hidden>
+              <form action="/admin_bak/followup/birth-support-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      출생축하지원 지급대상자 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="8%" />
+                      <col width="17%" />
+                      <col width="8%" />
+                      <col width="17%" />
+                      <col width="8%" />
+                      <col width="17%" />
+                      <col width="8%" />
+                      <col width="17%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="birthSupportApplicantName">신청자명</label></th>
+                        <td>
+                          <input
+                            id="birthSupportApplicantName"
+                            name="birthSupportApplicantName"
+                            type="text"
+                            class="form-control w-full"
+                            autofocus
+                          />
+                        </td>
+                        <th scope="row"><label for="birthSupportApplicantBirthDate">신청자생년월일</label></th>
+                        <td>
+                          <input
+                            id="birthSupportApplicantBirthDate"
+                            name="birthSupportApplicantBirthDate"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                        <th scope="row"><label for="birthSupportApplicantPhone">신청자휴대폰번호</label></th>
+                        <td>
+                          <input
+                            id="birthSupportApplicantPhone"
+                            name="birthSupportApplicantPhone"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="birthSupportPaymentStatus">지급상태</label></th>
+                        <td>
+                          <select
+                            id="birthSupportPaymentStatus"
+                            name="birthSupportPaymentStatus"
+                            class="form-control w-full"
+                          >
+                            <option value="">전체</option>
+                            <option value="received">접수완료</option>
+                            <option value="supplement">서류보완</option>
+                            <option value="waiting">지급대기</option>
+                            <option value="paid">지급완료</option>
+                            <option value="excluded">지급제외</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="birthSupportChildName">출생아동명</label></th>
+                        <td>
+                          <input
+                            id="birthSupportChildName"
+                            name="birthSupportChildName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="birthSupportChildBirthDate">출생아동생년월일</label></th>
+                        <td>
+                          <input
+                            id="birthSupportChildBirthDate"
+                            name="birthSupportChildBirthDate"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                        <th scope="row"><label for="birthSupportSpouseName">배우자명</label></th>
+                        <td>
+                          <input
+                            id="birthSupportSpouseName"
+                            name="birthSupportSpouseName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="birthSupportSpouseBirthDate">배우자생년월일</label></th>
+                        <td>
+                          <input
+                            id="birthSupportSpouseBirthDate"
+                            name="birthSupportSpouseBirthDate"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">접수일자</th>
+                        <td colspan="7">
+                          <div class="board-search-date-range w-half">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="birthSupportReceiptStartDate"
+                                name="birthSupportReceiptStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="접수일자 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="접수일자 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="birthSupportReceiptEndDate"
+                                name="birthSupportReceiptEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="접수일자 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="접수일자 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+
+              <div class="board-info-row mt-2">
+                <div class="flex items-center gap-2">
+                  <h2 class="board-list-title" id="birth-support-list-title">지급대상자목록</h2>
+                  <select class="form-control" aria-label="일괄변경 지급상태">
+                    <option value="">지급상태 선택</option>
+                    <option value="received">접수완료</option>
+                    <option value="supplement">서류보완</option>
+                    <option value="waiting">지급대기</option>
+                    <option value="paid">지급완료</option>
+                    <option value="excluded">지급제외</option>
+                  </select>
+                  <button type="button" class="btn variant-solid color-blue rounded-md size-board-auto">
+                    일괄변경
+                  </button>
+                </div>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-solid color-red rounded-md size-board-auto">
+                    자동지급제외
+                  </button>
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option selected>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap scroll-x">
+                <table class="board-table" aria-labelledby="birth-support-list-title" data-check-group>
+                  <caption>
+                    출생축하지원 지급대상자목록
+                  </caption>
+                  <colgroup>
+                    <col width="3%" />
+                    <col width="4%" />
+                    <col width="5%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="5%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="4%" />
+                    <col width="4%" />
+                    <col width="4%" />
+                    <col width="4%" />
+                    <col width="7%" />
+                    <col width="6%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col" rowspan="2">
+                        <label class="check-label">
+                          <input type="checkbox" aria-label="지급대상자 전체 선택" data-check-all />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </th>
+                      <th scope="colgroup" colspan="7">운전자 및 가족정보</th>
+                      <th scope="colgroup" colspan="4">검증정보</th>
+                      <th scope="colgroup" colspan="6">신청현황</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">순번</th>
+                      <th scope="col">운전자<br />성명</th>
+                      <th scope="col">운전자<br />생년월일</th>
+                      <th scope="col">차량<br />번호</th>
+                      <th scope="col">배우자명</th>
+                      <th scope="col">배우자<br />생년월일</th>
+                      <th scope="col">출생아동<br />출생순위</th>
+                      <th scope="col">유가<br />검증</th>
+                      <th scope="col">가족<br />검증</th>
+                      <th scope="col">자격<br />검증</th>
+                      <th scope="col">계좌<br />검증</th>
+                      <th scope="col">신청일자</th>
+                      <th scope="col">접수내역</th>
+                      <th scope="col">지급상태</th>
+                      <th scope="col">지급액</th>
+                      <th scope="col">지급처리</th>
+                      <th scope="col">지급일자</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="18" class="board-content-empty">등록된 지급대상자가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 출생축하지원 지급대상자 목록 행 -->
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="birthSupportTarget"
+                            value="1"
+                            aria-label="1번 대상자 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>1</td>
+                      <td>홍*동</td>
+                      <td>19850825</td>
+                      <td>광주95사7777</td>
+                      <td>손*순</td>
+                      <td>19860520</td>
+                      <td>3</td>
+                      <td>성공</td>
+                      <td>성공</td>
+                      <td>성공</td>
+                      <td>성공</td>
+                      <td>2026.06.22</td>
+                      <td>
+                        <!-- 접수내역 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="birth-support-detail-popup"
+                        >
+                          조회
+                        </button>
+                      </td>
+                      <td><span class="font-bold">지급대기</span></td>
+                      <td>500,000</td>
+                      <td>
+                        <!-- 수정 버튼: 지급대상자 지급결과 변경 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-soft color-blue rounded-md size-sm"
+                          data-popup-open="birth-support-payment-popup"
+                          aria-haspopup="dialog"
+                        >
+                          수정
+                        </button>
+                      </td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="birthSupportTarget"
+                            value="2"
+                            aria-label="2번 대상자 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>2</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>2</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>400,000</td>
+                      <td></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="birthSupportTarget"
+                            value="3"
+                            aria-label="3번 대상자 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>3</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>1</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>300,000</td>
+                      <td></td>
+                      <td>-</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="birthSupportTarget"
+                            value="4"
+                            aria-label="4번 대상자 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>4</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>5</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>500,000</td>
+                      <td></td>
+                      <td>-</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="출생축하지원 지급대상자 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 지급대상자 지급결과 변경 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="birth-support-payment-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="birth-support-payment-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="birth-support-payment-popup-title">지급대상자 지급결과 변경</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin_bak/followup/birth-support-list.html" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        지급대상자 지급결과 변경 정보
+                      </caption>
+                      <colgroup>
+                        <col width="22%" />
+                        <col width="78%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">대상건수</th>
+                          <td>단건</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">현재상태</th>
+                          <td>지급대기</td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="birthSupportChangeStatus">변경상태</label></th>
+                          <td>
+                            <select
+                              id="birthSupportChangeStatus"
+                              name="birthSupportChangeStatus"
+                              class="form-control w-half"
+                            >
+                              <option value="waiting" selected>지급대기</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="birthSupportChangeReason">변경사유</label></th>
+                          <td>
+                            <textarea
+                              id="birthSupportChangeReason"
+                              name="birthSupportChangeReason"
+                              class="textarea"
+                              rows="12"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      수정
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 접수내역 상세 팝업 -->
+            <div
+              class="popup"
+              id="birth-support-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="birth-support-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="birth-support-detail-popup-title">접수내역상세</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+                    <section class="panel flex flex-col gap-4" aria-label="출생축하지원 접수내역 상세">
+                      <section class="board-section" aria-labelledby="birth-support-application-title">
+                        <h2 class="board-section-title sr-only" id="birth-support-application-title">신청서 정보</h2>
+                        <table class="board-form-table">
+                          <caption>
+                            출생축하지원 신청서 정보
+                          </caption>
+                          <colgroup>
+                            <col width="18%" />
+                            <col width="32%" />
+                            <col width="18%" />
+                            <col width="32%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">운전자명(생년월일)</th>
+                              <td>홍길동(1958.02.18)</td>
+                              <th scope="row">운전자 휴대폰번호</th>
+                              <td>010-1234-5678</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">접수상태</th>
+                              <td><span class="font-bold">단순저장</span></td>
+                              <th scope="row">처리상태</th>
+                              <td><span class="font-bold">미지정</span></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">출생아동</th>
+                              <td>홍아들 2026.05.12 셋째</td>
+                              <th scope="row">지급액</th>
+                              <td>500,000원</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">예금주명</th>
+                              <td>홍길동</td>
+                              <th scope="row">은행계좌</th>
+                              <td>농협은행(농협중앙회) / 6211065022056</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">차량번호</th>
+                              <td>경남99바1234</td>
+                              <th scope="row">화물업종</th>
+                              <td>일반화물</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">차량톤수</th>
+                              <td>25톤</td>
+                              <th scope="row">가족관계증명 검증 결과</th>
+                              <td>가족관계증명 <span class="text-blue font-bold">(검증성공)</span></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">유가보조이력 검증결과</th>
+                              <td>검증 <span class="text-blue font-bold">성공</span> (본인)</td>
+                              <th scope="row">화물운송자격증 이름</th>
+                              <td>홍길동</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">유가보조이력 검증자명</th>
+                              <td>홍길동(1958.02.18)</td>
+                              <th scope="row">화물운송자격증 번호</th>
+                              <td>1-04-200000 <span class="text-blue font-bold">(검증성공)</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="birth-support-registered-document-title">
+                        <div class="board-info-row">
+                          <h2 class="board-section-title" id="birth-support-registered-document-title">
+                            등록 서류목록
+                          </h2>
+                        </div>
+
+                        <form
+                          action="/admin_bak/followup/birth-support-list.html"
+                          method="post"
+                          enctype="multipart/form-data"
+                        >
+                          <table class="board-form-table">
+                            <caption>
+                              출생축하지원 등록 서류 선택 및 파일 첨부
+                            </caption>
+                            <colgroup>
+                              <col width="18%" />
+                              <col width="82%" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="birthSupportDocumentType">서류선택</label></th>
+                                <td>
+                                  <div class="flex items-center gap-2 row-type-file">
+                                    <select
+                                      id="birthSupportDocumentType"
+                                      name="birthSupportDocumentType"
+                                      class="form-control w-quarter"
+                                    >
+                                      <option value="">선택</option>
+                                      <option value="oil-subsidy-statement">
+                                        유가보조금 할인, 지급내역서(카드사발급
+                                      </option>
+                                    </select>
+                                    <input
+                                      id="birthSupportDocumentFile"
+                                      name="birthSupportDocumentFile"
+                                      type="file"
+                                      class="form-control"
+                                      aria-label="첨부파일 선택"
+                                    />
+                                    <button type="submit" class="btn variant-solid color-navy rounded-md size-input">
+                                      저장
+                                    </button>
+                                    <button
+                                      type="button"
+                                      class="btn variant-outline color-navy rounded-md size-board-auto"
+                                    >
+                                      <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                                      일괄다운로드
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </form>
+
+                        <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                        <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                        <!-- 목록 있는 경우 -->
+                        <ul class="board-document-grid mt-2">
+                          <!-- 반복: 등록 서류 카드 -->
+                          <li class="board-document-item">
+                            <figure class="board-document-card">
+                              <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="board-document-thumb"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="파일 새창열기"
+                              >
+                                <img src="/common/images/main/info-image.png" alt="" />
+                              </a>
+                              <figcaption class="board-document-name">
+                                유가보조금 할인, 지급내역서(카드사발급.jpg
+                              </figcaption>
+                              <div class="board-table-actions">
+                                <a
+                                  href="/common/images/main/info-image.png"
+                                  class="btn variant-outline color-navy rounded-md size-sm"
+                                  download
+                                >
+                                  다운로드
+                                </a>
+                              </div>
+                            </figure>
+                          </li>
+                        </ul>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="birth-support-unregistered-document-title">
+                        <div class="board-info-row">
+                          <h2 class="board-section-title" id="birth-support-unregistered-document-title">
+                            미등록 서류목록
+                          </h2>
+                        </div>
+                        <table class="board-form-table text-center">
+                          <caption>
+                            출생축하지원 미등록 서류목록
+                          </caption>
+                          <colgroup>
+                            <col width="100%" />
+                          </colgroup>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td class="board-content-empty">미등록 서류가 없습니다.</td>
+                            </tr>
+                            <!-- 반복: 미등록 서류 행 -->
+                            <tr>
+                              <td>유가보조금 할인,지급 내역서(카드사 발급)_2</td>
+                            </tr>
+                            <tr>
+                              <td>유가보조금 할인,지급 내역서(카드사 발급)_3</td>
+                            </tr>
+                            <tr>
+                              <td>유가보조금 할인,지급 내역서(카드사 발급)_4</td>
+                            </tr>
+                            <tr>
+                              <td>유가보조금 할인,지급 내역서(카드사 발급)_5</td>
+                            </tr>
+                            <tr>
+                              <td>보완서류_1</td>
+                            </tr>
+                            <tr>
+                              <td>보완서류_4</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="birth-support-message-title">
+                        <div class="board-info-row">
+                          <h2 class="board-section-title" id="birth-support-message-title">
+                            문자전송(수신 : 신청자 연락처 / 발신 : 02-761-0270)
+                          </h2>
+                        </div>
+                        <form action="/admin_bak/followup/birth-support-list.html" method="post">
+                          <table class="board-form-table">
+                            <caption>
+                              출생축하지원 신청자 문자전송
+                            </caption>
+                            <colgroup>
+                              <col width="18%" />
+                              <col width="82%" />
+                            </colgroup>
+                            <tbody>
+                              <tr>
+                                <th scope="row"><label for="birthSupportMessageContent">내용</label></th>
+                                <td>
+                                  <div class="grid gap-2 row-type-message">
+                                    <textarea
+                                      id="birthSupportMessageContent"
+                                      name="birthSupportMessageContent"
+                                      class="textarea"
+                                      rows="4"
+                                    ></textarea>
+                                    <button
+                                      type="submit"
+                                      class="btn variant-solid color-navy rounded-md size-board-action"
+                                    >
+                                      문자전송
+                                    </button>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div class="board-form-actions justify-center">
+                            <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                              미등록 메시지
+                            </button>
+                            <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                              서류오류 메시지
+                            </button>
+                            <button type="button" class="btn variant-soft color-red rounded-md size-board-auto">
+                              메시지 삭제
+                            </button>
+                          </div>
+                        </form>
+                      </section>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

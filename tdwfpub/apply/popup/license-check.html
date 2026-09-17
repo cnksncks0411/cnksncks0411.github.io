@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물운송자격검증 | 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body class="check-popup license-check">
+    <main class="check-wrap">
+      <h1 class="popup-title">화물운송자격검증</h1>
+
+      <form class="check-form" action="#" method="get">
+        <label for="license-number">자격증번호</label>
+        <div class="check-field">
+          <input
+            id="license-number"
+            class="form-control size-md"
+            type="text"
+            name="licenseNumber"
+            placeholder="자격증 번호를 입력해 주세요."
+            required
+          />
+          <button type="submit" class="btn variant-outline color-navy size-md rounded-md">확인</button>
+        </div>
+      </form>
+
+      <!-- 자격검증 전 -->
+      <div class="check-note">
+        <p>
+          1로 시작하는 화물운송종사<br />
+          자격증 번호를 입력해 주시기 바랍니다.
+        </p>
+      </div>
+
+      <!-- 자격검증 후 -->
+      <div class="check-note check-result">
+        <p>{결과 멘트}</p>
+      </div>
+    </main>
+  </body>
+</html>

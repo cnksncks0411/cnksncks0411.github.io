@@ -1,0 +1,1576 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>에스오일장학생관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="soil-scholar">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="soil-scholar"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>에스오일장학생관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/followup/soil-scholar-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">에스오일장학생관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="에스오일장학생 지급현황">
+              <form action="/admin/followup/soil-scholar-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      에스오일장학생 지급현황 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="13%" />
+                      <col width="87%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="soilScholarProject">사업 공고명</label></th>
+                        <td>
+                          <select id="soilScholarProject" name="soilScholarProject" class="form-control w-full">
+                            <option value="" selected>선택</option>
+                            <option value="2025">2025년 에스오일(S-OIL) 장학사업</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+
+              <div class="board-table-wrap mt-2">
+                <table class="board-table">
+                  <caption>
+                    에스오일장학생 지급현황
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="12%" />
+                    <col width="12%" />
+                    <col width="14%" />
+                    <col width="13%" />
+                    <col width="11%" />
+                    <col width="17%" />
+                    <col width="7%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">지급년도/반기</th>
+                      <th scope="col">지급자수</th>
+                      <th scope="col">미처리자수</th>
+                      <th scope="col">보류(휴학)자수</th>
+                      <th scope="col">지급정지자수</th>
+                      <th scope="col">대상자수</th>
+                      <th scope="col">총지급금액</th>
+                      <th scope="col">목록보기</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 지급현황이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 에스오일장학생 지급현황 행 -->
+                    <tr>
+                      <td><a href="#" class="board-link-text">2025년 상반기</a></td>
+                      <td>6,610(4,806)</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>6,310</td>
+                      <td>5,240,900,000</td>
+                      <td>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-sm">보기</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="soil-scholar-payment-list-title">
+              <form action="/admin/followup/soil-scholar-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      에스오일장학생 지급대상자 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="soilScholarProcessStatus">처리여부</label></th>
+                        <td>
+                          <select
+                            id="soilScholarProcessStatus"
+                            name="soilScholarProcessStatus"
+                            class="form-control w-full"
+                          >
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="soilScholarRecipientName">대상자명</label></th>
+                        <td>
+                          <input
+                            id="soilScholarRecipientName"
+                            name="soilScholarRecipientName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="soilScholarDriverBirth">운전자 생년월일</label></th>
+                        <td>
+                          <input
+                            id="soilScholarDriverBirth"
+                            name="soilScholarDriverBirth"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="soilScholarDriverName">운전자명</label></th>
+                        <td>
+                          <input
+                            id="soilScholarDriverName"
+                            name="soilScholarDriverName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="flex gap-2">
+                    <button type="button" class="btn variant-solid color-blue rounded-md size-board-action">
+                      자동지정
+                    </button>
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      조회
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="board-info-row mt-2">
+                <h2 class="board-list-title" id="soil-scholar-payment-list-title">지급대상자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    에스오일장학생 지급대상자 목록
+                  </caption>
+                  <colgroup>
+                    <col width="7%" />
+                    <col width="8%" />
+                    <col width="6%" />
+                    <col width="8%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                    <col width="10%" />
+                    <col width="8%" />
+                    <col width="6%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">접수<br />번호</th>
+                      <th scope="col">운전자<br />생년월일</th>
+                      <th scope="col">운전자<br />성명</th>
+                      <th scope="col">대상자<br />생년월일</th>
+                      <th scope="col">대상자<br />성명</th>
+                      <th scope="col">입금<br />은행명</th>
+                      <th scope="col">계좌번호</th>
+                      <th scope="col">접수<br />내역</th>
+                      <th scope="col">선발<br />상태</th>
+                      <th scope="col">총지급<br />횟수</th>
+                      <th scope="col">총지급<br />금액</th>
+                      <th scope="col">현회차<br />지급액</th>
+                      <th scope="col">처리<br />상태</th>
+                      <th scope="col">지급<br />수정</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="14" class="board-content-empty">등록된 지급대상자가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 에스오일장학생 지급대상자 목록 행 -->
+                    <tr>
+                      <td>00000001</td>
+                      <td>19760725</td>
+                      <td>손*훈</td>
+                      <td>20170123</td>
+                      <td>손*림</td>
+                      <td>국민은행</td>
+                      <td>5320011234567</td>
+                      <td>
+                        <!-- 접수내역 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="soil-scholar-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <!-- 변경 버튼: 선발상태 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-soft color-blue rounded-md size-sm"
+                          data-popup-open="soil-scholar-selection-status-popup"
+                          aria-haspopup="dialog"
+                        >
+                          변경
+                        </button>
+                      </td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td><span class="font-bold">미처리</span></td>
+                      <td>
+                        <!-- 수정 버튼: 지급수정 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-soft color-blue rounded-md size-sm"
+                          data-popup-open="soil-scholar-payment-popup"
+                          aria-haspopup="dialog"
+                        >
+                          수정
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="에스오일장학생 지급대상자 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 선발상태 팝업: 변경 버튼의 data-popup-open 값과 id 값을 맞춰 사용 -->
+            <div
+              class="popup"
+              data-popup
+              id="soil-scholar-selection-status-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="soil-scholar-selection-status-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="soil-scholar-selection-status-popup-title">선발상태</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/followup/soil-scholar-list.html" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        에스오일장학생 선발상태 변경 정보
+                      </caption>
+                      <colgroup>
+                        <col width="22%" />
+                        <col width="78%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">선발 상태</th>
+                          <td>
+                            <div class="board-form-options">
+                              <label class="radio-label">
+                                <input type="radio" name="soilScholarSelectionStatus" value="selected" checked />
+                                <span class="radio-label-text">최종선발</span>
+                              </label>
+                              <label class="radio-label">
+                                <input type="radio" name="soilScholarSelectionStatus" value="rejected" />
+                                <span class="radio-label-text">탈락</span>
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="soilScholarRejectionReason">탈락 사유</label></th>
+                          <td>
+                            <select
+                              id="soilScholarRejectionReason"
+                              name="soilScholarRejectionReason"
+                              class="form-control w-full"
+                            >
+                              <option value="" selected>선택</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="soilScholarRejectionOtherReason">기타 사유</label></th>
+                          <td>
+                            <textarea
+                              id="soilScholarRejectionOtherReason"
+                              name="soilScholarRejectionOtherReason"
+                              class="textarea"
+                              rows="3"
+                            ></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      저장
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 지급수정 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="soil-scholar-payment-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="soil-scholar-payment-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="soil-scholar-payment-popup-title">지급수정</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/followup/soil-scholar-list.html" method="post">
+                  <div class="popup-body">
+                    <section aria-labelledby="soil-scholar-payment-history-title">
+                      <h3 class="popup-section-title" id="soil-scholar-payment-history-title">지급내역</h3>
+                      <div class="board-table-wrap">
+                        <table class="board-table">
+                          <caption>
+                            에스오일장학생 지급내역
+                          </caption>
+                          <colgroup>
+                            <col width="18%" />
+                            <col width="15%" />
+                            <col width="15%" />
+                            <col width="15%" />
+                            <col width="15%" />
+                            <col width="22%" />
+                          </colgroup>
+                          <thead>
+                            <tr>
+                              <th scope="col">지급년도_반기</th>
+                              <th scope="col">지급일</th>
+                              <th scope="col">지급상태</th>
+                              <th scope="col">지원금액</th>
+                              <th scope="col">은행</th>
+                              <th scope="col">계좌번호</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                            <tr hidden>
+                              <td colspan="6" class="board-content-empty">등록된 지급내역이 존재하지 않습니다.</td>
+                            </tr>
+                            <!-- 반복: 에스오일장학생 지급내역 행 -->
+                            <tr>
+                              <td>2026년 상반기</td>
+                              <td>20260101</td>
+                              <td>지급완료</td>
+                              <td>700,000</td>
+                              <td>국민은행</td>
+                              <td>5320011234567</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+
+                    <section class="mt-6" aria-labelledby="soil-scholar-payment-change-title">
+                      <h3 class="popup-section-title" id="soil-scholar-payment-change-title">
+                        지급대상자 지급결과 변경
+                      </h3>
+                      <table class="board-form-table">
+                        <caption>
+                          에스오일장학생 지급대상자 지급결과 변경 정보
+                        </caption>
+                        <colgroup>
+                          <col width="18%" />
+                          <col width="32%" />
+                          <col width="18%" />
+                          <col width="32%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">총지급횟수</th>
+                            <td>0</td>
+                            <th scope="row">총 지급금액</th>
+                            <td>0</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">지급년도_반기</th>
+                            <td>
+                              <div class="flex items-center gap-2">
+                                <select
+                                  id="soilScholarPaymentYear"
+                                  name="soilScholarPaymentYear"
+                                  class="form-control"
+                                  aria-label="지급년도"
+                                >
+                                  <option value="2026" selected>2026</option>
+                                </select>
+                                <span>년</span>
+                                <select
+                                  id="soilScholarPaymentHalf"
+                                  name="soilScholarPaymentHalf"
+                                  class="form-control"
+                                  aria-label="지급 반기"
+                                >
+                                  <option value="" selected>선택</option>
+                                  <option value="first">상반기</option>
+                                  <option value="second">하반기</option>
+                                  <option value="additional">추가</option>
+                                </select>
+                              </div>
+                            </td>
+                            <th scope="row"><label for="soilScholarPaymentDate">지급일자</label></th>
+                            <td>
+                              <input
+                                id="soilScholarPaymentDate"
+                                name="soilScholarPaymentDate"
+                                type="text"
+                                class="form-control w-full"
+                                placeholder="YYYYMMDD"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">은행</th>
+                            <td></td>
+                            <th scope="row">계좌번호</th>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="soilScholarPaymentStatus">지급상태</label></th>
+                            <td>
+                              <select
+                                id="soilScholarPaymentStatus"
+                                name="soilScholarPaymentStatus"
+                                class="form-control w-full"
+                              >
+                                <option value="paid" selected>지급완료</option>
+                              </select>
+                            </td>
+                            <th scope="row"><label for="soilScholarPaymentAmount">지급금액</label></th>
+                            <td>
+                              <select
+                                id="soilScholarPaymentAmount"
+                                name="soilScholarPaymentAmount"
+                                class="form-control w-full"
+                              >
+                                <option value="" selected>선택</option>
+                                <option value="700000">70만원</option>
+                                <option value="1000000">100만원</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="soilScholarPaymentReason">변경사유</label></th>
+                            <td colspan="3">
+                              <textarea
+                                id="soilScholarPaymentReason"
+                                name="soilScholarPaymentReason"
+                                class="textarea"
+                                rows="5"
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="button" class="btn variant-solid color-navy rounded-md size-board-action">
+                      신규
+                    </button>
+                    <button type="submit" class="btn variant-soft color-blue rounded-md size-board-action">수정</button>
+                    <button type="button" class="btn variant-soft color-red rounded-md size-board-action">삭제</button>
+                    <button type="reset" class="btn variant-outline color-navy rounded-md size-board-action">
+                      초기화
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 접수내역 상세 팝업 -->
+            <div
+              class="popup"
+              id="soil-scholar-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="soil-scholar-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="soil-scholar-detail-popup-title">접수내역상세</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-label="에스오일장학생 접수현황">
+                      <table class="board-form-table text-center">
+                        <caption>
+                          에스오일장학생 접수현황
+                        </caption>
+                        <colgroup>
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.334%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">신청번호</th>
+                            <td>00000024</td>
+                            <th scope="row">접수번호</th>
+                            <td>00005029</td>
+                            <th scope="row">접수상태</th>
+                            <td>접수완료</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="panel" aria-label="접수내역 상세 내용">
+                      <div class="board-tabs" data-board-tabs>
+                        <div class="board-tab-list" role="tablist" aria-label="접수내역 서류">
+                          <button
+                            type="button"
+                            class="board-tab active"
+                            id="soilScholarApplicationTab"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="soilScholarApplicationPanel"
+                            data-board-tab="soilScholarApplicationPanel"
+                          >
+                            Soil 장학지원신청서
+                          </button>
+                          <button
+                            type="button"
+                            class="board-tab"
+                            id="soilScholarAccidentTab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="soilScholarAccidentPanel"
+                            data-board-tab="soilScholarAccidentPanel"
+                          >
+                            Soil 장학 사고정보 등록
+                          </button>
+                          <button
+                            type="button"
+                            class="board-tab"
+                            id="soilScholarDocumentTab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="soilScholarDocumentPanel"
+                            data-board-tab="soilScholarDocumentPanel"
+                          >
+                            Soil 장학 서류등록
+                          </button>
+                        </div>
+
+                        <div class="board-tab-panels">
+                          <div
+                            class="board-tab-panel"
+                            id="soilScholarApplicationPanel"
+                            role="tabpanel"
+                            aria-labelledby="soilScholarApplicationTab"
+                            data-board-tab-panel
+                          >
+                            <form action="" method="post" class="flex flex-col gap-4">
+                              <h2 class="board-panel-title">Soil 장학지원신청서</h2>
+
+                              <section class="board-section" aria-labelledby="soil-scholar-driver-info-title">
+                                <h3 class="board-section-title" id="soil-scholar-driver-info-title">
+                                  사고당사자(화물운전자) 정보
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    사고당사자 화물운전자 정보
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarDetailDriverName">성명</label></th>
+                                      <td>
+                                        <input
+                                          id="soilScholarDetailDriverName"
+                                          name="soilScholarDriverName"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="김회원"
+                                        />
+                                      </td>
+                                      <th scope="row"><label for="soilScholarDetailDriverBirth">생년월일</label></th>
+                                      <td>
+                                        <input
+                                          id="soilScholarDetailDriverBirth"
+                                          name="soilScholarDriverBirth"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="19760726"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarLicenseNumber">자격증번호</label></th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-field">
+                                          <input
+                                            id="soilScholarLicenseNumber"
+                                            name="soilScholarLicenseNumber"
+                                            type="text"
+                                            class="form-control w-full"
+                                            value="123456789"
+                                            readonly
+                                          />
+                                          <button
+                                            type="button"
+                                            class="btn variant-outline color-navy rounded-md size-input"
+                                            disabled
+                                          >
+                                            초기화
+                                          </button>
+                                        </div>
+                                      </td>
+                                      <th scope="row">검증결과</th>
+                                      <td><span class="font-bold">검증실패</span></td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">차량번호</th>
+                                      <td>
+                                        <div class="grid grid-cols-4 gap-2">
+                                          <select
+                                            name="soilScholarVehicleRegion"
+                                            class="form-control"
+                                            aria-label="차량번호 지역"
+                                          >
+                                            <option value="">세종</option>
+                                          </select>
+                                          <input
+                                            name="soilScholarVehicleFirstNumber"
+                                            type="text"
+                                            class="form-control"
+                                            value="86"
+                                            aria-label="차량번호 앞 숫자"
+                                          />
+                                          <select
+                                            name="soilScholarVehicleLetter"
+                                            class="form-control"
+                                            aria-label="차량번호 한글"
+                                          >
+                                            <option value="">배</option>
+                                          </select>
+                                          <input
+                                            name="soilScholarVehicleLastNumber"
+                                            type="text"
+                                            class="form-control"
+                                            value="1509"
+                                            aria-label="차량번호 뒷 숫자"
+                                          />
+                                        </div>
+                                      </td>
+                                      <th scope="row"><label for="soilScholarBusinessType">업종</label></th>
+                                      <td>
+                                        <select
+                                          id="soilScholarBusinessType"
+                                          name="soilScholarBusinessType"
+                                          class="form-control w-full"
+                                        >
+                                          <option value="">일반화물</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarVehicleType">차종</label></th>
+                                      <td>
+                                        <select
+                                          id="soilScholarVehicleType"
+                                          name="soilScholarVehicleType"
+                                          class="form-control w-full"
+                                        >
+                                          <option value="">화물밴형(탑차, 윙바디, 냉장, 냉동)</option>
+                                        </select>
+                                      </td>
+                                      <th scope="row">타인명의 유류복지카드 사용여부</th>
+                                      <td>
+                                        <div class="board-form-options">
+                                          <label class="radio-label">
+                                            <input type="radio" name="soilScholarOtherFuelCardUse" value="unused" />
+                                            <span class="radio-label-text">미사용</span>
+                                          </label>
+                                          <label class="radio-label">
+                                            <input
+                                              type="radio"
+                                              name="soilScholarOtherFuelCardUse"
+                                              value="used"
+                                              checked
+                                            />
+                                            <span class="radio-label-text">사용</span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarManagementNumber">관리번호</label></th>
+                                      <td colspan="3">
+                                        <input
+                                          id="soilScholarManagementNumber"
+                                          name="soilScholarManagementNumber"
+                                          type="text"
+                                          class="form-control w-half"
+                                          value="25-1(14-1)"
+                                        />
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <section class="board-section" aria-labelledby="soil-scholar-family-info-title">
+                                <h3 class="board-section-title" id="soil-scholar-family-info-title">
+                                  지원신청(유가족) 정보
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    지원신청 유가족 정보
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarFamilyName">성명</label></th>
+                                      <td>
+                                        <input
+                                          id="soilScholarFamilyName"
+                                          name="soilScholarFamilyName"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="김아들"
+                                        />
+                                      </td>
+                                      <th scope="row"><label for="soilScholarFamilyBirth">생년월일</label></th>
+                                      <td>
+                                        <input
+                                          id="soilScholarFamilyBirth"
+                                          name="soilScholarFamilyBirth"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="20170123"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarFamilyGender">성별</label></th>
+                                      <td>
+                                        <select
+                                          id="soilScholarFamilyGender"
+                                          name="soilScholarFamilyGender"
+                                          class="form-control w-full"
+                                        >
+                                          <option value="male">남</option>
+                                        </select>
+                                      </td>
+                                      <th scope="row"><label for="soilScholarFamilyRelation">관계</label></th>
+                                      <td>
+                                        <select
+                                          id="soilScholarFamilyRelation"
+                                          name="soilScholarFamilyRelation"
+                                          class="form-control w-full"
+                                        >
+                                          <option value="child">자녀</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">자택 전화번호</th>
+                                      <td>
+                                        <div class="grid items-center gap-2 row-type-phone">
+                                          <select
+                                            name="soilScholarHomePhoneFirst"
+                                            class="form-control"
+                                            aria-label="자택 전화번호 지역번호"
+                                          >
+                                            <option value="">선택</option>
+                                          </select>
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="soilScholarHomePhoneMiddle"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="자택 전화번호 가운데자리"
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="soilScholarHomePhoneLast"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="자택 전화번호 끝자리"
+                                          />
+                                        </div>
+                                      </td>
+                                      <th scope="row">휴대폰</th>
+                                      <td>
+                                        <div class="grid items-center gap-2 row-type-phone">
+                                          <input
+                                            name="soilScholarMobilePhoneFirst"
+                                            type="text"
+                                            class="form-control"
+                                            value="010"
+                                            aria-label="휴대폰 앞자리"
+                                            readonly
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="soilScholarMobilePhoneMiddle"
+                                            type="text"
+                                            class="form-control"
+                                            value="1234"
+                                            aria-label="휴대폰 가운데자리"
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="soilScholarMobilePhoneLast"
+                                            type="text"
+                                            class="form-control"
+                                            value="5678"
+                                            aria-label="휴대폰 끝자리"
+                                          />
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarPostcode">자택주소</label></th>
+                                      <td colspan="3">
+                                        <div class="flex flex-col gap-2">
+                                          <div class="flex items-center gap-2 row-type-field w-half">
+                                            <input
+                                              id="soilScholarPostcode"
+                                              name="soilScholarPostcode"
+                                              type="text"
+                                              class="form-control"
+                                              value="30153"
+                                              aria-label="우편번호"
+                                              readonly
+                                            />
+                                            <button
+                                              type="button"
+                                              class="btn variant-outline color-navy rounded-md size-input"
+                                            >
+                                              우편번호 찾기
+                                            </button>
+                                          </div>
+                                          <input
+                                            id="soilScholarAddress"
+                                            name="soilScholarAddress"
+                                            type="text"
+                                            class="form-control"
+                                            value="세종 태평로 56 (태평동, 해들마을 5단지)"
+                                            aria-label="주소"
+                                            readonly
+                                          />
+                                          <input
+                                            id="soilScholarAddressDetail"
+                                            name="soilScholarAddressDetail"
+                                            type="text"
+                                            class="form-control"
+                                            value="111동 1503호"
+                                            aria-label="상세주소"
+                                          />
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <div class="board-form-actions justify-center">
+                                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                                  저장하기
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+
+                          <div
+                            class="board-tab-panel"
+                            id="soilScholarAccidentPanel"
+                            role="tabpanel"
+                            aria-labelledby="soilScholarAccidentTab"
+                            data-board-tab-panel
+                            hidden
+                          >
+                            <form action="" method="post" class="flex flex-col gap-4">
+                              <h2 class="board-panel-title">Soil 장학 사고정보 등록</h2>
+
+                              <section class="board-section" aria-labelledby="soil-scholar-accident-info-title">
+                                <h3 class="board-section-title" id="soil-scholar-accident-info-title">사고신고 내역</h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    에스오일장학 사고신고 내역
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarAccidentDate">사고일</label></th>
+                                      <td colspan="3">
+                                        <input
+                                          id="soilScholarAccidentDate"
+                                          name="soilScholarAccidentDate"
+                                          type="text"
+                                          class="form-control w-quarter"
+                                          value="20240829"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarAccidentType">사고구분</label></th>
+                                      <td colspan="3">
+                                        <select
+                                          id="soilScholarAccidentType"
+                                          name="soilScholarAccidentType"
+                                          class="form-control"
+                                        >
+                                          <option value="death">사망</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarFinalDiagnosis">최종진단</label></th>
+                                      <td colspan="3">
+                                        <input
+                                          id="soilScholarFinalDiagnosis"
+                                          name="soilScholarFinalDiagnosis"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="운전자 사망"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarAccidentPlace">사고장소</label></th>
+                                      <td colspan="3">
+                                        <textarea
+                                          id="soilScholarAccidentPlace"
+                                          name="soilScholarAccidentPlace"
+                                          class="textarea"
+                                          rows="3"
+                                        ></textarea>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarAccidentFacility">사고시설</label></th>
+                                      <td colspan="3">
+                                        <textarea
+                                          id="soilScholarAccidentFacility"
+                                          name="soilScholarAccidentFacility"
+                                          class="textarea"
+                                          rows="3"
+                                        ></textarea>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarOfficeOpinion">사무국의견</label></th>
+                                      <td colspan="3">
+                                        <textarea
+                                          id="soilScholarOfficeOpinion"
+                                          name="soilScholarOfficeOpinion"
+                                          class="textarea"
+                                          rows="3"
+                                        ></textarea>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarAccidentOther">기타</label></th>
+                                      <td colspan="3">
+                                        <textarea
+                                          id="soilScholarAccidentOther"
+                                          name="soilScholarAccidentOther"
+                                          class="textarea"
+                                          rows="3"
+                                        ></textarea>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarAccidentMemo">메모</label></th>
+                                      <td colspan="3">
+                                        <textarea
+                                          id="soilScholarAccidentMemo"
+                                          name="soilScholarAccidentMemo"
+                                          class="textarea"
+                                          rows="3"
+                                        ></textarea>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="soilScholarEvaluator">심사평가자</label></th>
+                                      <td>
+                                        <select
+                                          id="soilScholarEvaluator"
+                                          name="soilScholarEvaluator"
+                                          class="form-control w-full"
+                                        >
+                                          <option value="2025-1">2025년 제1차 운영위원회</option>
+                                        </select>
+                                      </td>
+                                      <th scope="row"><label for="soilScholarEvaluationDate">심사평가일</label></th>
+                                      <td>
+                                        <input
+                                          id="soilScholarEvaluationDate"
+                                          name="soilScholarEvaluationDate"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="20250417"
+                                        />
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <div class="board-form-actions justify-center">
+                                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                                  저장하기
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+
+                          <div
+                            class="board-tab-panel flex flex-col gap-4"
+                            id="soilScholarDocumentPanel"
+                            role="tabpanel"
+                            aria-labelledby="soilScholarDocumentTab"
+                            data-board-tab-panel
+                            hidden
+                          >
+                            <section class="board-section" aria-labelledby="soil-scholar-registered-document-title">
+                              <div class="board-info-row">
+                                <h2 class="board-list-title" id="soil-scholar-registered-document-title">
+                                  등록서류목록
+                                </h2>
+                              </div>
+                              <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                              <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                              <!-- 목록 있는 경우 -->
+                              <ul class="board-document-grid">
+                                <!-- 반복: 등록서류 카드 -->
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">가족관계증명원.jpg</figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">기타(증빙서류).jpg</figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                              </ul>
+                            </section>
+
+                            <section class="board-section" aria-labelledby="soil-scholar-required-document-title">
+                              <div class="board-info-row">
+                                <h2 class="board-list-title" id="soil-scholar-required-document-title">서류목록</h2>
+                              </div>
+                              <!-- 필요 없는 경우: hidden 속성을 제거하고 표시 -->
+                              <p class="board-content-empty" hidden>등록할 서류 정보가 없습니다.</p>
+                              <!-- 등록 시: 서류별 개별 업로드/저장 -->
+                              <form action="" method="post" enctype="multipart/form-data">
+                                <table class="board-form-table">
+                                  <caption>
+                                    에스오일장학 제출서류 목록
+                                  </caption>
+                                  <colgroup>
+                                    <col width="22%" />
+                                    <col width="78%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile1">장학사업신청서</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile1"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile2">교통사고 사실확인원_1</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile2"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile3">교통사고 사실확인원_2</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile3"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile4">시체검안서/진단서</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile4"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile5">가족관계증명서</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile5"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile6">재학증명서</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile6"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile7">유가보조금 할인내역서_1</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile7"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile8">유가보조금 할인내역서_2</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile8"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile9">통장사본</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile9"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile10">개인정보 제3자제공동의서</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile10"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile11">기타(증빙서류)</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile11"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarDocumentFile12">화물운송종사자격 취득확인서</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="soilScholarDocumentFile12"
+                                            name="soilScholarDocumentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </form>
+                            </section>
+
+                            <section class="board-section" aria-labelledby="soil-scholar-message-title">
+                              <div class="board-info-row">
+                                <h2 class="board-list-title" id="soil-scholar-message-title">
+                                  문자전송(수신 : 신청자 연락처 / 발신 : 02-761-0270)
+                                </h2>
+                              </div>
+                              <form action="" method="post">
+                                <table class="board-form-table">
+                                  <caption>
+                                    에스오일장학 신청자 문자전송
+                                  </caption>
+                                  <colgroup>
+                                    <col width="22%" />
+                                    <col width="78%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="soilScholarMessageContent">내용</label>
+                                      </th>
+                                      <td>
+                                        <div class="grid gap-2 row-type-message">
+                                          <textarea
+                                            id="soilScholarMessageContent"
+                                            name="soilScholarMessageContent"
+                                            class="textarea"
+                                            rows="4"
+                                          ></textarea>
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-board-action"
+                                          >
+                                            문자전송
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <div class="board-form-actions justify-center">
+                                  <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                                    미등록 메시지
+                                  </button>
+                                  <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                                    서류오류 메시지
+                                  </button>
+                                  <button type="button" class="btn variant-soft color-red rounded-md size-board-auto">
+                                    메시지 삭제
+                                  </button>
+                                </div>
+                              </form>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

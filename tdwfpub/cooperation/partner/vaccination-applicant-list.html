@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 협력업체 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="cooperation" data-section="partner" data-page="vaccination-applicant">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /cooperation/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 협력관리 좌측 메뉴 인클루드 영역: /cooperation/include/lnb-partner.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-partner" data-page="vaccination-applicant"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>예방접종 협약병원</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/cooperation/partner/regular-checkup-list.html">협력관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">예방접종 협약병원</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="vaccination-applicant-search-title">
+              <div class="board-info-row sr-only">
+                <h2 class="board-list-title" id="vaccination-applicant-search-title">조회조건</h2>
+              </div>
+              <form action="/cooperation/partner/vaccination-applicant-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      예방접종신청자 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="vaccinationYear">접종년도</label></th>
+                        <td>
+                          <select id="vaccinationYear" name="vaccinationYear" class="form-control w-full">
+                            <option value="">2026</option>
+                            <option value="">2025</option>
+                            <option value="">2024</option>
+                            <option value="">2023</option>
+                            <option value="">2022</option>
+                            <option value="">2021</option>
+                            <option value="">2020</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="claimMonth">청구년월</label></th>
+                        <td>
+                          <select id="claimMonth" name="claimMonth" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">미청구</option>
+                            <option value="">02월</option>
+                            <option value="">03월</option>
+                            <option value="">04월</option>
+                            <option value="">05월</option>
+                            <option value="">06월</option>
+                            <option value="">07월</option>
+                            <option value="">08월</option>
+                            <option value="">09월</option>
+                            <option value="">10월</option>
+                            <option value="">11월</option>
+                            <option value="">12월</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="claimStatus">청구상태</label></th>
+                        <td>
+                          <select id="claimStatus" name="claimStatus" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">미처리</option>
+                            <option value="">접종완료</option>
+                            <option value="">청구완료</option>
+                            <option value="">청구제외</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="paymentStatus">지급상태</label></th>
+                        <td>
+                          <select id="paymentStatus" name="paymentStatus" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">미처리</option>
+                            <option value="">지급예정</option>
+                            <option value="">지급완료</option>
+                            <option value="">지급보류</option>
+                            <option value="">반려</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="driverName">운전자명</label></th>
+                        <td>
+                          <input id="driverName" name="driverName" type="text" class="form-control w-full" autofocus />
+                        </td>
+                        <th scope="row"><label for="birthDate">생년월일</label></th>
+                        <td>
+                          <input
+                            id="birthDate"
+                            name="birthDate"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                        <th scope="row"><label for="phoneNumber">휴대전화번호</label></th>
+                        <td>
+                          <input id="phoneNumber" name="phoneNumber" type="text" class="form-control w-full" />
+                        </td>
+                        <th scope="row"><label for="vaccinationHospital">접종병원</label></th>
+                        <td>
+                          <select id="vaccinationHospital" name="vaccinationHospital" class="form-control w-full">
+                            <option value="">미정</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="vaccinationType">접종유형</label></th>
+                        <td colspan="3">
+                          <div class="flex items-center gap-2 row-type-field">
+                            <select
+                              id="vaccinationType"
+                              name="vaccinationType"
+                              class="form-control w-full"
+                              aria-label="접종유형"
+                            >
+                              <option value="">전체</option>
+                              <option value="">대상포진</option>
+                              <option value="">독감백신</option>
+                              <option value="">자궁경부암</option>
+                              <option value="">파상풍</option>
+                              <option value="">폐렴구균</option>
+                              <option value="">A형간염</option>
+                              <option value="">B형간염</option>
+                            </select>
+                            <select name="vaccinationItem" class="form-control w-full" aria-label="접종항목">
+                              <option value="">전체</option>
+                              <option value="">가다실9</option>
+                              <option value="">박스뉴반스</option>
+                              <option value="">스카이조스터</option>
+                              <option value="">싱그릭스</option>
+                              <option value="">유박스</option>
+                              <option value="">프리베나20</option>
+                              <option value="">하브릭스</option>
+                              <option value="">3가</option>
+                              <option value="">TD/T-dap</option>
+                            </select>
+                          </div>
+                        </td>
+                        <th scope="row">접종일자</th>
+                        <td colspan="3">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full">
+                              <input
+                                id="vaccinationStartDate"
+                                name="vaccinationStartDate"
+                                type="text"
+                                class="form-control"
+                                placeholder="YYYYMMDD"
+                                aria-label="접종일자 시작일"
+                              />
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full">
+                              <input
+                                id="vaccinationEndDate"
+                                name="vaccinationEndDate"
+                                type="text"
+                                class="form-control"
+                                placeholder="YYYYMMDD"
+                                aria-label="접종일자 종료일"
+                              />
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="vaccination-applicant-summary-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="vaccination-applicant-summary-title">접종항목집계(접수인원기준)</h2>
+              </div>
+              <table class="board-form-table board-summary-table">
+                <caption>
+                  예방접종신청자 접종유형 설정 건수
+                </caption>
+                <colgroup>
+                  <col width="50%" />
+                  <col width="50%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="col">접종유형설정</th>
+                    <th scope="col">접종유형미설정</th>
+                  </tr>
+                  <tr>
+                    <td>107건</td>
+                    <td><span class="font-bold text-red">8건</span></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="board-section mt-6">
+                <table class="board-form-table board-summary-table">
+                  <caption>
+                    예방접종신청자 접종항목별 건수
+                  </caption>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="30%" />
+                    <col width="20%" />
+                    <col width="30%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">A형간염</th>
+                      <td>7건 [회차건수 : 14건]</td>
+                      <th scope="row">B형간염</th>
+                      <td>16건 [회차건수 : 48건]</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">대상포진</th>
+                      <td>28건 [회차건수 : 39건]</td>
+                      <th scope="row">독감백신</th>
+                      <td>28건 [회차건수 : 39건]</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">자궁경부암</th>
+                      <td>28건 [회차건수 : 39건]</td>
+                      <th scope="row">파상풍</th>
+                      <td>14건 [회차건수 : 42건]</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">폐렴구균</th>
+                      <td>14건 [회차건수 : 42건]</td>
+                      <th scope="row">전체</th>
+                      <td><span class="font-bold">14건 [회차건수 : 42건]</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="vaccination-applicant-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="vaccination-applicant-list-title">대상자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+              <div class="board-table-wrap scroll-x">
+                <table class="board-table">
+                  <caption>
+                    예방접종신청자 대상자목록
+                  </caption>
+                  <colgroup>
+                    <col width="7%" />
+                    <col width="11%" />
+                    <col width="9%" />
+                    <col width="11%" />
+                    <col width="8%" />
+                    <col width="11%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="9%" />
+                    <col width="9%" />
+                    <col width="9%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">년도회차</th>
+                      <th scope="col">접수자<br />생년월일</th>
+                      <th scope="col">접수자<br />성명</th>
+                      <th scope="col">접수자<br />연락처</th>
+                      <th scope="col">청구년월</th>
+                      <th scope="col">접종유형</th>
+                      <th scope="col">접종회차</th>
+                      <th scope="col">접종여부</th>
+                      <th scope="col">접종일자</th>
+                      <th scope="col">청구상태</th>
+                      <th scope="col">지급상태</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 내용 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="11" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 예방접종신청자 대상자목록 행 -->
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1965.02.02</td>
+                      <td>홍*동</td>
+                      <td>010-1234-5678</td>
+                      <td>3월</td>
+                      <td>파상풍/T-dap</td>
+                      <td>3회차</td>
+                      <td><span class="font-bold text-red">미접종</span></td>
+                      <td>2026.02.27</td>
+                      <td><span class="font-bold">접종완료</span></td>
+                      <td><span class="font-bold">지급예정</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1971.05.14</td>
+                      <td>김*수</td>
+                      <td>010-2345-6789</td>
+                      <td>3월</td>
+                      <td>대상포진/싱그릭스</td>
+                      <td>1회차</td>
+                      <td><span class="font-bold text-blue">접종완료</span></td>
+                      <td>2026.03.04</td>
+                      <td><span class="font-bold text-blue">청구완료</span></td>
+                      <td><span class="font-bold text-blue">지급완료</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1968.11.21</td>
+                      <td>이*호</td>
+                      <td>010-3456-7890</td>
+                      <td>4월</td>
+                      <td>폐렴구균/프리베나20</td>
+                      <td>1회차</td>
+                      <td><span class="font-bold text-red">미접종</span></td>
+                      <td>2026.03.18</td>
+                      <td><span class="font-bold">접종완료</span></td>
+                      <td><span class="font-bold">미처리</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1975.07.09</td>
+                      <td>박*진</td>
+                      <td>010-4567-8901</td>
+                      <td>4월</td>
+                      <td>독감백신</td>
+                      <td>1회차</td>
+                      <td><span class="font-bold text-red">미접종</span></td>
+                      <td>2026.03.21</td>
+                      <td><span class="font-bold">미처리</span></td>
+                      <td><span class="font-bold">미처리</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1962.09.30</td>
+                      <td>최*철</td>
+                      <td>010-5678-9012</td>
+                      <td>5월</td>
+                      <td>A형간염</td>
+                      <td>2회차</td>
+                      <td><span class="font-bold text-blue">접종완료</span></td>
+                      <td>2026.04.02</td>
+                      <td><span class="font-bold text-blue">청구완료</span></td>
+                      <td><span class="font-bold text-red">지급보류</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1978.12.18</td>
+                      <td>정*영</td>
+                      <td>010-6789-0123</td>
+                      <td>5월</td>
+                      <td>B형간염</td>
+                      <td>2회차</td>
+                      <td><span class="font-bold text-red">미접종</span></td>
+                      <td>2026.04.11</td>
+                      <td><span class="font-bold">접종완료</span></td>
+                      <td><span class="font-bold">지급예정</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1969.04.25</td>
+                      <td>강*민</td>
+                      <td>010-7890-1234</td>
+                      <td>6월</td>
+                      <td>자궁경부암</td>
+                      <td>1회차</td>
+                      <td><span class="font-bold text-blue">접종완료</span></td>
+                      <td>2026.05.09</td>
+                      <td><span class="font-bold text-blue">청구완료</span></td>
+                      <td><span class="font-bold text-red">반려</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1973.08.03</td>
+                      <td>윤*석</td>
+                      <td>010-8901-2345</td>
+                      <td>6월</td>
+                      <td>대상포진/스카이조스터</td>
+                      <td>1회차</td>
+                      <td><span class="font-bold text-red">미접종</span></td>
+                      <td>2026.05.16</td>
+                      <td><span class="font-bold text-red">청구제외</span></td>
+                      <td><span class="font-bold">미처리</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1966.01.12</td>
+                      <td>장*훈</td>
+                      <td>010-9012-3456</td>
+                      <td>7월</td>
+                      <td>폐렴구균/박스뉴반스</td>
+                      <td>1회차</td>
+                      <td><span class="font-bold text-red">미접종</span></td>
+                      <td>2026.06.01</td>
+                      <td><span class="font-bold">접종완료</span></td>
+                      <td><span class="font-bold">지급예정</span></td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/cooperation/partner/vaccination-applicant-view.html"
+                      tabindex="0"
+                      aria-label="예방접종신청자 상세내역 보기"
+                    >
+                      <td>2026</td>
+                      <td>1970.10.07</td>
+                      <td>오*환</td>
+                      <td>010-0123-4567</td>
+                      <td>7월</td>
+                      <td>파상풍/T-dap</td>
+                      <td>3회차</td>
+                      <td><span class="font-bold text-blue">접종완료</span></td>
+                      <td>2026.06.15</td>
+                      <td><span class="font-bold text-blue">청구완료</span></td>
+                      <td><span class="font-bold text-blue">지급완료</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="예방접종신청자 대상자목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /cooperation/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/cooperation/js/include.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

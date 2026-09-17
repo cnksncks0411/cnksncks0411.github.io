@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>사업명 등록 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="basic" data-page="project-name">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 기초자료관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-basic.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-basic" data-page="project-name"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <!-- 수정인 경우 '사업명 수정'으로 변경 -->
+              <h1>사업명 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/basic/project-name-list.html">기초자료관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/basic/project-name-list.html">사업명 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <!-- 수정인 경우 '사업명 수정'으로 변경 -->
+                <span aria-current="page">사업명 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="project-name-form-title">
+              <!-- 수정인 경우 제목을 '사업명 수정 입력폼'으로 변경 -->
+              <h2 id="project-name-form-title" hidden>사업명 등록 입력폼</h2>
+              <form action="/admin_bak/basic/project-name-list.html" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    사업명 등록 정보
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="82%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="projectId">사업ID<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input
+                          id="projectId"
+                          name="projectId"
+                          type="text"
+                          class="form-control w-quarter"
+                          value="0001"
+                          readonly
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="projectName">사업명<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input id="projectName" name="projectName" type="text" class="form-control w-full" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">사용여부<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="true" checked required />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="projectDescription">사업설명</label></th>
+                      <td>
+                        <input
+                          id="projectDescription"
+                          name="projectDescription"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <!-- 수정인 경우 '수정하기'로 변경하고, 아래 삭제하기 버튼의 hidden 속성을 제거 -->
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                    등록하기
+                  </button>
+                  <button type="submit" class="btn variant-soft color-red rounded-md size-board-action" hidden>
+                    삭제하기
+                  </button>
+                  <a
+                    href="/admin_bak/basic/project-name-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    취소하기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

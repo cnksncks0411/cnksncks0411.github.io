@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>제출서류등록 | 사업신청 | 화물복지재단 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="business" data-page="notice">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li><a href="/apply/business/notice.html">지원사업정보</a></li>
+              <li><a href="/apply/business/notice.html">사업전체공고</a></li>
+              <li><a href="/apply/business/notice-view.html">공고상세</a></li>
+              <li aria-current="page" data-breadcrumb-current>사업신청</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 지원사업정보 LNB 인클루드 영역: common/include/apply/lnb-business.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-business" data-page="notice"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">사업신청</h1>
+              <div class="sub-intro">
+                <strong>화물복지재단에서 진행하는 <em>복지사업</em>입니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <div class="table-wrap">
+                <table class="board-form-table">
+                  <caption>
+                    신청 사업 정보
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="36%" />
+                    <col width="14%" />
+                    <col width="36%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">사업명</th>
+                      <td>2026년 일반장학사업</td>
+                      <th scope="row">신청기간</th>
+                      <td>2026-05-18 ~ 2026-06-30</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ol class="board-step-list" aria-label="사업신청 진행 단계">
+                <li class="board-step-item">개인정보 동의</li>
+                <li class="board-step-item">검증조회</li>
+                <li class="board-step-item">운전자정보</li>
+                <li class="board-step-item">지원자정보</li>
+                <li class="board-step-item active" aria-current="step">제출서류등록</li>
+                <li class="board-step-item">접수확인</li>
+                <li class="board-step-item">서약서</li>
+              </ol>
+
+              <form class="board-write-form" action="#" method="post" enctype="multipart/form-data" data-agree>
+                <h2 class="sub-section-title-style02">제출서류 등록</h2>
+
+                <section class="board-write-section" aria-labelledby="document-reception-title">
+                  <h2 id="document-reception-title" class="sub-section-title">접수정보</h2>
+                  <div class="table-wrap">
+                    <table class="board-form-table">
+                      <caption>
+                        사업신청 접수정보
+                      </caption>
+                      <colgroup>
+                        <col width="18%" />
+                        <col width="32%" />
+                        <col width="18%" />
+                        <col width="32%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">신청일</th>
+                          <td><time datetime="2026-06-17">2026-06-17</time></td>
+                          <th scope="row">신청번호</th>
+                          <td>0014997</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section class="board-write-section" aria-labelledby="document-check-title">
+                  <h2 id="document-check-title" class="sub-section-title">서류제출 전 확인사항</h2>
+
+                  <label class="check-label" for="document-agree-all">
+                    <input
+                      id="document-agree-all"
+                      type="checkbox"
+                      aria-label="서류제출 전 확인사항에 모두 동의합니다."
+                      data-agree-all
+                    />
+                    <span class="check-label-text">아래의 사항에 대해 모두 동의합니다.</span>
+                  </label>
+
+                  <div class="grid gap-3">
+                    <label class="check-label bg-white" for="document-check-1">
+                      <input id="document-check-1" type="checkbox" name="documentCheck1" data-agree-item required />
+                      <span class="check-label-text">
+                        제출서류를 <strong>스캔 또는 스마트폰 등의 카메라로 촬영하여, 이미지 파일 또는 pdf</strong>로
+                        등록(업로드)합니다.
+                      </span>
+                    </label>
+                    <label class="check-label bg-white" for="document-check-2">
+                      <input id="document-check-2" type="checkbox" name="documentCheck2" data-agree-item required />
+                      <span class="check-label-text">
+                        제출하는 모든 서류상에서
+                        <strong>주민번호 뒷자리 등 고유식별번호는 반드시 비식별처리(삭제 등) 후 제출</strong
+                        >하여야합니다.
+                      </span>
+                    </label>
+                    <label class="check-label bg-white" for="document-check-3">
+                      <input id="document-check-3" type="checkbox" name="documentCheck3" data-agree-item required />
+                      <span class="check-label-text">
+                        부적절한 서류를 등록하거나 제출서류의 식별이 곤란한 경우 선발에서 제외됩니다.
+                      </span>
+                    </label>
+                    <label class="check-label bg-white" for="document-check-4">
+                      <input id="document-check-4" type="checkbox" name="documentCheck4" data-agree-item required />
+                      <span class="check-label-text">
+                        제출서류는 관련 대상자, 발급일자/기관 등의 중요 정보확인에 이상이 없도록, 반드시
+                        <strong>서류의 전체가 정상 확인될 수 있어야</strong> 합니다.
+                      </span>
+                    </label>
+                    <label class="check-label bg-white" for="document-check-5">
+                      <input id="document-check-5" type="checkbox" name="documentCheck5" data-agree-item required />
+                      <span class="check-label-text">
+                        PC화면, 휴대폰화면 자체를 촬영 또는 캡쳐하여 등록한 서류는 <strong>인정되지 않습니다.</strong>
+                      </span>
+                    </label>
+                    <label class="check-label bg-white" for="document-check-6">
+                      <input id="document-check-6" type="checkbox" name="documentCheck6" data-agree-item required />
+                      <span class="check-label-text">
+                        <strong
+                          >개명 등으로 신청정보와 증빙서류가 상이한 경우, 변경사항을 확인할 수 있는 서류를 함께
+                          제출</strong
+                        >하셔야 합니다.
+                        <br />
+                        (가급적 관련기관을 통해 변경사항이 반영된 서류를 재발급 받아 제출)
+                      </span>
+                    </label>
+                  </div>
+                </section>
+
+                <section class="board-write-section" aria-labelledby="document-list-title">
+                  <h2 id="document-list-title" class="sub-section-title">제출 서류 목록</h2>
+
+                  <div class="table-wrap">
+                    <table class="board-form-table table-left type-stack">
+                      <caption>
+                        제출 서류 등록 목록
+                      </caption>
+                      <colgroup>
+                        <col width="24%" />
+                        <col width="*" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">재학증명서<span class="text-red">[필수]</span></th>
+                          <td>
+                            <div class="board-write-file">
+                              <input
+                                id="school-enrollment-file"
+                                class="form-control flex-1"
+                                type="file"
+                                name="schoolEnrollmentFile"
+                                required
+                              />
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-md"
+                                data-popup="file-preview"
+                                data-popup-url="about:blank"
+                                data-size="400,600"
+                              >
+                                미리보기
+                              </button>
+                              <button type="button" class="btn variant-soft color-red rounded-md size-md">삭제</button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            유가보조금 할인, 지급 내역서(카드사 발급)_1<span class="text-red">[필수]</span>
+                          </th>
+                          <td>
+                            <div class="board-write-file">
+                              <input
+                                id="fuel-subsidy-file-1"
+                                class="form-control flex-1"
+                                type="file"
+                                name="fuelSubsidyFile1"
+                                required
+                              />
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-md"
+                                data-popup="file-preview"
+                                data-popup-url="about:blank"
+                                data-size="400,600"
+                              >
+                                미리보기
+                              </button>
+                              <button type="button" class="btn variant-soft color-red rounded-md size-md">삭제</button>
+                            </div>
+                            <div class="flex gap-2 items-center mt-2">
+                              <button type="button" class="btn variant-solid color-navy rounded-md size-sm">
+                                <span class="material-symbols-rounded" aria-hidden="true">add</span>
+                                추가
+                              </button>
+                              <p class="text-warning text-red mt-0 mb-0">
+                                ※ 여러 카드사에서 발급 받으신 경우 +추가 버튼을 클릭 후 서류를 등록해 주세요.(최대 6개)
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- 반복 : 추가 행 -->
+                        <tr>
+                          <th scope="row">유가보조금 할인, 지급 내역서(카드사 발급)_2<span>[선택]</span></th>
+                          <td>
+                            <div class="board-write-file">
+                              <input
+                                id="fuel-subsidy-file-2"
+                                class="form-control flex-1"
+                                type="file"
+                                name="fuelSubsidyFile2"
+                              />
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-md"
+                                data-popup="file-preview"
+                                data-popup-url="about:blank"
+                                data-size="400,600"
+                              >
+                                미리보기
+                              </button>
+                              <button type="button" class="btn variant-soft color-red rounded-md size-md">삭제</button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <div class="grid gap-1">
+                              <p class="note-line">
+                                유가보조금 할인 내역서에는 반드시 유가보조금 항목이 있어야 하며, 매월 1회 이상의
+                                이용내역이 확인되어야 합니다.
+                              </p>
+                              <p class="note-line">
+                                국세청 홈텍스 화물운전자복지카드 매입내역 누계 및 유가보조금내역이 없는 법인 거래내역
+                                자료 등은 인정되지 않습니다.
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">화물운송종사자격 취득확인서<span class="text-red">[필수]</span></th>
+                          <td>
+                            <div class="board-write-file">
+                              <input
+                                id="driver-qualification-file"
+                                class="form-control flex-1"
+                                type="file"
+                                name="driverQualificationFile"
+                                required
+                              />
+                              <button
+                                type="button"
+                                class="btn variant-soft color-blue rounded-md size-md"
+                                data-popup="file-preview"
+                                data-popup-url="about:blank"
+                                data-size="400,600"
+                              >
+                                미리보기
+                              </button>
+                              <button type="button" class="btn variant-soft color-red rounded-md size-md">삭제</button>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">
+                            <div class="grid gap-1">
+                              <p class="note-line">
+                                TS국가자격시험 포털사이트에서 발급(<a
+                                  href="https://lic.kotsa.or.kr/tsportal/main.do"
+                                  class="text-blue"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  >https://lic.kotsa.or.kr/tsportal/main.do</a
+                                >)
+                              </p>
+                              <p class="note-line">
+                                발급방법 : 사이트 접속 &gt; 휴대폰 본인 인증(로그인) &gt; 우측상단 마이페이지 &gt;
+                                자격취득확인서 발급
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">가족관계증명서(상세) <span class="text-red">[필수]</span></th>
+                          <td><span class="font-bold text-blue">전산검증 정상 완료 (제출 불필요)</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <div class="board-footer-actions type-grid">
+                  <div class="flex justify-center gap-2">
+                    <a href="/apply/business/notice-write-step4.html" class="btn variant-solid color-navy size-lg">
+                      이전단계
+                    </a>
+                    <!-- 
+                      퍼블리싱용 화면 이동 버튼입니다.
+                      개발 연동 시 아래 주석 처리된 버튼 사용해주세요.
+                    -->
+                    <a href="/apply/business/notice-write-step6.html" class="btn variant-solid color-blue size-lg">
+                      저장 후 다음단계
+                    </a>
+                    <!-- <button type="submit" class="btn variant-solid color-blue size-lg">저장 후 다음단계</button> -->
+                  </div>
+                  <!-- 클릭 시 신청취소 팝업창 열림 -->
+                  <button
+                    type="button"
+                    class="btn variant-solid color-red size-lg mobile-w-full"
+                    data-popup-open="application-cancel-popup"
+                  >
+                    신청취소
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 신청취소 확인 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="application-cancel-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="application-cancel-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-sm" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="application-cancel-popup-title">접수취소</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <p class="text-center">
+            접수 취소하시면 지금까지<br />
+            작성한 내용이 <span class="font-bold text-red">삭제</span>됩니다.<br />
+            <span class="font-bold text-red">정말 취소 하시겠습니까?</span>
+          </p>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-red size-sm" data-popup-close>확인</button>
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

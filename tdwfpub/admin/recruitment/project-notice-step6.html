@@ -1,0 +1,1048 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="recruitment" data-page="project-notice">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 신청관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-recruitment.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-recruitment" data-page="project-notice"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>공고등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/recruitment/project-notice-list.html">신청관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">공고등록</span>
+              </nav>
+            </div>
+
+            <!-- 등록 단계 네비게이션: 현재 단계 li에 active, 지나온 단계 li에 done 클래스를 추가합니다. -->
+            <ol class="board-step-list" aria-label="사업공고 등록 단계">
+              <li class="step-item done">
+                <span class="step-num">Step 1</span>
+                <span class="step-name">공고등록</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 2</span>
+                <span class="step-name">선발부문</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 3</span>
+                <span class="step-name">전형유형</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 4</span>
+                <span class="step-name">개인정보동의</span>
+              </li>
+              <li class="step-item done">
+                <span class="step-num">Step 5</span>
+                <span class="step-name">검증조회</span>
+              </li>
+              <li class="step-item active">
+                <span class="step-num">Step 6</span>
+                <span class="step-name">운전자/지원자 정보</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">Step 7</span>
+                <span class="step-name">제출서류</span>
+              </li>
+              <li class="step-item">
+                <span class="step-num">Step 8</span>
+                <span class="step-name">서약서</span>
+              </li>
+            </ol>
+
+            <form class="flex flex-col gap-1" method="post">
+              <section class="panel" aria-labelledby="driver-applicant-use-title">
+                <div class="board-info-row mb-0">
+                  <h2 class="board-list-title" id="driver-applicant-use-title">운전자/지원자 정보</h2>
+                  <div class="board-info-actions">
+                    <div class="board-button-options" role="radiogroup" aria-label="운전자 및 지원자 정보 사용 여부">
+                      <label class="button-option">
+                        <input type="radio" name="driverApplicantUse" checked />
+                        <span class="button-option-text">사용</span>
+                      </label>
+                      <label class="button-option">
+                        <input type="radio" name="driverApplicantUse" />
+                        <span class="button-option-text">미사용</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 입력영역 카드를 선택하면 우측에 해당 영역의 입력항목 목록을 표출합니다. -->
+              <div class="input-area-layout" data-area-group>
+                <section class="panel" aria-labelledby="input-area-title" data-board-tabs>
+                  <div class="board-info-row mb-0">
+                    <h2 class="board-list-title" id="input-area-title">입력영역</h2>
+                  </div>
+
+                  <!-- 섹션 탭: 클릭 시 하단에 섹션별 입력영역 목록을 표시합니다. -->
+                  <div class="board-tab-list" role="tablist" aria-label="입력영역 구분">
+                    <button
+                      type="button"
+                      class="board-tab active"
+                      id="driverInfoTab"
+                      role="tab"
+                      aria-selected="true"
+                      aria-controls="driverInfoPanel"
+                      data-board-tab="driverInfoPanel"
+                    >
+                      운전자정보
+                    </button>
+                    <button
+                      type="button"
+                      class="board-tab"
+                      id="applicantInfoTab"
+                      role="tab"
+                      aria-selected="false"
+                      aria-controls="applicantInfoPanel"
+                      data-board-tab="applicantInfoPanel"
+                    >
+                      지원자정보
+                    </button>
+                  </div>
+
+                  <div id="driverInfoPanel" role="tabpanel" aria-labelledby="driverInfoTab" data-board-tab-panel>
+                    <div class="input-area-card-list">
+                      <div class="input-area-card">
+                        <button
+                          type="button"
+                          class="input-area-card-select"
+                          data-area-select="areaDriverPersonalPanel"
+                          aria-pressed="true"
+                        >
+                          <span class="input-area-card-title">화물운전자 인적사항</span>
+                          <span class="input-area-card-desc"
+                            >신청자 본인 확인과 기본 연락 정보를 입력받는 영역입니다.</span
+                          >
+                        </button>
+                        <label class="check-label input-area-card-use">
+                          <input type="checkbox" checked />
+                          <span class="check-label-text">사용</span>
+                        </label>
+                      </div>
+                      <div class="input-area-card">
+                        <button
+                          type="button"
+                          class="input-area-card-select"
+                          data-area-select="areaVehiclePanel"
+                          aria-pressed="false"
+                        >
+                          <span class="input-area-card-title">차량 정보</span>
+                          <span class="input-area-card-desc">차량번호, 차량톤수, 업종 등 심사에 필요한 차량 정보</span>
+                        </button>
+                        <label class="check-label input-area-card-use">
+                          <input type="checkbox" checked />
+                          <span class="check-label-text">사용</span>
+                        </label>
+                      </div>
+                      <div class="input-area-card">
+                        <button
+                          type="button"
+                          class="input-area-card-select"
+                          data-area-select="areaAccountPanel"
+                          aria-pressed="false"
+                        >
+                          <span class="input-area-card-title">계좌 정보</span>
+                          <span class="input-area-card-desc"
+                            >지원금 지급이 필요한 사업에서 은행과 계좌번호를 입력받습니다.</span
+                          >
+                        </button>
+                        <label class="check-label input-area-card-use">
+                          <input type="checkbox" checked />
+                          <span class="check-label-text">사용</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="applicantInfoPanel"
+                    role="tabpanel"
+                    aria-labelledby="applicantInfoTab"
+                    data-board-tab-panel
+                    hidden
+                  >
+                    <div class="input-area-card-list">
+                      <div class="input-area-card">
+                        <button
+                          type="button"
+                          class="input-area-card-select"
+                          data-area-select="areaScholarPriorityPanel"
+                          aria-pressed="false"
+                        >
+                          <span class="input-area-card-title">장학사업 우선선발</span>
+                          <span class="input-area-card-desc">지원유형, 저소득가정(기초생활수급자, 차상위 계층)</span>
+                        </button>
+                        <label class="check-label input-area-card-use">
+                          <input type="checkbox" checked />
+                          <span class="check-label-text">사용</span>
+                        </label>
+                      </div>
+                      <div class="input-area-card">
+                        <button
+                          type="button"
+                          class="input-area-card-select"
+                          data-area-select="areaFamilyPanel"
+                          aria-pressed="false"
+                        >
+                          <span class="input-area-card-title">운전자(신청자) 및 가족 인적사항</span>
+                          <span class="input-area-card-desc">출생축하지원사업</span>
+                        </button>
+                        <label class="check-label input-area-card-use">
+                          <input type="checkbox" checked />
+                          <span class="check-label-text">사용</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="input-area-panel-wrap">
+                  <section
+                    class="panel input-area-panel"
+                    id="areaDriverPersonalPanel"
+                    aria-labelledby="areaDriverPersonalTitle"
+                    data-area-panel
+                  >
+                    <div class="board-info-row mb-2">
+                      <div class="flex items-center gap-3">
+                        <h2 class="board-list-title" id="areaDriverPersonalTitle">화물운전자 인적사항</h2>
+                        <!-- 영역 사용: 체크 해제 시 아래 입력항목 목록을 전체 선택불가 상태로 변경합니다. -->
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="areaDriverPersonalUse"
+                            data-lock-target="areaDriverPersonalPanel"
+                            checked
+                          />
+                          <span class="check-label-text">영역 사용</span>
+                        </label>
+                      </div>
+                      <div class="board-info-actions">
+                        <!-- 사용여부 전체 선택 / 해제 -->
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaDriverPersonalTable"
+                          data-check-bulk-value="true"
+                        >
+                          전체 사용
+                        </button>
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaDriverPersonalTable"
+                          data-check-bulk-value="false"
+                        >
+                          전체 해제
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="board-table-wrap">
+                      <table class="board-table" id="areaDriverPersonalTable" aria-labelledby="areaDriverPersonalTitle">
+                        <caption>
+                          화물운전자 인적사항 입력항목 목록
+                        </caption>
+                        <colgroup>
+                          <col width="10%" />
+                          <col width="40%" />
+                          <col width="16%" />
+                          <col width="16%" />
+                          <col width="18%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">순서</th>
+                            <th scope="col">입력항목</th>
+                            <th scope="col">사용여부</th>
+                            <th scope="col">필수여부</th>
+                            <th scope="col">정렬</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td class="text-left">운전자명</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="1"
+                                aria-label="운전자명 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td class="text-left">생년월일</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="2"
+                                aria-label="생년월일 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td class="text-left">성별</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="3"
+                                aria-label="성별 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td class="text-left">휴대전화번호</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="4"
+                                aria-label="휴대전화번호 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td class="text-left">자택주소</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="5"
+                                aria-label="자택주소 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>6</td>
+                            <td class="text-left">이메일</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaDriverPersonalItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="6"
+                                aria-label="이메일 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                  <section
+                    class="panel input-area-panel"
+                    id="areaVehiclePanel"
+                    aria-labelledby="areaVehicleTitle"
+                    data-area-panel
+                    hidden
+                  >
+                    <div class="board-info-row mb-2">
+                      <div class="flex items-center gap-3">
+                        <h2 class="board-list-title" id="areaVehicleTitle">차량 정보</h2>
+                        <!-- 영역 사용: 체크 해제 시 아래 입력항목 목록을 전체 선택불가 상태로 변경합니다. -->
+                        <label class="check-label">
+                          <input type="checkbox" name="areaVehicleUse" data-lock-target="areaVehiclePanel" checked />
+                          <span class="check-label-text">영역 사용</span>
+                        </label>
+                      </div>
+                      <div class="board-info-actions">
+                        <!-- 사용여부 전체 선택 / 해제 -->
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaVehicleTable"
+                          data-check-bulk-value="true"
+                        >
+                          전체 사용
+                        </button>
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaVehicleTable"
+                          data-check-bulk-value="false"
+                        >
+                          전체 해제
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="board-table-wrap">
+                      <table class="board-table" id="areaVehicleTable" aria-labelledby="areaVehicleTitle">
+                        <caption>
+                          차량 정보 입력항목 목록
+                        </caption>
+                        <colgroup>
+                          <col width="10%" />
+                          <col width="40%" />
+                          <col width="16%" />
+                          <col width="16%" />
+                          <col width="18%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">순서</th>
+                            <th scope="col">입력항목</th>
+                            <th scope="col">사용여부</th>
+                            <th scope="col">필수여부</th>
+                            <th scope="col">정렬</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td class="text-left">차량번호</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaVehicleItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaVehicleItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="1"
+                                aria-label="차량번호 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td class="text-left">차량톤수</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaVehicleItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaVehicleItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="2"
+                                aria-label="차량톤수 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td class="text-left">업종</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaVehicleItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaVehicleItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="3"
+                                aria-label="업종 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td class="text-left">차종</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaVehicleItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaVehicleItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="4"
+                                aria-label="차종 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                  <section
+                    class="panel input-area-panel"
+                    id="areaAccountPanel"
+                    aria-labelledby="areaAccountTitle"
+                    data-area-panel
+                    hidden
+                  >
+                    <div class="board-info-row mb-2">
+                      <div class="flex items-center gap-3">
+                        <h2 class="board-list-title" id="areaAccountTitle">계좌 정보</h2>
+                        <!-- 영역 사용: 체크 해제 시 아래 입력항목 목록을 전체 선택불가 상태로 변경합니다. -->
+                        <label class="check-label">
+                          <input type="checkbox" name="areaAccountUse" data-lock-target="areaAccountPanel" checked />
+                          <span class="check-label-text">영역 사용</span>
+                        </label>
+                      </div>
+                      <div class="board-info-actions">
+                        <!-- 사용여부 전체 선택 / 해제 -->
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaAccountTable"
+                          data-check-bulk-value="true"
+                        >
+                          전체 사용
+                        </button>
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaAccountTable"
+                          data-check-bulk-value="false"
+                        >
+                          전체 해제
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="board-table-wrap">
+                      <table class="board-table" id="areaAccountTable" aria-labelledby="areaAccountTitle">
+                        <caption>
+                          계좌 정보 입력항목 목록
+                        </caption>
+                        <colgroup>
+                          <col width="10%" />
+                          <col width="40%" />
+                          <col width="16%" />
+                          <col width="16%" />
+                          <col width="18%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">순서</th>
+                            <th scope="col">입력항목</th>
+                            <th scope="col">사용여부</th>
+                            <th scope="col">필수여부</th>
+                            <th scope="col">정렬</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td class="text-left">은행명</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaAccountItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaAccountItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="1"
+                                aria-label="은행명 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td class="text-left">예금주</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaAccountItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaAccountItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="2"
+                                aria-label="예금주 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td class="text-left">계좌번호</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaAccountItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaAccountItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="3"
+                                aria-label="계좌번호 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                  <section
+                    class="panel input-area-panel"
+                    id="areaScholarPriorityPanel"
+                    aria-labelledby="areaScholarPriorityTitle"
+                    data-area-panel
+                    hidden
+                  >
+                    <div class="board-info-row mb-2">
+                      <div class="flex items-center gap-3">
+                        <h2 class="board-list-title" id="areaScholarPriorityTitle">장학사업 우선선발</h2>
+                        <!-- 영역 사용: 체크 해제 시 아래 입력항목 목록을 전체 선택불가 상태로 변경합니다. -->
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="areaScholarPriorityUse"
+                            data-lock-target="areaScholarPriorityPanel"
+                            checked
+                          />
+                          <span class="check-label-text">영역 사용</span>
+                        </label>
+                      </div>
+                      <div class="board-info-actions">
+                        <!-- 사용여부 전체 선택 / 해제 -->
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaScholarPriorityTable"
+                          data-check-bulk-value="true"
+                        >
+                          전체 사용
+                        </button>
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaScholarPriorityTable"
+                          data-check-bulk-value="false"
+                        >
+                          전체 해제
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="board-table-wrap">
+                      <table
+                        class="board-table"
+                        id="areaScholarPriorityTable"
+                        aria-labelledby="areaScholarPriorityTitle"
+                      >
+                        <caption>
+                          장학사업 우선선발 입력항목 목록
+                        </caption>
+                        <colgroup>
+                          <col width="10%" />
+                          <col width="40%" />
+                          <col width="16%" />
+                          <col width="16%" />
+                          <col width="18%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">순서</th>
+                            <th scope="col">입력항목</th>
+                            <th scope="col">사용여부</th>
+                            <th scope="col">필수여부</th>
+                            <th scope="col">정렬</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td class="text-left">지원유형</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaScholarPriorityItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaScholarPriorityItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="1"
+                                aria-label="지원유형 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td class="text-left">저소득가정 구분</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaScholarPriorityItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaScholarPriorityItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="2"
+                                aria-label="저소득가정 구분 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                  <section
+                    class="panel input-area-panel"
+                    id="areaFamilyPanel"
+                    aria-labelledby="areaFamilyTitle"
+                    data-area-panel
+                    hidden
+                  >
+                    <div class="board-info-row mb-2">
+                      <div class="flex items-center gap-3">
+                        <h2 class="board-list-title" id="areaFamilyTitle">운전자(신청자) 및 가족 인적사항</h2>
+                        <!-- 영역 사용: 체크 해제 시 아래 입력항목 목록을 전체 선택불가 상태로 변경합니다. -->
+                        <label class="check-label">
+                          <input type="checkbox" name="areaFamilyUse" data-lock-target="areaFamilyPanel" checked />
+                          <span class="check-label-text">영역 사용</span>
+                        </label>
+                      </div>
+                      <div class="board-info-actions">
+                        <!-- 사용여부 전체 선택 / 해제 -->
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaFamilyTable"
+                          data-check-bulk-value="true"
+                        >
+                          전체 사용
+                        </button>
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-board-auto"
+                          data-check-bulk="areaFamilyTable"
+                          data-check-bulk-value="false"
+                        >
+                          전체 해제
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="board-table-wrap">
+                      <table class="board-table" id="areaFamilyTable" aria-labelledby="areaFamilyTitle">
+                        <caption>
+                          운전자(신청자) 및 가족 인적사항 입력항목 목록
+                        </caption>
+                        <colgroup>
+                          <col width="10%" />
+                          <col width="40%" />
+                          <col width="16%" />
+                          <col width="16%" />
+                          <col width="18%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">순서</th>
+                            <th scope="col">입력항목</th>
+                            <th scope="col">사용여부</th>
+                            <th scope="col">필수여부</th>
+                            <th scope="col">정렬</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>1</td>
+                            <td class="text-left">가족관계</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaFamilyItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaFamilyItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="1"
+                                aria-label="가족관계 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td class="text-left">가족 성명</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaFamilyItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaFamilyItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="2"
+                                aria-label="가족 성명 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td class="text-left">가족 생년월일</td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaFamilyItemUse" data-check-bulk-item checked />
+                                <span class="check-label-text">사용</span>
+                              </label>
+                            </td>
+                            <td>
+                              <label class="check-label">
+                                <input type="checkbox" name="areaFamilyItemRequired" checked />
+                                <span class="check-label-text">필수</span>
+                              </label>
+                            </td>
+                            <td>
+                              <input
+                                type="text"
+                                class="form-control w-auto text-center"
+                                size="3"
+                                value="3"
+                                aria-label="가족 생년월일 정렬 순서"
+                              />
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <div class="board-form-actions mt-0">
+                <a
+                  href="/admin/recruitment/project-notice-step5.html"
+                  class="btn variant-solid color-blue rounded-md size-board-action mr-auto"
+                >
+                  이전단계
+                </a>
+                <!-- 
+                  퍼블리싱용 화면 이동 버튼입니다.
+                  개발 연동 시 아래 주석 처리된 버튼 사용해주세요.
+                -->
+                <a
+                  href="/admin/recruitment/project-notice-step7.html"
+                  class="btn variant-solid color-navy rounded-md size-board-action"
+                >
+                  저장 후 다음단계
+                </a>
+                <!-- <button type="button" class="btn variant-solid color-navy rounded-md size-board-action">
+                  저장 후 다음단계
+                </button> -->
+                <button type="button" class="btn variant-solid color-blue rounded-md size-board-action">
+                  미리보기
+                </button>
+                <a
+                  href="/admin/recruitment/project-notice-list.html"
+                  class="btn variant-outline color-navy rounded-md size-board-action"
+                >
+                  취소하기
+                </a>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

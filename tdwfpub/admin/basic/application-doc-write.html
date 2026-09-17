@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="basic" data-page="application-doc">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 기초관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-basic.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-basic" data-page="application-doc"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>접수서류 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/basic/project-name-list.html">기초관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/basic/application-doc-list.html">접수서류 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">접수서류 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="application-doc-form-title">
+              <h2 id="application-doc-form-title" hidden>접수서류 등록 입력폼</h2>
+              <form action="/admin/basic/application-doc-list.html" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    접수서류 등록 정보
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="82%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="documentCode">서류코드<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input
+                          id="documentCode"
+                          name="documentCode"
+                          type="text"
+                          class="form-control w-quarter"
+                          readonly
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="documentName">서류명<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input id="documentName" name="documentName" type="text" class="form-control w-full" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">사용여부<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="true" checked required />
+                            <span class="radio-label-text">사용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="use" value="false" />
+                            <span class="radio-label-text">미사용</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">프로그램여부<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="program" value="true" checked required />
+                            <span class="radio-label-text">등록</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="program" value="false" />
+                            <span class="radio-label-text">미등록</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="documentUrl">URL</label></th>
+                      <td>
+                        <input id="documentUrl" name="documentUrl" type="text" class="form-control w-full" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="documentDescription">서류설명</label></th>
+                      <td>
+                        <textarea
+                          id="documentDescription"
+                          name="documentDescription"
+                          class="textarea"
+                          rows="5"
+                        ></textarea>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                    등록하기
+                  </button>
+                  <a
+                    href="/admin/basic/application-doc-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    취소하기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

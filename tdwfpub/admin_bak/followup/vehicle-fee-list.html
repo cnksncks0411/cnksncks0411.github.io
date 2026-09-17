@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>수수료정산관리(차량) | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="vehicle-fee">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="vehicle-fee"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>수수료정산관리(차량)</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/followup/vehicle-fee-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">수수료정산관리(차량)</span>
+              </nav>
+            </div>
+
+            <div class="flex flex-col gap-1" data-board-tabs>
+              <div class="board-tab-list" role="tablist" aria-label="차량 수수료정산 카드사">
+                <button
+                  type="button"
+                  class="board-tab active"
+                  id="vehicleFeeSamsungTab"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="vehicleFeeSamsungPanel"
+                  data-board-tab="vehicleFeeSamsungPanel"
+                >
+                  삼성카드
+                </button>
+                <button
+                  type="button"
+                  class="board-tab"
+                  id="vehicleFeeShinhanTab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="vehicleFeeShinhanPanel"
+                  data-board-tab="vehicleFeeShinhanPanel"
+                >
+                  신한카드
+                </button>
+              </div>
+
+              <section class="panel" aria-labelledby="vehicle-fee-search-title">
+                <h2 class="board-list-title sr-only" id="vehicle-fee-search-title">차량 수수료정산 조회조건</h2>
+                <div class="flex justify-center gap-2">
+                  <form
+                    class="flex justify-center gap-2"
+                    role="search"
+                    action="/admin_bak/followup/vehicle-fee-list.html"
+                    method="get"
+                  >
+                    <table class="board-search-table w-auto">
+                      <caption>
+                        차량 수수료정산 정산년월 조회조건
+                      </caption>
+                      <colgroup>
+                        <col width="120" />
+                        <col width="*" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row"><label for="vehicleFeeSettlementStartMonth">정산년월</label></th>
+                          <td>
+                            <div class="board-search-date-range">
+                              <div class="board-search-date-field">
+                                <input
+                                  type="text"
+                                  id="vehicleFeeSettlementStartMonth"
+                                  name="vehicleFeeSettlementStartMonth"
+                                  class="form-control"
+                                  value="200601"
+                                />
+                              </div>
+                              <span class="board-search-date-separator">~</span>
+                              <div class="board-search-date-field">
+                                <input
+                                  type="text"
+                                  id="vehicleFeeSettlementEndMonth"
+                                  name="vehicleFeeSettlementEndMonth"
+                                  class="form-control"
+                                  value="200612"
+                                  aria-label="정산년월 종료월"
+                                />
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      조회
+                    </button>
+                  </form>
+                  <a
+                    href="#"
+                    class="btn variant-solid color-gradient rounded-md size-board-auto"
+                  >
+                    신규
+                  </a>
+                </div>
+
+                <div class="board-tab-panels">
+                  <div
+                    class="board-tab-panel"
+                    id="vehicleFeeSamsungPanel"
+                    role="tabpanel"
+                    aria-labelledby="vehicleFeeSamsungTab"
+                    data-board-tab-panel
+                  >
+                    <div class="board-info-row align-right mt-6">
+                      <p>(금액단위 : 1,000원)</p>
+                    </div>
+
+                    <div class="board-table-wrap">
+                      <table class="board-table" aria-label="삼성카드 차량 수수료정산 합계">
+                        <caption>
+                          삼성카드 차량 수수료정산 합계
+                        </caption>
+                        <colgroup>
+                          <col width="15%" />
+                          <col width="25%" />
+                          <col width="20%" />
+                          <col width="20%" />
+                          <col width="20%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">합계</th>
+                            <th scope="col">차량할부금액</th>
+                            <th scope="col">건수</th>
+                            <th scope="col">지급액</th>
+                            <th scope="col">입금액</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                          <tr hidden>
+                            <td colspan="5" class="board-content-empty">등록된 차량 수수료정산 합계가 없습니다.</td>
+                          </tr>
+                          <!-- 반복: 삼성카드 차량 수수료정산 합계 행 -->
+                          <tr>
+                            <td>합계</td>
+                            <td>4,651,092</td>
+                            <td>170건</td>
+                            <td>46,467</td>
+                            <td>51,162</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="board-info-row align-right mt-6">
+                      <h2 class="board-list-title sr-only" id="vehicle-fee-list-title">
+                        삼성카드 차량 수수료정산 목록
+                      </h2>
+                      <div class="board-info-actions">
+                        <p>(금액단위 : 1,000원)</p>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                          <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                          엑셀 다운로드
+                        </button>
+                        <select class="form-control" aria-label="목록 표시 개수">
+                          <option>10개 보기</option>
+                          <option>30개 보기</option>
+                          <option>50개 보기</option>
+                          <option>100개 보기</option>
+                          <option>300개 보기</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="board-table-wrap overflow-visible">
+                      <table class="board-table" aria-labelledby="vehicle-fee-list-title">
+                        <caption>
+                          삼성카드 차량 수수료정산 목록
+                        </caption>
+                        <colgroup>
+                          <col width="10%" />
+                          <col width="13%" />
+                          <col width="8%" />
+                          <col width="10%" />
+                          <col width="10%" />
+                          <col width="12%" />
+                          <col width="11%" />
+                          <col width="9%" />
+                          <col width="10%" />
+                          <col width="7%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">정산년월</th>
+                            <th scope="col">차량할부금액</th>
+                            <th scope="col">월건수</th>
+                            <th scope="col">월수수료</th>
+                            <th scope="col">월지급액</th>
+                            <th scope="col">입금일</th>
+                            <th scope="col">누적금액</th>
+                            <th scope="col">잔고금액</th>
+                            <th scope="col">메모</th>
+                            <th scope="col">내역확인</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                          <tr hidden>
+                            <td colspan="10" class="board-content-empty">등록된 차량 수수료정산 내역이 없습니다.</td>
+                          </tr>
+                          <!-- 반복: 삼성카드 차량 수수료정산 행 -->
+                          <tr>
+                            <td>202605</td>
+                            <td>56,480</td>
+                            <td>2건</td>
+                            <td>565</td>
+                            <td>563</td>
+                            <td>2026-05-22</td>
+                            <td>51,162</td>
+                            <td>44</td>
+                            <td>
+                              <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                              <div
+                                class="tooltip type-memo"
+                                data-tooltip="차량 수수료정산 메모 내용이 노출됩니다."
+                                tabindex="0"
+                              >
+                                <div class="board-cell-title">차량 수수료정산 메모 내용이 노출됩니다.</div>
+                              </div>
+                            </td>
+                            <td>
+                              <button type="button" class="btn variant-soft color-blue rounded-md size-sm">
+                                수정
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>202604</td>
+                            <td>280,875</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              <button type="button" class="btn variant-soft color-blue rounded-md size-sm">
+                                수정
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <nav class="board-pagination" aria-label="삼성카드 차량 수수료정산 목록 페이지 이동">
+                      <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                          keyboard_double_arrow_left
+                        </span>
+                      </a>
+                      <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                      </a>
+                      <ol class="board-pagination-list">
+                        <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                        <li><a href="#" class="board-page-button">2</a></li>
+                        <li><a href="#" class="board-page-button">3</a></li>
+                        <li><a href="#" class="board-page-button">4</a></li>
+                        <li><a href="#" class="board-page-button">5</a></li>
+                        <li><a href="#" class="board-page-button">6</a></li>
+                        <li><a href="#" class="board-page-button">7</a></li>
+                        <li><a href="#" class="board-page-button">8</a></li>
+                        <li><a href="#" class="board-page-button">9</a></li>
+                        <li><a href="#" class="board-page-button">10</a></li>
+                      </ol>
+                      <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                      </a>
+                      <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                          keyboard_double_arrow_right
+                        </span>
+                      </a>
+                    </nav>
+                  </div>
+
+                  <div
+                    class="board-tab-panel"
+                    id="vehicleFeeShinhanPanel"
+                    role="tabpanel"
+                    aria-labelledby="vehicleFeeShinhanTab"
+                    data-board-tab-panel
+                    hidden
+                  >
+                    <div class="board-info-row align-right mt-6">
+                      <p>(금액단위 : 1,000원)</p>
+                    </div>
+
+                    <div class="board-table-wrap">
+                      <table class="board-table" aria-label="신한카드 차량 수수료정산 합계">
+                        <caption>
+                          신한카드 차량 수수료정산 합계
+                        </caption>
+                        <colgroup>
+                          <col width="15%" />
+                          <col width="25%" />
+                          <col width="20%" />
+                          <col width="20%" />
+                          <col width="20%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">합계</th>
+                            <th scope="col">차량할부금액</th>
+                            <th scope="col">건수</th>
+                            <th scope="col">지급액</th>
+                            <th scope="col">입금액</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                          <tr hidden>
+                            <td colspan="5" class="board-content-empty">
+                              등록된 신한카드 차량 수수료정산 합계가 없습니다.
+                            </td>
+                          </tr>
+                          <!-- 반복: 신한카드 차량 수수료정산 합계 행 -->
+                          <tr>
+                            <td>합계</td>
+                            <td>0</td>
+                            <td>0건</td>
+                            <td>0</td>
+                            <td>0</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="board-info-row align-right mt-6">
+                      <h2 class="board-list-title sr-only" id="vehicle-fee-shinhan-list-title">
+                        신한카드 차량 수수료정산 목록
+                      </h2>
+                      <div class="board-info-actions">
+                        <p>(금액단위 : 1,000원)</p>
+                        <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                          <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                          엑셀 다운로드
+                        </button>
+                        <select class="form-control" aria-label="신한카드 목록 표시 개수">
+                          <option>10개 보기</option>
+                          <option>30개 보기</option>
+                          <option>50개 보기</option>
+                          <option>100개 보기</option>
+                          <option>300개 보기</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="board-table-wrap overflow-visible">
+                      <table class="board-table" aria-labelledby="vehicle-fee-shinhan-list-title">
+                        <caption>
+                          신한카드 차량 수수료정산 목록
+                        </caption>
+                        <colgroup>
+                          <col width="10%" />
+                          <col width="13%" />
+                          <col width="8%" />
+                          <col width="10%" />
+                          <col width="10%" />
+                          <col width="12%" />
+                          <col width="11%" />
+                          <col width="9%" />
+                          <col width="10%" />
+                          <col width="7%" />
+                        </colgroup>
+                        <thead>
+                          <tr>
+                            <th scope="col">정산년월</th>
+                            <th scope="col">차량할부금액</th>
+                            <th scope="col">월건수</th>
+                            <th scope="col">월수수료</th>
+                            <th scope="col">캐시백</th>
+                            <th scope="col">입금일</th>
+                            <th scope="col">누적금액</th>
+                            <th scope="col">잔고금액</th>
+                            <th scope="col">메모</th>
+                            <th scope="col">내역확인</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                          <tr hidden>
+                            <td colspan="10" class="board-content-empty">
+                              등록된 신한카드 차량 수수료정산 내역이 없습니다.
+                            </td>
+                          </tr>
+                          <!-- 반복: 신한카드 차량 수수료정산 행 -->
+                          <tr>
+                            <td>202605</td>
+                            <td>56,480</td>
+                            <td>2건</td>
+                            <td>565</td>
+                            <td>563</td>
+                            <td>2026-05-22</td>
+                            <td>51,162</td>
+                            <td>44</td>
+                            <td>
+                              <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                              <div
+                                class="tooltip type-memo"
+                                data-tooltip="차량 수수료정산 메모 내용이 노출됩니다."
+                                tabindex="0"
+                              >
+                                <div class="board-cell-title">차량 수수료정산 메모 내용이 노출됩니다.</div>
+                              </div>
+                            </td>
+                            <td>
+                              <button type="button" class="btn variant-soft color-blue rounded-md size-sm">
+                                수정
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>202604</td>
+                            <td>280,875</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                              <button type="button" class="btn variant-soft color-blue rounded-md size-sm">
+                                수정
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <nav class="board-pagination" aria-label="신한카드 차량 수수료정산 목록 페이지 이동">
+                      <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                          keyboard_double_arrow_left
+                        </span>
+                      </a>
+                      <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                      </a>
+                      <ol class="board-pagination-list">
+                        <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                        <li><a href="#" class="board-page-button">2</a></li>
+                        <li><a href="#" class="board-page-button">3</a></li>
+                        <li><a href="#" class="board-page-button">4</a></li>
+                        <li><a href="#" class="board-page-button">5</a></li>
+                        <li><a href="#" class="board-page-button">6</a></li>
+                        <li><a href="#" class="board-page-button">7</a></li>
+                        <li><a href="#" class="board-page-button">8</a></li>
+                        <li><a href="#" class="board-page-button">9</a></li>
+                        <li><a href="#" class="board-page-button">10</a></li>
+                      </ol>
+                      <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                      </a>
+                      <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                        <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                          keyboard_double_arrow_right
+                        </span>
+                      </a>
+                    </nav>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

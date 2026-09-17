@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>접수내역상세 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="membership-card">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="membership-card"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>멤버십카드대상자관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/followup/membership-card-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/followup/membership-card-list.html">멤버십카드대상자관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">접수내역상세</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="멤버십카드대상자 접수현황">
+              <table class="board-form-table text-center">
+                <caption>
+                  멤버십카드대상자 접수현황
+                </caption>
+                <colgroup>
+                  <col width="12%" />
+                  <col width="21.333%" />
+                  <col width="12%" />
+                  <col width="21.333%" />
+                  <col width="12%" />
+                  <col width="21.334%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">신청번호</th>
+                    <td>00000125</td>
+                    <th scope="row">접수번호</th>
+                    <td>00000085</td>
+                    <th scope="row">접수상태</th>
+                    <td>접수완료</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <section class="panel" aria-label="접수내역 상세 내용">
+              <div class="board-tabs" data-board-tabs>
+                <div class="board-tab-list" role="tablist" aria-label="접수내역 서류">
+                  <button
+                    type="button"
+                    class="board-tab active"
+                    id="membershipCardApplicationTab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="membershipCardApplicationPanel"
+                    data-board-tab="membershipCardApplicationPanel"
+                  >
+                    멤버십카드지원신청서
+                  </button>
+                </div>
+
+                <div class="board-tab-panels">
+                  <div
+                    class="board-tab-panel"
+                    id="membershipCardApplicationPanel"
+                    role="tabpanel"
+                    aria-labelledby="membershipCardApplicationTab"
+                    data-board-tab-panel
+                  >
+                    <form action="" method="post" class="flex flex-col gap-4">
+                      <h2 class="board-panel-title">멤버십카드지원신청서</h2>
+
+                      <table class="board-form-table">
+                        <caption>
+                          멤버십카드지원 신청정보
+                        </caption>
+                        <colgroup>
+                          <col width="16%" />
+                          <col width="84%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">접수일시</th>
+                            <td>2026-06-30</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <section class="board-section" aria-labelledby="membership-card-driver-info-title">
+                        <h3 class="board-section-title" id="membership-card-driver-info-title">화물운전자 인적사항</h3>
+                        <table class="board-form-table">
+                          <caption>
+                            화물운전자 인적사항
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">성명</th>
+                              <td>홍길동</td>
+                              <th scope="row">생년월일</th>
+                              <td>1964.01.23</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">휴대폰번호</th>
+                              <td colspan="3">
+                                <div class="grid items-center gap-2 row-type-phone w-half">
+                                  <input
+                                    name="membershipCardMobilePhoneFirst"
+                                    type="text"
+                                    class="form-control"
+                                    value="010"
+                                    aria-label="휴대폰번호 앞자리"
+                                    readonly
+                                  />
+                                  <span aria-hidden="true">-</span>
+                                  <input
+                                    name="membershipCardMobilePhoneMiddle"
+                                    type="text"
+                                    class="form-control"
+                                    value="1234"
+                                    aria-label="휴대폰번호 가운데자리"
+                                  />
+                                  <span aria-hidden="true">-</span>
+                                  <input
+                                    name="membershipCardMobilePhoneLast"
+                                    type="text"
+                                    class="form-control"
+                                    value="5678"
+                                    aria-label="휴대폰번호 끝자리"
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="membership-card-driver-detail-title">
+                        <h3 class="board-section-title" id="membership-card-driver-detail-title">
+                          화물운전자 기타정보
+                        </h3>
+                        <table class="board-form-table">
+                          <caption>
+                            화물운전자 기타정보
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">성별</th>
+                              <td>
+                                <div class="board-form-options">
+                                  <label class="radio-label">
+                                    <input type="radio" name="membershipCardGender" value="male" checked />
+                                    <span class="radio-label-text">남</span>
+                                  </label>
+                                  <label class="radio-label">
+                                    <input type="radio" name="membershipCardGender" value="female" />
+                                    <span class="radio-label-text">여</span>
+                                  </label>
+                                </div>
+                              </td>
+                              <th scope="row">신청구분</th>
+                              <td>
+                                <div class="board-form-options">
+                                  <label class="radio-label">
+                                    <input type="radio" name="membershipCardApplicationType" value="driver" checked />
+                                    <span class="radio-label-text">운전자</span>
+                                  </label>
+                                  <label class="radio-label">
+                                    <input type="radio" name="membershipCardApplicationType" value="family" />
+                                    <span class="radio-label-text">가족</span>
+                                  </label>
+                                  <label class="radio-label">
+                                    <input type="radio" name="membershipCardApplicationType" value="other" />
+                                    <span class="radio-label-text">기타</span>
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <div class="board-form-actions justify-center mt-0">
+                        <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                          저장하기
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

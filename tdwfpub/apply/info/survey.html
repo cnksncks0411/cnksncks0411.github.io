@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>설문조사 | 화물복지재단 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="info" data-page="survey">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li><a href="/apply/info/terms.html">이용정보</a></li>
+              <li aria-current="page" data-breadcrumb-current>설문조사</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 이용정보 LNB 인클루드 영역: common/include/apply/lnb-info.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-info" data-page="survey"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">설문조사</h1>
+              <div class="sub-intro">
+                <strong>화물복지재단의 더 나은 서비스를 위한 <em>설문조사</em>입니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <div class="board-area">
+                <div class="board-search">
+                  <form class="board-search-form" action="#" method="get" role="search">
+                    <label class="sr-only" for="survey-board-keyword">설문조사 검색어</label>
+                    <input
+                      type="search"
+                      class="board-search-input"
+                      id="survey-board-keyword"
+                      name="keyword"
+                      placeholder="검색어를 입력하세요."
+                    />
+                    <div class="flex items-center gap-2">
+                      <button type="submit" class="btn-board-search flex-1">검색</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="board-info-row">
+                  <p class="board-total">총 <strong>3</strong>개</p>
+                  <select class="form-control w-auto" aria-label="목록 표시 개수">
+                    <option selected>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                  </select>
+                </div>
+
+                <div class="board-table-wrap">
+                  <table class="board-table">
+                    <caption>
+                      설문조사 목록
+                    </caption>
+                    <colgroup>
+                      <col width="8%" />
+                      <col width="46%" />
+                      <col class="mobile-cell-hidden" width="12%" />
+                      <col class="mobile-cell-hidden" width="22%" />
+                      <col width="12%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">제목</th>
+                        <th scope="col" class="mobile-cell-hidden">문항수</th>
+                        <th scope="col" class="mobile-cell-hidden">게시기간</th>
+                        <th scope="col">진행상태</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="5" class="board-content-empty">등록된 내용이 없습니다.</td>
+                      </tr>
+                      <!-- 반복: 설문조사 행 -->
+                      <!-- 제목 클릭 시 설문조사 팝업창 열림 -->
+                      <tr>
+                        <td>3</td>
+                        <td class="board-cell-title">
+                          <button type="button" class="board-link-text truncate" data-popup-open="survey-popup">
+                            2026년 화물복지재단 서비스 만족도 설문조사
+                          </button>
+                        </td>
+                        <td class="mobile-cell-hidden">4</td>
+                        <td class="mobile-cell-hidden">2026-05-01 ~ 2026-06-30</td>
+                        <td>진행중</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td class="board-cell-title">
+                          <button type="button" class="board-link-text truncate" data-popup-open="survey-popup">
+                            2025년 화물복지재단 서비스 만족도 설문조사
+                          </button>
+                        </td>
+                        <td class="mobile-cell-hidden">4</td>
+                        <td class="mobile-cell-hidden">2025-05-01 ~ 2025-06-30</td>
+                        <td>종료</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td class="board-cell-title">
+                          <button type="button" class="board-link-text truncate" data-popup-open="survey-popup">
+                            2024년 화물복지재단 서비스 만족도 설문조사
+                          </button>
+                        </td>
+                        <td class="mobile-cell-hidden">4</td>
+                        <td class="mobile-cell-hidden">2024-05-01 ~ 2024-06-30</td>
+                        <td>종료</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <nav class="board-pagination" aria-label="설문조사 페이지">
+                  <a href="#" class="board-page-button" aria-label="처음 페이지">
+                    <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                      keyboard_double_arrow_left
+                    </span>
+                  </a>
+                  <a href="#" class="board-page-button" aria-label="이전 페이지">
+                    <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                  </a>
+                  <a href="#" class="board-page-button active" aria-current="page">1</a>
+                  <a href="#" class="board-page-button" aria-label="다음 페이지">
+                    <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                  </a>
+                  <a href="#" class="board-page-button" aria-label="마지막 페이지">
+                    <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                      keyboard_double_arrow_right
+                    </span>
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 설문조사 제목 클릭 시 노출되는 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="survey-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="survey-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-lg" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="survey-popup-title">설문조사</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+
+        <div class="common-popup-body">
+          <form class="survey-content" id="survey-form">
+            <div class="survey-intro">
+              <span class="survey-label">설문조사</span>
+              <h2>항상 화물복지재단에 관심을 가져주심에 감사드립니다.</h2>
+              <p>
+                본 조사는 화물복지재단에 대한 이용자의 만족도를 조사하고 다양한 의견을 수렴하여 향후 개선된 서비스를
+                제공하기 위해 마련되었습니다.
+              </p>
+              <p>
+                응답해 주신 소중한 답변은 통계자료에 귀중하게 사용될 것이며 수집된 정보는 통계분석 이외의 타 목적으로
+                활용되거나 공개되지 않습니다.
+              </p>
+            </div>
+
+            <div class="survey-question-list">
+              <section class="survey-question" aria-labelledby="survey-question-1">
+                <h2 id="survey-question-1">
+                  <span>1</span>
+                  정보시스템의 메뉴가 명확하게 구분되어 있는가?
+                </h2>
+                <div class="survey-options">
+                  <label class="radio-label">
+                    <input type="radio" name="surveyQuestion1" value="very-satisfied" />
+                    <span class="radio-label-text">매우 만족</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="surveyQuestion1" value="satisfied" />
+                    <span class="radio-label-text">만족</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="surveyQuestion1" value="normal" />
+                    <span class="radio-label-text">보통</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="surveyQuestion1" value="dissatisfied" />
+                    <span class="radio-label-text">불만족</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="surveyQuestion1" value="very-dissatisfied" />
+                    <span class="radio-label-text">매우 불만족</span>
+                  </label>
+                </div>
+              </section>
+
+              <section class="survey-question" aria-labelledby="survey-question-2">
+                <h2 id="survey-question-2">
+                  <span>2</span>
+                  가독성은 높은가?
+                </h2>
+                <div class="survey-options">
+                  <label class="radio-label">
+                    <input type="radio" name="surveyQuestion2" value="satisfied" />
+                    <span class="radio-label-text">만족</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="surveyQuestion2" value="normal" />
+                    <span class="radio-label-text">보통</span>
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="surveyQuestion2" value="dissatisfied" />
+                    <span class="radio-label-text">불만족</span>
+                  </label>
+                </div>
+              </section>
+
+              <section class="survey-question" aria-labelledby="survey-question-3">
+                <h2 id="survey-question-3">
+                  <span>3</span>
+                  재단 홈페이지를 알게 된 경로는?
+                </h2>
+                <input type="text" class="form-control w-full" aria-label="재단 홈페이지를 알게 된 경로" />
+              </section>
+
+              <section class="survey-question" aria-labelledby="survey-question-4">
+                <h2 id="survey-question-4">
+                  <span>4</span>
+                  재단에 하고 싶은 말은?
+                </h2>
+                <textarea class="textarea" rows="5" aria-label="재단에 하고 싶은 말"></textarea>
+              </section>
+            </div>
+
+          </form>
+        </div>
+
+        <div class="common-popup-actions type-split">
+          <button type="submit" class="btn variant-solid color-blue size-sm" form="survey-form">제출하기</button>
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>지원자정보 | 사업신청 | 화물복지재단 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="business" data-page="notice">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li><a href="/apply/business/notice.html">지원사업정보</a></li>
+              <li><a href="/apply/business/notice.html">사업전체공고</a></li>
+              <li><a href="/apply/business/notice-view.html">공고상세</a></li>
+              <li aria-current="page" data-breadcrumb-current>사업신청</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 지원사업정보 LNB 인클루드 영역: common/include/apply/lnb-business.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-business" data-page="notice"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">사업신청</h1>
+              <div class="sub-intro">
+                <strong>화물복지재단에서 진행하는 <em>복지사업</em>입니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <div class="table-wrap">
+                <table class="board-form-table">
+                  <caption>
+                    신청 사업 정보
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="36%" />
+                    <col width="14%" />
+                    <col width="36%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">사업명</th>
+                      <td>2026년 일반장학사업</td>
+                      <th scope="row">신청기간</th>
+                      <td>2026-05-18 ~ 2026-06-30</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ol class="board-step-list" aria-label="사업신청 진행 단계">
+                <li class="board-step-item">개인정보 동의</li>
+                <li class="board-step-item">검증조회</li>
+                <li class="board-step-item">운전자정보</li>
+                <li class="board-step-item active" aria-current="step">지원자정보</li>
+                <li class="board-step-item">제출서류등록</li>
+                <li class="board-step-item">접수확인</li>
+                <li class="board-step-item">서약서</li>
+              </ol>
+
+              <form class="board-write-form" action="#" method="post">
+                <h2 class="sub-section-title-style02">지원자 정보</h2>
+
+                <section class="board-write-section" aria-labelledby="applicant-reception-title">
+                  <h2 id="applicant-reception-title" class="sub-section-title">접수정보</h2>
+                  <div class="table-wrap">
+                    <table class="board-form-table">
+                      <caption>
+                        사업신청 접수정보
+                      </caption>
+                      <colgroup>
+                        <col width="18%" />
+                        <col width="32%" />
+                        <col width="18%" />
+                        <col width="32%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">신청일</th>
+                          <td><time datetime="2026-06-17">2026-06-17</time></td>
+                          <th scope="row">신청번호</th>
+                          <td>0014997</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section class="board-write-section" aria-labelledby="family-information-title">
+                  <h2 id="family-information-title" class="sub-section-title">운전자 가족관계 정보 불러오기</h2>
+
+                  <div class="board-info-row flex-wrap">
+                    <p class="text-blue mobile-w-full mb-0 mt-0">
+                      * 가족관계정보를 조회하여 자녀정보를 선택해주시기 바랍니다.
+                    </p>
+                    <button type="button" class="btn variant-outline color-navy rounded-md size-md">
+                      <span class="material-symbols-rounded" aria-hidden="true">add</span>
+                      가족정보 조회하기
+                    </button>
+                  </div>
+
+                  <div class="board-table-wrap">
+                    <table class="board-table">
+                      <caption>
+                        운전자 가족관계 정보 목록
+                      </caption>
+                      <colgroup>
+                        <col width="16%" />
+                        <col width="22%" />
+                        <col width="24%" />
+                        <col width="16%" />
+                        <col width="22%" />
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th scope="col">구분</th>
+                          <th scope="col">성명</th>
+                          <th scope="col">생년월일</th>
+                          <th scope="col">성별</th>
+                          <th scope="col">신청가능여부</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                        <tr hidden>
+                          <td colspan="5" class="board-content-empty">등록된 내용이 없습니다.</td>
+                        </tr>
+                        <!-- 반복: 운전자 가족관계 정보 행 -->
+                        <tr>
+                          <td>자녀</td>
+                          <td>김아들</td>
+                          <td>2002.01.02</td>
+                          <td>여성</td>
+                          <td>
+                            <button type="button" class="btn variant-solid color-blue rounded-md size-xs">
+                              신청가능
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>자녀</td>
+                          <td>김딸</td>
+                          <td>2006.12.13</td>
+                          <td>남성</td>
+                          <td>신청불가</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="board-table-wrap">
+                    <table class="board-table">
+                      <caption>
+                        가족정보 직접입력 유의사항
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">유의사항</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="board-cell-title">
+                            <div class="grid gap-2">
+                              <p class="note-line text-red">
+                                본인인증 수단이 없는 경우 가족정보 직접입력을 클릭 후 자녀 정보를 입력 하여 주시기
+                                바랍니다.
+                              </p>
+                              <p class="note-line">
+                                재혼가정 입양 절차 미이행, 담당 행정처 실수로 인한 가족관계 등록오류 등의 이유로
+                                가족관계 정보확인이 불가능할 수 있습니다.
+                              </p>
+                              <p class="note-line">
+                                신청을 원하는 자녀가 목록에 없을 경우 혹은 본인인증 수단이 없는 경우, 가족정보
+                                직접입력을 클릭 후 자녀 정보를 입력하여 주시기 바랍니다.
+                              </p>
+                              <p class="note-line">
+                                다만 위의 방법으로 입력 시, 해당 정보를 확인하기 위한 제출서류가 추가적으로 발생합니다.
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <button type="button" class="btn variant-outline color-navy rounded-md size-md">
+                              <span class="material-symbols-rounded" aria-hidden="true">add</span>
+                              가족정보 직접입력
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section class="board-write-section" aria-labelledby="student-information-title">
+                  <h2 id="student-information-title" class="sub-section-title">장학사업 신청대상 정보</h2>
+                  <p>장학금을 신청할 운전자 분의 자녀들(재학중인 학생)의 정보를 입력해 주시기 바랍니다.</p>
+
+                  <h3 class="sub-section-title-style04">신청학생 목록</h3>
+                  <div class="grid gap-4">
+                    <!-- 목록 없는 경우 -->
+                    <p class="board-content-empty">등록된 자녀 정보가 존재하지 않습니다.</p>
+                    <!-- 신청학생 정보 입력 -->
+                    <div class="table-wrap">
+                      <table class="board-form-table type-row-action">
+                        <caption>
+                          신청학생 정보 입력
+                        </caption>
+                        <colgroup>
+                          <col width="16%" />
+                          <col width="29%" />
+                          <col width="16%" />
+                          <col width="29%" />
+                          <col width="10%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row"><label for="student-name">성명</label></th>
+                            <td>
+                              <input id="student-name" class="form-control w-full" type="text" name="studentName" />
+                            </td>
+                            <th scope="row"><label for="student-gender">성별</label></th>
+                            <td>
+                              <select id="student-gender" class="form-control w-full" name="studentGender">
+                                <option value="">선택</option>
+                                <option value="">남성</option>
+                                <option value="">여성</option>
+                              </select>
+                            </td>
+                            <td class="text-center" rowspan="5">
+                              <button
+                                type="button"
+                                class="btn variant-solid color-red rounded-md size-md"
+                                data-popup-open="student-delete-popup"
+                              >
+                                삭제
+                              </button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">생년월일</th>
+                            <td colspan="3">
+                              <div class="flex items-center gap-2 form-date-selects">
+                                <select class="form-control w-auto" name="studentBirthYear" aria-label="생년월일 연도">
+                                  <option value="">----</option>
+                                </select>
+                                <span>년</span>
+                                <select class="form-control w-auto" name="studentBirthMonth" aria-label="생년월일 월">
+                                  <option value="">--</option>
+                                </select>
+                                <span>월</span>
+                                <select class="form-control w-auto" name="studentBirthDay" aria-label="생년월일 일">
+                                  <option value="">--</option>
+                                </select>
+                                <span>일</span>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">휴대폰번호</th>
+                            <td colspan="3">
+                              <div class="flex items-center gap-1 form-phone-group">
+                                <input
+                                  class="form-control flex-1"
+                                  type="text"
+                                  name="studentMobileFirst"
+                                  value="010"
+                                  aria-label="휴대폰번호 첫 번째 자리"
+                                  readonly
+                                />
+                                <span aria-hidden="true">-</span>
+                                <input
+                                  class="form-control flex-1"
+                                  type="text"
+                                  name="studentMobileMiddle"
+                                  inputmode="numeric"
+                                  maxlength="4"
+                                  aria-label="휴대폰번호 가운데 자리"
+                                />
+                                <span aria-hidden="true">-</span>
+                                <input
+                                  class="form-control flex-1"
+                                  type="text"
+                                  name="studentMobileLast"
+                                  inputmode="numeric"
+                                  maxlength="4"
+                                  aria-label="휴대폰번호 마지막 자리"
+                                />
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="student-school-type">학교구분</label></th>
+                            <td>
+                              <select id="student-school-type" class="form-control w-full" name="studentSchoolType">
+                                <option value="">선택</option>
+                                <option value="">중학교</option>
+                                <option value="">고등학교</option>
+                                <option value="">대학교</option>
+                              </select>
+                            </td>
+                            <th scope="row"><label for="student-grade">학생학년</label></th>
+                            <td>
+                              <select id="student-grade" class="form-control w-full" name="studentGrade">
+                                <option value="">선택</option>
+                                <option value="">1학년</option>
+                                <option value="">2학년</option>
+                                <option value="">3학년</option>
+                                <option value="">4학년</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="student-school-name">학교이름</label></th>
+                            <td colspan="3">
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="student-school-name"
+                                  class="form-control flex-1"
+                                  type="text"
+                                  name="studentSchoolName"
+                                  readonly
+                                />
+                                <button
+                                  type="button"
+                                  class="btn variant-outline color-navy rounded-md size-md"
+                                  data-popup-open="university-search-popup"
+                                >
+                                  검색
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <label class="check-label" for="student-application-confirm">
+                    <input id="student-application-confirm" type="checkbox" name="studentApplicationConfirm" />
+                    <span class="check-label-text">
+                      현재 입력된 자녀만 신청 접수합니다. 신청 가능한 자녀 모두 입력되었는지 확인 바랍니다.
+                      <br />
+                      <span class="text-blue">
+                        (페이지 상단에 조회된 자녀정보 확인 또는 직접입력을 통해 신청자녀 추가가 가능합니다.)
+                      </span>
+                    </span>
+                  </label>
+                </section>
+
+                <div class="board-footer-actions type-grid">
+                  <div class="flex justify-center gap-2">
+                    <a href="/apply/business/notice-write-step3.html" class="btn variant-solid color-navy size-lg">
+                      이전단계
+                    </a>
+                    <!-- 
+                      퍼블리싱용 화면 이동 버튼입니다.
+                      개발 연동 시 아래 주석 처리된 버튼 사용해주세요.
+                    -->
+                    <a href="/apply/business/notice-write-step5.html" class="btn variant-solid color-blue size-lg">
+                      저장 후 다음단계
+                    </a>
+                    <!-- <button type="submit" class="btn variant-solid color-blue size-lg">저장 후 다음단계</button> -->
+                  </div>
+                  <!-- 클릭 시 신청취소 팝업창 열림 -->
+                  <button
+                    type="button"
+                    class="btn variant-solid color-red size-lg mobile-w-full"
+                    data-popup-open="application-cancel-popup"
+                  >
+                    신청취소
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 신청학생 삭제 확인 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="student-delete-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="student-delete-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-sm" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="student-delete-popup-title">학생정보 삭제 알림</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <p class="text-center">해당 학생 정보를 삭제하시겠습니까?</p>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-blue size-sm" data-popup-close>확인</button>
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>취소</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 대학교 검색 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="university-search-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="university-search-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="university-search-popup-title">대학교검색</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <div class="grid gap-3">
+            <div class="grid gap-1">
+              <p class="note-line text-warning">찾고 싶으신 학교명을 입력하신 후, 검색을 눌러주시기 바랍니다.</p>
+              <p class="note-line text-warning">검색되지 않는 학교가 있으신 경우, 복지재단에 문의해 주시기 바랍니다.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <label class="sr-only" for="university-search-keyword">대학교명</label>
+              <input
+                id="university-search-keyword"
+                class="form-control size-md flex-1"
+                type="search"
+                placeholder="학교명을 입력하시기 바랍니다."
+              />
+              <button type="button" class="btn variant-solid color-blue rounded-md size-md">검색</button>
+            </div>
+            <div class="board-table-wrap">
+              <table class="board-table">
+                <caption>
+                  대학교 검색결과
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">학교 선택</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 검색결과가 없는 경우: hidden 속성을 제거하고 표시 -->
+                  <tr hidden>
+                    <td class="board-content-empty">검색된 내용이 없습니다.</td>
+                  </tr>
+                  <!-- 반복: 대학교 검색결과 행 -->
+                  <tr>
+                    <td class="board-cell-title">
+                      <button type="button" class="board-link-text">한국대학교</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 신청취소 확인 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="application-cancel-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="application-cancel-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-sm" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="application-cancel-popup-title">접수취소</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <p class="text-center">
+            접수 취소하시면 지금까지<br />
+            작성한 내용이 <span class="font-bold text-red">삭제</span>됩니다.<br />
+            <span class="font-bold text-red">정말 취소 하시겠습니까?</span>
+          </p>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-red size-sm" data-popup-close>확인</button>
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

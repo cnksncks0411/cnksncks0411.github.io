@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>가입회원내역 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="report" data-page="member-list">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 레포트관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-report.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-report" data-page="member-list"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>가입회원내역</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/report/application-status.html">레포트관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">가입회원내역</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="member-search-title">
+              <div class="board-info-row sr-only">
+                <h2 class="board-list-title" id="member-search-title">조회조건</h2>
+              </div>
+              <form action="/admin/report/member-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      가입회원내역 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="8%" />
+                      <col width="17%" />
+                      <col width="8%" />
+                      <col width="9%" />
+                      <col width="8%" />
+                      <col width="9%" />
+                      <col width="8%" />
+                      <col width="9%" />
+                      <col width="8%" />
+                      <col width="16%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">출생년도</th>
+                        <td>
+                          <div class="flex items-center gap-2">
+                            <input
+                              id="birthYearStart"
+                              name="birthYearStart"
+                              type="text"
+                              class="form-control w-quarter"
+                              value="1920"
+                              aria-label="출생 시작년도"
+                            />
+                            <span>년</span>
+                            <span class="board-search-date-separator">~</span>
+                            <input
+                              id="birthYearEnd"
+                              name="birthYearEnd"
+                              type="text"
+                              class="form-control w-quarter"
+                              value="2026"
+                              aria-label="출생 종료년도"
+                            />
+                            <span>년</span>
+                          </div>
+                        </td>
+                        <th scope="row"><label for="residenceName">거주지명</label></th>
+                        <td>
+                          <select id="residenceName" name="residenceName" class="form-control w-full">
+                            <option value="">지역 선택</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="businessType">업종구분</label></th>
+                        <td>
+                          <select id="businessType" name="businessType" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="legacyLoadType">적재량구분(구)</label></th>
+                        <td>
+                          <select id="legacyLoadType" name="legacyLoadType" class="form-control w-full">
+                            <option value="">적재량 선택</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="applicationStatus">사업신청유무</label></th>
+                        <td>
+                          <select id="applicationStatus" name="applicationStatus" class="form-control w-full">
+                            <option value="">선택</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="loadType">적재량구분</label></th>
+                        <td>
+                          <select id="loadType" name="loadType" class="form-control w-full">
+                            <option value="">적재량 선택</option>
+                          </select>
+                        </td>
+                        <th scope="row">유효회원구분</th>
+                        <td></td>
+                        <th scope="row">등록일자</th>
+                        <td colspan="5">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="registrationStartDate"
+                                name="registrationStartDate"
+                                type="text"
+                                class="form-control"
+                                value="2016-06-25"
+                                aria-label="등록 시작일자"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="등록 시작일자 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="registrationEndDate"
+                                name="registrationEndDate"
+                                type="text"
+                                class="form-control"
+                                value="2026-06-25"
+                                aria-label="등록 종료일자"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="등록 종료일자 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="member-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="member-list-title">가입회원 목록</h2>
+                <div class="board-info-actions">
+                  <!-- 엑셀 다운로드 버튼: 개발 시 가입회원내역 다운로드 기능 연결 -->
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    가입회원내역 목록
+                  </caption>
+                  <colgroup>
+                    <col width="4%" />
+                    <col width="12%" />
+                    <col width="10%" />
+                    <col width="12%" />
+                    <col width="*" />
+                    <col width="14%" />
+                    <col width="8%" />
+                    <col width="7%" />
+                    <col width="17%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">순번</th>
+                      <th scope="col">성명</th>
+                      <th scope="col">생년월일</th>
+                      <th scope="col">휴대폰번호</th>
+                      <th scope="col">거주지주소</th>
+                      <th scope="col">업종</th>
+                      <th scope="col">적재량</th>
+                      <th scope="col">사업<br />신청유무</th>
+                      <th scope="col">등록일자</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="9" class="board-content-empty">등록된 가입회원내역이 없습니다.</td>
+                    </tr>
+                    <!-- 가입회원내역 반복 행 -->
+                    <tr>
+                      <td>1</td>
+                      <td class="board-cell-title">C AI...</td>
+                      <td>1994-04-09</td>
+                      <td>010-****-8688</td>
+                      <td class="board-cell-title">서울 금천구 독산로72길 7</td>
+                      <td>일반화물</td>
+                      <td></td>
+                      <td>X</td>
+                      <td>2023-05-04 10:37:09</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td class="board-cell-title">C AI...</td>
+                      <td>1980-02-28</td>
+                      <td>010-****-5855</td>
+                      <td class="board-cell-title">인천 중구 서해대로449번길</td>
+                      <td>개인소형화물(구, 용달화물)</td>
+                      <td>1.0톤이하</td>
+                      <td>X</td>
+                      <td>2026-05-19 19:37:30</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td class="board-cell-title">CHA...</td>
+                      <td>1959-04-08</td>
+                      <td>010-****-3350</td>
+                      <td class="board-cell-title">경기 평택시 평택3로 11</td>
+                      <td></td>
+                      <td></td>
+                      <td>O</td>
+                      <td>2026-02-11 13:53:55</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td class="board-cell-title">CHI...</td>
+                      <td>1990-06-23</td>
+                      <td>010-****-7365</td>
+                      <td class="board-cell-title">경기 군포시 군포로565번길</td>
+                      <td>일반화물</td>
+                      <td></td>
+                      <td>X</td>
+                      <td>2023-05-18 03:01:51</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td class="board-cell-title">CHI...</td>
+                      <td>1953-06-15</td>
+                      <td>010-****-3166</td>
+                      <td class="board-cell-title">충남 부여군 구룡면 흥수로3</td>
+                      <td>개인소형화물(구, 용달화물)</td>
+                      <td></td>
+                      <td>O</td>
+                      <td>2023-06-02 11:12:01</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td class="board-cell-title">CUI...</td>
+                      <td>1968-11-17</td>
+                      <td>010-****-1300</td>
+                      <td class="board-cell-title">경기 광주시 마루들길150번길</td>
+                      <td>개인소형화물(구, 용달화물)</td>
+                      <td></td>
+                      <td>O</td>
+                      <td>2023-03-24 18:33:53</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td class="board-cell-title">CUI...</td>
+                      <td>1973-01-23</td>
+                      <td>010-****-5067</td>
+                      <td class="board-cell-title">경기 용인시 처인구 모현읍</td>
+                      <td>개인소형화물(구, 용달화물)</td>
+                      <td>1.0톤이하</td>
+                      <td>X</td>
+                      <td>2025-04-04 19:50:01</td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td class="board-cell-title">CUI...</td>
+                      <td>1984-06-22</td>
+                      <td>010-****-6062</td>
+                      <td class="board-cell-title">경기 평택시 소사3로 22</td>
+                      <td>개인소형화물(구, 용달화물)</td>
+                      <td></td>
+                      <td>X</td>
+                      <td>2023-06-02 19:33:30</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td class="board-cell-title">CUI...</td>
+                      <td>1966-04-04</td>
+                      <td>010-****-6868</td>
+                      <td class="board-cell-title">서울 관악구 남부순환로 14</td>
+                      <td></td>
+                      <td></td>
+                      <td>O</td>
+                      <td>2026-05-26 16:52:57</td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td class="board-cell-title">CUI...</td>
+                      <td>1971-03-17</td>
+                      <td>010-****-8829</td>
+                      <td class="board-cell-title">경북 경주시 외동읍 산업로</td>
+                      <td>일반화물</td>
+                      <td></td>
+                      <td>O</td>
+                      <td>2022-01-14 18:49:53</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="가입회원내역 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

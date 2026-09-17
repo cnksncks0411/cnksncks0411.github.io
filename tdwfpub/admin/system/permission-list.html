@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="system" data-page="permission">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 시스템관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-system.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-system" data-page="permission"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>권한 관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/system/permission-list.html">시스템관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">권한 관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="permission-search-title">
+              <h2 class="sr-only" id="permission-search-title">권한 조회조건</h2>
+              <form
+                class="flex gap-2"
+                role="search"
+                action="/admin/system/permission-list.html"
+                method="get"
+              >
+                <table class="board-search-table">
+                  <caption>
+                    권한명 조회조건
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="82%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row"><label for="permissionName">권한명</label></th>
+                      <td>
+                        <input
+                          type="text"
+                          id="permissionName"
+                          name="permissionName"
+                          class="form-control w-full"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                <a
+                  href="/admin/system/permission-write.html"
+                  class="btn variant-solid color-gradient rounded-md size-board-auto"
+                >
+                  등록
+                </a>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="permission-list-title">
+              <h2 class="sr-only" id="permission-list-title">권한 목록</h2>
+              <div class="board-info-row">
+                <button type="button" class="btn variant-solid color-red rounded-md size-board-auto">
+                  선택한 자료 삭제
+                </button>
+                <div>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option selected>20개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table" aria-labelledby="permission-list-title" data-check-group>
+                  <caption>
+                    권한 목록
+                  </caption>
+                  <colgroup>
+                    <col width="6%" />
+                    <col width="27%" />
+                    <col width="20%" />
+                    <col width="31%" />
+                    <col width="16%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">
+                        <label class="check-label">
+                          <input type="checkbox" aria-label="권한 전체 선택" data-check-all />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </th>
+                      <th scope="col">권한 ID</th>
+                      <th scope="col">권한명</th>
+                      <th scope="col">설명</th>
+                      <th scope="col">등록일자</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="5" class="board-content-empty">등록된 권한이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 권한 목록 행 -->
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="permissionItem"
+                            value="ROLE_FOUNDATION_DROWSE"
+                            aria-label="졸음운전관리자 권한 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>
+                        <a href="/admin/system/permission-write.html" class="board-link-text">
+                          ROLE_FOUNDATION_DROWSE
+                        </a>
+                      </td>
+                      <td>졸음운전관리자</td>
+                      <td>졸음운전관리자</td>
+                      <td>2026-06-11</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="permissionItem"
+                            value="ROLE_FOUNDATION_COOP_ADMIN"
+                            aria-label="협력업체관리자 권한 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>
+                        <a href="/admin/system/permission-write.html" class="board-link-text">
+                          ROLE_FOUNDATION_COOP_ADMIN
+                        </a>
+                      </td>
+                      <td>협력업체관리자</td>
+                      <td>인터넷망 특정 IP로만 접근할 수 있는 관리자</td>
+                      <td>2026-01-06</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="권한 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

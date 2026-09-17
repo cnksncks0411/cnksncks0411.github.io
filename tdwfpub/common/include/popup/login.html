@@ -1,0 +1,45 @@
+<!-- 게시판 글쓰기 로그인 팝업 -->
+<div
+  class="common-popup"
+  data-common-popup
+  id="board-login-popup"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="board-login-title"
+  aria-hidden="true"
+>
+  <div class="common-popup-backdrop" data-popup-close></div>
+  <section class="common-popup-panel size-sm" role="document">
+    <div class="common-popup-header">
+      <h2 class="common-popup-title" id="board-login-title">로그인</h2>
+      <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+        <span class="material-symbols-rounded" aria-hidden="true">close</span>
+      </button>
+    </div>
+    <div class="common-popup-body">
+      <form class="grid gap-3" action="#" method="post">
+        <label for="popup-login-id" class="sr-only">아이디</label>
+        <input
+          id="popup-login-id"
+          class="form-control size-md"
+          type="text"
+          name="userId"
+          autocomplete="username"
+          placeholder="아이디"
+          required
+        />
+        <label for="popup-login-password" class="sr-only">비밀번호</label>
+        <input
+          id="popup-login-password"
+          class="form-control size-md"
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          placeholder="비밀번호"
+          required
+        />
+        <button type="submit" class="btn variant-solid color-blue w-full">로그인</button>
+      </form>
+    </div>
+  </section>
+</div>

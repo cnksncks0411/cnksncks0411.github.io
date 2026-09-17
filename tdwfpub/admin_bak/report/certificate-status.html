@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>증서출력현황 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="report" data-page="certificate-status">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 레포트관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-report.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-report" data-page="certificate-status"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>증서출력현황</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/report/application-status.html">레포트관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">증서출력현황</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="certificate-search-title">
+              <div class="board-info-row sr-only">
+                <h2 class="board-list-title" id="certificate-search-title">조회조건</h2>
+              </div>
+              <form action="/admin_bak/report/certificate-status.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      증서출력현황 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="projectName">사업명</label></th>
+                        <td>
+                          <select id="projectName" name="projectName" class="form-control w-full">
+                            <option value="">사업명 선택</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="projectRound">년도회차</label></th>
+                        <td>
+                          <select id="projectRound" name="projectRound" class="form-control w-full">
+                            <option value="">년도회차 선택</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="driverName">운전자 이름</label></th>
+                        <td><input id="driverName" name="driverName" type="text" class="form-control w-full" /></td>
+                        <th scope="row"><label for="driverBirth">운전자 생년월일</label></th>
+                        <td><input id="driverBirth" name="driverBirth" type="text" class="form-control w-full" /></td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="recipientName">대상자 이름</label></th>
+                        <td>
+                          <input id="recipientName" name="recipientName" type="text" class="form-control w-full" />
+                        </td>
+                        <th scope="row"><label for="recipientBirth">대상자 생년월일</label></th>
+                        <td>
+                          <input id="recipientBirth" name="recipientBirth" type="text" class="form-control w-full" />
+                        </td>
+                        <th scope="row"><label for="serialNumber">일련번호</label></th>
+                        <td>
+                          <input id="serialNumber" name="serialNumber" type="text" class="form-control w-full" />
+                        </td>
+                        <th scope="row"><label for="printDate">출력일자</label></th>
+                        <td>
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="printDate"
+                                name="printDate"
+                                type="text"
+                                class="form-control"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="출력일자 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="certificate-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="certificate-list-title">증서출력 목록</h2>
+                <div class="board-info-actions">
+                  <!-- 엑셀 다운로드 버튼: 개발 시 증서출력현황 다운로드 기능 연결 -->
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    증서출력현황 목록
+                  </caption>
+                  <colgroup>
+                    <col width="8%" />
+                    <col width="9%" />
+                    <col width="13%" />
+                    <col width="9%" />
+                    <col width="13%" />
+                    <col width="9%" />
+                    <col width="13%" />
+                    <col width="26%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">일련번호</th>
+                      <th scope="col">년도회차</th>
+                      <th scope="col">사업명</th>
+                      <th scope="col">운전자명</th>
+                      <th scope="col">운전자 생년월일</th>
+                      <th scope="col">대상자명</th>
+                      <th scope="col">대상자 생년월일</th>
+                      <th scope="col">출력시간</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 증서출력현황 반복 행 -->
+                    <tr>
+                      <td>00087</td>
+                      <td>2022001</td>
+                      <td>일반장학사업</td>
+                      <td>박진서</td>
+                      <td>19770701</td>
+                      <td>박민주</td>
+                      <td>20040708</td>
+                      <td>2026-06-25 09:36:01</td>
+                    </tr>
+                    <tr>
+                      <td>00128</td>
+                      <td>2025001</td>
+                      <td>일반장학사업</td>
+                      <td>조용호</td>
+                      <td>19680917</td>
+                      <td>조현주</td>
+                      <td>20061114</td>
+                      <td>2026-06-24 22:03:35</td>
+                    </tr>
+                    <tr>
+                      <td>00056</td>
+                      <td>2024001</td>
+                      <td>일반장학사업</td>
+                      <td>조남철</td>
+                      <td>19710425</td>
+                      <td>조민재</td>
+                      <td>20060420</td>
+                      <td>2026-06-24 18:33:23</td>
+                    </tr>
+                    <tr>
+                      <td>00086</td>
+                      <td>2022001</td>
+                      <td>일반장학사업</td>
+                      <td>양희민</td>
+                      <td>19770715</td>
+                      <td>양시준</td>
+                      <td>20060117</td>
+                      <td>2026-06-24 12:33:58</td>
+                    </tr>
+                    <tr>
+                      <td>00085</td>
+                      <td>2022001</td>
+                      <td>일반장학사업</td>
+                      <td>박두진</td>
+                      <td>19870218</td>
+                      <td>박태성</td>
+                      <td>20040309</td>
+                      <td>2026-06-24 12:18:56</td>
+                    </tr>
+                    <tr>
+                      <td>00084</td>
+                      <td>2022001</td>
+                      <td>일반장학사업</td>
+                      <td>민창권</td>
+                      <td>19720522</td>
+                      <td>민재준</td>
+                      <td>20080410</td>
+                      <td>2026-06-24 11:18:45</td>
+                    </tr>
+                    <tr>
+                      <td>00051</td>
+                      <td>2023001</td>
+                      <td>일반장학사업</td>
+                      <td>허정행</td>
+                      <td>19740807</td>
+                      <td>허수정</td>
+                      <td>20040413</td>
+                      <td>2026-06-23 22:43:11</td>
+                    </tr>
+                    <tr>
+                      <td>00061</td>
+                      <td>2021001</td>
+                      <td>일반장학사업</td>
+                      <td>조성빈</td>
+                      <td>19800119</td>
+                      <td>조관희</td>
+                      <td>20070922</td>
+                      <td>2026-06-23 16:28:46</td>
+                    </tr>
+                    <tr>
+                      <td>00060</td>
+                      <td>2021001</td>
+                      <td>일반장학사업</td>
+                      <td>장종화</td>
+                      <td>19670917</td>
+                      <td>장민주</td>
+                      <td>20021103</td>
+                      <td>2026-06-23 14:43:22</td>
+                    </tr>
+                    <tr>
+                      <td>00059</td>
+                      <td>2021001</td>
+                      <td>일반장학사업</td>
+                      <td>김국찬</td>
+                      <td>19660305</td>
+                      <td>김도건</td>
+                      <td>20021218</td>
+                      <td>2026-06-23 14:39:39</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="증서출력현황 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

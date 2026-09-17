@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>사용자 개명이력 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="user" data-page="name-history">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사용자 관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-user.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-user" data-page="name-history"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>사용자 개명이력</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/user/user-list.html">사용자 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">사용자 개명이력</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="name-history-search-title">
+              <div class="board-info-row sr-only">
+                <h2 class="board-list-title" id="name-history-search-title">조회조건</h2>
+              </div>
+              <form action="/admin_bak/user/name-history-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      사용자 개명이력 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="historyUserId">사용자ID</label></th>
+                        <td>
+                          <input id="historyUserId" name="historyUserId" type="text" class="form-control w-full" />
+                        </td>
+                        <th scope="row"><label for="historyUserName">성명</label></th>
+                        <td>
+                          <input id="historyUserName" name="historyUserName" type="text" class="form-control w-full" />
+                        </td>
+                        <th scope="row"><label for="historyUseStatus">사용여부</label></th>
+                        <td>
+                          <select id="historyUseStatus" name="historyUseStatus" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">사용</option>
+                            <option value="">탈퇴</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="historyBirthDate">생년월일</label></th>
+                        <td>
+                          <input
+                            id="historyBirthDate"
+                            name="historyBirthDate"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="board-search-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      조회
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-label="개명이력 목록">
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    사용자 개명이력 목록
+                  </caption>
+                  <colgroup>
+                    <col width="8%" />
+                    <col width="15%" />
+                    <col width="12%" />
+                    <col width="14%" />
+                    <col width="12%" />
+                    <col width="14%" />
+                    <col width="10%" />
+                    <col width="15%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col" rowspan="2">일련번호</th>
+                      <th scope="col" rowspan="2">계정명</th>
+                      <th scope="colgroup" colspan="2">최초정보</th>
+                      <th scope="colgroup" colspan="2">변경정보</th>
+                      <th scope="col" rowspan="2">메모</th>
+                      <th scope="col" rowspan="2">변경일자</th>
+                    </tr>
+                    <tr>
+                      <th scope="col">이름</th>
+                      <th scope="col">생년월일</th>
+                      <th scope="col">이름</th>
+                      <th scope="col">생년월일</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 사용자 개명이력 목록 행 -->
+                    <tr>
+                      <td>1</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>11</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>12</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>13</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>14</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>15</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>16</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>17</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>18</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                    <tr>
+                      <td>19</td>
+                      <td>asdf123</td>
+                      <td>홍길동</td>
+                      <td>1985.06.05</td>
+                      <td>홍길이</td>
+                      <td>1985.06.05</td>
+                      <td>
+                        <!-- 작성 버튼 클릭 시 메모 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="name-history-memo-popup"
+                          aria-haspopup="dialog"
+                        >
+                          작성
+                        </button>
+                      </td>
+                      <td>2026-07-07</td>
+                    </tr>
+                    <tr>
+                      <td>20</td>
+                      <td>qwer456</td>
+                      <td>김민수</td>
+                      <td>1978.03.12</td>
+                      <td>김민준</td>
+                      <td>1978.03.12</td>
+                      <td style="overflow: visible">
+                        <span
+                          class="tooltip type-memo"
+                          data-tooltip="메모에 마우스를 올리면&#10;말풍선 형식으로 메모 내용 표출"
+                          tabindex="0"
+                        >
+                          개명신청 처리
+                        </span>
+                      </td>
+                      <td>2026-06-25</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="사용자 개명이력 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 사용자 개명이력 메모 작성 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="name-history-memo-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="name-history-memo-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="name-history-memo-popup-title">메모작성</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="" method="post">
+                  <div class="popup-body">
+                    <h3 class="popup-section-title">메모</h3>
+                    <table class="board-form-table">
+                      <caption>
+                        사용자 개명이력 메모 작성
+                      </caption>
+                      <colgroup>
+                        <col width="18%" />
+                        <col width="32%" />
+                        <col width="18%" />
+                        <col width="32%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">변경전 이름</th>
+                          <td>홍길동 (abcdefg1234)</td>
+                          <th scope="row">변경전 생년월일</th>
+                          <td>19720607</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">변경후 이름</th>
+                          <td>홍길이</td>
+                          <th scope="row">변경후 생년월일</th>
+                          <td>19720607</td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="nameHistoryMemo">메모</label></th>
+                          <td colspan="3">
+                            <textarea id="nameHistoryMemo" name="nameHistoryMemo" class="textarea" rows="3"></textarea>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <section class="board-section mt-4" aria-labelledby="name-history-document-title">
+                      <div class="board-info-row">
+                        <h3 class="popup-section-title" id="name-history-document-title">등록 증빙 서류목록</h3>
+                      </div>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <p class="board-content-empty" hidden>등록된 증빙서류가 없습니다.</p>
+                      <!-- 목록 있는 경우 -->
+                      <ul class="board-document-grid">
+                        <!-- 반복: 등록 증빙 서류 카드 -->
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">증빙서류_1.jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                              <button type="button" class="btn variant-soft color-red rounded-md size-sm">삭제</button>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">증빙서류_2.jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                              <button type="button" class="btn variant-soft color-red rounded-md size-sm">삭제</button>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="#"
+                              class="board-document-thumb flex items-center justify-center"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <span class="font-bold">PDF</span>
+                            </a>
+                            <figcaption class="board-document-name">증빙서류_3.pdf</figcaption>
+                            <div class="board-table-actions">
+                              <a href="#" class="btn variant-outline color-navy rounded-md size-sm" download
+                                >다운로드</a
+                              >
+                              <button type="button" class="btn variant-soft color-red rounded-md size-sm">삭제</button>
+                            </div>
+                          </figure>
+                        </li>
+                      </ul>
+                    </section>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      저장
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

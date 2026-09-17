@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>공통상세코드 상세조회 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="system" data-page="detail-code">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 시스템관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-system.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-system" data-page="detail-code"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>공통상세코드 상세조회</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/system/permission-list.html">시스템관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/system/detail-code-list.html">공통상세코드목록</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">공통상세코드 상세조회</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="detail-code-write-title">
+              <h2 class="sr-only" id="detail-code-write-title">공통상세코드 상세조회</h2>
+              <form action="/admin_bak/system/detail-code-write.html" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    공통상세코드 상세정보
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="82%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">코드 ID명<span class="required-mark">*</span></th>
+                      <td>등록구분</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">코드<span class="required-mark">*</span></th>
+                      <td>REGC05</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">코드명<span class="required-mark">*</span></th>
+                      <td>동호회 게시판 등록</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="detailCodeDescription">코드설명<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <textarea
+                          id="detailCodeDescription"
+                          name="detailCodeDescription"
+                          class="textarea"
+                          rows="7"
+                          required
+                        >동호회 게시판 등록</textarea>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="detailCodeUse">사용여부<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="detailCodeUse" name="detailCodeUse" class="form-control w-auto" required>
+                          <option value="Y" selected>Yes</option>
+                          <option value="N">No</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <button type="submit" class="btn variant-soft color-blue rounded-md size-board-action">
+                    수정하기
+                  </button>
+                  <button type="button" class="btn variant-soft color-red rounded-md size-board-action">
+                    삭제하기
+                  </button>
+                  <a
+                    href="/admin_bak/system/detail-code-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    목록보기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

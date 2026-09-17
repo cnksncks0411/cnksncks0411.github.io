@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="program">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="program"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>프로그램목록관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">프로그램목록관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="program-search-title">
+              <form
+                class="flex gap-2"
+                role="search"
+                action="/admin/site/program-list.html"
+                method="get"
+              >
+                <table class="board-search-table">
+                  <caption>
+                    프로그램명 조회조건
+                  </caption>
+                  <colgroup>
+                    <col width="12%" />
+                    <col width="28%" />
+                    <col width="22%" />
+                    <col width="38%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="programMenuType">메뉴유형<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <select id="programMenuType" name="programMenuType" class="form-control w-full" required>
+                          <option value="">전체</option>
+                          <option value="">재단홈</option>
+                          <option value="">사업신청</option>
+                          <option value="">협력업체</option>
+                          <option value="">관리자</option>
+                          <option value="">사용자공통</option>
+                        </select>
+                      </td>
+                      <th scope="row">
+                        <label for="programKeyword">프로그램명/파일명/url</label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="programKeyword"
+                          name="programKeyword"
+                          class="form-control w-full"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                <a
+                  href="/admin/site/program-write.html"
+                  class="btn variant-solid color-gradient rounded-md size-board-auto"
+                >
+                  등록
+                </a>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="program-list-title">
+              <h2 class="sr-only" id="program-list-title">프로그램 목록</h2>
+              <div class="board-info-row">
+                <button type="button" class="btn variant-solid color-red rounded-md size-board-auto">
+                  선택한 자료 삭제
+                </button>
+                <div class="board-info-actions">
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table" aria-labelledby="program-list-title" data-check-group>
+                  <caption>
+                    프로그램 목록
+                  </caption>
+                  <colgroup>
+                    <col width="5%" />
+                    <col width="6%" />
+                    <col width="11%" />
+                    <col width="13%" />
+                    <col width="17%" />
+                    <col width="26%" />
+                    <col width="14%" />
+                    <col width="8%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">
+                        <label class="check-label">
+                          <input type="checkbox" aria-label="프로그램 전체 선택" data-check-all />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </th>
+                      <th scope="col">번호</th>
+                      <th scope="col">메뉴유형</th>
+                      <th scope="col">프로그램파일명</th>
+                      <th scope="col">프로그램명</th>
+                      <th scope="col">URL</th>
+                      <th scope="col">프로그램 설명</th>
+                      <th scope="col">메뉴연결</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 프로그램이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 프로그램 목록 행 -->
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="programItem"
+                            value="C2040700"
+                            aria-label="C2040700 프로그램 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>254</td>
+                      <td>사용자공통</td>
+                      <td>
+                        <a href="/admin/site/program-write.html" class="board-link-text">C2040700</a>
+                      </td>
+                      <td>협력업체</td>
+                      <td>/</td>
+                      <td>협력업체</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="programItem"
+                            value="H1030805"
+                            aria-label="H1030805 프로그램 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>253</td>
+                      <td>재단홈</td>
+                      <td>
+                        <a href="/admin/site/program-write.html" class="board-link-text">H1030805</a>
+                      </td>
+                      <td>재단 회원 복지몰</td>
+                      <td>/</td>
+                      <td></td>
+                      <td>Y</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="programItem"
+                            value="program-252"
+                            aria-label="program-252 프로그램 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>252</td>
+                      <td>관리자</td>
+                      <td>
+                        <a href="/admin/site/program-write.html" class="board-link-text"></a>
+                      </td>
+                      <td>화물차구입정보</td>
+                      <td>/</td>
+                      <td></td>
+                      <td>Y</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label class="check-label">
+                          <input
+                            type="checkbox"
+                            name="programItem"
+                            value="program-251"
+                            aria-label="program-251 프로그램 선택"
+                            data-check-item
+                          />
+                          <span class="check-label-text"></span>
+                        </label>
+                      </td>
+                      <td>251</td>
+                      <td>협력업체</td>
+                      <td>
+                        <a href="/admin/site/program-write.html" class="board-link-text"></a>
+                      </td>
+                      <td></td>
+                      <td>/admin/basic/application-doc-list.html</td>
+                      <td></td>
+                      <td>Y</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="프로그램 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

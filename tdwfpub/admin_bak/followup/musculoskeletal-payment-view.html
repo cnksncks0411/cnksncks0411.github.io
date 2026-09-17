@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>근골격계지급관리 상세 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="musculoskeletal-payment">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="musculoskeletal-payment"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>근골격계지급관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/followup/musculoskeletal-payment-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/followup/musculoskeletal-payment-list.html">근골격계지급관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">상세</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="근골격계 지원 접수내역">
+              <table class="board-form-table text-center">
+                <caption>
+                  근골격계 지원 접수내역
+                </caption>
+                <colgroup>
+                  <col width="12%" />
+                  <col width="21.333%" />
+                  <col width="12%" />
+                  <col width="21.333%" />
+                  <col width="12%" />
+                  <col width="21.334%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">신청번호</th>
+                    <td>00000125</td>
+                    <th scope="row">접수번호</th>
+                    <td>00000085</td>
+                    <th scope="row">접수상태</th>
+                    <td><span class="font-bold">접수완료</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <section class="panel" aria-label="근골격계 지원 상세 내용">
+              <div class="board-tabs" data-board-tabs>
+                <!-- 탭 버튼 -->
+                <div class="board-tab-list" role="tablist" aria-label="근골격계 지원 서류">
+                  <button
+                    type="button"
+                    class="board-tab active"
+                    id="musculoskeletalPaymentApplicationTab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="musculoskeletalPaymentApplicationPanel"
+                    data-board-tab="musculoskeletalPaymentApplicationPanel"
+                  >
+                    근골격계 지원신청서
+                  </button>
+                  <button
+                    type="button"
+                    class="board-tab"
+                    id="musculoskeletalPaymentDocumentTab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="musculoskeletalPaymentDocumentPanel"
+                    data-board-tab="musculoskeletalPaymentDocumentPanel"
+                  >
+                    근골격계 서류등록
+                  </button>
+                </div>
+
+                <div class="board-tab-panels">
+                  <!-- 탭 영역 : 근골격계 지원신청서 -->
+                  <div
+                    class="board-tab-panel"
+                    id="musculoskeletalPaymentApplicationPanel"
+                    role="tabpanel"
+                    aria-labelledby="musculoskeletalPaymentApplicationTab"
+                    data-board-tab-panel
+                  >
+                    <form
+                      action="/admin_bak/followup/musculoskeletal-payment-view.html"
+                      method="post"
+                      class="flex flex-col gap-4"
+                    >
+                      <h2 class="board-panel-title">근골격계 지원신청서</h2>
+
+                      <section class="board-section" aria-label="근골격계 지원 신청일시">
+                        <table class="board-form-table">
+                          <caption>
+                            근골격계 지원 신청일시
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="84%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">신청일시</th>
+                              <td>2026-06-30</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="musculoskeletal-payment-driver-title">
+                        <h3 class="board-section-title" id="musculoskeletal-payment-driver-title">운전자 정보</h3>
+                        <table class="board-form-table">
+                          <caption>
+                            근골격계 지원신청서 운전자 정보
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">운전자명</th>
+                              <td>홍길동</td>
+                              <th scope="row">생년월일</th>
+                              <td>19731009</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                성별
+                                <span class="required-mark" aria-hidden="true">*</span>
+                              </th>
+                              <td>남성</td>
+                              <th scope="row">운전자계정</th>
+                              <td>abcd1234</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="musculoskeletalPaymentLicenseNumber">
+                                  자격번호
+                                  <span class="required-mark" aria-hidden="true">*</span>
+                                </label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-field">
+                                  <input
+                                    id="musculoskeletalPaymentLicenseNumber"
+                                    name="musculoskeletalPaymentLicenseNumber"
+                                    type="text"
+                                    class="form-control w-full"
+                                    value="117132864"
+                                    readonly
+                                  />
+                                  <button
+                                    type="button"
+                                    class="btn variant-outline color-navy rounded-md size-input"
+                                    disabled
+                                  >
+                                    초기화
+                                  </button>
+                                </div>
+                              </td>
+                              <th scope="row">검증결과</th>
+                              <td><span class="text-blue font-bold">검증성공</span></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="musculoskeletalPaymentRegion">
+                                  지역
+                                  <span class="required-mark" aria-hidden="true">*</span>
+                                </label>
+                              </th>
+                              <td>
+                                <select
+                                  id="musculoskeletalPaymentRegion"
+                                  name="musculoskeletalPaymentRegion"
+                                  class="form-control w-full"
+                                  required
+                                >
+                                  <option value="gyeonggi" selected>경기</option>
+                                </select>
+                              </td>
+                              <th scope="row"><label for="musculoskeletalPaymentBusinessType">업종</label></th>
+                              <td>
+                                <select
+                                  id="musculoskeletalPaymentBusinessType"
+                                  name="musculoskeletalPaymentBusinessType"
+                                  class="form-control w-full"
+                                >
+                                  <option value="" selected>선택</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">청구병원</th>
+                              <td>경기도립 안성휴게소의원</td>
+                              <th scope="row">치료년월</th>
+                              <td>2026년 07월</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                치료일자
+                                <span class="required-mark" aria-hidden="true">*</span>
+                              </th>
+                              <td>2026-07-08</td>
+                              <th scope="row">
+                                <label for="musculoskeletalPaymentClaimAmount">
+                                  청구금액
+                                  <span class="required-mark" aria-hidden="true">*</span>
+                                </label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-unit">
+                                  <input
+                                    id="musculoskeletalPaymentClaimAmount"
+                                    name="musculoskeletalPaymentClaimAmount"
+                                    type="text"
+                                    class="form-control"
+                                    value="5900"
+                                    required
+                                  />
+                                  <span>원</span>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="musculoskeletalPaymentPhoneFirst">
+                                  휴대폰번호
+                                  <span class="required-mark" aria-hidden="true">*</span>
+                                </label>
+                              </th>
+                              <td colspan="3">
+                                <div class="grid items-center gap-2 row-type-phone width-fixed">
+                                  <input
+                                    id="musculoskeletalPaymentPhoneFirst"
+                                    name="musculoskeletalPaymentPhoneFirst"
+                                    type="text"
+                                    class="form-control"
+                                    value="010"
+                                    aria-label="휴대폰번호 앞자리"
+                                    readonly
+                                    required
+                                  />
+                                  <span aria-hidden="true">-</span>
+                                  <input
+                                    name="musculoskeletalPaymentPhoneMiddle"
+                                    type="text"
+                                    class="form-control"
+                                    value="1234"
+                                    aria-label="휴대폰번호 가운데자리"
+                                    required
+                                  />
+                                  <span aria-hidden="true">-</span>
+                                  <input
+                                    name="musculoskeletalPaymentPhoneLast"
+                                    type="text"
+                                    class="form-control"
+                                    value="5678"
+                                    aria-label="휴대폰번호 끝자리"
+                                    required
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                치료부위
+                                <span class="required-mark" aria-hidden="true">*</span>
+                              </th>
+                              <td colspan="3">
+                                <div class="flex flex-wrap gap-3">
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="neck" />
+                                    <span class="check-label-text">경추</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="hip" />
+                                    <span class="check-label-text">고관절</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="myalgia" />
+                                    <span class="check-label-text">기타근통</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="leg" />
+                                    <span class="check-label-text">다리</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="knee" />
+                                    <span class="check-label-text">무릎</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="foot" />
+                                    <span class="check-label-text">발</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="fibromyalgia" />
+                                    <span class="check-label-text">섬유근통</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="hand" />
+                                    <span class="check-label-text">손</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="shoulder" />
+                                    <span class="check-label-text">어깨</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input
+                                      type="checkbox"
+                                      name="musculoskeletalPaymentTreatmentPart"
+                                      value="rotator-cuff"
+                                    />
+                                    <span class="check-label-text">어깨의 회전근개</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="lumbar" />
+                                    <span class="check-label-text">요추</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="elbow" />
+                                    <span class="check-label-text">팔꿈치</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="musculoskeletalPaymentTreatmentPart" value="thoracic" />
+                                    <span class="check-label-text">흉추</span>
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                치료내용
+                                <span class="required-mark" aria-hidden="true">*</span>
+                              </th>
+                              <td colspan="3">
+                                <div class="flex flex-wrap gap-3">
+                                  <label class="check-label">
+                                    <input
+                                      type="checkbox"
+                                      name="musculoskeletalPaymentTreatmentContent"
+                                      value="superficial-heat"
+                                    />
+                                    <span class="check-label-text">표층열치료</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input
+                                      type="checkbox"
+                                      name="musculoskeletalPaymentTreatmentContent"
+                                      value="deep-heat"
+                                    />
+                                    <span class="check-label-text">심층열치료</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input
+                                      type="checkbox"
+                                      name="musculoskeletalPaymentTreatmentContent"
+                                      value="paraffin-bath"
+                                    />
+                                    <span class="check-label-text">파리핀욕</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input
+                                      type="checkbox"
+                                      name="musculoskeletalPaymentTreatmentContent"
+                                      value="interferential-current"
+                                    />
+                                    <span class="check-label-text">간섭파전류치료</span>
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <div class="board-form-actions justify-center mt-0">
+                        <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                          저장하기
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- 탭 영역 : 근골격계 서류등록 -->
+                  <div
+                    class="board-tab-panel"
+                    id="musculoskeletalPaymentDocumentPanel"
+                    role="tabpanel"
+                    aria-labelledby="musculoskeletalPaymentDocumentTab"
+                    data-board-tab-panel
+                    hidden
+                  >
+                    <div class="flex flex-col gap-4">
+                      <h2 class="board-panel-title">근골격계 서류등록</h2>
+
+                      <section class="board-section" aria-label="근골격계 서류등록 신청일시">
+                        <table class="board-form-table">
+                          <caption>
+                            근골격계 서류등록 신청일시
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="84%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">신청일시</th>
+                              <td>2026-06-30</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section
+                        class="board-section"
+                        aria-labelledby="musculoskeletal-payment-registered-document-title"
+                      >
+                        <h3 class="board-section-title" id="musculoskeletal-payment-registered-document-title">
+                          등록서류목록
+                        </h3>
+                        <!-- 목록 없는 경우 -->
+                        <p class="board-content-empty">등록된 첨부파일이 없습니다.</p>
+                      </section>
+
+                      <section
+                        class="board-section"
+                        aria-labelledby="musculoskeletal-payment-required-document-title"
+                      >
+                        <h3 class="board-section-title" id="musculoskeletal-payment-required-document-title">
+                          서류목록
+                        </h3>
+                        <!-- 목록 없는 경우 -->
+                        <p class="board-content-empty">등록할 서류 정보가 없습니다.</p>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="board-view-actions">
+              <a
+                href="/admin_bak/followup/musculoskeletal-payment-list.html"
+                class="btn variant-outline color-navy rounded-md size-board-action"
+              >
+                목록보기
+              </a>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

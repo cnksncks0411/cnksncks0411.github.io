@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>운전자정보 | 사업신청 | 화물복지재단 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="business" data-page="notice">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li><a href="/apply/business/notice.html">지원사업정보</a></li>
+              <li><a href="/apply/business/notice.html">사업전체공고</a></li>
+              <li><a href="/apply/business/notice-view.html">공고상세</a></li>
+              <li aria-current="page" data-breadcrumb-current>사업신청</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 지원사업정보 LNB 인클루드 영역: common/include/apply/lnb-business.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-business" data-page="notice"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">사업신청</h1>
+              <div class="sub-intro">
+                <strong>화물복지재단에서 진행하는 <em>복지사업</em>입니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <div class="table-wrap">
+                <table class="board-form-table">
+                  <caption>
+                    신청 사업 정보
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="36%" />
+                    <col width="14%" />
+                    <col width="36%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">사업명</th>
+                      <td>2026년 일반장학사업</td>
+                      <th scope="row">신청기간</th>
+                      <td>2026-05-18 ~ 2026-06-30</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ol class="board-step-list" aria-label="사업신청 진행 단계">
+                <li class="board-step-item">개인정보 동의</li>
+                <li class="board-step-item">검증조회</li>
+                <li class="board-step-item active" aria-current="step">운전자정보</li>
+                <li class="board-step-item">지원자정보</li>
+                <li class="board-step-item">제출서류등록</li>
+                <li class="board-step-item">접수확인</li>
+                <li class="board-step-item">서약서</li>
+              </ol>
+
+              <form class="board-write-form" action="#" method="post">
+                <h2 class="sub-section-title-style02">운전자 정보</h2>
+
+                <section class="board-write-section" aria-labelledby="driver-reception-title">
+                  <h2 id="driver-reception-title" class="sub-section-title">접수정보</h2>
+                  <div class="table-wrap">
+                    <table class="board-form-table">
+                      <caption>
+                        사업신청 접수정보
+                      </caption>
+                      <colgroup>
+                        <col width="18%" />
+                        <col width="32%" />
+                        <col width="18%" />
+                        <col width="32%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">신청일</th>
+                          <td><time datetime="2026-06-17">2026-06-17</time></td>
+                          <th scope="row">신청번호</th>
+                          <td>0014997</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section class="board-write-section" aria-labelledby="driver-personal-title">
+                  <h2 id="driver-personal-title" class="sub-section-title">화물운전자 인적사항</h2>
+
+                  <div class="table-wrap">
+                    <table class="board-form-table">
+                      <caption>
+                        화물운전자 인적사항 입력
+                      </caption>
+                      <colgroup>
+                        <col width="18%" />
+                        <col width="32%" />
+                        <col width="18%" />
+                        <col width="32%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 성명</th>
+                          <td>김회원</td>
+                          <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 생년월일</th>
+                          <td>1972.06.07</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="driver-vehicle-type"
+                              ><span class="required-mark" aria-hidden="true">*</span> 차종</label
+                            >
+                          </th>
+                          <td>
+                            <select
+                              id="driver-vehicle-type"
+                              class="form-control w-full"
+                              name="driverVehicleType"
+                              required
+                            >
+                              <option value="">선택</option>
+                              <option value="">화물카고형</option>
+                              <option value="">화물밴형(탑차, 윙바디, 냉장, 냉동)</option>
+                              <option value="">탱크로리/유조차</option>
+                              <option value="">트레일러</option>
+                              <option value="">구급/구난(렉카)</option>
+                              <option value="">화물덤프형</option>
+                              <option value="">기타/특수(카고크레인/암롤 등)</option>
+                            </select>
+                          </td>
+                          <th scope="row">
+                            <label for="driver-vehicle-tonnage"
+                              ><span class="required-mark" aria-hidden="true">*</span> 차량톤수</label
+                            >
+                          </th>
+                          <td>
+                            <div class="flex items-center gap-2">
+                              <input
+                                id="driver-vehicle-tonnage"
+                                class="form-control w-quarter"
+                                type="text"
+                                name="driverVehicleTonnage"
+                                inputmode="decimal"
+                                required
+                              />
+                              <span>톤</span>
+                            </div>
+                            <div class="mt-2">
+                              <span class="board-form-note mt-0">(소수점이 있는 경우, 소수점 첫째자리까지 기입)</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 차량번호</th>
+                          <td colspan="3">
+                            <div class="flex items-center gap-2 form-vehicle-number-group">
+                              <select
+                                class="form-control w-auto"
+                                name="vehicleRegion"
+                                aria-label="차량번호 지역"
+                                required
+                              >
+                                <option value="">선택</option>
+                                <option value="서울">서울</option>
+                                <option value="부산">부산</option>
+                                <option value="대구">대구</option>
+                                <option value="인천">인천</option>
+                                <option value="광주">광주</option>
+                                <option value="대전">대전</option>
+                                <option value="울산">울산</option>
+                                <option value="경기">경기</option>
+                                <option value="강원">강원</option>
+                                <option value="충북">충북</option>
+                                <option value="충남">충남</option>
+                                <option value="전북">전북</option>
+                                <option value="전남">전남</option>
+                                <option value="경북">경북</option>
+                                <option value="경남">경남</option>
+                                <option value="제주">제주</option>
+                                <option value="세종">세종</option>
+                              </select>
+                              <input
+                                class="form-control w-auto"
+                                type="text"
+                                name="vehicleNumberFirst"
+                                inputmode="numeric"
+                                maxlength="4"
+                                size="4"
+                                aria-label="차량번호 앞 숫자 네 자리"
+                                required
+                              />
+                              <select
+                                class="form-control w-auto"
+                                name="vehicleLetter"
+                                aria-label="차량번호 한글"
+                                required
+                              >
+                                <option value="">선택</option>
+                                <option value="바">바</option>
+                                <option value="사">사</option>
+                                <option value="아">아</option>
+                                <option value="자">자</option>
+                                <option value="배">배</option>
+                              </select>
+                              <input
+                                class="form-control w-auto"
+                                type="text"
+                                name="vehicleNumberLast"
+                                inputmode="numeric"
+                                maxlength="4"
+                                size="4"
+                                aria-label="차량번호 숫자 네 자리"
+                                required
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="driver-company">회사상호</label></th>
+                          <td colspan="3">
+                            <input
+                              id="driver-company"
+                              class="form-control w-half mobile-w-full"
+                              type="text"
+                              name="driverCompany"
+                            />
+                            <div class="mt-2">
+                              <span class="board-form-note mt-0"
+                                >(자동차등록증상의 소유자를 기재) 예) 대한통운주식회사, 개별화물 등</span
+                              >
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">
+                            <label for="driver-business-type"
+                              ><span class="required-mark" aria-hidden="true">*</span> 업종</label
+                            >
+                          </th>
+                          <td>
+                            <select
+                              id="driver-business-type"
+                              class="form-control w-full"
+                              name="driverBusinessType"
+                              required
+                            >
+                              <option value="">선택</option>
+                              <option value="general">일반화물</option>
+                              <option value="individual-large">개인중대형화물(구, 개별화물)</option>
+                              <option value="individual-small">개인소형화물(구, 용달화물)</option>
+                            </select>
+                          </td>
+                          <th scope="row"><label for="driver-career">경력</label></th>
+                          <td>
+                            <select id="driver-career" class="form-control w-full" name="driverCareer">
+                              <option value="">선택</option>
+                              <option value="">1~3년</option>
+                              <option value="">3~5년</option>
+                              <option value="">5~10년</option>
+                              <option value="">10~15년</option>
+                              <option value="">15~20년</option>
+                              <option value="">20년 이상</option>
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 자택주소</th>
+                          <td colspan="3">
+                            <div class="grid gap-2">
+                              <div class="flex items-center gap-2">
+                                <input
+                                  id="driver-postcode"
+                                  class="form-control w-quarter"
+                                  type="text"
+                                  name="driverPostcode"
+                                  inputmode="numeric"
+                                  placeholder="우편번호"
+                                  readonly
+                                  required
+                                />
+                                <!-- 도로명 주소 api 연결 -->
+                                <a
+                                  href="/apply/popup/address-search.html"
+                                  class="btn variant-outline color-navy rounded-md size-md"
+                                  target="_blank"
+                                  data-popup="driverAddressPopup"
+                                  data-size="660,480"
+                                >
+                                  우편번호 찾기
+                                </a>
+                              </div>
+                              <label class="sr-only" for="driver-address">기본 주소</label>
+                              <input
+                                id="driver-address"
+                                class="form-control w-full"
+                                type="text"
+                                name="driverAddress"
+                                placeholder="기본 주소"
+                                readonly
+                                required
+                              />
+                              <label class="sr-only" for="driver-address-detail">상세 주소</label>
+                              <input
+                                id="driver-address-detail"
+                                class="form-control w-full"
+                                type="text"
+                                name="driverAddressDetail"
+                                placeholder="상세 주소를 입력하세요."
+                                required
+                              />
+                              <div class="mt-2">
+                                <span class="board-form-note mt-0">(번지를 포함한 나머지주소)</span>
+                              </div>
+                              <p class="system-message type-error">
+                                주소지 정보가 올바른지 다시 한번 확인해 주시기 바랍니다.
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><span class="required-mark" aria-hidden="true">*</span> 휴대폰번호</th>
+                          <td colspan="3">
+                            <div class="grid gap-2">
+                              <div class="flex items-center gap-1 form-phone-group">
+                                <input
+                                  class="form-control flex-1"
+                                  type="text"
+                                  name="driverMobileFirst"
+                                  value="010"
+                                  aria-label="휴대폰번호 첫 번째 자리"
+                                  readonly
+                                />
+                                <span aria-hidden="true">-</span>
+                                <input
+                                  class="form-control flex-1"
+                                  type="text"
+                                  name="driverMobileMiddle"
+                                  inputmode="numeric"
+                                  maxlength="4"
+                                  aria-label="휴대폰번호 가운데 자리"
+                                  required
+                                />
+                                <span aria-hidden="true">-</span>
+                                <input
+                                  class="form-control flex-1"
+                                  type="text"
+                                  name="driverMobileLast"
+                                  inputmode="numeric"
+                                  maxlength="4"
+                                  aria-label="휴대폰번호 마지막 자리"
+                                  required
+                                />
+                              </div>
+                              <p class="system-message type-error">
+                                휴대폰 정보가 올바른지 확인 바랍니다. [선발시 휴대폰 문자 연락]
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">자택전화번호</th>
+                          <td colspan="3">
+                            <div class="flex items-center gap-1 form-phone-group">
+                              <select
+                                class="form-control flex-1"
+                                name="driverPhoneFirst"
+                                aria-label="자택전화번호 지역번호"
+                              >
+                                <option value="">선택</option>
+                                <option value="02">02</option>
+                                <option value="031">031</option>
+                                <option value="032">032</option>
+                                <option value="041">041</option>
+                                <option value="042">042</option>
+                                <option value="043">043</option>
+                                <option value="044">044</option>
+                                <option value="051">051</option>
+                                <option value="052">052</option>
+                                <option value="053">053</option>
+                                <option value="054">054</option>
+                                <option value="055">055</option>
+                                <option value="061">061</option>
+                                <option value="062">062</option>
+                                <option value="063">063</option>
+                                <option value="064">064</option>
+                                <option value="070">070</option>
+                              </select>
+                              <span aria-hidden="true">-</span>
+                              <input
+                                class="form-control flex-1"
+                                type="text"
+                                name="driverPhoneMiddle"
+                                inputmode="numeric"
+                                maxlength="4"
+                                aria-label="자택전화번호 가운데 자리"
+                              />
+                              <span aria-hidden="true">-</span>
+                              <input
+                                class="form-control flex-1"
+                                type="text"
+                                name="driverPhoneLast"
+                                inputmode="numeric"
+                                maxlength="4"
+                                aria-label="자택전화번호 마지막 자리"
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="driver-email-local">이메일</label></th>
+                          <td colspan="3">
+                            <div class="flex items-center gap-2 form-email-group">
+                              <input
+                                id="driver-email-local"
+                                class="form-control flex-1"
+                                type="text"
+                                name="driverEmailLocal"
+                                aria-label="이메일 아이디"
+                              />
+                              <span aria-hidden="true">@</span>
+                              <input
+                                id="driver-email-domain"
+                                class="form-control flex-1"
+                                type="text"
+                                name="driverEmailDomain"
+                                aria-label="이메일 도메인"
+                                readonly
+                              />
+                              <select
+                                class="form-control w-auto"
+                                aria-label="이메일 도메인 선택"
+                                data-email-domain-control="driver-email-domain"
+                                data-email-domain-direct-value="direct"
+                              >
+                                <option value="">선택하세요</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="hanmail.net">hanmail.net</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="hotmail.com">hotmail.com</option>
+                                <option value="nate.com">nate.com</option>
+                                <option value="korea.com">korea.com</option>
+                                <option value="paran.com">paran.com</option>
+                                <option value="yahoo.com">yahoo.com</option>
+                                <option value="empal.com">empal.com</option>
+                                <option value="chol.com">chol.com</option>
+                                <option value="dreamwiz.com">dreamwiz.com</option>
+                                <option value="freechal.com">freechal.com</option>
+                                <option value="hanafos.com">hanafos.com</option>
+                                <option value="hanmir.com">hanmir.com</option>
+                                <option value="lycos.com">lycos.com</option>
+                                <option value="direct">직접입력</option>
+                              </select>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <div class="board-footer-actions type-grid">
+                  <div class="flex justify-center gap-2">
+                    <a href="/apply/business/notice-write-step2.html" class="btn variant-solid color-navy size-lg">
+                      이전단계
+                    </a>
+                    <!-- 
+                      퍼블리싱용 화면 이동 버튼입니다.
+                      개발 연동 시 아래 주석 처리된 버튼 사용해주세요.
+                    -->
+                    <a href="/apply/business/notice-write-step4.html" class="btn variant-solid color-blue size-lg">
+                      저장 후 다음단계
+                    </a>
+                    <!-- <button type="submit" class="btn variant-solid color-blue size-lg">저장 후 다음단계</button> -->
+                  </div>
+                  <!-- 클릭 시 신청취소 팝업창 열림 -->
+                  <button
+                    type="button"
+                    class="btn variant-solid color-red size-lg mobile-w-full"
+                    data-popup-open="application-cancel-popup"
+                  >
+                    신청취소
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 신청취소 확인 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="application-cancel-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="application-cancel-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-sm" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="application-cancel-popup-title">접수취소</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <p class="text-center">
+            접수 취소하시면 지금까지<br />
+            작성한 내용이 <span class="font-bold text-red">삭제</span>됩니다.<br />
+            <span class="font-bold text-red">정말 취소 하시겠습니까?</span>
+          </p>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-red size-sm" data-popup-close>확인</button>
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

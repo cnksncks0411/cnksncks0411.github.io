@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>메뉴 생성관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="menu-create">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="menu-create"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>메뉴 생성관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">메뉴 생성관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="menu-create-search-title">
+              <h2 class="sr-only" id="menu-create-search-title">조회조건</h2>
+              <form
+                class="flex gap-2"
+                role="search"
+                action="/admin_bak/site/menu-create-list.html"
+                method="get"
+              >
+                <table class="board-search-table">
+                  <caption>
+                    보안설정대상 ID 조회조건
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="82%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="securityTargetId">
+                          보안설정대상 ID<span class="required-mark">*</span>
+                        </label>
+                      </th>
+                      <td>
+                        <input
+                          type="text"
+                          id="securityTargetId"
+                          name="securityTargetId"
+                          class="form-control w-full"
+                          required
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="menu-create-list-title">
+              <h2 class="sr-only" id="menu-create-list-title">메뉴 생성관리 목록</h2>
+              <div class="board-info-row align-right">
+                <div>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>20개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table" aria-labelledby="menu-create-list-title">
+                  <caption>
+                    메뉴 생성관리 권한 목록
+                  </caption>
+                  <colgroup>
+                    <col width="24%" />
+                    <col width="18%" />
+                    <col width="32%" />
+                    <col width="14%" />
+                    <col width="12%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="권한코드 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>권한코드</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="권한명 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>권한명</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">권한 설명</th>
+                      <th scope="col">메뉴생성여부</th>
+                      <th scope="col">메뉴생성</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="5" class="board-content-empty">등록된 메뉴 생성 권한이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 메뉴 생성관리 권한 행 -->
+                    <tr>
+                      <td>IS_AUTHENTICATED_ANONYMOUSLY</td>
+                      <td>익명이용자</td>
+                      <td>IS_AUTHENTICATED_ANONYMOUSLY</td>
+                      <td>N</td>
+                      <td>
+                        <a
+                          href="/admin_bak/site/menu-create-view.html"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                        >
+                          메뉴생성
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>IS_AUTHENTICATED_FULLY</td>
+                      <td>인증이용자</td>
+                      <td>IS_AUTHENTICATED_FULLY</td>
+                      <td>N</td>
+                      <td>
+                        <a
+                          href="/admin_bak/site/menu-create-view.html"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                        >
+                          메뉴생성
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="메뉴 생성관리 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

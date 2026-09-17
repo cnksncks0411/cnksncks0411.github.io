@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>입사지원 | 화물복지재단</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/main.css" />
+  </head>
+  <body data-site="main" data-section="notice" data-page="recruit">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 메인 헤더 인클루드 영역: common/include/main/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-main"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/main/index.html">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li>
+                <a href="/main/notice/notice.html">알림마당</a>
+              </li>
+              <li>
+                <a href="/main/notice/recruit.html">채용공고</a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>입사지원</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 알림마당 LNB 인클루드 영역: common/include/main/lnb-notice.html 파일을 불러옵니다. -->
+          <div data-include="lnb-notice" data-page="recruit"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">채용공고</h1>
+              <div class="sub-intro">
+                <strong>행복과 희망을 위해 노력하는 복지재단이 <em>함께 일할 직원</em>을 모집합니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <form
+                class="board-write-form"
+                action="/main/notice/recruit.html"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <p class="board-write-note">
+                  <span class="required-mark" aria-hidden="true">*</span> 표시는 필수 입력항목입니다.
+                </p>
+
+                <div class="table-wrap">
+                  <table class="board-form-table">
+                    <caption>
+                      입사지원자 정보 입력
+                    </caption>
+                    <colgroup>
+                      <col width="24%" />
+                      <col width="76%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <label for="recruit-name">성명 <span class="required-mark" aria-hidden="true">*</span></label>
+                        </th>
+                        <td>
+                          <input
+                            id="recruit-name"
+                            class="form-control"
+                            type="text"
+                            name="name"
+                            autocomplete="name"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="recruit-birth">
+                            생년월일 <span class="required-mark" aria-hidden="true">*</span>
+                          </label>
+                        </th>
+                        <td>
+                          <input
+                            id="recruit-birth"
+                            class="form-control"
+                            type="text"
+                            name="birthDate"
+                            inputmode="numeric"
+                            placeholder="2002.01.12"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="recruit-phone">
+                            휴대폰번호 <span class="required-mark" aria-hidden="true">*</span>
+                          </label>
+                        </th>
+                        <td>
+                          <input
+                            id="recruit-phone"
+                            class="form-control"
+                            type="tel"
+                            name="phone"
+                            autocomplete="tel"
+                            placeholder="010-0000-0000"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="recruit-email">
+                            이메일 <span class="required-mark" aria-hidden="true">*</span>
+                          </label>
+                        </th>
+                        <td>
+                          <input
+                            id="recruit-email"
+                            class="form-control"
+                            type="email"
+                            name="email"
+                            autocomplete="email"
+                            required
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">지원 양식</th>
+                        <td>
+                          <div class="board-write-file">
+                            <strong>입사지원서 및 자기소개서 양식.hwp (52.5 KB)</strong>
+                            <a href="#" class="btn variant-outline color-navy size-md">
+                              <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                              다운로드
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <section class="board-write-section" aria-labelledby="privacy-title">
+                  <h2 id="privacy-title" class="sub-section-title">개인정보의 수집·이용 동의</h2>
+                  <div class="table-wrap">
+                    <table class="board-form-table">
+                      <caption>
+                        입사지원 개인정보 수집 및 이용 안내
+                      </caption>
+                      <colgroup>
+                        <col width="24%" />
+                        <col width="76%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row">수집·이용 목적</th>
+                          <td>입사지원 및 채용 절차 진행</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">수집·이용할 항목 (필수)</th>
+                          <td>성명, 전화번호, 이메일, 입사지원서 및 자기소개서 파일</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">보유·이용 기간</th>
+                          <td>수집·이용에 관한 동의일로부터 채용 절차 종료 시까지</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p>위와 같이 개인정보를 수집·이용하는 것에 동의합니다.</p>
+                  <label class="check-label">
+                    <input type="checkbox" name="privacyAgree" required />
+                    <span class="check-label-text">개인정보를 수집·이용하는 것에 동의합니다.</span>
+                  </label>
+                  <p class="note-line text-warning">
+                    상기 사항에 대해 동의를 거부할 수 있습니다. 다만 동의가 없을 경우 입사지원이 불가능함을
+                    알려드립니다.
+                  </p>
+                </section>
+
+                <div class="table-wrap">
+                  <table class="board-form-table">
+                    <caption>
+                      입사지원 파일 첨부
+                    </caption>
+                    <colgroup>
+                      <col width="24%" />
+                      <col width="76%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <label for="recruit-file">
+                            재단양식 파일 <span class="required-mark" aria-hidden="true">*</span>
+                          </label>
+                        </th>
+                        <td>
+                          <input id="recruit-file" class="form-control" type="file" name="resumeFile" required />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="board-footer-actions type-grid">
+                  <button type="submit" class="btn variant-solid color-blue size-lg">입사지원하기</button>
+                  <a href="/main/notice/recruit.html" class="btn variant-solid color-navy size-lg">목록보기</a>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/main/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-main"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/main.js"></script>
+  </body>
+</html>

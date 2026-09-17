@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>서약서 | 사업신청 | 화물복지재단 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="business" data-page="notice">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li><a href="/apply/business/notice.html">지원사업정보</a></li>
+              <li><a href="/apply/business/notice.html">사업전체공고</a></li>
+              <li><a href="/apply/business/notice-view.html">공고상세</a></li>
+              <li aria-current="page" data-breadcrumb-current>사업신청</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 지원사업정보 LNB 인클루드 영역: common/include/apply/lnb-business.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-business" data-page="notice"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">사업신청</h1>
+              <div class="sub-intro">
+                <strong>화물복지재단에서 진행하는 <em>복지사업</em>입니다.</strong>
+              </div>
+            </div>
+
+            <div class="sub-content">
+              <div class="table-wrap">
+                <table class="board-form-table">
+                  <caption>
+                    신청 사업 정보
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="36%" />
+                    <col width="14%" />
+                    <col width="36%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">사업명</th>
+                      <td>2026년 일반장학사업</td>
+                      <th scope="row">신청기간</th>
+                      <td>2026-05-18 ~ 2026-06-30</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <ol class="board-step-list" aria-label="사업신청 진행 단계">
+                <li class="board-step-item">개인정보 동의</li>
+                <li class="board-step-item">검증조회</li>
+                <li class="board-step-item">운전자정보</li>
+                <li class="board-step-item">지원자정보</li>
+                <li class="board-step-item">제출서류등록</li>
+                <li class="board-step-item">접수확인</li>
+                <li class="board-step-item active" aria-current="step">서약서</li>
+              </ol>
+
+              <form class="board-write-form" action="#" method="post">
+                <h2 class="sub-section-title-style02">서약서</h2>
+
+                <div class="board-guide-box bg-white mb-0">
+                  <ol>
+                    <li>
+                      공익법인 화물복지재단에서 실시하는 장학사업(기타 복지사업 포함)과 관련하여 선발에 필요한 신청자의
+                      평가사항(화물운송종사자격사항, 자녀수, 가계 경제상황 등)과 관련한 개인정보를 이용/활용하는 것에
+                      동의하며, 제출된 서류가 상이하거나 허위로 기재한 사실이 판명되어 재단으로부터 장학금 등 반납을
+                      통보 받은 때에는 지체없이 반납할 것을 서약합니다.
+                    </li>
+                    <li class="text-blue">
+                      <span class="font-bold">“접수완료”</span>는 신청과정의 진행을 완료했다는 것일 뿐 신청 내용 및
+                      제출서류에 이상이 없다는 의미는 아닙니다.
+                      <span>
+                        신청인은 접수 완료 후 신청내용 및 제출서류에 이상이 없는지 재확인 해야 하며, 미확인에 따른
+                        책임은 신청인 본인에게 있음을 서약합니다.
+                      </span>
+                    </li>
+                  </ol>
+                </div>
+
+                <div class="board-guide-box mb-0">
+                  <div class="flex items-start justify-between gap-4 flex-wrap">
+                    <!-- 미체크시 서약 미동의 접수안내 팝업창 열림 -->
+                    <label class="check-label" for="pledge-agree">
+                      <input id="pledge-agree" type="checkbox" name="pledgeAgree" />
+                      <span class="check-label-text"> 서약서 내용을 숙지하였으며 이에 동의함을 서약합니다. </span>
+                    </label>
+                    <div class="board-write-sign">
+                      <p><time datetime="2026-06-23">2026년 06월 23일</time></p>
+                      <p>서약자: 김회원</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="board-footer-actions type-grid">
+                  <div class="flex justify-center gap-2">
+                    <a href="/apply/business/notice-write-step6.html" class="btn variant-solid color-navy size-lg">
+                      이전단계
+                    </a>
+                    <!-- '서약 완료 후' 클릭 시 신청완료 팝업창 열림 -->
+                    <button type="button" class="btn variant-solid color-blue size-lg">서약 후 접수완료</button>
+                  </div>
+                  <!-- 클릭 시 신청취소 팝업창 열림 -->
+                  <button
+                    type="button"
+                    class="btn variant-solid color-red size-lg mobile-w-full"
+                    data-popup-open="application-cancel-popup"
+                  >
+                    신청취소
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 서약 미동의 접수안내 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="pledge-guide-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="pledge-guide-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-sm" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="pledge-guide-popup-title">접수안내</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <p class="text-center">서약내용 확인 후 접수완료 해주시기 바랍니다.</p>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 접수완료 확인 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="application-complete-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="application-complete-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-sm" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="application-complete-popup-title">접수완료</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <p class="text-center">확인 버튼 클릭 시 접수가 완료됩니다.</p>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-blue size-sm" data-popup-close>확인</button>
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 신청취소 확인 팝업창 -->
+    <div
+      class="common-popup"
+      data-common-popup
+      id="application-cancel-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="application-cancel-popup-title"
+      aria-hidden="true"
+    >
+      <div class="common-popup-backdrop" data-popup-close></div>
+      <section class="common-popup-panel size-sm" role="document">
+        <div class="common-popup-header">
+          <h2 class="common-popup-title" id="application-cancel-popup-title">접수취소</h2>
+          <button type="button" class="common-popup-close" data-popup-close aria-label="팝업 닫기">
+            <span class="material-symbols-rounded" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <div class="common-popup-body">
+          <p class="text-center">
+            접수 취소하시면 지금까지<br />
+            작성한 내용이 <span class="font-bold text-red">삭제</span>됩니다.<br />
+            <span class="font-bold text-red">정말 취소 하시겠습니까?</span>
+          </p>
+        </div>
+        <div class="common-popup-actions">
+          <button type="button" class="btn variant-solid color-red size-sm" data-popup-close>확인</button>
+          <button type="button" class="btn variant-solid color-navy size-sm" data-popup-close>닫기</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

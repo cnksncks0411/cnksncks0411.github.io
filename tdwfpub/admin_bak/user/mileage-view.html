@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>마일리지 이력 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="user" data-page="mileage">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사용자 관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-user.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-user" data-page="mileage"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>마일리지관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/user/user-list.html">사용자 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/user/mileage-list.html">마일리지관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">마일리지 이력</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="mileage-member-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="mileage-member-title">회원정보</h2>
+                <div class="board-info-actions">
+                  <!-- 마일리지 적립/차감 버튼 클릭 시 입력 팝업 노출 -->
+                  <button
+                    type="button"
+                    class="btn variant-solid color-navy rounded-md size-board-auto"
+                    data-popup-open="mileage-write-popup"
+                    aria-haspopup="dialog"
+                  >
+                    마일리지 적립/차감
+                  </button>
+                </div>
+              </div>
+              <table class="board-form-table">
+                <caption>
+                  마일리지 회원정보
+                </caption>
+                <colgroup>
+                  <col width="13%" />
+                  <col width="20%" />
+                  <col width="13%" />
+                  <col width="20%" />
+                  <col width="13%" />
+                  <col width="21%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">사용자ID</th>
+                    <td>asdf1234</td>
+                    <th scope="row">성명</th>
+                    <td>홍길동</td>
+                    <th scope="row">마일리지 합계</th>
+                    <td>10,000 마일리지</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <section class="panel" aria-labelledby="mileage-history-search-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="mileage-history-search-title">마일리지 이력조회</h2>
+              </div>
+              <form action="/admin_bak/user/mileage-view.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      마일리지 이력 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="8%" />
+                      <col width="18%" />
+                      <col width="8%" />
+                      <col width="*" />
+                      <col width="8%" />
+                      <col width="32%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">구분</th>
+                        <td>
+                          <div class="board-form-options">
+                            <label class="radio-label">
+                              <input type="radio" name="mileageHistoryType" value="" checked />
+                              <span class="radio-label-text">전체</span>
+                            </label>
+                            <label class="radio-label">
+                              <input type="radio" name="mileageHistoryType" value="" />
+                              <span class="radio-label-text">적립</span>
+                            </label>
+                            <label class="radio-label">
+                              <input type="radio" name="mileageHistoryType" value="" />
+                              <span class="radio-label-text">차감</span>
+                            </label>
+                          </div>
+                        </td>
+                        <th scope="row"><label for="mileageHistoryReason">사유</label></th>
+                        <td>
+                          <input
+                            id="mileageHistoryReason"
+                            name="mileageHistoryReason"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row">기간</th>
+                        <td>
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field" data-datepicker-wrap>
+                              <input
+                                id="mileageHistoryStartDate"
+                                name="mileageHistoryStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="마일리지 이력 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="마일리지 이력 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field" data-datepicker-wrap>
+                              <input
+                                id="mileageHistoryEndDate"
+                                name="mileageHistoryEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="마일리지 이력 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="마일리지 이력 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="board-search-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      조회
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="board-info-row mt-2">
+                <p class="board-total">총 <span class="text-blue font-bold">12</span>건</p>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    마일리지 이력 목록
+                  </caption>
+                  <colgroup>
+                    <col width="10%" />
+                    <col width="40%" />
+                    <col width="15%" />
+                    <col width="15%" />
+                    <col width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">번호</th>
+                      <th scope="col">사유</th>
+                      <th scope="col">적립/차감</th>
+                      <th scope="col">마일리지</th>
+                      <th scope="col">등록일</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="5" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 마일리지 이력 목록 행 -->
+                    <tr>
+                      <td>12</td>
+                      <td>2026년 착한 기사 이벤트 당첨</td>
+                      <td>적립</td>
+                      <td>1,000</td>
+                      <td>2026-01-23</td>
+                    </tr>
+                    <tr>
+                      <td>11</td>
+                      <td>복지사업 신청 사용</td>
+                      <td>차감</td>
+                      <!-- 차감 금액은 text-red 클래스 사용 -->
+                      <td><span class="text-red">-500</span></td>
+                      <td>2026-01-20</td>
+                    </tr>
+                    <tr>
+                      <td>10</td>
+                      <td>홈페이지 출석 이벤트</td>
+                      <td>적립</td>
+                      <td>300</td>
+                      <td>2026-01-18</td>
+                    </tr>
+                    <tr>
+                      <td>9</td>
+                      <td>건강검진사업 신청 사용</td>
+                      <td>차감</td>
+                      <td><span class="text-red">-1,200</span></td>
+                      <td>2026-01-15</td>
+                    </tr>
+                    <tr>
+                      <td>8</td>
+                      <td>회원정보 수정 이벤트</td>
+                      <td>적립</td>
+                      <td>500</td>
+                      <td>2026-01-12</td>
+                    </tr>
+                    <tr>
+                      <td>7</td>
+                      <td>문화누리사업 신청 사용</td>
+                      <td>차감</td>
+                      <td><span class="text-red">-800</span></td>
+                      <td>2026-01-10</td>
+                    </tr>
+                    <tr>
+                      <td>6</td>
+                      <td>신규회원 가입 적립</td>
+                      <td>적립</td>
+                      <td>2,000</td>
+                      <td>2026-01-08</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>서류 발급 신청 사용</td>
+                      <td>차감</td>
+                      <td><span class="text-red">-300</span></td>
+                      <td>2026-01-06</td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>설문조사 참여 적립</td>
+                      <td>적립</td>
+                      <td>700</td>
+                      <td>2026-01-04</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>포인트 유효기간 만료</td>
+                      <td>차감</td>
+                      <td><span class="text-red">-1,000</span></td>
+                      <td>2026-01-02</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="마일리지 이력 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true"
+                    >keyboard_double_arrow_left</span
+                  >
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true"
+                    >keyboard_double_arrow_right</span
+                  >
+                </a>
+              </nav>
+            </section>
+
+            <!-- 마일리지 적립/차감 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="mileage-write-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="mileage-write-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="mileage-write-popup-title">마일리지 적립/차감</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="" method="post">
+                  <div class="popup-body">
+                    <table class="board-form-table">
+                      <caption>
+                        마일리지 적립 또는 차감 입력
+                      </caption>
+                      <colgroup>
+                        <col width="22%" />
+                        <col width="78%" />
+                      </colgroup>
+                      <tbody>
+                        <tr>
+                          <th scope="row"><label for="viewMileageReason">사유</label></th>
+                          <td>
+                            <input
+                              id="viewMileageReason"
+                              name="viewMileageReason"
+                              type="text"
+                              class="form-control w-full"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">적립/차감</th>
+                          <td>
+                            <div class="board-form-options">
+                              <label class="radio-label">
+                                <input type="radio" name="viewMileageType" value="" />
+                                <span class="radio-label-text">적립</span>
+                              </label>
+                              <label class="radio-label">
+                                <input type="radio" name="viewMileageType" value="" />
+                                <span class="radio-label-text">차감</span>
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row"><label for="viewMileageAmount">마일리지</label></th>
+                          <td>
+                            <div class="flex items-center gap-2 row-type-unit">
+                              <input id="viewMileageAmount" name="viewMileageAmount" type="text" class="form-control" />
+                              <span class="board-unit-text">마일리지</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">저장</button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>팝업창 등록 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="site" data-page="popup">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사이트 관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-site.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-site" data-page="popup"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>팝업창 등록</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/popup-list.html">사이트 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/site/popup-list.html">팝업창관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">팝업창 등록</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="popup-form-title">
+              <h2 id="popup-form-title" hidden>팝업창 등록 입력폼</h2>
+              <form action="/admin_bak/site/popup-list.html" method="post" enctype="multipart/form-data">
+                <table class="board-form-table">
+                  <caption>
+                    팝업창 등록 정보
+                  </caption>
+                  <colgroup>
+                    <col width="17%" />
+                    <col width="33%" />
+                    <col width="17%" />
+                    <col width="33%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="popupName">팝업창명<span class="required-mark">*</span></label>
+                      </th>
+                      <td colspan="3">
+                        <input id="popupName" name="popupName" type="text" class="form-control w-full" required />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">게시위치<span class="required-mark">*</span></th>
+                      <td colspan="3">
+                        <div class="flex flex-wrap gap-3">
+                          <label class="check-label">
+                            <input type="checkbox" name="publishLocation" value="" />
+                            <span class="check-label-text">재단홈페이지</span>
+                          </label>
+                          <label class="check-label">
+                            <input type="checkbox" name="publishLocation" value="" />
+                            <span class="check-label-text">복지사업신청</span>
+                          </label>
+                          <label class="check-label">
+                            <input type="checkbox" name="publishLocation" value="" />
+                            <span class="check-label-text">대문</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">팝업 설정 여부<span class="required-mark">*</span></th>
+                      <td colspan="3">
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="popupType" value="" checked required />
+                            <span class="radio-label-text">팝업</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="popupType" value="" />
+                            <span class="radio-label-text">레이어팝업</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="popupType" value="" />
+                            <span class="radio-label-text">슬라이드</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">게시기간<span class="required-mark">*</span></th>
+                      <td colspan="3">
+                        <div class="flex items-center gap-3">
+                          <div class="flex items-center gap-2">
+                            <div class="board-search-date-field" data-datepicker-wrap>
+                              <input
+                                id="popupStartDate"
+                                name="popupStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="게시 시작 날짜"
+                                data-datepicker-input
+                                data-input
+                                required
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="게시 시작 날짜 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <select class="form-control" name="popupStartHour" aria-label="게시 시작 시" required>
+                              <option value="">00</option>
+                              <option value="">01</option>
+                              <option value="">02</option>
+                              <option value="">03</option>
+                              <option value="">04</option>
+                              <option value="">05</option>
+                              <option value="">06</option>
+                              <option value="">07</option>
+                              <option value="">08</option>
+                              <option value="">09</option>
+                              <option value="">10</option>
+                              <option value="">11</option>
+                              <option value="">12</option>
+                              <option value="">13</option>
+                              <option value="">14</option>
+                              <option value="">15</option>
+                              <option value="">16</option>
+                              <option value="">17</option>
+                              <option value="">18</option>
+                              <option value="">19</option>
+                              <option value="">20</option>
+                              <option value="">21</option>
+                              <option value="">22</option>
+                              <option value="">23</option>
+                            </select>
+                            <span class="font-bold">H</span>
+                            <select class="form-control" name="popupStartMinute" aria-label="게시 시작 분" required>
+                              <option value="">00</option>
+                              <option value="">01</option>
+                              <option value="">02</option>
+                              <option value="">03</option>
+                              <option value="">04</option>
+                              <option value="">05</option>
+                              <option value="">06</option>
+                              <option value="">07</option>
+                              <option value="">08</option>
+                              <option value="">09</option>
+                              <option value="">10</option>
+                              <option value="">11</option>
+                              <option value="">12</option>
+                              <option value="">13</option>
+                              <option value="">14</option>
+                              <option value="">15</option>
+                              <option value="">16</option>
+                              <option value="">17</option>
+                              <option value="">18</option>
+                              <option value="">19</option>
+                              <option value="">20</option>
+                              <option value="">21</option>
+                              <option value="">22</option>
+                              <option value="">23</option>
+                              <option value="">24</option>
+                              <option value="">25</option>
+                              <option value="">26</option>
+                              <option value="">27</option>
+                              <option value="">28</option>
+                              <option value="">29</option>
+                              <option value="">30</option>
+                              <option value="">31</option>
+                              <option value="">32</option>
+                              <option value="">33</option>
+                              <option value="">34</option>
+                              <option value="">35</option>
+                              <option value="">36</option>
+                              <option value="">37</option>
+                              <option value="">38</option>
+                              <option value="">39</option>
+                              <option value="">40</option>
+                              <option value="">41</option>
+                              <option value="">42</option>
+                              <option value="">43</option>
+                              <option value="">44</option>
+                              <option value="">45</option>
+                              <option value="">46</option>
+                              <option value="">47</option>
+                              <option value="">48</option>
+                              <option value="">49</option>
+                              <option value="">50</option>
+                              <option value="">51</option>
+                              <option value="">52</option>
+                              <option value="">53</option>
+                              <option value="">54</option>
+                              <option value="">55</option>
+                              <option value="">56</option>
+                              <option value="">57</option>
+                              <option value="">58</option>
+                              <option value="">59</option>
+                            </select>
+                            <span class="font-bold">M</span>
+                          </div>
+                          <span class="board-search-date-separator">~</span>
+                          <div class="flex items-center gap-2">
+                            <div class="board-search-date-field" data-datepicker-wrap>
+                              <input
+                                id="popupEndDate"
+                                name="popupEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="게시 종료 날짜"
+                                data-datepicker-input
+                                data-input
+                                required
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="게시 종료 날짜 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <select class="form-control" name="popupEndHour" aria-label="게시 종료 시" required>
+                              <option value="">00</option>
+                              <option value="">01</option>
+                              <option value="">02</option>
+                              <option value="">03</option>
+                              <option value="">04</option>
+                              <option value="">05</option>
+                              <option value="">06</option>
+                              <option value="">07</option>
+                              <option value="">08</option>
+                              <option value="">09</option>
+                              <option value="">10</option>
+                              <option value="">11</option>
+                              <option value="">12</option>
+                              <option value="">13</option>
+                              <option value="">14</option>
+                              <option value="">15</option>
+                              <option value="">16</option>
+                              <option value="">17</option>
+                              <option value="">18</option>
+                              <option value="">19</option>
+                              <option value="">20</option>
+                              <option value="">21</option>
+                              <option value="">22</option>
+                              <option value="">23</option>
+                            </select>
+                            <span class="font-bold">H</span>
+                            <select class="form-control" name="popupEndMinute" aria-label="게시 종료 분" required>
+                              <option value="">00</option>
+                              <option value="">01</option>
+                              <option value="">02</option>
+                              <option value="">03</option>
+                              <option value="">04</option>
+                              <option value="">05</option>
+                              <option value="">06</option>
+                              <option value="">07</option>
+                              <option value="">08</option>
+                              <option value="">09</option>
+                              <option value="">10</option>
+                              <option value="">11</option>
+                              <option value="">12</option>
+                              <option value="">13</option>
+                              <option value="">14</option>
+                              <option value="">15</option>
+                              <option value="">16</option>
+                              <option value="">17</option>
+                              <option value="">18</option>
+                              <option value="">19</option>
+                              <option value="">20</option>
+                              <option value="">21</option>
+                              <option value="">22</option>
+                              <option value="">23</option>
+                              <option value="">24</option>
+                              <option value="">25</option>
+                              <option value="">26</option>
+                              <option value="">27</option>
+                              <option value="">28</option>
+                              <option value="">29</option>
+                              <option value="">30</option>
+                              <option value="">31</option>
+                              <option value="">32</option>
+                              <option value="">33</option>
+                              <option value="">34</option>
+                              <option value="">35</option>
+                              <option value="">36</option>
+                              <option value="">37</option>
+                              <option value="">38</option>
+                              <option value="">39</option>
+                              <option value="">40</option>
+                              <option value="">41</option>
+                              <option value="">42</option>
+                              <option value="">43</option>
+                              <option value="">44</option>
+                              <option value="">45</option>
+                              <option value="">46</option>
+                              <option value="">47</option>
+                              <option value="">48</option>
+                              <option value="">49</option>
+                              <option value="">50</option>
+                              <option value="">51</option>
+                              <option value="">52</option>
+                              <option value="">53</option>
+                              <option value="">54</option>
+                              <option value="">55</option>
+                              <option value="">56</option>
+                              <option value="">57</option>
+                              <option value="">58</option>
+                              <option value="">59</option>
+                            </select>
+                            <span class="font-bold">M</span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">게시상태<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="publishStatus" value="true" checked required />
+                            <span class="radio-label-text">공개</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="publishStatus" value="false" />
+                            <span class="radio-label-text">비공개</span>
+                          </label>
+                        </div>
+                      </td>
+                      <th scope="row">
+                        <label for="publishOrder">게시순서<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <input
+                          id="publishOrder"
+                          name="publishOrder"
+                          type="text"
+                          class="form-control w-auto"
+                          size="2"
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">팝업창위치<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <div class="flex items-center gap-2">
+                            <label for="popupHorizontal">가로</label>
+                            <input
+                              id="popupHorizontal"
+                              name="popupHorizontal"
+                              type="text"
+                              class="form-control w-auto"
+                              size="4"
+                              required
+                            />
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <label for="popupVertical">세로</label>
+                            <input
+                              id="popupVertical"
+                              name="popupVertical"
+                              type="text"
+                              class="form-control w-auto"
+                              size="4"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </td>
+                      <th scope="row">팝업창사이즈<span class="required-mark">*</span></th>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <div class="flex items-center gap-2">
+                            <label for="popupWidth">가로</label>
+                            <input
+                              id="popupWidth"
+                              name="popupWidth"
+                              type="text"
+                              class="form-control w-auto"
+                              size="4"
+                              required
+                            />
+                          </div>
+                          <div class="flex items-center gap-2">
+                            <label for="popupHeight">세로</label>
+                            <input
+                              id="popupHeight"
+                              name="popupHeight"
+                              type="text"
+                              class="form-control w-auto"
+                              size="4"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">콘텐츠 구분<span class="required-mark">*</span></th>
+                      <td colspan="3">
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="contentType" value="" checked required />
+                            <span class="radio-label-text">이미지</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="contentType" value="" />
+                            <span class="radio-label-text">HTML</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="popupImage">이미지</label></th>
+                      <td>
+                        <div class="board-file-field">
+                          <input id="popupImage" name="popupImage" type="file" class="form-control" accept="image/*" />
+                        </div>
+                      </td>
+                      <th scope="row"><label for="imageName">이미지명</label></th>
+                      <td>
+                        <input id="imageName" name="imageName" type="text" class="form-control w-full" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="popupHtml">링크 URL</label></th>
+                      <td colspan="3">
+                        <input id="linkURL" name="linkURL" type="text" class="form-control w-full" />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="popupHtml">HTML</label></th>
+                      <td colspan="3">
+                        <!-- 에디터 추가 위치 -->
+                        <textarea id="popupHtml" name="popupHtml" class="textarea" rows="12"></textarea>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                    등록하기
+                  </button>
+                  <a
+                    href="/admin_bak/site/popup-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    취소하기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>우편번호 찾기 | 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body class="address-search">
+    <main class="address-wrap">
+      <h1 class="popup-title">우편번호 찾기</h1>
+
+      <form class="address-form" action="#" method="get">
+        <label for="address-keyword" class="sr-only">주소 검색어</label>
+        <div class="address-field">
+          <input
+            id="address-keyword"
+            class="form-control size-md"
+            type="search"
+            name="keyword"
+            placeholder="도로명 주소, 건물명 또는 지번 입력"
+            required
+          />
+          <button type="submit" class="address-button">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <path d="m16 16 4 4"></path>
+            </svg>
+            <span class="sr-only">검색</span>
+          </button>
+        </div>
+      </form>
+
+      <p class="address-example">검색어 예: 도로명(신반포로11길), 건물명(독립기념관), 지번(삼성동 25)</p>
+
+      <!-- 검색 후 -->
+      <section class="address-result" aria-labelledby="result-title">
+        <h2 id="result-title" class="sr-only">주소 검색결과</h2>
+        <table class="result-table">
+          <caption class="sr-only">
+            도로명주소, 지번주소 및 우편번호 검색결과
+          </caption>
+          <colgroup>
+            <col />
+            <col width="88" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">주소</th>
+              <th scope="col">우편번호</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 검색 결과 행 반복 -->
+            <tr>
+              <td>
+                <button type="button" class="result-address">
+                  <span><b>도로명</b> 서울특별시 서초구 신반포로11길 40 (반포동, 한강공원 반포안내센터)</span>
+                  <span><b>지번</b> 반포동 115-5</span>
+                </button>
+              </td>
+              <td class="result-code">06500</td>
+            </tr>
+
+            <!-- 검색 결과가 없을 때 노출 -->
+            <tr class="result-empty">
+              <td colspan="2">검색 결과가 없습니다.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="brand-logo address-logo" aria-label="화물복지재단">
+        <img src="/common/images/logo.png" alt="" class="brand-logo-mark" />
+        <strong class="brand-logo-text">화물복지재단</strong>
+      </div>
+    </main>
+  </body>
+</html>

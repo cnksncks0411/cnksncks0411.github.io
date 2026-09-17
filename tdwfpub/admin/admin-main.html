@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="home" data-page="home">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap home" data-layout-body>
+        <main id="admin-content" data-content>
+          <div class="content-wrap gap-2">
+            <section class="panel" aria-labelledby="member-stats-title">
+              <div class="panel-head">
+                <h2 id="member-stats-title">회원현황</h2>
+                <span class="panel-date">(기준일: 2026-06-18)</span>
+              </div>
+              <div class="stats-grid">
+                <!-- 반복: 통계 항목 -->
+                <div class="stat">
+                  <span>전체 회원</span>
+                  <strong>50,000</strong>
+                </div>
+                <div class="stat">
+                  <span>올해 신규 회원</span>
+                  <strong>2,000</strong>
+                </div>
+                <div class="stat">
+                  <span>이번 달 신규 회원</span>
+                  <strong>100</strong>
+                </div>
+                <div class="stat">
+                  <span>탈퇴 회원</span>
+                  <strong>10</strong>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="urgent-work-title">
+              <div class="panel-head">
+                <h2 id="urgent-work-title">긴급 업무</h2>
+              </div>
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    긴급 업무별 처리 대기 건수
+                  </caption>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">예방접종</th>
+                      <th scope="col">질문과답변</th>
+                      <th scope="col">개명이력</th>
+                      <th scope="col">DTG</th>
+                      <th scope="col">BSD</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><a href="#" class="board-link-text w-full flex justify-center">5</a></td>
+                      <td><a href="#" class="board-link-text w-full flex justify-center">3</a></td>
+                      <td><a href="#" class="board-link-text w-full flex justify-center">0</a></td>
+                      <td><a href="#" class="board-link-text w-full flex justify-center">10</a></td>
+                      <td><a href="#" class="board-link-text w-full flex justify-center">10</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="open-program-title">
+              <div class="panel-head">
+                <h2 id="open-program-title">접수 중 사업현황(사업 마감 전)</h2>
+                <a href="#" class="panel-more">
+                  더보기
+                  <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
+                </a>
+              </div>
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    접수 중 사업현황 목록
+                  </caption>
+                  <colgroup>
+                    <col width="8%" />
+                    <col width="40%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col" class="board-head-num">번호</th>
+                      <th scope="col" class="board-head-title">공고</th>
+                      <th scope="col" class="board-head-date">시작일</th>
+                      <th scope="col" class="board-head-date">종료일</th>
+                      <th scope="col">회원 접수 완료</th>
+                      <th scope="col">진행상태</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="6" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 접수 중 사업 행 -->
+                    <tr>
+                      <td class="board-cell-num">50</td>
+                      <td class="board-cell-title"><a href="#">2026년 출생축하지원사업</a></td>
+                      <td class="board-cell-date"><time datetime="2026-06-22">2026-06-22</time></td>
+                      <td class="board-cell-date"><time datetime="2026-12-31">2026-12-31</time></td>
+                      <td>1,284</td>
+                      <td><span class="font-bold">접수중</span></td>
+                    </tr>
+                    <tr>
+                      <td class="board-cell-num">49</td>
+                      <td class="board-cell-title"><a href="#">2026년 친환경물류지원사업</a></td>
+                      <td class="board-cell-date"><time datetime="2026-05-21">2026-05-21</time></td>
+                      <td class="board-cell-date"><time datetime="2026-12-31">2026-12-31</time></td>
+                      <td>892</td>
+                      <td><span class="font-bold">접수중</span></td>
+                    </tr>
+                    <tr>
+                      <td class="board-cell-num">48</td>
+                      <td class="board-cell-title"><a href="#">2026년 일반장학사업</a></td>
+                      <td class="board-cell-date"><time datetime="2026-05-18">2026-05-18</time></td>
+                      <td class="board-cell-date"><time datetime="2026-06-30">2026-06-30</time></td>
+                      <td>476</td>
+                      <td><span class="font-bold">접수중</span></td>
+                    </tr>
+                    <tr>
+                      <td class="board-cell-num">47</td>
+                      <td class="board-cell-title"><a href="#">2026년 화물운전자 졸음운전 예방장치 설치지원사업</a></td>
+                      <td class="board-cell-date"><time datetime="2026-05-18">2026-05-18</time></td>
+                      <td class="board-cell-date"><time datetime="2026-06-07">2026-06-07</time></td>
+                      <td>128</td>
+                      <td><span class="font-bold">최종선발자발표</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <div class="home-grid">
+              <section class="panel" aria-labelledby="notice-panel-title">
+                <div class="panel-head">
+                  <h2 id="notice-panel-title">공지사항</h2>
+                  <a href="/admin/community/notice-list.html" class="panel-more">
+                    더보기
+                    <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
+                  </a>
+                </div>
+                <div class="board-table-wrap">
+                  <table class="board-table">
+                    <caption>
+                      공지사항 요약 목록
+                    </caption>
+                    <colgroup>
+                      <col width="12%" />
+                      <col width="64%" />
+                      <col width="24%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col" class="board-head-num">번호</th>
+                        <th scope="col" class="board-head-title">제목</th>
+                        <th scope="col" class="board-head-date">등록일</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="3" class="board-content-empty">등록된 내용이 없습니다.</td>
+                      </tr>
+                      <!-- 5개 고정 -->
+                      <tr>
+                        <td class="board-cell-num">50</td>
+                        <td class="board-cell-title"><a href="#">공지사항입니다.</a></td>
+                        <td class="board-cell-date"><time datetime="2026-06-01">2026-06-01</time></td>
+                      </tr>
+                      <tr>
+                        <td class="board-cell-num">49</td>
+                        <td class="board-cell-title"><a href="#">2026년 장학생 모집 안내</a></td>
+                        <td class="board-cell-date"><time datetime="2026-06-01">2026-06-01</time></td>
+                      </tr>
+                      <tr>
+                        <td class="board-cell-num">48</td>
+                        <td class="board-cell-title"><a href="#">화물복지재단 홈페이지 이용 안내</a></td>
+                        <td class="board-cell-date"><time datetime="2026-05-28">2026-05-28</time></td>
+                      </tr>
+                      <tr>
+                        <td class="board-cell-num">47</td>
+                        <td class="board-cell-title"><a href="#">개인정보처리방침 개정 사전 안내</a></td>
+                        <td class="board-cell-date"><time datetime="2026-05-24">2026-05-24</time></td>
+                      </tr>
+                      <tr>
+                        <td class="board-cell-num">46</td>
+                        <td class="board-cell-title"><a href="#">화물나누리 서비스 점검 일정 안내</a></td>
+                        <td class="board-cell-date"><time datetime="2026-05-20">2026-05-20</time></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="panel" aria-labelledby="qna-panel-title">
+                <div class="panel-head">
+                  <h2 id="qna-panel-title">질문과 답변</h2>
+                  <a href="#" class="panel-more">
+                    더보기
+                    <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
+                  </a>
+                </div>
+                <div class="board-table-wrap">
+                  <table class="board-table">
+                    <caption>
+                      질문과 답변 요약 목록
+                    </caption>
+                    <colgroup>
+                      <col width="12%" />
+                      <col width="64%" />
+                      <col width="24%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col" class="board-head-num">번호</th>
+                        <th scope="col" class="board-head-title">제목</th>
+                        <th scope="col" class="board-head-date">등록일</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="3" class="board-content-empty">등록된 내용이 없습니다.</td>
+                      </tr>
+                      <!-- 5개 고정 -->
+                      <tr>
+                        <td class="board-cell-num">50</td>
+                        <td class="board-cell-title"><a href="#">문의드립니다.</a></td>
+                        <td class="board-cell-date"><time datetime="2026-06-01">2026-06-01</time></td>
+                      </tr>
+                      <tr>
+                        <td class="board-cell-num">49</td>
+                        <td class="board-cell-title"><a href="#">문의드립니다</a></td>
+                        <td class="board-cell-date"><time datetime="2026-06-01">2026-06-01</time></td>
+                      </tr>
+                      <tr>
+                        <td class="board-cell-num">48</td>
+                        <td class="board-cell-title"><a href="#">문의드립니다</a></td>
+                        <td class="board-cell-date"><time datetime="2026-05-30">2026-05-30</time></td>
+                      </tr>
+                      <tr>
+                        <td class="board-cell-num">47</td>
+                        <td class="board-cell-title"><a href="#">지원 신청 확인 부탁드립니다</a></td>
+                        <td class="board-cell-date"><time datetime="2026-05-28">2026-05-28</time></td>
+                      </tr>
+                      <tr>
+                        <td class="board-cell-num">46</td>
+                        <td class="board-cell-title"><a href="#">서류 제출 관련 문의입니다</a></td>
+                        <td class="board-cell-date"><time datetime="2026-05-26">2026-05-26</time></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup-ended" data-page="idle-heater">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 실적관리(종료사업) 좌측 메뉴 인클루드 영역: /admin/include/lnb-followup-ended.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup-ended" data-page="idle-heater"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>무시동대상자관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/followup-ended/idle-heater-list.html">실적관리(종료사업)</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">무시동대상자관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="무시동 지급내역">
+              <div class="flex justify-center gap-2">
+                <form class="flex gap-2" action="/admin/followup-ended/idle-heater-list.html" method="get">
+                  <table class="board-search-table">
+                    <caption>
+                      무시동 지급년도 반기 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="13%" />
+                      <col width="87%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="idleHeaterPaymentTerm">지급년도 반기</label></th>
+                        <td>
+                          <select id="idleHeaterPaymentTerm" name="idleHeaterPaymentTerm" class="form-control w-full">
+                            <option value="" selected>선택</option>
+                            <option value="">2017 상반기</option>
+                            <option value="">2016 상반기</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </form>
+              </div>
+
+              <p class="font-bold text-red mt-2">※ 일반/배려자전형만 표시되고 있으니 유의바랍니다.</p>
+
+              <div class="board-table-wrap mt-2">
+                <table class="board-table">
+                  <caption>
+                    무시동 지급내역
+                  </caption>
+                  <colgroup>
+                    <col width="16%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                    <col width="14%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">공고년도/회차</th>
+                      <th scope="col">지급자수</th>
+                      <th scope="col">미처리자수</th>
+                      <th scope="col">보류(휴학)자수</th>
+                      <th scope="col">지급정지자수</th>
+                      <th scope="col">대상자수</th>
+                      <th scope="col">총지급금액</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="7" class="board-content-empty">등록된 지급내역이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 무시동 지급내역 행 -->
+                    <!-- 지급내역 행 클릭 시 아래 지급대상자 목록 패널 노출 -->
+                    <tr
+                      class="board-row-selectable"
+                      role="button"
+                      tabindex="0"
+                      data-detail-open
+                      aria-controls="idle-heater-list-panel"
+                      aria-expanded="false"
+                    >
+                      <td>2017년 1회차</td>
+                      <td>758(0)</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>758</td>
+                      <td>227,400,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel" id="idle-heater-list-panel" aria-labelledby="idle-heater-list-title" hidden>
+              <form action="/admin/followup-ended/idle-heater-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      무시동 지급대상자 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="idleHeaterProcessingStatus">처리여부</label></th>
+                        <td>
+                          <select
+                            id="idleHeaterProcessingStatus"
+                            name="idleHeaterProcessingStatus"
+                            class="form-control w-full"
+                            autofocus
+                          >
+                            <option value="" selected>전체</option>
+                            <option value="">미처리</option>
+                            <option value="">지급완료</option>
+                            <option value="">지급보류(휴학등)</option>
+                            <option value="">지급정지</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="idleHeaterTargetName">대상자명</label></th>
+                        <td>
+                          <input
+                            id="idleHeaterTargetName"
+                            name="idleHeaterTargetName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="idleHeaterDriverBirthDate">운전자 생년월일</label></th>
+                        <td>
+                          <input
+                            id="idleHeaterDriverBirthDate"
+                            name="idleHeaterDriverBirthDate"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                        <th scope="row"><label for="idleHeaterDriverName">운전자명</label></th>
+                        <td>
+                          <input
+                            id="idleHeaterDriverName"
+                            name="idleHeaterDriverName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+
+              <div class="board-info-row mt-2">
+                <h2 class="board-list-title" id="idle-heater-list-title">지급대상자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option value="">10개 보기</option>
+                    <option value="">20개 보기</option>
+                    <option value="" selected>30개 보기</option>
+                    <option value="">50개 보기</option>
+                    <option value="">100개 보기</option>
+                    <option value="">300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table" aria-labelledby="idle-heater-list-title">
+                  <caption>
+                    무시동 지급대상자 목록
+                  </caption>
+                  <colgroup>
+                    <col width="10%" />
+                    <col width="8%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="8%" />
+                    <col width="9%" />
+                    <col width="11%" />
+                    <col width="9%" />
+                    <col width="9%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">운전자 생년월일</th>
+                      <th scope="col">운전자 성명</th>
+                      <th scope="col">차량번호</th>
+                      <th scope="col">대상자생년월일</th>
+                      <th scope="col">대상자명</th>
+                      <th scope="col">입금은행</th>
+                      <th scope="col">계좌번호</th>
+                      <th scope="col">접수내역</th>
+                      <th scope="col">지급상태</th>
+                      <th scope="col">지급액</th>
+                      <th scope="col">수정</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="11" class="board-content-empty">등록된 지급대상자가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 무시동 지급대상자 목록 행 -->
+                    <tr>
+                      <td>19721122</td>
+                      <td>홍*동</td>
+                      <td>경기94아4775</td>
+                      <td>19721122</td>
+                      <td>홍길동</td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <!-- 접수내역 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="idle-heater-detail-popup"
+                          aria-haspopup="dialog"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td><span class="font-bold">미처리</span></td>
+                      <td>300,000</td>
+                      <td>
+                        <!-- 수정 버튼: 지급대상자 지급결과 변경 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-soft color-blue rounded-md size-sm"
+                          data-popup-open="idle-heater-review-popup"
+                          aria-haspopup="dialog"
+                        >
+                          수정
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><span class="font-bold text-blue">지급완료</span></td>
+                      <td>300,000</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><span class="font-bold text-red">지급불가</span></td>
+                      <td>300,000</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="무시동 지급대상자 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true"
+                    >keyboard_double_arrow_left</span
+                  >
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true"
+                    >keyboard_double_arrow_right</span
+                  >
+                </a>
+              </nav>
+            </section>
+
+            <!-- 지급대상자 지급결과 변경 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="idle-heater-review-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="idle-heater-review-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="idle-heater-review-popup-title">지급대상자 지급결과 변경</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="/admin/followup-ended/idle-heater-list.html" method="post">
+                  <div class="popup-body">
+                    <section class="board-section" aria-label="무시동 지급대상자 지급결과 변경 정보">
+                      <table class="board-form-table">
+                        <caption>
+                          무시동 지급대상자 지급결과 변경 정보
+                        </caption>
+                        <colgroup>
+                          <col width="22%" />
+                          <col width="78%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">지급 상태</th>
+                            <td>지급완료</td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="idleHeaterReviewStatus">변경 상태</label></th>
+                            <td>
+                              <select
+                                id="idleHeaterReviewStatus"
+                                name="idleHeaterReviewStatus"
+                                class="form-control w-full"
+                              >
+                                <option value="" selected>미처리</option>
+                                <option value="">지급완료</option>
+                                <option value="">지급보류(휴학등)</option>
+                                <option value="">지급정지</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="idleHeaterReviewAmount">지급금액</label></th>
+                            <td>
+                              <input
+                                id="idleHeaterReviewAmount"
+                                name="idleHeaterReviewAmount"
+                                type="text"
+                                class="form-control w-full"
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row"><label for="idleHeaterReviewReason">변경 사유</label></th>
+                            <td>
+                              <textarea
+                                id="idleHeaterReviewReason"
+                                name="idleHeaterReviewReason"
+                                class="textarea"
+                                rows="8"
+                              ></textarea>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+                  </div>
+                  <div class="popup-actions">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      수정
+                    </button>
+                    <button
+                      type="button"
+                      class="btn variant-outline color-navy rounded-md size-board-action"
+                      data-popup-close
+                    >
+                      닫기
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+
+            <!-- 접수내역 상세 팝업 -->
+            <div
+              class="popup"
+              id="idle-heater-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="idle-heater-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="idle-heater-detail-popup-title">접수내역상세</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-label="무시동 접수현황">
+                      <table class="board-form-table text-center">
+                        <caption>
+                          무시동 접수현황
+                        </caption>
+                        <colgroup>
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.334%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">신청번호</th>
+                            <td>00000024</td>
+                            <th scope="row">접수번호</th>
+                            <td>00005029</td>
+                            <th scope="row">접수상태</th>
+                            <td>접수완료</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="panel" aria-label="무시동 접수내역 상세 내용">
+                      <div class="board-tabs" data-board-tabs>
+                        <div class="board-tab-list" role="tablist" aria-label="접수내역 서류">
+                          <button
+                            type="button"
+                            class="board-tab active"
+                            id="idleHeaterApplicationTab"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="idleHeaterApplicationPanel"
+                            data-board-tab="idleHeaterApplicationPanel"
+                          >
+                            무시동히터신청
+                          </button>
+                          <button
+                            type="button"
+                            class="board-tab"
+                            id="idleHeaterCompanyTab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="idleHeaterCompanyPanel"
+                            data-board-tab="idleHeaterCompanyPanel"
+                          >
+                            무시동신청 업체정보
+                          </button>
+                        </div>
+
+                        <div class="board-tab-panels">
+                          <div
+                            class="board-tab-panel"
+                            id="idleHeaterApplicationPanel"
+                            role="tabpanel"
+                            aria-labelledby="idleHeaterApplicationTab"
+                            data-board-tab-panel
+                          >
+                            <form
+                              action="/admin/followup-ended/idle-heater-list.html"
+                              method="post"
+                              class="flex flex-col gap-4"
+                            >
+                              <section class="board-section" aria-labelledby="idle-heater-driver-title">
+                                <h3 class="board-section-title" id="idle-heater-driver-title">화물운전자 인적사항</h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    무시동 신청 화물운전자 인적사항
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="idleHeaterName">성명</label>
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td colspan="3">
+                                        <input
+                                          id="idleHeaterName"
+                                          name="idleHeaterName"
+                                          type="text"
+                                          class="form-control w-half"
+                                          value="김회원"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="idleHeaterBirthDate">생년월일</label>
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-field">
+                                          <input
+                                            id="idleHeaterBirthDate"
+                                            name="idleHeaterBirthDate"
+                                            type="text"
+                                            class="form-control w-full"
+                                            value="19760726"
+                                          />
+                                          <span class="board-form-note">(ex: 19800101)</span>
+                                        </div>
+                                      </td>
+                                      <th scope="row">
+                                        <label for="idleHeaterLicenseName">자격증 성명</label>
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td>
+                                        <input
+                                          id="idleHeaterLicenseName"
+                                          name="idleHeaterLicenseName"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="김회원"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="idleHeaterLicenseNumber">자격증번호</label>
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td>
+                                        <input
+                                          id="idleHeaterLicenseNumber"
+                                          name="idleHeaterLicenseNumber"
+                                          type="text"
+                                          class="form-control"
+                                          value="123456789"
+                                        />
+                                      </td>
+                                      <th scope="row">
+                                        차량번호
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td>
+                                        <div class="grid grid-cols-4 gap-2">
+                                          <select
+                                            name="idleHeaterVehicleRegion"
+                                            class="form-control"
+                                            aria-label="차량번호 지역"
+                                          >
+                                            <option value="">세종</option>
+                                          </select>
+                                          <input
+                                            name="idleHeaterVehicleFirstNumber"
+                                            type="text"
+                                            class="form-control"
+                                            value="86"
+                                            aria-label="차량번호 앞 숫자"
+                                          />
+                                          <select
+                                            name="idleHeaterVehicleLetter"
+                                            class="form-control"
+                                            aria-label="차량번호 한글"
+                                          >
+                                            <option value="">배</option>
+                                          </select>
+                                          <input
+                                            name="idleHeaterVehicleLastNumber"
+                                            type="text"
+                                            class="form-control"
+                                            value="1509"
+                                            aria-label="차량번호 뒷 숫자"
+                                          />
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="idleHeaterCompanyName">회사상호</label>
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td>
+                                        <input
+                                          id="idleHeaterCompanyName"
+                                          name="idleHeaterCompanyName"
+                                          type="text"
+                                          class="form-control w-full"
+                                        />
+                                      </td>
+                                      <th scope="row">
+                                        <label for="idleHeaterBusinessType">업종</label>
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td>
+                                        <select
+                                          id="idleHeaterBusinessType"
+                                          name="idleHeaterBusinessType"
+                                          class="form-control w-full"
+                                        >
+                                          <option value="">일반화물</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="idleHeaterPostcode">자택주소</label>
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td colspan="3">
+                                        <div class="flex flex-col gap-2">
+                                          <div class="flex items-center gap-2 row-type-field w-half">
+                                            <input
+                                              id="idleHeaterPostcode"
+                                              name="idleHeaterPostcode"
+                                              type="text"
+                                              class="form-control"
+                                              value="30153"
+                                              aria-label="우편번호"
+                                              readonly
+                                            />
+                                            <button
+                                              type="button"
+                                              class="btn variant-outline color-navy rounded-md size-input"
+                                            >
+                                              우편번호 찾기
+                                            </button>
+                                          </div>
+                                          <input
+                                            id="idleHeaterAddress"
+                                            name="idleHeaterAddress"
+                                            type="text"
+                                            class="form-control"
+                                            value="세종 태평로 56 (태평동, 해들마을 5단지)"
+                                            aria-label="주소"
+                                            readonly
+                                          />
+                                          <input
+                                            id="idleHeaterAddressDetail"
+                                            name="idleHeaterAddressDetail"
+                                            type="text"
+                                            class="form-control"
+                                            value="111동 1503호"
+                                            aria-label="상세주소"
+                                          />
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">자택전화번호</th>
+                                      <td>
+                                        <div class="grid items-center gap-2 row-type-phone">
+                                          <select
+                                            name="idleHeaterHomePhoneFirst"
+                                            class="form-control"
+                                            aria-label="자택전화번호 지역번호"
+                                          >
+                                            <option value="">선택</option>
+                                          </select>
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="idleHeaterHomePhoneMiddle"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="자택전화번호 가운데자리"
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="idleHeaterHomePhoneLast"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="자택전화번호 끝자리"
+                                          />
+                                        </div>
+                                      </td>
+                                      <th scope="row">
+                                        휴대폰
+                                        <span class="required-mark" aria-hidden="true">*</span>
+                                      </th>
+                                      <td>
+                                        <div class="grid items-center gap-2 row-type-phone">
+                                          <select
+                                            name="idleHeaterMobilePhoneFirst"
+                                            class="form-control"
+                                            aria-label="휴대폰번호 앞자리"
+                                          >
+                                            <option value="">010</option>
+                                          </select>
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="idleHeaterMobilePhoneMiddle"
+                                            type="text"
+                                            class="form-control"
+                                            value="1234"
+                                            aria-label="휴대폰번호 가운데자리"
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="idleHeaterMobilePhoneLast"
+                                            type="text"
+                                            class="form-control"
+                                            value="5678"
+                                            aria-label="휴대폰번호 끝자리"
+                                          />
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="idleHeaterEmailId">이메일</label></th>
+                                      <td colspan="3">
+                                        <div class="grid grid-cols-3 items-center gap-2">
+                                          <div class="flex items-center gap-2">
+                                            <input
+                                              id="idleHeaterEmailId"
+                                              name="idleHeaterEmailId"
+                                              type="text"
+                                              class="form-control w-full"
+                                              value="abcdefg1234"
+                                            />
+                                            <span aria-hidden="true">@</span>
+                                          </div>
+                                          <input
+                                            id="idleHeaterEmailDomain"
+                                            name="idleHeaterEmailDomain"
+                                            type="text"
+                                            class="form-control"
+                                            value="daum.net"
+                                            aria-label="이메일 도메인"
+                                          />
+                                          <select
+                                            name="idleHeaterEmailDomainSelect"
+                                            class="form-control"
+                                            aria-label="이메일 도메인 선택"
+                                            data-email-domain-control="idleHeaterEmailDomain"
+                                            data-email-domain-direct-value="direct"
+                                          >
+                                            <option value="" selected>선택하세요</option>
+                                            <option value="daum.net">daum.net</option>
+                                            <option value="direct">직접입력</option>
+                                          </select>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="idleHeaterInformationConsent">정보수신 동의</label>
+                                      </th>
+                                      <td colspan="3">
+                                        <label class="check-label">
+                                          <input
+                                            id="idleHeaterInformationConsent"
+                                            name="idleHeaterInformationConsent"
+                                            type="checkbox"
+                                            value=""
+                                          />
+                                          <span class="check-label-text">
+                                            ※ 체크 시 정보제공을 위해 관련 업체에 연락처 제공
+                                          </span>
+                                        </label>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <section class="board-section" aria-labelledby="idle-heater-other-title">
+                                <h3 class="board-section-title" id="idle-heater-other-title">화물운전자 기타정보</h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    무시동 신청 화물운전자 기타정보
+                                  </caption>
+                                  <colgroup>
+                                    <col width="20%" />
+                                    <col width="30%" />
+                                    <col width="20%" />
+                                    <col width="30%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row"><label for="idleHeaterDailyDistance">주행거리(일평균)</label></th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-field">
+                                          <input
+                                            id="idleHeaterDailyDistance"
+                                            name="idleHeaterDailyDistance"
+                                            type="text"
+                                            class="form-control w-auto"
+                                            size="15"
+                                            value="0"
+                                          />
+                                          (단위: Km)
+                                        </div>
+                                      </td>
+                                      <th scope="row">
+                                        <label for="idleHeaterMonthlyFuelCost">주유금액(월평균)</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-field">
+                                          <input
+                                            id="idleHeaterMonthlyFuelCost"
+                                            name="idleHeaterMonthlyFuelCost"
+                                            type="text"
+                                            class="form-control w-auto"
+                                            size="15"
+                                            value="0"
+                                          />
+                                          (단위: 만원)
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">화물차 운전경력<br />(협회신고 등)</th>
+                                      <td colspan="3">
+                                        <div class="flex items-center gap-2 row-type-field w-half">
+                                          <select
+                                            name="idleHeaterDrivingCareerYear"
+                                            class="form-control"
+                                            aria-label="화물차 운전경력 년"
+                                          >
+                                            <option value="" selected>0</option>
+                                          </select>
+                                          <span>년</span>
+                                          <select
+                                            name="idleHeaterDrivingCareerMonth"
+                                            class="form-control"
+                                            aria-label="화물차 운전경력 개월"
+                                          >
+                                            <option value="" selected>00</option>
+                                          </select>
+                                          <span>개월</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <div class="board-form-actions justify-center mt-0">
+                                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                                  저장하기
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+
+                          <div
+                            class="board-tab-panel"
+                            id="idleHeaterCompanyPanel"
+                            role="tabpanel"
+                            aria-labelledby="idleHeaterCompanyTab"
+                            data-board-tab-panel
+                            hidden
+                          >
+                            <section class="scholar-pledge" aria-labelledby="idle-heater-company-title">
+                              <h3 class="board-panel-title" id="idle-heater-company-title">무시동신청 업체정보</h3>
+
+                              <h4 class="board-list-title mt-2">
+                                업체 정보 (하기 업체별 지원정보 확인 후 택1, 신청마감 후 상품변경 불가)
+                              </h4>
+                              <table class="board-form-table">
+                                <caption>
+                                  무시동히터 신청 업체 선택
+                                </caption>
+                                <colgroup>
+                                  <col width="16%" />
+                                  <col width="84%" />
+                                </colgroup>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">업체</th>
+                                    <td>
+                                      <div
+                                        class="board-form-options"
+                                        role="radiogroup"
+                                        aria-label="무시동히터 업체 선택"
+                                      >
+                                        <label class="radio-label">
+                                          <input type="radio" name="idleHeaterCompany" value="" checked />
+                                          <span class="radio-label-text">예기산업</span>
+                                        </label>
+                                        <label class="radio-label">
+                                          <input type="radio" name="idleHeaterCompany" value="" />
+                                          <span class="radio-label-text">제이엔에스 (에버스패커)</span>
+                                        </label>
+                                        <label class="radio-label">
+                                          <input type="radio" name="idleHeaterCompany" value="" />
+                                          <span class="radio-label-text">지체널 (베바스토)</span>
+                                        </label>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <h4 class="board-list-title mt-2">업체별 지원 정보</h4>
+                              <table class="board-form-table">
+                                <caption>
+                                  무시동히터 업체별 지원 정보
+                                </caption>
+                                <colgroup>
+                                  <col width="20%" />
+                                  <col width="80%" />
+                                </colgroup>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">예기산업</th>
+                                    <td>
+                                      <div class="flex flex-col gap-1">
+                                        <p>• 모델명 : Air Mini-2000D</p>
+                                        <p>• 가격 : 825,000원(24v) / 875,000원(12v)</p>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">제이엔에스<br />(에버스패커)</th>
+                                    <td>
+                                      <div class="flex flex-col gap-1">
+                                        <p>• 모델명 : Airtronic D2</p>
+                                        <p>• 가격 : 900,000원(24v) / 1,000,000원(12v)</p>
+                                        <p>• 추가지원 : 고강도 히터보호커버</p>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">지체널 (베바스토)</th>
+                                    <td>
+                                      <div class="flex flex-col gap-1">
+                                        <p>• 모델명 : AT-2000STC</p>
+                                        <p>• 가격 : 935,000원(24v) / 1,150,000원(12v)</p>
+                                        <p>• 추가지원</p>
+                                        <div class="idle-heater-support-detail flex flex-col gap-1">
+                                          <p>1. 고급히터케이스 또는 신세계상품권 3만원(선택)</p>
+                                          <p>2. 2년내 대폐차시 이전 장착비 10만원 지원</p>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <div class="flex flex-col gap-1 mt-2">
+                                <p>• 대상자 선정시 상기 제시된 가격 중 장착보조금 30만원 외 차액만 본인부담</p>
+                                <p>• 12V는 2.5톤 미만, 24V는 2.5톤 이상 차량에 해당</p>
+                              </div>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

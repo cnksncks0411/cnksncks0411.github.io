@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 협력업체 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="cooperation" data-section="partner" data-page="musculoskeletal">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /cooperation/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 협력관리 좌측 메뉴 인클루드 영역: /cooperation/include/lnb-partner.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-partner" data-page="musculoskeletal"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>근골격계질환접수관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/cooperation/partner/regular-checkup-list.html">협력관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">근골격계질환접수관리</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="musculoskeletal-search-title">
+              <h2 class="board-list-title sr-only" id="musculoskeletal-search-title">조회조건</h2>
+              <form action="/cooperation/partner/musculoskeletal-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      근골격계질환접수 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="14%" />
+                      <col width="36%" />
+                      <col width="14%" />
+                      <col width="36%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <label for="receptionPlace">접수처명</label>
+                        </th>
+                        <td>
+                          <!-- Default: 경기도립 안성휴게소의원 -->
+                          <select id="receptionPlace" name="receptionPlace" class="form-control w-full">
+                            <option value="">경기도립 안성휴게소의원</option>
+                          </select>
+                        </td>
+                        <th scope="row">
+                          <label for="treatmentYear">치료년월</label>
+                        </th>
+                        <td>
+                          <div class="board-search-date-range">
+                            <!-- Default: 올해 -->
+                            <select id="treatmentYear" name="treatmentYear" class="form-control">
+                              <option value="">2026</option>
+                              <option value="">2025</option>
+                              <option value="">2024</option>
+                              <option value="">2023</option>
+                              <option value="">2022</option>
+                              <option value="">2021</option>
+                              <option value="">2020</option>
+                            </select>
+                            <span class="board-search-date-separator">년</span>
+                            <select id="treatmentMonth" name="treatmentMonth" class="form-control">
+                              <option value="">선택</option>
+                              <option value="">1</option>
+                              <option value="">2</option>
+                              <option value="">3</option>
+                              <option value="">4</option>
+                              <option value="">5</option>
+                              <option value="">6</option>
+                              <option value="">7</option>
+                              <option value="">8</option>
+                              <option value="">9</option>
+                              <option value="">10</option>
+                              <option value="">11</option>
+                              <option value="">12</option>
+                            </select>
+                            <span class="board-search-date-separator">월</span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="receptionName">접수자명</label>
+                        </th>
+                        <td>
+                          <input id="receptionName" name="receptionName" type="text" class="form-control w-full" />
+                        </td>
+                        <th scope="row">
+                          <label for="receptionBirth">생년월일</label>
+                        </th>
+                        <td>
+                          <input
+                            id="receptionBirth"
+                            name="receptionBirth"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="flex gap-2">
+                    <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                      조회
+                    </button>
+                    <!-- 오프라인 신규접수 버튼: 오프라인 신규접수 팝업 노출 -->
+                    <button
+                      type="button"
+                      class="btn variant-solid color-gradient rounded-md size-board-auto"
+                      data-popup-open="offline-reception-popup"
+                      aria-haspopup="dialog"
+                    >
+                      <span class="btn-label">오프라인 신규접수</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="musculoskeletal-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="musculoskeletal-list-title">접수자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    근골격계질환 접수자목록
+                  </caption>
+                  <colgroup>
+                    <col width="14%" />
+                    <col width="12%" />
+                    <col width="14%" />
+                    <col width="13%" />
+                    <col width="13%" />
+                    <col width="12%" />
+                    <col width="11%" />
+                    <col width="11%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">신청번호</th>
+                      <th scope="col">성명</th>
+                      <th scope="col">생년월일</th>
+                      <th scope="col">접수상태</th>
+                      <th scope="col">처리상태</th>
+                      <th scope="col">치료년월</th>
+                      <th scope="col">접수내역</th>
+                      <th scope="col">접수취소</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 내용 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="8" class="board-content-empty">등록된 내용이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 근골격계질환 접수자목록 행 -->
+                    <tr>
+                      <td>00000132</td>
+                      <td>홍*동</td>
+                      <td>1973.01.12</td>
+                      <td><span class="font-bold text-blue">접수완료</span></td>
+                      <td><span class="font-bold">미지정</span></td>
+                      <td>2026.06</td>
+                      <td>
+                        <!-- 접수내역 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000131</td>
+                      <td>김*수</td>
+                      <td>1981.04.22</td>
+                      <td><span class="font-bold text-blue">접수완료</span></td>
+                      <td><span class="font-bold text-blue">지정완료</span></td>
+                      <td>2026.06</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000130</td>
+                      <td>이*영</td>
+                      <td>1978.09.08</td>
+                      <td><span class="font-bold text-blue">접수완료</span></td>
+                      <td><span class="font-bold">미지정</span></td>
+                      <td>2026.05</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000129</td>
+                      <td>박*준</td>
+                      <td>1969.12.17</td>
+                      <td><span class="font-bold">접수대기</span></td>
+                      <td><span class="font-bold">미지정</span></td>
+                      <td>2026.05</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000128</td>
+                      <td>최*호</td>
+                      <td>1985.02.03</td>
+                      <td><span class="font-bold text-blue">접수완료</span></td>
+                      <td><span class="font-bold">처리중</span></td>
+                      <td>2026.04</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000127</td>
+                      <td>정*민</td>
+                      <td>1975.07.29</td>
+                      <td><span class="font-bold text-blue">접수완료</span></td>
+                      <td><span class="font-bold text-blue">지정완료</span></td>
+                      <td>2026.04</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000126</td>
+                      <td>강*철</td>
+                      <td>1988.11.11</td>
+                      <td><span class="font-bold text-red">접수취소</span></td>
+                      <td><span class="font-bold text-blue">취소완료</span></td>
+                      <td>2026.03</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000125</td>
+                      <td>윤*아</td>
+                      <td>1990.01.25</td>
+                      <td><span class="font-bold text-blue">접수완료</span></td>
+                      <td><span class="font-bold">처리중</span></td>
+                      <td>2026.03</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000124</td>
+                      <td>조*빈</td>
+                      <td>1971.06.14</td>
+                      <td><span class="font-bold text-blue">접수완료</span></td>
+                      <td><span class="font-bold text-blue">지정완료</span></td>
+                      <td>2026.02</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>00000123</td>
+                      <td>한*우</td>
+                      <td>1983.10.05</td>
+                      <td><span class="font-bold">접수대기</span></td>
+                      <td><span class="font-bold">미지정</span></td>
+                      <td>2026.02</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="musculoskeletal-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>
+                        <button type="button" class="btn variant-soft color-blue rounded-md size-sm">변경</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="근골격계질환 접수자목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 오프라인 신규접수 팝업 -->
+            <div
+              class="popup"
+              data-popup
+              id="offline-reception-popup"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="offline-reception-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-lg" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="offline-reception-popup-title">오프라인 신규접수</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <form class="popup-form" action="" method="post">
+                  <div class="popup-body">
+                    <div class="flex flex-col gap-6" data-offline-step="1">
+                      <section class="popup-section" aria-labelledby="offline-reception-info-title">
+                        <h3 class="popup-section-title" id="offline-reception-info-title">접수정보</h3>
+                        <p class="popup-notice text-red">
+                          ※ 접종정보는 접수 후 수정이 불가능하니 신중히 입력해 주시기 바랍니다.
+                        </p>
+                        <table class="board-form-table">
+                          <caption>
+                            오프라인 신규접수 접수정보
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">사업명</th>
+                              <td>근골격계질환예방사업</td>
+                              <th scope="row">
+                                <label for="offlineBusinessRound">
+                                  사업년도회차<span class="required-mark">*</span>
+                                </label>
+                              </th>
+                              <td>
+                                <select
+                                  id="offlineBusinessRound"
+                                  name="offlineBusinessRound"
+                                  class="form-control w-full"
+                                  required
+                                >
+                                  <option value="">선택</option>
+                                  <option value="">2026001</option>
+                                </select>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="popup-section" aria-labelledby="offline-driver-info-title">
+                        <h3 class="popup-section-title" id="offline-driver-info-title">운전자정보</h3>
+                        <table class="board-form-table">
+                          <caption>
+                            오프라인 신규접수 운전자정보
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">
+                                <label for="offlineDriverName">운전자명<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <input
+                                  id="offlineDriverName"
+                                  name="offlineDriverName"
+                                  type="text"
+                                  class="form-control w-full"
+                                  required
+                                />
+                              </td>
+                              <th scope="row">
+                                <label for="offlineDriverBirth">생년월일<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <input
+                                  id="offlineDriverBirth"
+                                  name="offlineDriverBirth"
+                                  type="text"
+                                  class="form-control w-full"
+                                  placeholder="YYYYMMDD"
+                                  required
+                                />
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="offlineGender">성별<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-field">
+                                  <select id="offlineGender" name="offlineGender" class="form-control w-full" required>
+                                    <option value="">선택</option>
+                                    <option value="">남성</option>
+                                    <option value="">여성</option>
+                                  </select>
+                                  <button type="button" class="btn variant-outline color-navy rounded-md size-input">
+                                    조회
+                                  </button>
+                                </div>
+                              </td>
+                              <th scope="row">
+                                <label for="offlineAccount">계정선택<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-field">
+                                  <select
+                                    id="offlineAccount"
+                                    name="offlineAccount"
+                                    class="form-control w-full"
+                                    required
+                                  >
+                                    <option value="">선택</option>
+                                  </select>
+                                  <button type="button" class="btn variant-outline color-navy rounded-md size-input">
+                                    초기화
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <!-- 여기서부터 다음단계 추가 입력창 -->
+                            <tr data-offline-step="2" hidden>
+                              <th scope="row">
+                                <label for="offlineLicenseNumber">자격번호<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-field">
+                                  <input
+                                    id="offlineLicenseNumber"
+                                    name="offlineLicenseNumber"
+                                    type="text"
+                                    class="form-control w-full"
+                                    required
+                                  />
+                                  <button type="button" class="btn variant-outline color-navy rounded-md size-input">
+                                    조회
+                                  </button>
+                                </div>
+                              </td>
+                              <th scope="row">검증결과</th>
+                              <td>
+                                <span>미검증</span>
+                              </td>
+                            </tr>
+                            <tr data-offline-step="2" hidden>
+                              <th scope="row">
+                                <label for="offlinePhoneFirst">휴대전화번호<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="grid items-center gap-2 row-type-phone">
+                                  <input
+                                    id="offlinePhoneFirst"
+                                    name="offlinePhoneFirst"
+                                    type="text"
+                                    class="form-control"
+                                    aria-label="휴대전화번호 앞자리"
+                                    value="010"
+                                    readonly
+                                  />
+                                  <span>-</span>
+                                  <input
+                                    name="offlinePhoneMiddle"
+                                    type="text"
+                                    class="form-control"
+                                    aria-label="휴대전화번호 가운데자리"
+                                    required
+                                  />
+                                  <span>-</span>
+                                  <input
+                                    name="offlinePhoneLast"
+                                    type="text"
+                                    class="form-control"
+                                    aria-label="휴대전화번호 끝자리"
+                                    required
+                                  />
+                                </div>
+                              </td>
+                              <th scope="row">
+                                <label for="offlineRegion">지역<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <select id="offlineRegion" name="offlineRegion" class="form-control w-full" required>
+                                  <option value="">선택</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr data-offline-step="2" hidden>
+                              <th scope="row">
+                                <label for="offlineBusinessType">업종</label>
+                              </th>
+                              <td>
+                                <select id="offlineBusinessType" name="offlineBusinessType" class="form-control w-full">
+                                  <option value="">선택</option>
+                                </select>
+                              </td>
+                              <th scope="row">
+                                <label for="offlineTreatmentDate">치료일자<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="board-search-date-range">
+                                  <div class="board-search-date-field w-full" data-datepicker-wrap>
+                                    <input
+                                      id="offlineTreatmentDate"
+                                      name="offlineTreatmentDate"
+                                      type="text"
+                                      class="form-control"
+                                      data-datepicker-input
+                                      data-input
+                                      required
+                                    />
+                                    <button
+                                      type="button"
+                                      class="btn-calendar"
+                                      aria-label="치료일자 선택"
+                                      data-datepicker-toggle
+                                      data-toggle
+                                    >
+                                      <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                                    </button>
+                                  </div>
+                                  <button
+                                    type="button"
+                                    class="btn variant-outline color-navy rounded-md size-input"
+                                    data-datepicker-today
+                                  >
+                                    오늘
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr data-offline-step="2" hidden>
+                              <th scope="row">치료부위<span class="required-mark">*</span></th>
+                              <td colspan="3">
+                                <div class="flex flex-wrap gap-3">
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">경추</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">고관절</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">기타근통</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">다리</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">무릎</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">발</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">섬유근통</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">손</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">어깨</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">어깨의 회전근개</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">요추</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">팔꿈치</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentPart" value="" />
+                                    <span class="check-label-text">흉추</span>
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr data-offline-step="2" hidden>
+                              <th scope="row">치료내용<span class="required-mark">*</span></th>
+                              <td colspan="3">
+                                <div class="flex flex-wrap gap-3">
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentContent" value="" />
+                                    <span class="check-label-text">표층열치료</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentContent" value="" />
+                                    <span class="check-label-text">심층열치료</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentContent" value="" />
+                                    <span class="check-label-text">파라핀욕</span>
+                                  </label>
+                                  <label class="check-label">
+                                    <input type="checkbox" name="offlineTreatmentContent" value="" />
+                                    <span class="check-label-text">간섭파전류치료</span>
+                                  </label>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr data-offline-step="2" hidden>
+                              <th scope="row">
+                                <label for="offlineClaimAmount">청구금액<span class="required-mark">*</span></label>
+                              </th>
+                              <td colspan="3">
+                                <div class="flex items-center gap-2 row-type-unit">
+                                  <input
+                                    id="offlineClaimAmount"
+                                    name="offlineClaimAmount"
+                                    type="text"
+                                    class="form-control"
+                                    required
+                                  />
+                                  <span>원</span>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+                    </div>
+                  </div>
+                  <!-- 
+                    현재 다음단계 화면 표시를 위한 onclick inline 임시 삽입 상태입니다.
+                    개발 시 변경/삭제 하시면 됩니다.
+
+                    1단계: 다음단계(type=button)
+                    2단계: 저장하기(type=submit)
+                   -->
+                  <div class="popup-actions">
+                    <button
+                      type="button"
+                      class="btn variant-solid color-navy rounded-md size-board-auto"
+                      onclick="
+                        if (this.dataset.stepReady === 'true') {
+                          // step 변환 체크 후 submit 전환
+                          this.closest('form').requestSubmit();
+                          return;
+                        }
+                        this.closest('form')
+                          .querySelectorAll('[data-offline-step=&quot;2&quot;]')
+                          .forEach((item) => {
+                            item.hidden = false;
+                          });
+                        this.dataset.stepReady = 'true';
+                        this.textContent = '저장하기';
+                      "
+                    >
+                      다음단계
+                    </button>
+                  </div>
+                </form>
+              </section>
+            </div>
+            <!-- 접수내역 상세 팝업 -->
+            <div
+              class="popup"
+              id="musculoskeletal-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="musculoskeletal-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="musculoskeletal-detail-popup-title">접수내역</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-label="근골격계질환 접수내역">
+                      <table class="board-form-table text-center">
+                        <caption>
+                          근골격계질환 접수내역
+                        </caption>
+                        <colgroup>
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.334%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">신청번호</th>
+                            <td>00000324</td>
+                            <th scope="row">접수번호</th>
+                            <td>00005029</td>
+                            <th scope="row">접수상태</th>
+                            <td><span class="font-bold">접수완료</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="panel" aria-label="접수내역 상세 내용">
+                      <div class="board-tabs" data-board-tabs>
+                        <!-- 탭 버튼 -->
+                        <div class="board-tab-list" role="tablist" aria-label="접수내역 서류">
+                          <button
+                            type="button"
+                            class="board-tab active"
+                            id="receptionApplicationTab"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="receptionApplicationPanel"
+                            data-board-tab="receptionApplicationPanel"
+                          >
+                            근골격계지원신청서
+                          </button>
+                          <button
+                            type="button"
+                            class="board-tab"
+                            id="receptionDocumentTab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="receptionDocumentPanel"
+                            data-board-tab="receptionDocumentPanel"
+                          >
+                            근골격계 서류등록
+                          </button>
+                        </div>
+
+                        <div class="board-tab-panels">
+                          <!-- 탭 영역 : 근골격계지원신청서 -->
+                          <div
+                            class="board-tab-panel"
+                            id="receptionApplicationPanel"
+                            role="tabpanel"
+                            aria-labelledby="receptionApplicationTab"
+                            data-board-tab-panel
+                          >
+                            <form action="" method="post" class="flex flex-col gap-4">
+                              <h3 class="board-panel-title">근골격계지원신청서</h3>
+                              <section class="board-section">
+                                <table class="board-form-table">
+                                  <caption>
+                                    근골격계지원신청서 신청정보
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">신청일시</th>
+                                      <td>2026-02-03</td>
+                                      <th scope="row">신청번호</th>
+                                      <td>00000324</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <section class="board-section" aria-labelledby="application-driver-info-title">
+                                <h3 class="board-section-title" id="application-driver-info-title">운전자정보</h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    근골격계지원신청서 운전자정보
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">운전자명</th>
+                                      <td>김회원</td>
+                                      <th scope="row">생년월일</th>
+                                      <td>1980.01.04</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">운전자성별</th>
+                                      <td>남성</td>
+                                      <th scope="row">운전자계정</th>
+                                      <td>abcdefg1234@</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="applicationLicenseNumber">자격증번호</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-field">
+                                          <input
+                                            id="applicationLicenseNumber"
+                                            name="applicationLicenseNumber"
+                                            type="text"
+                                            class="form-control w-full"
+                                            value="123456789"
+                                            readonly
+                                          />
+                                          <button
+                                            type="button"
+                                            class="btn variant-outline color-navy rounded-md size-input"
+                                            disabled
+                                          >
+                                            초기화
+                                          </button>
+                                        </div>
+                                      </td>
+                                      <th scope="row">검증결과</th>
+                                      <td>
+                                        <span>미검증</span>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="applicationPhoneFirst">
+                                          휴대전화번호<span class="required-mark">*</span>
+                                        </label>
+                                      </th>
+                                      <td>
+                                        <div class="grid items-center gap-2 row-type-phone">
+                                          <input
+                                            id="applicationPhoneFirst"
+                                            name="applicationPhoneFirst"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="휴대전화번호 앞자리"
+                                            value="010"
+                                            readonly
+                                            required
+                                          />
+                                          <span>-</span>
+                                          <input
+                                            name="applicationPhoneMiddle"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="휴대전화번호 가운데자리"
+                                            required
+                                          />
+                                          <span>-</span>
+                                          <input
+                                            name="applicationPhoneLast"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="휴대전화번호 끝자리"
+                                            required
+                                          />
+                                        </div>
+                                      </td>
+                                      <th scope="row">
+                                        <label for="applicationRegion">지역<span class="required-mark">*</span></label>
+                                      </th>
+                                      <td>
+                                        <select
+                                          id="applicationRegion"
+                                          name="applicationRegion"
+                                          class="form-control w-full"
+                                          required
+                                        >
+                                          <option value="">선택</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="applicationBusinessType">업종</label>
+                                      </th>
+                                      <td>
+                                        <select
+                                          id="applicationBusinessType"
+                                          name="applicationBusinessType"
+                                          class="form-control w-full"
+                                        >
+                                          <option value="">선택</option>
+                                        </select>
+                                      </td>
+                                      <th scope="row">청구병원</th>
+                                      <td>경기도립 안성휴개소의원</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">치료년월</th>
+                                      <td>2026년 06월</td>
+                                      <th scope="row">치료일자</th>
+                                      <td>2026.06.30</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">치료부위<span class="required-mark">*</span></th>
+                                      <td colspan="3">
+                                        <div class="flex flex-wrap gap-3">
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">경추</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">고관절</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">기타근통</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">다리</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">무릎</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">발</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">섬유근통</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">손</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">어깨</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">어깨의 회전근개</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">요추</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">팔꿈치</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentPart" value="" />
+                                            <span class="check-label-text">흉추</span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">치료내용<span class="required-mark">*</span></th>
+                                      <td colspan="3">
+                                        <div class="flex flex-wrap gap-3">
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentContent" value="" />
+                                            <span class="check-label-text">표층열치료</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentContent" value="" />
+                                            <span class="check-label-text">심층열치료</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentContent" value="" />
+                                            <span class="check-label-text">파라핀욕</span>
+                                          </label>
+                                          <label class="check-label">
+                                            <input type="checkbox" name="applicationTreatmentContent" value="" />
+                                            <span class="check-label-text">간섭파전류치료</span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="applicationClaimAmount">
+                                          청구금액<span class="required-mark">*</span>
+                                        </label>
+                                      </th>
+                                      <td colspan="3">
+                                        <div class="flex items-center gap-2 row-type-unit">
+                                          <input
+                                            id="applicationClaimAmount"
+                                            name="applicationClaimAmount"
+                                            type="text"
+                                            class="form-control"
+                                            required
+                                          />
+                                          <span>원</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="applicationMemo">메모</label>
+                                      </th>
+                                      <td colspan="3">
+                                        <textarea
+                                          id="applicationMemo"
+                                          name="applicationMemo"
+                                          class="textarea"
+                                          rows="4"
+                                        ></textarea>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+                              <div class="board-form-actions justify-center">
+                                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                                  저장하기
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+
+                          <!-- 탭 영역 : 근골격계 서류등록 -->
+                          <div
+                            class="board-tab-panel flex flex-col gap-4"
+                            id="receptionDocumentPanel"
+                            role="tabpanel"
+                            aria-labelledby="receptionDocumentTab"
+                            data-board-tab-panel
+                            hidden
+                          >
+                            <h3 class="board-panel-title">근골격계 서류등록</h3>
+                            <section class="board-section" aria-labelledby="registered-document-title">
+                              <h4 class="board-section-title" id="registered-document-title">등록서류목록</h4>
+                              <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                              <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                              <!-- 목록 있는 경우 -->
+                              <ul class="board-document-grid">
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <!-- 썸네일 클릭 시 원본 이미지 새 창 열림 -->
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">기타증빙서류.jpg</figcaption>
+                                    <div class="board-table-actions">
+                                      <a href="#" class="btn variant-outline color-navy rounded-md size-sm" download>
+                                        다운로드
+                                      </a>
+                                      <button type="button" class="btn variant-soft color-red rounded-md size-sm">
+                                        삭제
+                                      </button>
+                                    </div>
+                                  </figure>
+                                </li>
+                              </ul>
+                            </section>
+
+                            <section class="board-section" aria-labelledby="required-document-title">
+                              <h4 class="board-section-title" id="required-document-title">서류목록</h4>
+                              <!-- 필요 없는 경우: hidden 속성을 제거하고 표시 -->
+                              <p class="board-content-empty" hidden>등록할 서류 정보가 없습니다.</p>
+                              <!-- 등록 시: 서류별 개별 업로드/저장 -->
+                              <form action="" method="post" enctype="multipart/form-data">
+                                <table class="board-form-table">
+                                  <caption>
+                                    근골격계 서류등록 서류목록
+                                  </caption>
+                                  <colgroup>
+                                    <col width="22%" />
+                                    <col width="78%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="documentFile1">장학사업신청서</label>
+                                      </th>
+                                      <td>
+                                        <div class="flex items-center gap-2 row-type-file">
+                                          <input
+                                            id="documentFile1"
+                                            name="documentFile"
+                                            type="file"
+                                            class="form-control"
+                                          />
+                                          <button
+                                            type="submit"
+                                            class="btn variant-solid color-navy rounded-md size-input"
+                                          >
+                                            저장
+                                          </button>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </form>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /cooperation/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/cooperation/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

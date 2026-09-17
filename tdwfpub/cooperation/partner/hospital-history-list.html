@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 협력업체 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="cooperation" data-section="partner" data-page="hospital-history">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /cooperation/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 협력관리 좌측 메뉴 인클루드 영역: /cooperation/include/lnb-partner.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-partner" data-page="hospital-history"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>병원변경이력 조회</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/cooperation/partner/regular-checkup-list.html">협력관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">병원변경이력 조회</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="병원변경이력 조회">
+              <form action="/cooperation/partner/hospital-history-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      병원변경이력 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="12.5%" />
+                      <col width="12.5%" />
+                      <col width="12.5%" />
+                      <col width="12.5%" />
+                      <col width="12.5%" />
+                      <col width="12.5%" />
+                      <col width="12.5%" />
+                      <col width="12.5%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="hospitalRecruitmentType">모집구분</label></th>
+                        <td>
+                          <select
+                            id="hospitalRecruitmentType"
+                            name="hospitalRecruitmentType"
+                            class="form-control w-full"
+                          >
+                            <option value="" selected>정기</option>
+                            <option value="">수시</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="hospitalYearRound">연도회차</label></th>
+                        <td>
+                          <select id="hospitalYearRound" name="hospitalYearRound" class="form-control w-full">
+                            <option value="" selected>2026001</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="hospitalRecipientName">대상자명</label></th>
+                        <td>
+                          <input
+                            id="hospitalRecipientName"
+                            name="hospitalRecipientName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="hospitalRecipientBirth">생년월일</label></th>
+                        <td>
+                          <input
+                            id="hospitalRecipientBirth"
+                            name="hospitalRecipientBirth"
+                            type="text"
+                            class="form-control w-full"
+                            placeholder="YYYYMMDD"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="hospitalBeforeName">변경 전 병원명</label></th>
+                        <td colspan="3">
+                          <div class="flex items-center gap-2">
+                            <select
+                              id="hospitalBeforeArea"
+                              name="hospitalBeforeArea"
+                              class="form-control w-full"
+                              aria-label="변경 전 병원 지역"
+                            >
+                              <option value="">전체</option>
+                            </select>
+                            <select id="hospitalBeforeName" name="hospitalBeforeName" class="form-control w-full">
+                              <option value="">전체</option>
+                            </select>
+                          </div>
+                        </td>
+                        <th scope="row"><label for="hospitalAfterName">변경 후 병원명</label></th>
+                        <td colspan="3">
+                          <select id="hospitalAfterName" name="hospitalAfterName" class="form-control w-full">
+                            <option value="">전체</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="hospitalChangeConfirm">변경확인</label></th>
+                        <td colspan="3">
+                          <select id="hospitalChangeConfirm" name="hospitalChangeConfirm" class="form-control w-full">
+                            <option value="">전체</option>
+                            <option value="">확인</option>
+                            <option value="">미확인</option>
+                          </select>
+                        </td>
+                        <th scope="row">기준일자</th>
+                        <td colspan="3">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="hospitalReferenceStartDate"
+                                name="hospitalReferenceStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="기준일자 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="기준일자 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="hospitalReferenceEndDate"
+                                name="hospitalReferenceEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="기준일자 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="기준일자 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="hospital-history-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="hospital-history-list-title">대상자목록</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    병원변경이력 대상자 목록
+                  </caption>
+                  <colgroup>
+                    <col width="7%" />
+                    <col width="5%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                    <col width="8%" />
+                    <col width="5%" />
+                    <col width="16%" />
+                    <col width="12%" />
+                    <col width="9%" />
+                    <col width="10%" />
+                    <col width="10%" />
+                    <col width="5%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">기준<br />일자</th>
+                      <th scope="col">사업<br />구분</th>
+                      <th scope="col">연도<br />회차</th>
+                      <th scope="col">신청<br />번호</th>
+                      <th scope="col">대상자<br />생년월일</th>
+                      <th scope="col">대상자<br />성명</th>
+                      <th scope="col">변경 전<br />병원명</th>
+                      <th scope="col">변경후<br />병원명</th>
+                      <th scope="col">연락처<br />(자택)</th>
+                      <th scope="col">연락처<br />(휴대폰)</th>
+                      <th scope="col">차량<br />번호</th>
+                      <th scope="col">등록ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="12" class="board-content-empty">등록된 병원변경이력이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 병원변경이력 대상자 목록 행 -->
+                    <tr>
+                      <td>20260629</td>
+                      <td>정기</td>
+                      <td>2026001</td>
+                      <td>00002651</td>
+                      <td>19720621</td>
+                      <td>김*구</td>
+                      <td>대전을지대학교병원(대전 서구)</td>
+                      <td>착한의사</td>
+                      <td>02-1234-5678</td>
+                      <td>010-1234-5678</td>
+                      <td>인천821234</td>
+                      <td>pl13</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="병원변경이력 대상자 목록 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /cooperation/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/cooperation/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

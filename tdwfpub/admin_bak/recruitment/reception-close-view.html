@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>접수내역 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="recruitment" data-page="reception-close">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업공고 및 마감 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-recruitment.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-recruitment" data-page="reception-close"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>접수내역</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/recruitment/project-notice-list.html">사업공고 및 마감</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/recruitment/reception-close-list.html">접수/마감관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">접수내역</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="접수내역 요약">
+              <table class="board-form-table text-center">
+                <caption>
+                  접수 및 마감관리 접수내역 요약
+                </caption>
+                <colgroup>
+                  <col width="12%" />
+                  <col width="21.333%" />
+                  <col width="12%" />
+                  <col width="21.333%" />
+                  <col width="12%" />
+                  <col width="21.334%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">신청번호</th>
+                    <td>00000024</td>
+                    <th scope="row">접수번호</th>
+                    <td>00005029</td>
+                    <th scope="row">접수상태</th>
+                    <td>접수완료</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <section class="panel" aria-label="접수내역 상세 내용">
+              <div class="board-tabs" data-board-tabs>
+                <!-- 서류명 선택 영역을 탭으로 구성 -->
+                <div class="board-tab-list" role="tablist" aria-label="접수내역 서류">
+                  <button
+                    type="button"
+                    class="board-tab active"
+                    id="scholarshipApplicationTab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="scholarshipApplicationPanel"
+                    data-board-tab="scholarshipApplicationPanel"
+                  >
+                    장학사업지원신청서
+                  </button>
+                  <button
+                    type="button"
+                    class="board-tab"
+                    id="scholarshipApplicantTab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="scholarshipApplicantPanel"
+                    data-board-tab="scholarshipApplicantPanel"
+                  >
+                    장학사업지원자정보
+                  </button>
+                  <button
+                    type="button"
+                    class="board-tab"
+                    id="welfareDocumentTab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="welfareDocumentPanel"
+                    data-board-tab="welfareDocumentPanel"
+                  >
+                    복지사업 서류등록
+                  </button>
+                  <button
+                    type="button"
+                    class="board-tab"
+                    id="agreementPledgeTab"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="agreementPledgePanel"
+                    data-board-tab="agreementPledgePanel"
+                  >
+                    동의서약서
+                  </button>
+                </div>
+
+                <div class="board-tab-panels">
+                  <!-- 탭 영역: 장학사업지원신청서 -->
+                  <div
+                    class="board-tab-panel"
+                    id="scholarshipApplicationPanel"
+                    role="tabpanel"
+                    aria-labelledby="scholarshipApplicationTab"
+                    data-board-tab-panel
+                  >
+                    <form action="" method="post" class="flex flex-col gap-4">
+                      <h2 class="board-panel-title">장학사업지원신청서</h2>
+
+                      <section class="board-section" aria-labelledby="driver-information-title">
+                        <h3 class="board-section-title" id="driver-information-title">화물운전자 인적사항</h3>
+                        <table class="board-form-table">
+                          <caption>
+                            장학사업지원신청서 화물운전자 인적사항
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">성명<span class="required-mark">*</span></th>
+                              <td class="font-bold">김회원</td>
+                              <th scope="row">생년월일<span class="required-mark">*</span></th>
+                              <td>1980.01.04</td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="driverLicenseName">자격증성명<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <input
+                                  id="driverLicenseName"
+                                  name="driverLicenseName"
+                                  type="text"
+                                  class="form-control w-full"
+                                  required
+                                />
+                              </td>
+                              <th scope="row">
+                                <label for="driverLicenseNumber">자격증번호<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="flex items-center gap-2 row-type-field">
+                                  <input
+                                    id="driverLicenseNumber"
+                                    name="driverLicenseNumber"
+                                    type="text"
+                                    class="form-control w-full"
+                                    value="123456789"
+                                    readonly
+                                    required
+                                  />
+                                  <button type="button" class="btn variant-outline color-navy rounded-md size-input">
+                                    초기화
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">검증결과</th>
+                              <td><span class="font-bold">검증완료</span></td>
+                              <th scope="row">차량번호<span class="required-mark">*</span></th>
+                              <td>
+                                <div class="grid grid-cols-4 gap-2">
+                                  <select name="vehicleRegion" class="form-control" aria-label="차량번호 지역" required>
+                                    <option value="">선택</option>
+                                  </select>
+                                  <input
+                                    name="vehicleNumberFirst"
+                                    type="text"
+                                    class="form-control"
+                                    value="86"
+                                    aria-label="차량번호 앞번호"
+                                    required
+                                  />
+                                  <select name="vehicleLetter" class="form-control" aria-label="차량번호 한글" required>
+                                    <option value="">선택</option>
+                                  </select>
+                                  <input
+                                    name="vehicleNumberLast"
+                                    type="text"
+                                    class="form-control"
+                                    value="1509"
+                                    aria-label="차량번호 뒷번호"
+                                    required
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="driverVehicleType">차종<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <select
+                                  id="driverVehicleType"
+                                  name="driverVehicleType"
+                                  class="form-control w-full"
+                                  required
+                                >
+                                  <option value="">화물밴형(탑차, 윙바디, 냉장, 냉동)</option>
+                                </select>
+                              </td>
+                              <th scope="row">
+                                <label for="driverVehicleTon">차량톤수<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <input
+                                  id="driverVehicleTon"
+                                  name="driverVehicleTon"
+                                  type="text"
+                                  class="form-control w-auto"
+                                  size="1"
+                                  value="1"
+                                  required
+                                />
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="driverCompanyName">회사상호<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <input
+                                  id="driverCompanyName"
+                                  name="driverCompanyName"
+                                  type="text"
+                                  class="form-control w-full"
+                                  required
+                                />
+                              </td>
+                              <th scope="row">
+                                <label for="driverBusinessType">업종<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <select
+                                  id="driverBusinessType"
+                                  name="driverBusinessType"
+                                  class="form-control w-full"
+                                  required
+                                >
+                                  <option value="">선택</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="driverPostcode">자택주소<span class="required-mark">*</span></label>
+                              </th>
+                              <td colspan="3">
+                                <div class="flex flex-col gap-2">
+                                  <div class="flex items-center gap-2 row-type-field w-half">
+                                    <input
+                                      id="driverPostcode"
+                                      name="driverPostcode"
+                                      type="text"
+                                      class="form-control"
+                                      value="30153"
+                                      aria-label="우편번호"
+                                      readonly
+                                      required
+                                    />
+                                    <button type="button" class="btn variant-outline color-navy rounded-md size-input">
+                                      우편번호 찾기
+                                    </button>
+                                  </div>
+                                  <input
+                                    id="driverAddress"
+                                    name="driverAddress"
+                                    type="text"
+                                    class="form-control"
+                                    value="세종 태평로 56 (태평동, 해들마을 5단지)"
+                                    aria-label="자택주소"
+                                    readonly
+                                    required
+                                  />
+                                  <input
+                                    id="driverAddressDetail"
+                                    name="driverAddressDetail"
+                                    type="text"
+                                    class="form-control"
+                                    value="111동 1503호"
+                                    aria-label="자택 상세주소"
+                                    required
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="driverHomePhoneFirst">자택전화번호</label>
+                              </th>
+                              <td>
+                                <div class="grid items-center gap-2 row-type-phone">
+                                  <select
+                                    id="driverHomePhoneFirst"
+                                    name="driverHomePhoneFirst"
+                                    class="form-control"
+                                    aria-label="자택전화번호 앞자리"
+                                  >
+                                    <option value="">선택</option>
+                                  </select>
+                                  <span>-</span>
+                                  <input
+                                    name="driverHomePhoneMiddle"
+                                    type="text"
+                                    class="form-control"
+                                    aria-label="자택전화번호 가운데자리"
+                                  />
+                                  <span>-</span>
+                                  <input
+                                    name="driverHomePhoneLast"
+                                    type="text"
+                                    class="form-control"
+                                    aria-label="자택전화번호 끝자리"
+                                  />
+                                </div>
+                              </td>
+                              <th scope="row">
+                                <label for="driverMobileFirst">휴대폰번호<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <div class="grid items-center gap-2 row-type-phone">
+                                  <input
+                                    id="driverMobileFirst"
+                                    name="driverMobileFirst"
+                                    type="text"
+                                    class="form-control"
+                                    value="010"
+                                    aria-label="휴대폰번호 앞자리"
+                                    readonly
+                                    required
+                                  />
+                                  <span>-</span>
+                                  <input
+                                    name="driverMobileMiddle"
+                                    type="text"
+                                    class="form-control"
+                                    value="1234"
+                                    aria-label="휴대폰번호 가운데자리"
+                                    required
+                                  />
+                                  <span>-</span>
+                                  <input
+                                    name="driverMobileLast"
+                                    type="text"
+                                    class="form-control"
+                                    value="5678"
+                                    aria-label="휴대폰번호 끝자리"
+                                    required
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="driverEmailId">이메일</label>
+                              </th>
+                              <td colspan="3">
+                                <div class="grid grid-cols-3 items-center gap-2">
+                                  <div class="flex items-center gap-2">
+                                    <input
+                                      id="driverEmailId"
+                                      name="driverEmailId"
+                                      type="text"
+                                      class="form-control w-full"
+                                      value="abcdefg1234"
+                                      aria-label="이메일 아이디"
+                                    />
+                                    <span aria-hidden="true">@</span>
+                                  </div>
+                                  <input
+                                    id="driverEmailDomain"
+                                    name="driverEmailDomain"
+                                    type="text"
+                                    class="form-control"
+                                    value="daum.net"
+                                    aria-label="이메일 도메인"
+                                    readonly
+                                  />
+                                  <select
+                                    id="driverEmailDomainSelect"
+                                    name="driverEmailDomainSelect"
+                                    class="form-control"
+                                    aria-label="이메일 도메인 선택"
+                                    data-email-domain-control="driverEmailDomain"
+                                    data-email-domain-direct-value="direct"
+                                  >
+                                    <option value="" selected>선택하세요</option>
+                                    <option value="daum.net">daum.net</option>
+                                    <option value="direct">직접입력</option>
+                                  </select>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <section class="board-section" aria-labelledby="scholarship-account-title">
+                        <div class="flex items-center gap-2">
+                          <h3 class="board-section-title mb-0" id="scholarship-account-title">장학금수령정보</h3>
+                          <p class="text-red font-bold">
+                            ※ 장학금을 받을 운전자(또는 배우자 및 자녀)의 계좌정보를 입력합니다.
+                          </p>
+                        </div>
+                        <table class="board-form-table mt-2">
+                          <caption>
+                            장학사업지원신청서 장학금수령정보
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row">
+                                <label for="scholarshipBank">은행명<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <select
+                                  id="scholarshipBank"
+                                  name="scholarshipBank"
+                                  class="form-control w-full"
+                                  required
+                                >
+                                  <option value="">선택</option>
+                                </select>
+                              </td>
+                              <th scope="row">
+                                <label for="scholarshipRelationship">관계<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <select
+                                  id="scholarshipRelationship"
+                                  name="scholarshipRelationship"
+                                  class="form-control w-full"
+                                  required
+                                >
+                                  <option value="">선택</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="scholarshipAccountHolder">예금주<span class="required-mark">*</span></label>
+                              </th>
+                              <td>
+                                <input
+                                  id="scholarshipAccountHolder"
+                                  name="scholarshipAccountHolder"
+                                  type="text"
+                                  class="form-control w-full"
+                                  required
+                                />
+                              </td>
+                              <th scope="row">
+                                <label for="scholarshipAccountNote">부기명</label>
+                              </th>
+                              <td>
+                                <input
+                                  id="scholarshipAccountNote"
+                                  name="scholarshipAccountNote"
+                                  type="text"
+                                  class="form-control w-full"
+                                />
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">
+                                <label for="scholarshipAccountNumber"
+                                  >계좌번호<span class="required-mark">*</span></label
+                                >
+                              </th>
+                              <td>
+                                <input
+                                  id="scholarshipAccountNumber"
+                                  name="scholarshipAccountNumber"
+                                  type="text"
+                                  class="form-control w-full"
+                                  value="53200101012598"
+                                  required
+                                />
+                              </td>
+                              <td colspan="2">
+                                <span class="board-form-note">('-')를 제외한 숫자만 입력</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <div class="board-form-actions justify-center mt-0">
+                        <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                          저장하기
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- 탭 영역: 장학사업지원자정보 -->
+                  <div
+                    class="board-tab-panel"
+                    id="scholarshipApplicantPanel"
+                    role="tabpanel"
+                    aria-labelledby="scholarshipApplicantTab"
+                    data-board-tab-panel
+                    hidden
+                  >
+                    <form action="" method="post" class="flex flex-col gap-4">
+                      <h2 class="board-panel-title">장학사업지원자정보</h2>
+
+                      <section class="board-section" aria-labelledby="applicant-information-title">
+                        <h3 class="board-section-title" id="applicant-information-title">지원자 인적사항</h3>
+                        <table class="board-form-table">
+                          <caption>
+                            장학사업 지원자 인적사항
+                          </caption>
+                          <colgroup>
+                            <col width="16%" />
+                            <col width="34%" />
+                            <col width="16%" />
+                            <col width="34%" />
+                          </colgroup>
+                          <tbody>
+                            <tr>
+                              <th scope="row"><label for="applicantName">성명</label></th>
+                              <td>
+                                <input
+                                  id="applicantName"
+                                  name="applicantName"
+                                  type="text"
+                                  class="form-control w-full"
+                                  value="김아들"
+                                />
+                              </td>
+                              <th scope="row"><label for="applicantGender">성별</label></th>
+                              <td>
+                                <select id="applicantGender" name="applicantGender" class="form-control w-auto">
+                                  <option value="">선택</option>
+                                  <option value="male">남성</option>
+                                  <option value="female">여성</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row">생년월일</th>
+                              <td>
+                                <div class="grid grid-cols-3 gap-2">
+                                  <select name="applicantBirthYear" class="form-control" aria-label="생년월일 년도">
+                                    <option value="">2008</option>
+                                  </select>
+                                  <select name="applicantBirthMonth" class="form-control" aria-label="생년월일 월">
+                                    <option value="">07</option>
+                                  </select>
+                                  <select name="applicantBirthDay" class="form-control" aria-label="생년월일 일">
+                                    <option value="">20</option>
+                                  </select>
+                                </div>
+                              </td>
+                              <th scope="row">휴대폰번호</th>
+                              <td>
+                                <div class="grid items-center gap-2 row-type-phone">
+                                  <input
+                                    name="applicantMobileFirst"
+                                    type="text"
+                                    class="form-control"
+                                    value="010"
+                                    aria-label="휴대폰번호 앞자리"
+                                    readonly
+                                  />
+                                  <span>-</span>
+                                  <input
+                                    name="applicantMobileMiddle"
+                                    type="text"
+                                    class="form-control"
+                                    value="1235"
+                                    aria-label="휴대폰번호 가운데자리"
+                                  />
+                                  <span>-</span>
+                                  <input
+                                    name="applicantMobileLast"
+                                    type="text"
+                                    class="form-control"
+                                    value="5678"
+                                    aria-label="휴대폰번호 끝자리"
+                                  />
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row"><label for="applicantSchoolType">학교구분</label></th>
+                              <td>
+                                <select id="applicantSchoolType" name="applicantSchoolType" class="form-control w-full">
+                                  <option value="" selected>고등학교</option>
+                                </select>
+                              </td>
+                              <th scope="row"><label for="applicantGrade">학생학년</label></th>
+                              <td>
+                                <select id="applicantGrade" name="applicantGrade" class="form-control w-auto">
+                                  <option value="" selected>1학년</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                              <th scope="row"><label for="applicantSchoolName">학교이름</label></th>
+                              <td colspan="3">
+                                <input
+                                  id="applicantSchoolName"
+                                  name="applicantSchoolName"
+                                  type="text"
+                                  class="form-control w-half"
+                                  value="우리고등학교"
+                                  readonly
+                                />
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </section>
+
+                      <div class="board-form-actions justify-center">
+                        <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                          저장하기
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- 탭 영역: 복지사업 서류등록 -->
+                  <div
+                    class="board-tab-panel"
+                    id="welfareDocumentPanel"
+                    role="tabpanel"
+                    aria-labelledby="welfareDocumentTab"
+                    data-board-tab-panel
+                    hidden
+                  >
+                    <section class="board-section" aria-labelledby="welfare-registered-document-title">
+                      <h2 class="board-section-title" id="welfare-registered-document-title">등록서류목록</h2>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                      <ul class="board-document-grid">
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">가족관계증명서(운전자 명의로 발급).jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">재학증명서(03월 21일 이후 발급분).jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">
+                              저소득증빙서류(홈페이지 공지사항 참조).jpg
+                            </figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">현대오일뱅크 보너스 카드 사본.jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">가족관계증명서(운전자 명의로 발급).jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">재학증명서(03월 21일 이후 발급분).jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">
+                              저소득증빙서류(홈페이지 공지사항 참조).jpg
+                            </figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <a
+                              href="/common/images/main/info-image.png"
+                              class="board-document-thumb"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label="파일 새창열기"
+                            >
+                              <img src="/common/images/main/info-image.png" alt="" />
+                            </a>
+                            <figcaption class="board-document-name">현대오일뱅크 보너스 카드 사본.jpg</figcaption>
+                            <div class="board-table-actions">
+                              <a
+                                href="/common/images/main/info-image.png"
+                                class="btn variant-outline color-navy rounded-md size-sm"
+                                download
+                              >
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                        <li class="board-document-item">
+                          <figure class="board-document-card">
+                            <div class="board-document-thumb type-empty">
+                              <span>썸네일 없음</span>
+                            </div>
+                            <figcaption class="board-document-name">기타증빙서류.hwp</figcaption>
+                            <div class="board-table-actions">
+                              <a href="#" class="btn variant-outline color-navy rounded-md size-sm" download>
+                                다운로드
+                              </a>
+                            </div>
+                          </figure>
+                        </li>
+                      </ul>
+                    </section>
+                  </div>
+
+                  <!-- 탭 영역: 동의서약서 -->
+                  <div
+                    class="board-tab-panel"
+                    id="agreementPledgePanel"
+                    role="tabpanel"
+                    aria-labelledby="agreementPledgeTab"
+                    data-board-tab-panel
+                    hidden
+                  >
+                    <section class="scholar-pledge" aria-labelledby="pledge-content-title">
+                      <h2 class="scholar-pledge-title" id="pledge-content-title">서약서</h2>
+
+                      <ol class="scholar-pledge-list">
+                        <li>
+                          공익법인 화물복지재단에서 실시하는 장학사업(기타 복지사업 포함)과 관련하여 선발에 필요한
+                          신청자의 평가사항(화물운송종사자격사항, 자녀수, 가계 경제상황 등)과 관련한 개인정보를
+                          이용/활용하는 것에 동의하며, 제출된 서류가 상이하거나 허위로 기재한 사실이 판명되어
+                          재단으로부터 장학금 등 반납을 통보 받은 때에는 지체 없이 반납할 것을 서약합니다.
+                        </li>
+                        <li class="text-blue">
+                          “접수완료”는 신청과정의 진행을 완료했다는 것일 뿐 신청 내용 및 제출서류에 이상이 없다는 의미는
+                          아닙니다.
+                          <br />
+                          신청인은 접수 완료 후 신청내용 및 제출서류에 이상이 없는지 재확인해야 하며, 미확인에 따른
+                          책임은 신청인 본인에게 있음을 서약합니다.
+                        </li>
+                      </ol>
+
+                      <div class="scholar-pledge-confirm">
+                        <label class="check-label">
+                          <input type="checkbox" checked disabled />
+                          <span class="check-label-text">서약서 내용을 숙지하였으며 이에 동의함을 서약합니다.</span>
+                        </label>
+                        <div class="scholar-pledge-signature">
+                          <p><time datetime="2026-06-23">2026년 06월 23일</time></p>
+                          <p>서약자 : 김회원</p>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <div class="board-view-actions">
+              <a
+                href="/admin_bak/recruitment/reception-close-list.html"
+                class="btn variant-outline color-navy rounded-md size-board-action"
+              >
+                목록보기
+              </a>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

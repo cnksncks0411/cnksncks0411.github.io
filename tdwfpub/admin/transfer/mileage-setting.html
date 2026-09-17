@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="transfer" data-page="mileage-setting">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 보조기능 좌측 메뉴 인클루드 영역: /admin/include/lnb-transfer.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-transfer" data-page="mileage-setting"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>마일리지 적립 조건</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/transfer/sms-register.html">보조기능</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">마일리지 적립 조건</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="mileage-setting-form-title">
+              <h2 id="mileage-setting-form-title" hidden>마일리지 적립 조건 입력폼</h2>
+              <form action="/admin/transfer/mileage-setting.html" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    마일리지 적립 조건 설정
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="82%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">마일리지 적립 사용</th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="mileageUse" value="true" checked />
+                            <span class="radio-label-text">적용</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="mileageUse" value="false" />
+                            <span class="radio-label-text">미적용</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="joinMileage">회원가입<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <div class="flex items-center gap-2 row-type-unit">
+                          <input id="joinMileage" name="joinMileage" type="text" class="form-control" required />
+                          <span class="board-unit-text">마일리지</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="loginMileage">로그인<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <div class="flex items-center gap-2 row-type-unit">
+                          <input id="loginMileage" name="loginMileage" type="text" class="form-control" required />
+                          <span class="board-unit-text">마일리지</span>
+                          <p class="board-form-note">※ 1일 1회만 적립</p>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="applicationMileage">사업신청완료<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <div class="flex items-center gap-2 row-type-unit">
+                          <input
+                            id="applicationMileage"
+                            name="applicationMileage"
+                            type="text"
+                            class="form-control"
+                            required
+                          />
+                          <span class="board-unit-text">마일리지</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="postMileage">게시글 작성<span class="required-mark">*</span></label>
+                      </th>
+                      <td>
+                        <div class="flex items-center gap-2 row-type-unit">
+                          <input id="postMileage" name="postMileage" type="text" class="form-control" required />
+                          <span class="board-unit-text">마일리지</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions justify-center">
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">저장</button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

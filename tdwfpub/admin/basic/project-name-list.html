@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="basic" data-page="project-name">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 기초관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-basic.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-basic" data-page="project-name"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>사업생성</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/basic/project-name-list.html">기초관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">사업생성</span>
+              </nav>
+            </div>
+
+            <div class="board-search-row justify-between">
+              <form class="board-search-form" role="search" action="/admin/basic/project-name-list.html" method="get">
+                <select class="form-control" name="searchType" aria-label="검색 범위">
+                  <option value="">사업명</option>
+                  <option value="">사업ID</option>
+                </select>
+                <input
+                  class="form-control"
+                  type="search"
+                  name="keyword"
+                  aria-label="검색어"
+                  placeholder="검색어를 입력하세요."
+                />
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+              </form>
+              <a
+                href="/admin/basic/project-name-write.html"
+                class="btn variant-solid color-gradient rounded-md size-board-auto"
+              >
+                사업 등록
+              </a>
+            </div>
+
+            <section class="panel" aria-labelledby="project-name-list-title">
+              <h2 id="project-name-list-title" hidden>사업명 목록</h2>
+              <div class="board-info-row align-right">
+                <div>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>20개 보기</option>
+                    <option selected>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    사업생성 목록
+                  </caption>
+                  <colgroup>
+                    <col width="10%" />
+                    <col width="15%" />
+                    <col width="25%" />
+                    <col width="*" />
+                    <col width="12%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">번호</th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="사업ID 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>사업ID</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="사업명 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>사업명</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                      <th scope="col">사업설명</th>
+                      <th scope="col">
+                        <button
+                          type="button"
+                          class="btn-table-sort"
+                          aria-pressed="false"
+                          aria-label="사용여부 정렬 방향 변경"
+                          data-table-sort
+                        >
+                          <span>사용여부</span>
+                          <span class="material-symbols-rounded" aria-hidden="true">keyboard_arrow_down</span>
+                        </button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="5" class="board-content-empty">등록된 사업명이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 사업명 목록 행 -->
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="일반장학사업 수정 페이지로 이동"
+                    >
+                      <td>50</td>
+                      <td>0001</td>
+                      <td class="text-left">일반장학사업</td>
+                      <td class="text-left">일반장학사업</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="교통사고생계지원사업 수정 페이지로 이동"
+                    >
+                      <td>49</td>
+                      <td>0002</td>
+                      <td class="text-left">교통사고생계지원사업</td>
+                      <td class="text-left">교통사고 피해가정 생계지원사업</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="건강검진사업 수정 페이지로 이동"
+                    >
+                      <td>48</td>
+                      <td>0003</td>
+                      <td class="text-left">건강검진사업</td>
+                      <td class="text-left">화물운전자 건강검진 지원사업</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="교복지원사업 수정 페이지로 이동"
+                    >
+                      <td>47</td>
+                      <td>0004</td>
+                      <td class="text-left">교복지원사업</td>
+                      <td class="text-left">화물운전자 가정 교복지원사업</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="문화누리사업 수정 페이지로 이동"
+                    >
+                      <td>46</td>
+                      <td>0005</td>
+                      <td class="text-left">문화누리사업</td>
+                      <td class="text-left">문화생활 지원사업</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="4대 중증질환 치료비 지원사업 수정 페이지로 이동"
+                    >
+                      <td>45</td>
+                      <td>0006</td>
+                      <td class="text-left">4대 중증질환 치료비 지원사업</td>
+                      <td class="text-left">4대 중증질환 치료비 지원사업</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="무시동히터사업 수정 페이지로 이동"
+                    >
+                      <td>44</td>
+                      <td>0007</td>
+                      <td class="text-left">무시동히터사업</td>
+                      <td class="text-left">무시동히터 장착 지원사업</td>
+                      <td>N</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="첨단안전장치사업 수정 페이지로 이동"
+                    >
+                      <td>43</td>
+                      <td>0008</td>
+                      <td class="text-left">첨단안전장치사업</td>
+                      <td class="text-left">첨단안전장치 장착 지원사업</td>
+                      <td>Y</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="금융지원사업 수정 페이지로 이동"
+                    >
+                      <td>42</td>
+                      <td>0009</td>
+                      <td class="text-left">금융지원사업</td>
+                      <td class="text-left">화물운전자 금융지원사업</td>
+                      <td>N</td>
+                    </tr>
+                    <tr
+                      class="board-row-selectable"
+                      data-row-link="/admin/basic/project-name-write.html"
+                      tabindex="0"
+                      aria-label="주유상품권지원사업 수정 페이지로 이동"
+                    >
+                      <td>41</td>
+                      <td>0010</td>
+                      <td class="text-left">주유상품권지원사업</td>
+                      <td class="text-left">화물운전자 주유상품권 지원사업</td>
+                      <td>Y</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="사업생성 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

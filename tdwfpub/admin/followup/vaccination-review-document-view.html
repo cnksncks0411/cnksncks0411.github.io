@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>서류조회 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="vaccination-review">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="vaccination-review"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>예방접종지급검토</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/followup/vaccination-review-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/followup/vaccination-review-list.html">예방접종지급검토</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">서류조회</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="vaccination-review-document-application-title">
+              <div class="board-info-row sr-only">
+                <h2 class="board-list-title" id="vaccination-review-document-application-title">신청서 정보</h2>
+              </div>
+              <table class="board-form-table">
+                <caption>
+                  예방접종지급검토 신청서 정보
+                </caption>
+                <colgroup>
+                  <col width="18%" />
+                  <col width="32%" />
+                  <col width="18%" />
+                  <col width="32%" />
+                </colgroup>
+                <tbody>
+                  <tr>
+                    <th scope="row">운전자명(생년월일)</th>
+                    <td>홍길동(1958.02.18)</td>
+                    <th scope="row">대상자명(생년월일)</th>
+                    <td>좌동</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">운전자 휴대폰번호</th>
+                    <td>010-1234-5678</td>
+                    <th scope="row">대상자 휴대폰번호</th>
+                    <td>좌동</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">접수상태</th>
+                    <td>접수완료</td>
+                    <th scope="row">처리상태</th>
+                    <td>미지정</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">차량번호</th>
+                    <td>경남99바1234</td>
+                    <th scope="row">최대적재량</th>
+                    <td>미등록</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">화물업종</th>
+                    <td>일반화물</td>
+                    <th scope="row">차량톤수</th>
+                    <td>25톤</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">유가보조이력 검증결과</th>
+                    <td>검증 <span class="text-blue font-bold">성공</span> (본인)</td>
+                    <th scope="row">화물운송자격증 이름</th>
+                    <td>홍길동</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">유가보조이력 검증자명</th>
+                    <td>홍길동(1958.02.18)</td>
+                    <th scope="row">화물운송자격증 번호</th>
+                    <td>1-04-200000 (<span class="text-blue font-bold">검증성공</span>)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <section class="panel" aria-labelledby="vaccination-review-document-info-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="vaccination-review-document-info-title">접종정보</h2>
+              </div>
+              <div class="board-table-wrap">
+                <table class="board-table">
+                  <caption>
+                    예방접종지급검토 접종정보
+                  </caption>
+                  <colgroup>
+                    <col width="10%" />
+                    <col width="50%" />
+                    <col width="20%" />
+                    <col width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">순번</th>
+                      <th scope="col">접종병원</th>
+                      <th scope="col">접종병명</th>
+                      <th scope="col">접종항목</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="4" class="board-content-empty">등록된 접종정보가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 예방접종 접종정보 행 -->
+                    <tr>
+                      <td>1</td>
+                      <td>의료법인 정산의료재단 효성병원(청주 상당구)</td>
+                      <td>대상포진</td>
+                      <td>미정</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="panel flex flex-col gap-4" aria-label="예방접종지급검토 서류정보">
+              <section class="board-section" aria-labelledby="vaccination-review-registered-document-title">
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="vaccination-review-registered-document-title">등록 서류목록</h2>
+                </div>
+                <!-- 목록 없는 경우 -->
+                <p class="board-content-empty">등록된 서류가 없습니다.</p>
+              </section>
+
+              <section class="board-section" aria-labelledby="vaccination-review-unregistered-document-title">
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="vaccination-review-unregistered-document-title">미등록 서류목록</h2>
+                </div>
+                <!-- 목록 없는 경우 -->
+                <p class="board-content-empty">등록될 서류가 더 이상 없습니다.</p>
+              </section>
+            </section>
+
+            <section class="panel" aria-labelledby="vaccination-review-document-message-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="vaccination-review-document-message-title">
+                  문자전송(수신 : 신청자 연락처 / 발신 : 02-761-0270)
+                </h2>
+              </div>
+              <form action="" method="post">
+                <table class="board-form-table">
+                  <caption>
+                    예방접종지급검토 신청자 문자전송
+                  </caption>
+                  <colgroup>
+                    <col width="18%" />
+                    <col width="82%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="vaccinationReviewDocumentMessage">내용</label>
+                      </th>
+                      <td>
+                        <div class="grid gap-2 row-type-message">
+                          <textarea
+                            id="vaccinationReviewDocumentMessage"
+                            name="vaccinationReviewDocumentMessage"
+                            class="textarea"
+                            rows="4"
+                          ></textarea>
+                          <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                            문자전송
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="board-form-actions justify-center">
+                  <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                    미등록 메시지
+                  </button>
+                  <button type="button" class="btn variant-soft color-blue rounded-md size-board-auto">
+                    서류오류 메시지
+                  </button>
+                  <button type="button" class="btn variant-soft color-red rounded-md size-board-auto">
+                    메시지 삭제
+                  </button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>지원신청사업 메인</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="home" data-page="home">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="home-content-wrap">
+        <h1 class="sr-only">사업신청 홈페이지 메인</h1>
+
+        <!-- 지원사업 검색 -->
+        <section class="hero-section" aria-labelledby="hero-title">
+          <div class="inner">
+            <div class="hero-box">
+              <div class="hero-title-wrap">
+                <h2 id="hero-title" class="hero-title">지원사업 검색</h2>
+              </div>
+              <div class="hero-controls">
+                <form class="search-area" role="search" action="/apply/" method="get">
+                  <input
+                    type="search"
+                    name="keyword"
+                    class="search-input"
+                    aria-label="사업명 검색어"
+                    placeholder="사업명을 입력하세요."
+                  />
+                  <button type="submit" class="search-button" aria-label="검색">
+                    <span class="material-symbols-rounded" aria-hidden="true">search</span>
+                  </button>
+                </form>
+                <div class="keyword-row" aria-label="추천 검색어">
+                  <strong class="keyword-title">추천 검색어</strong>
+                  <div class="keyword-list">
+                    <!-- 반복: 키워드 링크 -->
+                    <a href="#" class="keyword-item">#장학</a>
+                    <a href="#" class="keyword-item">#예방접종</a>
+                    <a href="#" class="keyword-item">#교통사고</a>
+                    <a href="#" class="keyword-item">#법률</a>
+                    <a href="#" class="keyword-item">#차량구입</a>
+                    <a href="#" class="keyword-item">#DTG</a>
+                    <a href="#" class="keyword-item">#생계</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 접수중인 사업 -->
+        <section class="recruit-section" data-apply-filter aria-labelledby="recruit-title">
+          <div class="inner">
+            <div class="section-heading-style02">
+              <h2 id="recruit-title" class="section-heading-title">현재 접수 중인 사업</h2>
+            </div>
+            <div class="card recruit-card">
+              <div class="recruit-layout">
+                <aside class="filter-panel" aria-label="지원사업">
+                  <div class="filter-list" aria-label="지원사업">
+                    <!-- 반복: 분류 필터 -->
+                    <button
+                      type="button"
+                      class="filter-button active"
+                      data-filter-button
+                      data-filter="all"
+                      aria-pressed="true"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">apps</span>
+                      전체
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="education"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">school</span>
+                      학업지원
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="medical"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">health_and_safety</span>
+                      의료지원
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="living"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">savings</span>
+                      생계지원
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="life"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">family_restroom</span>
+                      생애지원
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="law"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">gavel</span>
+                      법률지원
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="entrusted"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">volunteer_activism</span>
+                      수탁사업
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="traffic"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">local_shipping</span>
+                      교통지원
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="finance"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">credit_card</span>
+                      금융지원
+                    </button>
+                    <button
+                      type="button"
+                      class="filter-button"
+                      data-filter-button
+                      data-filter="etc"
+                      aria-pressed="false"
+                    >
+                      <span class="material-symbols-rounded" aria-hidden="true">more_horiz</span>
+                      기타지원
+                    </button>
+                  </div>
+                </aside>
+
+                <div class="recruit-panel">
+                  <div class="recruit-status-row">
+                    <p class="recruit-count-text">
+                      <span class="recruit-count" data-filter-count aria-live="polite">4개 사업</span>
+                    </p>
+                    <a href="/apply/business/notice.html" class="btn variant-soft color-blue size-sm rounded-full">
+                      <span class="material-symbols-rounded" aria-hidden="true">list_alt</span>
+                      전체보기
+                      <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
+                    </a>
+                  </div>
+                  <div class="recruit-list">
+                    <!-- 반복: 사업 카드 최대 4개 노출 -->
+                    <a href="#" class="program-card" data-filter-card data-category="education">
+                      <span class="badge red">접수중</span>
+                      <div class="program-meta">
+                        <time datetime="2026-05-18">2026-05-18</time>
+                        <span>~</span>
+                        <time datetime="2026-06-30">2026-06-30</time>
+                      </div>
+                      <h4 class="program-title"><span class="program-field">[학업지원]</span> 2026년 일반장학사업</h4>
+                    </a>
+                    <a href="#" class="program-card" data-filter-card data-category="traffic">
+                      <span class="badge red">접수중</span>
+                      <div class="program-meta">
+                        <time datetime="2026-05-18">2026-05-18</time>
+                        <span>~</span>
+                        <time datetime="2026-06-30">2026-06-30</time>
+                      </div>
+                      <h4 class="program-title">
+                        <span class="program-field">[교통지원]</span> 2026년 디지털운행기록장치(DTG) 장착 및 운행정보
+                        관리비용 지원사업
+                      </h4>
+                    </a>
+                    <a href="#" class="program-card" data-filter-card data-category="medical">
+                      <span class="badge red">접수중</span>
+                      <div class="program-meta">
+                        <time datetime="2026-05-18">2026-05-18</time>
+                        <span>~</span>
+                        <time datetime="2026-06-30">2026-06-30</time>
+                      </div>
+                      <h4 class="program-title">
+                        <span class="program-field">[의료지원]</span> 2026년 예방접종지원사업
+                      </h4>
+                    </a>
+                    <a href="#" class="program-card" data-filter-card data-category="living">
+                      <span class="badge red">접수중</span>
+                      <div class="program-meta">
+                        <time datetime="2026-05-18">2026-05-18</time>
+                        <span>~</span>
+                        <time datetime="2026-06-30">2026-06-30</time>
+                      </div>
+                      <h4 class="program-title"><span class="program-field">[생계지원]</span> 2026년 생계지원사업</h4>
+                    </a>
+                  </div>
+                  <p class="recruit-empty" data-filter-empty hidden>현재 접수 중인 사업이 없습니다.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <!-- 관리자 등록 팝업 반복 출력 -->
+    <div data-notice-id="main" data-size="600,760" data-position="660,160" hidden></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

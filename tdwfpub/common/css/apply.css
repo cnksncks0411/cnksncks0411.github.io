@@ -1,0 +1,845 @@
+@charset "utf-8";
+@import url("/common/css/base/base.css");
+@import url("/common/css/base/btn.css");
+@import url("/common/css/base/board.css");
+@import url("/common/css/base/common.css");
+@import url("/common/css/base/layout.css");
+@import url("/common/css/base/layout-sub.css");
+@import url("/common/css/apply-sub.css");
+
+.home-content-wrap {
+  --apply-section-gap: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--apply-section-gap);
+  padding: 48px 0 64px;
+}
+
+/* ===== 지원사업 검색 ===== */
+.hero-section .hero-box {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  border: 1px solid #c9dce9;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--text);
+  box-shadow: 0 14px 30px rgba(13, 50, 103, 0.11);
+}
+
+.hero-section .hero-title-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(255, 255, 255, 0.16) 0 64px, transparent 65px),
+    radial-gradient(circle at 0 100%, rgba(255, 255, 255, 0.1) 0 80px, transparent 81px),
+    linear-gradient(135deg, var(--navy) 0%, #1d78b4 100%);
+}
+
+.hero-section .hero-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #fff;
+  font-size: 32px;
+  line-height: 1.3;
+  letter-spacing: -0.05em;
+  text-align: center;
+}
+
+.hero-section .hero-controls {
+  width: 100%;
+  min-width: 0;
+  align-self: center;
+  padding: 28px 32px 24px;
+}
+
+.hero-section .search-area {
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 60px;
+  gap: 0;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #bcd5e7;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(25, 71, 108, 0.1);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.hero-section .search-area:focus-within {
+  border-color: var(--focus-line);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.hero-section .search-area .search-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  color: #3c536b;
+}
+
+.hero-section .search-area .search-input:focus {
+  outline: 0;
+}
+
+.hero-section .search-area .search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid #bcd5e7;
+  border-radius: 0;
+  background: linear-gradient(135deg, var(--navy), #1e78b3);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    box-shadow var(--transition),
+    filter var(--transition);
+}
+
+.hero-section .search-area .search-button:hover,
+.hero-section .search-area .search-button:focus-visible {
+  filter: brightness(1.08);
+  box-shadow: 0 8px 18px rgba(13, 50, 103, 0.24);
+}
+
+.hero-section .search-area .material-symbols-rounded {
+  display: block;
+  font-size: 26px;
+}
+
+.hero-section .keyword-row {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 16px auto 0;
+}
+
+.hero-section .keyword-row .keyword-title {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 14px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hero-section .keyword-list {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.hero-section .keyword-list .keyword-item {
+  display: inline-flex;
+  align-items: center;
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+  transition: color var(--transition);
+}
+
+.hero-section .keyword-list .keyword-item:hover,
+.hero-section .keyword-list .keyword-item:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ===== 현재 접수 중인 사업 ===== */
+.recruit-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--apply-section-gap);
+}
+
+.recruit-section .recruit-card {
+  padding: 48px 32px;
+}
+
+.recruit-section .recruit-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 32px;
+  align-items: stretch;
+}
+
+.recruit-section .filter-panel {
+  display: grid;
+  align-content: start;
+  padding: 26px;
+  border: 1px solid #dce8f2;
+  border-radius: 18px;
+  background: #f7fbfe;
+}
+
+.recruit-section .filter-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, 82px);
+  gap: 8px;
+}
+
+.recruit-section .filter-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #dbe8f2;
+  border-radius: var(--control-radius);
+  background: #fff;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    color var(--transition),
+    box-shadow var(--transition);
+}
+
+.recruit-section .filter-button .material-symbols-rounded {
+  color: var(--blue);
+  font-size: 26px;
+}
+
+.recruit-section .filter-button:hover,
+.recruit-section .filter-button:focus-visible {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+  color: var(--blue);
+  box-shadow: 0 6px 14px rgba(var(--blue-rgb), 0.12);
+}
+
+.recruit-section .filter-button:hover .material-symbols-rounded,
+.recruit-section .filter-button:focus-visible .material-symbols-rounded {
+  color: var(--blue);
+}
+
+.recruit-section .filter-button.active {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(var(--blue-rgb), 0.2);
+}
+
+.recruit-section .filter-button.active .material-symbols-rounded {
+  color: #fff;
+}
+
+.recruit-section .recruit-panel {
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: start;
+  gap: 24px;
+}
+
+.recruit-section .recruit-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.recruit-section .recruit-count-text {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+}
+
+.recruit-section .recruit-count {
+  color: #60758a;
+  font-weight: 700;
+}
+
+.recruit-section .recruit-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.recruit-section .recruit-empty {
+  margin: 0;
+  padding: 30px;
+  border: 1px dashed #c9dbea;
+  border-radius: 14px;
+  background: #f8fbfe;
+  color: #60758a;
+  font-size: 17px;
+  text-align: center;
+}
+
+.recruit-section .program-card {
+  position: relative;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.recruit-section .program-card:hover,
+.recruit-section .program-card:focus-within {
+  border-color: var(--blue);
+  box-shadow: var(--shadow-soft);
+}
+
+.recruit-section .program-card .program-title {
+  overflow: hidden;
+  display: -webkit-box;
+  margin: 16px 0 0;
+  color: inherit;
+  font-size: 22px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  transition: color var(--transition);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.recruit-section .program-card .program-field {
+  color: var(--blue);
+}
+
+.recruit-section .program-meta {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 4px;
+  margin-top: 12px;
+  color: #56708a;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ===== 마이페이지 - 회원정보 ===== */
+.member-info-content {
+  justify-items: center;
+}
+
+.member-info-confirm {
+  width: min(760px, 100%);
+  padding: 56px 48px 40px;
+  display: grid;
+  justify-items: center;
+  gap: 32px;
+  border: 1px solid #dbe5ee;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.member-info-confirm-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.member-info-confirm-form {
+  width: min(360px, 100%);
+  display: grid;
+  gap: 12px;
+}
+
+.member-info-confirm-form .btn {
+  min-width: 120px;
+  justify-self: center;
+  margin-top: 8px;
+}
+
+.member-info-security-note {
+  width: 100%;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+  border-radius: 16px;
+  background: #f4f8fb;
+}
+
+.member-info-security-note > .material-symbols-rounded {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 30px;
+}
+
+.member-info-security-note p {
+  margin: 0;
+  color: var(--sub);
+  font-size: 16px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.member-info-edit {
+  width: 100%;
+  display: grid;
+  gap: 20px;
+}
+
+.member-info-required {
+  margin: 0;
+  color: var(--sub);
+  font-size: 16px;
+  text-align: right;
+}
+
+.member-info-edit-form {
+  display: grid;
+  gap: 18px;
+}
+
+.member-info-form-cell {
+  display: grid;
+  gap: 12px;
+}
+
+.member-info-field-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.member-info-choice-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+}
+
+.member-info-control {
+  width: min(430px, 100%);
+}
+
+.member-info-postcode {
+  width: 132px;
+}
+
+.member-info-value {
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.member-info-auth-status {
+  margin-left: 6px;
+  font-size: 15px;
+}
+
+.member-withdrawal-actions {
+  justify-content: center;
+}
+
+.member-withdrawal-actions .btn {
+  min-width: 200px;
+}
+
+@media (max-width: 1280px) {
+  .home-content-wrap {
+    --apply-section-gap: 44px;
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+
+  .hero-section .hero-box {
+    grid-template-columns: 240px minmax(0, 1fr);
+    border-radius: 20px;
+  }
+
+  .hero-section .hero-title-wrap {
+    padding: 28px;
+  }
+
+  .hero-section .hero-controls {
+    padding: 24px 28px 20px;
+  }
+
+  .hero-section .hero-title {
+    font-size: 30px;
+  }
+
+  .recruit-section .recruit-card {
+    padding: 40px 28px;
+  }
+
+  .recruit-section .recruit-layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .recruit-section .filter-panel {
+    padding: 22px;
+  }
+
+  .recruit-section .filter-list {
+    grid-template-rows: repeat(5, 76px);
+  }
+
+  .recruit-section .filter-button {
+    gap: 8px;
+    font-size: 16px;
+  }
+
+  .recruit-section .filter-button .material-symbols-rounded {
+    font-size: 24px;
+  }
+
+  .recruit-section .recruit-list {
+    gap: 16px;
+  }
+
+  .recruit-section .program-card {
+    min-height: 176px;
+    padding: 22px 20px;
+  }
+
+  .recruit-section .program-card .program-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 960px) {
+  .home-content-wrap {
+    --apply-section-gap: 40px;
+    padding-top: 36px;
+    padding-bottom: 52px;
+  }
+
+  .hero-section .hero-box {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section .hero-title-wrap {
+    min-height: 80px;
+    padding: 20px 24px;
+  }
+
+  .hero-section .hero-controls {
+    padding: 24px;
+  }
+
+  .hero-section .hero-title {
+    font-size: 28px;
+  }
+
+  .recruit-section .recruit-card {
+    padding: 32px 28px;
+  }
+
+  .recruit-section .recruit-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .recruit-section .filter-panel {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .recruit-section .filter-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    gap: 8px;
+  }
+
+  .recruit-section .filter-button {
+    min-width: 0;
+    min-height: 54px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0 8px;
+    text-align: center;
+  }
+
+  .recruit-section .filter-button .material-symbols-rounded {
+    font-size: 24px;
+  }
+
+  .recruit-section .recruit-panel {
+    gap: 20px;
+  }
+
+  .recruit-section .program-card {
+    min-height: 168px;
+  }
+
+  .recruit-section .program-card .program-title {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-content-wrap {
+    --apply-section-gap: 32px;
+    padding-top: 28px;
+    padding-bottom: 44px;
+  }
+
+  .hero-section .hero-box {
+    grid-template-columns: 1fr;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(25, 71, 108, 0.08);
+  }
+
+  .hero-section .hero-title-wrap {
+    min-height: 72px;
+    padding: 16px 20px;
+  }
+
+  .hero-section .hero-title {
+    font-size: 24px;
+  }
+
+  .hero-section .hero-controls {
+    padding: 20px;
+  }
+
+  .hero-section .search-area {
+    grid-template-columns: minmax(0, 1fr) 52px;
+    padding: 0;
+    border-radius: 10px;
+  }
+
+  .hero-section .search-area .search-input {
+    height: 48px;
+    padding: 0 12px;
+    font-size: 15px;
+  }
+
+  .hero-section .search-area .search-button {
+    min-height: 48px;
+  }
+
+  .hero-section .keyword-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .hero-section .keyword-row .keyword-title {
+    min-height: 28px;
+    font-size: 13px;
+  }
+
+  .hero-section .keyword-list .keyword-item {
+    font-size: 13px;
+  }
+
+  .recruit-section .recruit-card {
+    padding: 22px 20px;
+    border-radius: 18px;
+  }
+
+  .recruit-section .recruit-layout {
+    gap: 20px;
+  }
+
+  .recruit-section .filter-panel {
+    padding: 0;
+  }
+
+  .recruit-section .filter-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, auto);
+    gap: 4px;
+  }
+
+  .recruit-section .filter-button:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .recruit-section .filter-button {
+    min-height: 44px;
+    flex-direction: row;
+    gap: 4px;
+    padding: 0 2px;
+    border-radius: var(--control-radius);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .recruit-section .filter-button .material-symbols-rounded {
+    font-size: 21px;
+  }
+
+  .recruit-section .recruit-status-row {
+    gap: 12px;
+  }
+
+  .recruit-section .recruit-status-row .btn {
+    min-height: 34px !important;
+    gap: 3px !important;
+    padding: 0 10px !important;
+    font-size: 13px !important;
+  }
+
+  .recruit-section .recruit-status-row .btn .material-symbols-rounded {
+    font-size: 18px !important;
+  }
+
+  .recruit-section .recruit-count-text {
+    min-height: 40px;
+    font-size: 15px;
+  }
+
+  .recruit-section .recruit-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .recruit-section .program-card {
+    min-height: 148px;
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .recruit-section .program-card .program-title {
+    margin: 14px 0 0;
+    font-size: 17px;
+  }
+
+  .recruit-section .program-meta {
+    font-size: 15px;
+  }
+
+  .recruit-section .recruit-empty {
+    padding: 24px 18px;
+    font-size: 15px;
+  }
+
+  .member-info-confirm {
+    padding: 36px 20px 24px;
+    gap: 24px;
+    border-radius: 16px;
+  }
+
+  .member-info-confirm-title {
+    font-size: 18px;
+  }
+
+  .member-info-confirm-form .form-control {
+    height: 48px;
+    padding: 0 14px;
+    font-size: 15px;
+  }
+
+  .member-info-confirm-form .btn {
+    min-width: 100px;
+  }
+
+  .member-info-security-note {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  .member-info-security-note > .material-symbols-rounded {
+    width: 36px;
+    height: 36px;
+    font-size: 23px;
+  }
+
+  .member-info-security-note p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .member-info-edit {
+    gap: 16px;
+  }
+
+  .member-info-required {
+    font-size: 14px;
+  }
+
+  .member-info-edit-form {
+    gap: 14px;
+  }
+
+  .member-info-field-row {
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .member-info-field-row .member-info-control {
+    flex: 1 1 100%;
+  }
+
+  .member-info-form-cell {
+    gap: 8px;
+  }
+
+  .member-info-choice-list {
+    gap: 10px 18px;
+  }
+
+  .member-info-postcode {
+    flex: 1 1 120px;
+    width: auto;
+  }
+
+  .member-info-value {
+    font-size: 14px;
+  }
+
+  .member-info-auth-status {
+    font-size: 13px;
+  }
+
+}

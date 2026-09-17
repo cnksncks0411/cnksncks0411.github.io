@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>차량구입대상자관리 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="followup" data-page="vehicle-purchase">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업 사후관리 좌측 메뉴 인클루드 영역: /admin/include/lnb-followup.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-followup" data-page="vehicle-purchase"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>차량구입대상자관리</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin/followup/vehicle-purchase-list.html">사업 사후관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">차량구입대상자관리</span>
+              </nav>
+            </div>
+
+            <div class="board-tab-list" aria-label="차량구입 지원 카드사">
+              <button type="button" class="board-tab active" aria-pressed="true">삼성카드</button>
+              <button type="button" class="board-tab" aria-pressed="false">신한카드</button>
+            </div>
+
+            <section class="panel">
+              <form action="/admin/followup/vehicle-purchase-list.html" method="get">
+                <div class="flex gap-2">
+                  <table class="board-search-table">
+                    <caption>
+                      삼성카드 차량구입대상자 조회조건
+                    </caption>
+                    <colgroup>
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                      <col width="10%" />
+                      <col width="15%" />
+                    </colgroup>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><label for="vehiclePurchaseYear">모집년도</label></th>
+                        <td>
+                          <select id="vehiclePurchaseYear" name="vehiclePurchaseYear" class="form-control w-full">
+                            <option value="2026" selected>2026년 차량구입지원사업 (삼성카드)</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="vehiclePurchaseApplicantName">신청자 이름</label></th>
+                        <td>
+                          <input
+                            id="vehiclePurchaseApplicantName"
+                            name="vehiclePurchaseApplicantName"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row"><label for="vehiclePurchaseTonnage">차량톤수</label></th>
+                        <td>
+                          <select id="vehiclePurchaseTonnage" name="vehiclePurchaseTonnage" class="form-control w-full">
+                            <option value="" selected>선택</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="vehiclePurchaseApplicantBirth">신청자 생년월일</label></th>
+                        <td>
+                          <input
+                            id="vehiclePurchaseApplicantBirth"
+                            name="vehiclePurchaseApplicantBirth"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row"><label for="vehiclePurchasePaymentStatus">지급상태</label></th>
+                        <td>
+                          <select
+                            id="vehiclePurchasePaymentStatus"
+                            name="vehiclePurchasePaymentStatus"
+                            class="form-control w-full"
+                          >
+                            <option value="" selected>선택</option>
+                          </select>
+                        </td>
+                        <th scope="row"><label for="vehiclePurchaseApprovalNumber">신청자 승인번호</label></th>
+                        <td>
+                          <input
+                            id="vehiclePurchaseApprovalNumber"
+                            name="vehiclePurchaseApprovalNumber"
+                            type="text"
+                            class="form-control w-full"
+                          />
+                        </td>
+                        <th scope="row">접수일자</th>
+                        <td colspan="3">
+                          <div class="board-search-date-range">
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="vehiclePurchaseReceiptStartDate"
+                                name="vehiclePurchaseReceiptStartDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="접수일자 시작일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="접수일자 시작일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <span class="board-search-date-separator">~</span>
+                            <div class="board-search-date-field w-full" data-datepicker-wrap>
+                              <input
+                                id="vehiclePurchaseReceiptEndDate"
+                                name="vehiclePurchaseReceiptEndDate"
+                                type="text"
+                                class="form-control"
+                                aria-label="접수일자 종료일"
+                                data-datepicker-input
+                                data-input
+                              />
+                              <button
+                                type="button"
+                                class="btn-calendar"
+                                aria-label="접수일자 종료일 선택"
+                                data-datepicker-toggle
+                                data-toggle
+                              >
+                                <span class="material-symbols-rounded" aria-hidden="true">calendar_month</span>
+                              </button>
+                            </div>
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-search-input"
+                              data-datepicker-clear
+                            >
+                              초기화
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="vehicle-purchase-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="vehicle-purchase-list-title">접수내역</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap overflow-visible">
+                <table class="board-table" aria-labelledby="vehicle-purchase-list-title">
+                  <caption>
+                    삼성카드 차량구입대상자 접수내역
+                  </caption>
+                  <colgroup>
+                    <col width="4%" />
+                    <col width="8%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="9%" />
+                    <col width="6%" />
+                    <col width="7%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="8%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">순번</th>
+                      <th scope="col">승인코드</th>
+                      <th scope="col">운전자성명</th>
+                      <th scope="col">운전자생년월일</th>
+                      <th scope="col">운전자연락처</th>
+                      <th scope="col">차량톤수(t)</th>
+                      <th scope="col">차량가액(만원)</th>
+                      <th scope="col">할부예정금액(만원)</th>
+                      <th scope="col">할부결제금액(만원)</th>
+                      <th scope="col">할부결제일자</th>
+                      <th scope="col">접수내역</th>
+                      <th scope="col">지급금액</th>
+                      <th scope="col">지금일자</th>
+                      <th scope="col">메모</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="14" class="board-content-empty">등록된 접수내역이 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 삼성카드 차량구입대상자 접수내역 행 -->
+                    <tr>
+                      <td>1</td>
+                      <td>td260624701</td>
+                      <td>홍*동</td>
+                      <td>72.11.05</td>
+                      <td>010-****-5678</td>
+                      <td>3.0~3.5</td>
+                      <td>11,020</td>
+                      <td>11,000</td>
+                      <td>0</td>
+                      <td>28.08.06</td>
+                      <td>
+                        <!-- 접수내역 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="vehicle-purchase-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td><span class="font-bold">지급대기</span></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>td260624708</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>4.0~5.0</td>
+                      <td>19,000</td>
+                      <td>2,632</td>
+                      <td>2,622</td>
+                      <td>28.08.06</td>
+                      <td>
+                        <!-- 접수내역 버튼: 접수내역 상세 팝업 노출 -->
+                        <button
+                          type="button"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                          data-popup-open="vehicle-purchase-detail-popup"
+                        >
+                          접수내역
+                        </button>
+                      </td>
+                      <td>262,000</td>
+                      <td>26.06.29</td>
+                      <td>
+                        <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                        <div class="tooltip type-memo" data-tooltip="부재(0605…" tabindex="0">
+                          <div class="board-cell-title">부재(0605…</div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>0.5~1.5</td>
+                      <td>10,700</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><span class="font-bold">지급대기</span></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td><span class="font-bold">지급대기</span></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="삼성카드 차량구입대상자 접수내역 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="처음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+
+            <!-- 접수내역 상세 팝업 -->
+            <div
+              class="popup"
+              id="vehicle-purchase-detail-popup"
+              data-popup
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="vehicle-purchase-detail-popup-title"
+              aria-hidden="true"
+            >
+              <div class="popup-backdrop" data-popup-close></div>
+              <section class="popup-panel size-detail" role="document">
+                <div class="popup-header">
+                  <h2 class="popup-title" id="vehicle-purchase-detail-popup-title">접수내역상세</h2>
+                  <button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기">
+                    <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                  </button>
+                </div>
+                <div class="popup-body">
+                  <div class="flex flex-col gap-1">
+                    <section class="panel" aria-label="차량구입대상자 접수현황">
+                      <table class="board-form-table text-center">
+                        <caption>
+                          차량구입대상자 접수현황
+                        </caption>
+                        <colgroup>
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.333%" />
+                          <col width="12%" />
+                          <col width="21.334%" />
+                        </colgroup>
+                        <tbody>
+                          <tr>
+                            <th scope="row">신청번호</th>
+                            <td>00000125</td>
+                            <th scope="row">접수번호</th>
+                            <td>00000085</td>
+                            <th scope="row">접수상태</th>
+                            <td>접수완료</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </section>
+
+                    <section class="panel" aria-label="접수내역 상세 내용">
+                      <div class="board-tabs" data-board-tabs>
+                        <div class="board-tab-list" role="tablist" aria-label="접수내역 서류">
+                          <button
+                            type="button"
+                            class="board-tab active"
+                            id="vehiclePurchaseApplicationTab"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="vehiclePurchaseApplicationPanel"
+                            data-board-tab="vehiclePurchaseApplicationPanel"
+                          >
+                            차량구입지원신청
+                          </button>
+                          <button
+                            type="button"
+                            class="board-tab"
+                            id="vehiclePurchaseDocumentTab"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="vehiclePurchaseDocumentPanel"
+                            data-board-tab="vehiclePurchaseDocumentPanel"
+                          >
+                            복지사업 서류등록
+                          </button>
+                        </div>
+
+                        <div class="board-tab-panels">
+                          <div
+                            class="board-tab-panel"
+                            id="vehiclePurchaseApplicationPanel"
+                            role="tabpanel"
+                            aria-labelledby="vehiclePurchaseApplicationTab"
+                            data-board-tab-panel
+                          >
+                            <form action="" method="post" class="flex flex-col gap-4">
+                              <h2 class="board-panel-title">차량구입지원 신청</h2>
+
+                              <table class="board-form-table">
+                                <caption>
+                                  차량구입지원 신청정보
+                                </caption>
+                                <colgroup>
+                                  <col width="16%" />
+                                  <col width="84%" />
+                                </colgroup>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">신청일시</th>
+                                    <td>2026-06-30</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                              <section class="board-section" aria-labelledby="vehicle-purchase-driver-info-title">
+                                <h3 class="board-section-title" id="vehicle-purchase-driver-info-title">
+                                  화물운전자 인적사항
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    화물운전자 인적사항
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">성명<span class="required-mark">*</span></th>
+                                      <td>홍길동</td>
+                                      <th scope="row">생년월일</th>
+                                      <td>1972.11.29</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">자택전화번호</th>
+                                      <td>
+                                        <div class="grid items-center gap-2 row-type-phone">
+                                          <select
+                                            name="vehiclePurchaseHomePhoneFirst"
+                                            class="form-control"
+                                            aria-label="자택전화번호 지역번호"
+                                          >
+                                            <option value="" selected>선택</option>
+                                            <option value="02">02</option>
+                                            <option value="031">031</option>
+                                          </select>
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="vehiclePurchaseHomePhoneMiddle"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="자택전화번호 가운데자리"
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="vehiclePurchaseHomePhoneLast"
+                                            type="text"
+                                            class="form-control"
+                                            aria-label="자택전화번호 끝자리"
+                                          />
+                                        </div>
+                                      </td>
+                                      <th scope="row">휴대폰</th>
+                                      <td>
+                                        <div class="grid items-center gap-2 row-type-phone">
+                                          <input
+                                            name="vehiclePurchaseMobilePhoneFirst"
+                                            type="text"
+                                            class="form-control"
+                                            value="010"
+                                            aria-label="휴대폰번호 앞자리"
+                                            readonly
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="vehiclePurchaseMobilePhoneMiddle"
+                                            type="text"
+                                            class="form-control"
+                                            value="1234"
+                                            aria-label="휴대폰번호 가운데자리"
+                                          />
+                                          <span aria-hidden="true">-</span>
+                                          <input
+                                            name="vehiclePurchaseMobilePhoneLast"
+                                            type="text"
+                                            class="form-control"
+                                            value="5678"
+                                            aria-label="휴대폰번호 끝자리"
+                                          />
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="vehiclePurchaseApplicantType">신청구분</label></th>
+                                      <td colspan="3">
+                                        <select
+                                          id="vehiclePurchaseApplicantType"
+                                          name="vehiclePurchaseApplicantType"
+                                          class="form-control"
+                                        >
+                                          <option value="">선택</option>
+                                          <option value="self" selected>본인</option>
+                                          <option value="spouse">배우자</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <section class="board-section" aria-labelledby="vehicle-purchase-driver-detail-title">
+                                <h3 class="board-section-title" id="vehicle-purchase-driver-detail-title">
+                                  화물운전자 기타정보
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    화물운전자 기타정보
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="vehiclePurchaseManufacturer">제조사</label
+                                        ><span class="required-mark">*</span>
+                                      </th>
+                                      <td>
+                                        <select
+                                          id="vehiclePurchaseManufacturer"
+                                          name="vehiclePurchaseManufacturer"
+                                          class="form-control"
+                                        >
+                                          <option value="hyundai" selected>현대</option>
+                                        </select>
+                                      </td>
+                                      <th scope="row"><label for="vehiclePurchaseVehicleTonnage">차량톤수</label></th>
+                                      <td>
+                                        <select
+                                          id="vehiclePurchaseVehicleTonnage"
+                                          name="vehiclePurchaseVehicleTonnage"
+                                          class="form-control"
+                                        >
+                                          <option value="0.5-1.5" selected>0.5 ~ 1.5</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="vehiclePurchaseVehicleType">차종</label></th>
+                                      <td>
+                                        <input
+                                          id="vehiclePurchaseVehicleType"
+                                          name="vehiclePurchaseVehicleType"
+                                          type="text"
+                                          class="form-control w-full"
+                                        />
+                                      </td>
+                                      <th scope="row"><label for="vehiclePurchaseVehiclePrice">차량가격</label></th>
+                                      <td>
+                                        <input
+                                          id="vehiclePurchaseVehiclePrice"
+                                          name="vehiclePurchaseVehiclePrice"
+                                          type="text"
+                                          class="form-control w-full"
+                                        />
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">
+                                        <label for="vehiclePurchaseInstallmentAmount">할부예정금액</label>
+                                      </th>
+                                      <td>
+                                        <input
+                                          id="vehiclePurchaseInstallmentAmount"
+                                          name="vehiclePurchaseInstallmentAmount"
+                                          type="text"
+                                          class="form-control w-full"
+                                        />
+                                      </td>
+                                      <th scope="row">할부결제일자</th>
+                                      <td>
+                                        <div class="flex items-center gap-2">
+                                          <select
+                                            name="vehiclePurchaseInstallmentYear"
+                                            class="form-control w-quarter"
+                                            aria-label="할부결제 연도"
+                                          >
+                                            <option value="2026" selected>2026</option>
+                                          </select>
+                                          <span>년</span>
+                                          <select
+                                            name="vehiclePurchaseInstallmentMonth"
+                                            class="form-control w-quarter"
+                                            aria-label="할부결제 월"
+                                          >
+                                            <option value="9" selected>9</option>
+                                          </select>
+                                          <span>월</span>
+                                          <select
+                                            name="vehiclePurchaseInstallmentDay"
+                                            class="form-control w-quarter"
+                                            aria-label="할부결제 일"
+                                          >
+                                            <option value="10" selected>10</option>
+                                          </select>
+                                          <span>일</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <section class="board-section" aria-labelledby="vehicle-purchase-approval-title">
+                                <h3 class="board-section-title" id="vehicle-purchase-approval-title">
+                                  화물운전자 승인내역
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    화물운전자 승인내역
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row"><label for="vehiclePurchaseApprovalCode">승인코드</label></th>
+                                      <td>
+                                        <input
+                                          id="vehiclePurchaseApprovalCode"
+                                          name="vehiclePurchaseApprovalCode"
+                                          type="text"
+                                          class="form-control w-full"
+                                          value="SH2026070401"
+                                          readonly
+                                        />
+                                      </td>
+                                      <th scope="row"><label for="vehiclePurchasePaymentAmount">결제금액</label></th>
+                                      <td>
+                                        <div class="flex items-center gap-2">
+                                          <input
+                                            id="vehiclePurchasePaymentAmount"
+                                            name="vehiclePurchasePaymentAmount"
+                                            type="text"
+                                            class="form-control w-quarter"
+                                            value="0"
+                                          />
+                                          <span>원</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="vehiclePurchaseSupportAmount">지급금액</label></th>
+                                      <td>
+                                        <div class="flex items-center gap-2">
+                                          <input
+                                            id="vehiclePurchaseSupportAmount"
+                                            name="vehiclePurchaseSupportAmount"
+                                            type="text"
+                                            class="form-control w-quarter"
+                                            value="0"
+                                          />
+                                          <span>원</span>
+                                        </div>
+                                      </td>
+                                      <th scope="row">할부결제일자</th>
+                                      <td>
+                                        <div class="flex items-center gap-2">
+                                          <select
+                                            name="vehiclePurchasePaymentYear"
+                                            class="form-control w-quarter"
+                                            aria-label="할부결제 연도"
+                                          >
+                                            <option value="" selected></option>
+                                          </select>
+                                          <span>년</span>
+                                          <select
+                                            name="vehiclePurchasePaymentMonth"
+                                            class="form-control w-quarter"
+                                            aria-label="할부결제 월"
+                                          >
+                                            <option value="" selected></option>
+                                          </select>
+                                          <span>월</span>
+                                          <select
+                                            name="vehiclePurchasePaymentDay"
+                                            class="form-control w-quarter"
+                                            aria-label="할부결제 일"
+                                          >
+                                            <option value="" selected></option>
+                                          </select>
+                                          <span>일</span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <section class="board-section" aria-labelledby="vehicle-purchase-confirmation-title">
+                                <h3 class="board-section-title" id="vehicle-purchase-confirmation-title">
+                                  화물운전자 확인정보
+                                </h3>
+                                <table class="board-form-table">
+                                  <caption>
+                                    화물운전자 확인정보
+                                  </caption>
+                                  <colgroup>
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                    <col width="16%" />
+                                    <col width="34%" />
+                                  </colgroup>
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">신청확인</th>
+                                      <td>
+                                        <div class="board-form-options">
+                                          <label class="radio-label">
+                                            <input
+                                              type="radio"
+                                              name="vehiclePurchaseConfirmed"
+                                              value="confirmed"
+                                              checked
+                                            />
+                                            <span class="radio-label-text">확인</span>
+                                          </label>
+                                          <label class="radio-label">
+                                            <input type="radio" name="vehiclePurchaseConfirmed" value="unconfirmed" />
+                                            <span class="radio-label-text">미확인</span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                      <th scope="row">지원여부</th>
+                                      <td>
+                                        <div class="board-form-options">
+                                          <label class="radio-label">
+                                            <input type="radio" name="vehiclePurchaseSupported" value="unavailable" />
+                                            <span class="radio-label-text">불가능</span>
+                                          </label>
+                                          <label class="radio-label">
+                                            <input
+                                              type="radio"
+                                              name="vehiclePurchaseSupported"
+                                              value="available"
+                                              checked
+                                            />
+                                            <span class="radio-label-text">가능</span>
+                                          </label>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row"><label for="vehiclePurchaseMemo">메모</label></th>
+                                      <td colspan="3">
+                                        <textarea
+                                          id="vehiclePurchaseMemo"
+                                          name="vehiclePurchaseMemo"
+                                          class="textarea"
+                                          rows="4"
+                                        >
+(0706)(부재)(0707)신한카드상담안내/타 금융상품 확인중</textarea
+                                        >
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </section>
+
+                              <div class="board-form-actions justify-center mt-0">
+                                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-auto">
+                                  저장하기
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+
+                          <div
+                            class="board-tab-panel"
+                            id="vehiclePurchaseDocumentPanel"
+                            role="tabpanel"
+                            aria-labelledby="vehiclePurchaseDocumentTab"
+                            data-board-tab-panel
+                            hidden
+                          >
+                            <section class="board-section" aria-labelledby="vehicle-purchase-registered-document-title">
+                              <h2 class="board-section-title" id="vehicle-purchase-registered-document-title">
+                                등록서류목록
+                              </h2>
+                              <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                              <p class="board-content-empty" hidden>등록된 첨부파일이 없습니다.</p>
+                              <ul class="board-document-grid">
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">
+                                      가족관계증명서(운전자 명의로 발급 .jpg
+                                    </figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">
+                                      재학증명서(03월 21일 이후 발급분) .jpg
+                                    </figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">
+                                      저소득증빙서류(홈페이지 공지사항 참조) .jpg
+                                    </figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">
+                                      현대오일뱅크 보너스 카드 사본.jpg
+                                    </figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">
+                                      가족관계증명서(운전자 명의로 발급 .jpg
+                                    </figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">
+                                      재학증명서(03월 21일 이후 발급분) .jpg
+                                    </figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">
+                                      저소득등빙서류(홈페이지 공지사항 참조) .jpg
+                                    </figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                                <li class="board-document-item">
+                                  <figure class="board-document-card">
+                                    <a
+                                      href="/common/images/main/info-image.png"
+                                      class="board-document-thumb"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      aria-label="파일 새창열기"
+                                    >
+                                      <img src="/common/images/main/info-image.png" alt="" />
+                                    </a>
+                                    <figcaption class="board-document-name">
+                                      현대오일뱅크 보너스 카드 사본.jpg
+                                    </figcaption>
+                                    <div class="board-table-actions">
+                                      <a
+                                        href="/common/images/main/info-image.png"
+                                        class="btn variant-outline color-navy rounded-md size-sm"
+                                        download
+                                      >
+                                        다운로드
+                                      </a>
+                                    </div>
+                                  </figure>
+                                </li>
+                              </ul>
+                            </section>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin/js/include.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/l10n/ko.js"></script>
+    <script src="/admin/js/form.js"></script>
+    <script src="/admin/js/admin.js"></script>
+  </body>
+</html>

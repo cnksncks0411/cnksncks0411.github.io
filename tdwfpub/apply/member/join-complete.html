@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>가입완료 | 회원가입 | 지원신청사업</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/common/css/apply.css" />
+  </head>
+  <body data-site="apply" data-section="member" data-page="join">
+    <a href="#main" class="skip-link">본문 바로가기</a>
+
+    <!-- 지원신청 헤더 인클루드 영역: common/include/apply/header.html 파일을 불러옵니다. -->
+    <div id="include-header" data-include="header-apply"></div>
+
+    <main id="main">
+      <div class="breadcrumb-wrap">
+        <div class="inner">
+          <nav class="breadcrumb" aria-label="현재 위치">
+            <ol>
+              <li>
+                <a href="/apply/">
+                  <span class="material-symbols-rounded" aria-hidden="true">home</span>
+                  home
+                </a>
+              </li>
+              <li aria-current="page" data-breadcrumb-current>회원가입</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
+      <div class="sub-content-wrap" data-sub-content-wrap>
+        <div class="inner">
+          <!-- 회원 LNB 인클루드 영역: common/include/apply/lnb-member.html 파일을 불러옵니다. -->
+          <div data-include="lnb-apply-member" data-page="join"></div>
+
+          <section aria-labelledby="page-title">
+            <div class="sub-content-head">
+              <h1 id="page-title" class="sub-page-title">회원가입</h1>
+              <div class="sub-intro">
+                <p>회원가입으로 더 많은 정보 혜택을 누려보세요.</p>
+              </div>
+            </div>
+
+            <div class="sub-content join-result-content join-flow">
+              <ol class="join-steps" aria-label="회원가입 진행 단계">
+                <li class="step-item">
+                  <span class="step-number">STEP 01</span>
+                  <strong>약관동의</strong>
+                </li>
+                <li class="step-item">
+                  <span class="step-number">STEP 02</span>
+                  <strong>본인인증</strong>
+                </li>
+                <li class="step-item">
+                  <span class="step-number">STEP 03</span>
+                  <strong>회원정보</strong>
+                </li>
+                <li class="step-item active" aria-current="step">
+                  <span class="step-number">STEP 04</span>
+                  <strong>가입완료</strong>
+                </li>
+              </ol>
+
+              <div class="result-guide gap-10" role="status">
+                <div class="result-copy">
+                  <strong>축하합니다.</strong>
+                  <p>화물복지재단 <span class="text-blue font-bold">회원가입이 완료</span> 되었습니다.</p>
+                </div>
+                <p>로그인하시면 더 많은 서비스를 이용하실 수 있습니다.</p>
+              </div>
+
+              <div class="result-actions">
+                <a href="/apply/member/login.html" class="btn variant-solid color-gradient size-lg">
+                  <span class="btn-label">로그인</span>
+                </a>
+                <a href="/apply/" class="btn variant-solid color-navy size-lg">
+                  <span class="btn-label">메인 바로가기</span>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 플로팅 메뉴 인클루드 영역: common/include/apply/floating.html 파일을 불러옵니다. -->
+    <div id="include-floating-menu" data-include="floating-apply"></div>
+
+    <!-- 공통 푸터 인클루드 영역: common/include/footer.html 파일을 불러옵니다. -->
+    <div id="include-footer" data-include="footer-common"></div>
+
+    <script src="/common/js/include.js"></script>
+    <script src="/common/js/common.js"></script>
+    <script src="/common/js/apply.js"></script>
+  </body>
+</html>

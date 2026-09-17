@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>명의자 정보조회 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="recruitment" data-page="holder-info">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 사업공고 및 마감 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-recruitment.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-recruitment" data-page="holder-info"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>명의자 정보조회</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/recruitment/project-notice-list.html">사업공고 및 마감</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">명의자 정보조회</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-label="명의자 정보조회">
+              <form class="flex gap-2" action="/admin_bak/recruitment/holder-info-list.html" method="get">
+                <table class="board-search-table">
+                  <caption>
+                    명의자 정보조회 조회조건
+                  </caption>
+                  <colgroup>
+                    <col width="6%" />
+                    <col width="14%" />
+                    <col width="6%" />
+                    <col width="14%" />
+                    <col width="6%" />
+                    <col width="14%" />
+                    <col width="6%" />
+                    <col width="14%" />
+                    <col width="6%" />
+                    <col width="14%" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row"><label for="holderInfoProjectName">사업명</label></th>
+                      <td>
+                        <select id="holderInfoProjectName" name="projectName" class="form-control w-full">
+                          <option value="general-scholarship">일반장학사업</option>
+                        </select>
+                      </td>
+                      <th scope="row"><label for="holderInfoRound">년도회차</label></th>
+                      <td>
+                        <input id="holderInfoRound" name="round" type="text" class="form-control w-full" />
+                      </td>
+                      <th scope="row"><label for="holderInfoReceiptStatus">접수상태</label></th>
+                      <td>
+                        <select id="holderInfoReceiptStatus" name="receiptStatus" class="form-control w-full">
+                          <option value="">전체</option>
+                        </select>
+                      </td>
+                      <th scope="row"><label for="holderInfoProcessStatus">처리상태</label></th>
+                      <td>
+                        <select id="holderInfoProcessStatus" name="processStatus" class="form-control w-full">
+                          <option value="">전체</option>
+                        </select>
+                      </td>
+                      <th scope="row"><label for="holderInfoVehicleNumber">차량번호</label></th>
+                      <td>
+                        <input
+                          id="holderInfoVehicleNumber"
+                          name="vehicleNumber"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><label for="holderInfoDriverName">운전자명</label></th>
+                      <td>
+                        <input
+                          id="holderInfoDriverName"
+                          name="driverName"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="holderInfoDriverBirth">운전자 생년월일</label></th>
+                      <td>
+                        <input
+                          id="holderInfoDriverBirth"
+                          name="driverBirth"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="holderInfoApplicantName">대상자명</label></th>
+                      <td>
+                        <input
+                          id="holderInfoApplicantName"
+                          name="applicantName"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="holderInfoApplicantBirth">대상자 생년월일</label></th>
+                      <td>
+                        <input
+                          id="holderInfoApplicantBirth"
+                          name="applicantBirth"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                      <th scope="row"><label for="holderInfoDriverPhone">운전자 휴대폰번호</label></th>
+                      <td>
+                        <input
+                          id="holderInfoDriverPhone"
+                          name="driverPhone"
+                          type="text"
+                          class="form-control w-full"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="holder-info-list-title">
+              <div class="board-info-row">
+                <h2 class="board-list-title" id="holder-info-list-title">지원현황</h2>
+                <div class="board-info-actions">
+                  <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                    <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                    엑셀 다운로드
+                  </button>
+                  <select class="form-control" aria-label="목록 표시 개수">
+                    <option>10개 보기</option>
+                    <option>30개 보기</option>
+                    <option>50개 보기</option>
+                    <option>100개 보기</option>
+                    <option>300개 보기</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="board-table-wrap overflow-visible">
+                <table class="board-table">
+                  <caption>
+                    명의자 정보조회 지원현황 목록
+                  </caption>
+                  <colgroup>
+                    <col width="12%" />
+                    <col width="6%" />
+                    <col width="8%" />
+                    <col width="6%" />
+                    <col width="8%" />
+                    <col width="6%" />
+                    <col width="8%" />
+                    <col width="8%" />
+                    <col width="7%" />
+                    <col width="7%" />
+                    <col width="6%" />
+                    <col width="6%" />
+                    <col width="6%" />
+                    <col width="6%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th scope="col">공고명</th>
+                      <th scope="col">운전자<br />성함</th>
+                      <th scope="col">운전자<br />생년월일</th>
+                      <th scope="col">대상자<br />성함</th>
+                      <th scope="col">대상자<br />생년월일</th>
+                      <th scope="col">자격증<br />성함</th>
+                      <th scope="col">자격증<br />번호</th>
+                      <th scope="col">자격증<br />검증결과</th>
+                      <th scope="col">접수상태</th>
+                      <th scope="col">선발상태</th>
+                      <th scope="col">탈락사유</th>
+                      <th scope="col">메모</th>
+                      <th scope="col">접수내역</th>
+                      <th scope="col">서류등록</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                    <tr hidden>
+                      <td colspan="14" class="board-content-empty">등록된 명의자 정보가 없습니다.</td>
+                    </tr>
+                    <!-- 반복: 명의자 정보조회 지원현황 행 -->
+                    <tr>
+                      <td>2025년 일반장학사업</td>
+                      <td>홍*동</td>
+                      <td>19720607</td>
+                      <td>홍*들</td>
+                      <td>20060727</td>
+                      <td>홍*동</td>
+                      <td>119053827</td>
+                      <td>검증성공</td>
+                      <td>접수완료</td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                        <!-- 메모에 마우스를 올리면 전체 내용 표출 -->
+                        <div class="tooltip type-memo" data-tooltip="재학증명 확인불가" tabindex="0">
+                          <div class="board-cell-title">재학증명 확인불가</div>
+                        </div>
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          class="btn variant-solid color-navy rounded-md size-sm"
+                        >
+                          접수내역
+                        </a>
+                      </td>
+                      <td>
+                        <button
+                          type="button"
+                          class="btn variant-outline color-navy rounded-md size-sm"
+                        >
+                          추가
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>N</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <nav class="board-pagination" aria-label="명의자 정보조회 지원현황 페이지 이동">
+                <a href="#" class="board-page-button" aria-label="첫 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_left
+                  </span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="이전 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span>
+                </a>
+                <ol class="board-pagination-list">
+                  <li><a href="#" class="board-page-button is-active" aria-current="page">1</a></li>
+                  <li><a href="#" class="board-page-button">2</a></li>
+                  <li><a href="#" class="board-page-button">3</a></li>
+                  <li><a href="#" class="board-page-button">4</a></li>
+                  <li><a href="#" class="board-page-button">5</a></li>
+                  <li><a href="#" class="board-page-button">6</a></li>
+                  <li><a href="#" class="board-page-button">7</a></li>
+                  <li><a href="#" class="board-page-button">8</a></li>
+                  <li><a href="#" class="board-page-button">9</a></li>
+                  <li><a href="#" class="board-page-button">10</a></li>
+                </ol>
+                <a href="#" class="board-page-button" aria-label="다음 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span>
+                </a>
+                <a href="#" class="board-page-button" aria-label="마지막 페이지로 이동">
+                  <span class="material-symbols-rounded board-page-icon" aria-hidden="true">
+                    keyboard_double_arrow_right
+                  </span>
+                </a>
+              </nav>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

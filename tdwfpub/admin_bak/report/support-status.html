@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>사업지원현황 | 화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="report" data-page="support-status">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 레포트관리 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-report.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-report" data-page="support-status"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <h1>사업지원현황</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/report/application-status.html">레포트관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <span aria-current="page">사업지원현황</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="support-status-search-title">
+              <h2 class="board-list-title sr-only" id="support-status-search-title">조회조건</h2>
+              <form
+                class="flex justify-center gap-2"
+                role="search"
+                action="/admin_bak/report/support-status.html"
+                method="get"
+              >
+                <table class="board-search-table w-auto">
+                  <caption>
+                    사업지원현황 공고 조회조건
+                  </caption>
+                  <colgroup>
+                    <col width="120" />
+                    <col width="*" />
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row"><label for="projectNotice">공고 선택</label></th>
+                      <td>
+                        <select id="projectNotice" class="form-control w-full" name="projectNotice">
+                          <option value="">공고 선택</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">조회</button>
+                <!-- 엑셀 다운로드 버튼: 개발 시 사업지원현황 다운로드 기능 연결 -->
+                <button type="button" class="btn variant-outline color-navy rounded-md size-board-auto">
+                  <span class="material-symbols-rounded" aria-hidden="true">download</span>
+                  엑셀 다운로드
+                </button>
+              </form>
+            </section>
+
+            <section class="panel flex flex-col gap-10" aria-label="사업지원현황">
+              <div>
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="scholarship-support-title">장학사업 지원자현황</h2>
+                </div>
+
+                <div class="board-table-wrap">
+                  <table class="board-table">
+                    <caption>
+                      장학사업 지원자현황
+                    </caption>
+                    <colgroup>
+                      <col width="25%" />
+                      <col width="25%" />
+                      <col width="25%" />
+                      <col width="25%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col" rowspan="2">부문</th>
+                        <th scope="colgroup" colspan="3">세부지원현황</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">총지원자</th>
+                        <th scope="col">배려자전형</th>
+                        <th scope="col">우수/모범전형</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="4" class="board-content-empty">등록된 지원자현황이 없습니다.</td>
+                      </tr>
+                      <!-- 반복: 장학사업 지원자현황 행 -->
+                      <tr>
+                        <td>중학교</td>
+                        <td>3,752</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>고등학교</td>
+                        <td>4,818</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                      <tr>
+                        <td>대학교</td>
+                        <td>6,583</td>
+                        <td>0</td>
+                        <td>0</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <div class="board-info-row">
+                  <h2 class="board-list-title" id="special-support-title">특별전형 지원현황</h2>
+                </div>
+
+                <div class="board-table-wrap">
+                  <table class="board-table">
+                    <caption>
+                      특별전형 지원현황
+                    </caption>
+                    <colgroup>
+                      <col width="33.33%" />
+                      <col width="33.33%" />
+                      <col width="33.34%" />
+                    </colgroup>
+                    <thead>
+                      <tr>
+                        <th scope="col">부문</th>
+                        <th scope="col">선발부문</th>
+                        <th scope="col">지원현황</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- 목록 없는 경우: hidden 속성을 제거하고 표시 -->
+                      <tr hidden>
+                        <td colspan="3" class="board-content-empty">등록된 특별전형 지원현황이 없습니다.</td>
+                      </tr>
+                      <!-- 반복: 특별전형 지원현황 행 -->
+                      <tr>
+                        <td>중학교</td>
+                        <td>일반</td>
+                        <td>3,752</td>
+                      </tr>
+                      <tr>
+                        <td>고등학교</td>
+                        <td>일반</td>
+                        <td>4,818</td>
+                      </tr>
+                      <tr>
+                        <td>대학교</td>
+                        <td>일반</td>
+                        <td>6,583</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

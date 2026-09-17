@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 관리자</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin_bak/css/admin.css" />
+  </head>
+  <body data-site="admin" data-section="community" data-page="recruit">
+    <a href="#admin-content" class="skip-link">본문 바로가기</a>
+
+    <div id="wrap">
+      <!-- 관리자 공통 헤더 인클루드 영역: /admin_bak/include/header.html 파일을 불러옵니다. -->
+      <div id="include-admin-header" data-include="header"></div>
+
+      <div class="admin-content-wrap" data-layout-body>
+        <!-- 커뮤니티 좌측 메뉴 인클루드 영역: /admin_bak/include/lnb-community.html 파일을 불러옵니다. -->
+        <div id="include-admin-lnb" data-include="lnb-community" data-page="recruit"></div>
+
+        <main id="admin-content" data-content>
+          <!-- 열린 관리자 페이지 탭 렌더링 영역: 저장된 탭이 있을 때 admin.js에서 목록을 출력합니다. -->
+          <nav class="tab-bar" data-tabs data-tab-bar aria-label="열린 관리자 페이지" hidden></nav>
+
+          <div class="content-wrap">
+            <div class="page-title">
+              <!-- 수정인 경우 글수정으로 변경 -->
+              <h1>글쓰기</h1>
+              <nav class="breadcrumb" aria-label="현재 위치">
+                <a href="/admin_bak/admin-main.html">Home</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/community/recruit-list.html">커뮤니티 관리</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <a href="/admin_bak/community/recruit-list.html">채용공고</a>
+                <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
+                <!-- 수정인 경우 글수정으로 변경 -->
+                <span aria-current="page">글쓰기</span>
+              </nav>
+            </div>
+
+            <section class="panel" aria-labelledby="write-form-title">
+              <h2 id="write-form-title" hidden>채용공고 글쓰기 입력폼</h2>
+              <form action="/admin_bak/community/recruit-list.html" method="post" enctype="multipart/form-data">
+                <table class="board-form-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">아이디</th>
+                      <td>admin</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">작성자</th>
+                      <td>관리자</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">제목</th>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="text"
+                          name="title"
+                          aria-label="제목"
+                          placeholder="제목을 입력하세요."
+                          required
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">공개여부</th>
+                      <td>
+                        <div class="board-form-options">
+                          <label class="radio-label">
+                            <input type="radio" name="open" value="true" checked />
+                            <span class="radio-label-text">공개</span>
+                          </label>
+                          <label class="radio-label">
+                            <input type="radio" name="open" value="false" />
+                            <span class="radio-label-text">비공개</span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">내용</th>
+                      <td>
+                        <!-- 에디터 연결 위치 -->
+                        <textarea class="textarea" name="content" rows="10" aria-label="내용" required></textarea>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">파일</th>
+                      <td>
+                        <div class="board-file-upload" data-file-upload>
+                          <div class="board-file-upload-head">
+                            <button
+                              type="button"
+                              class="btn variant-outline color-navy rounded-md size-sm btn-board-file-select"
+                              data-file-select
+                            >
+                              <span class="btn-label">
+                                <span class="material-symbols-rounded" aria-hidden="true">upload_file</span>
+                                파일선택
+                              </span>
+                            </button>
+                            <input
+                              type="file"
+                              class="board-file-input"
+                              name="attachments"
+                              aria-label="첨부파일"
+                              data-file-input
+                              multiple
+                            />
+                          </div>
+                          <div class="board-file-table-wrap">
+                            <table class="board-file-table">
+                              <caption>
+                                첨부파일 목록
+                              </caption>
+                              <colgroup>
+                                <col class="board-file-check-col" />
+                                <col />
+                                <col class="board-file-size-col" />
+                                <col class="board-file-status-col" />
+                              </colgroup>
+                              <thead>
+                                <tr>
+                                  <th scope="col">선택</th>
+                                  <th scope="col">파일이름</th>
+                                  <th scope="col">크기</th>
+                                  <th scope="col">상태</th>
+                                </tr>
+                              </thead>
+                              <tbody data-file-list>
+                                <tr class="board-file-empty-row">
+                                  <td colspan="4">선택된 파일이 없습니다.</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="board-file-upload-actions" data-file-actions hidden>
+                            <button
+                              type="button"
+                              class="btn variant-soft color-red rounded-md size-sm btn-board-file-delete"
+                              data-file-delete
+                            >
+                              삭제
+                            </button>
+                            <p class="board-file-upload-summary" data-file-summary hidden>0개의 파일 (0B)</p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="board-form-actions">
+                  <!-- 수정인 경우 수정하기로 변경 -->
+                  <button type="submit" class="btn variant-solid color-navy rounded-md size-board-action">
+                    등록하기
+                  </button>
+                  <a
+                    href="/admin_bak/community/recruit-list.html"
+                    class="btn variant-outline color-navy rounded-md size-board-action"
+                  >
+                    취소하기
+                  </a>
+                </div>
+              </form>
+            </section>
+          </div>
+        </main>
+      </div>
+
+      <!-- 관리자 공통 푸터 인클루드 영역: /admin_bak/include/footer.html 파일을 불러옵니다. -->
+      <div id="include-admin-footer" data-include="footer"></div>
+    </div>
+    <script src="/admin_bak/js/include.js"></script>
+    <script src="/admin_bak/js/form.js"></script>
+    <script src="/admin_bak/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>화물복지재단 협력업체 관리자</title>
+    <link rel="icon" href="/common/images/favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/admin/css/admin.css" />
+  </head>
+  <body class="login">
+    <main class="login-card" aria-labelledby="login-title">
+      <div class="brand-logo">
+        <img src="/common/images/logo.png" alt="화물복지재단" class="brand-logo-mark" />
+        <strong class="brand-logo-text">화물복지재단</strong>
+      </div>
+
+      <h1 id="login-title">관리자 로그인</h1>
+
+      <form action="/cooperation/recruitment/reception-close-list.html" method="post">
+        <div class="login-row">
+          <label for="admin-id">ID<span class="required-mark" aria-hidden="true">*</span></label>
+          <input id="admin-id" class="form-control" type="text" name="adminId" placeholder="ID" required />
+        </div>
+        <div class="login-row">
+          <label for="admin-pw">Password<span class="required-mark" aria-hidden="true">*</span></label>
+          <input
+            id="admin-pw"
+            class="form-control"
+            type="password"
+            name="adminPassword"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn variant-solid color-gradient rounded-md size-lg">
+          <span class="btn-label">로그인</span>
+        </button>
+        <div class="check-row">
+          <label class="check-label">
+            <input type="checkbox" name="saveId" />
+            <span class="check-label-text">ID 저장</span>
+          </label>
+        </div>
+      </form>
+
+      <div class="login-help">
+        아이디, 비밀번호를 잊어버린 경우 관리자에게 문의하시기 바랍니다.<br />
+        고객센터 : <strong>02)761-0200</strong>
+      </div>
+    </main>
+  </body>
+</html>

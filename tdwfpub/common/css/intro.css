@@ -1,0 +1,314 @@
+@charset "utf-8";
+@import url("/common/css/base/base.css");
+@import url("/common/css/base/btn.css");
+@import url("/common/css/base/board.css");
+@import url("/common/css/base/common.css");
+@import url("/common/css/base/layout.css");
+@import url("/common/css/base/layout-sub.css");
+
+/* 인트로 페이지 */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #e8f3fb 0%, #f9fcff 58%, #dfeff9 100%);
+}
+
+.intro-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0 64px;
+}
+
+.intro-wrap {
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.intro-brand {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 38px;
+}
+
+.intro-brand .brand-logo {
+  gap: 12px;
+  margin: 0;
+}
+
+.intro-brand .brand-logo-mark {
+  width: 120px;
+}
+
+.intro-brand .brand-logo-text {
+  font-size: 34px;
+}
+
+.intro-card-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px;
+}
+
+.intro-card {
+  position: relative;
+  min-height: 240px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  border: 2px solid #bdd4e8;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform 0.22s ease;
+}
+
+.intro-card::before {
+  content: "";
+  position: absolute;
+  inset: auto -12% 50%;
+  z-index: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 36px;
+  background: #e9f5fe;
+  opacity: 0;
+  transform: rotate(8deg);
+  transition: opacity 0.22s ease;
+}
+
+.intro-card:hover::before,
+.intro-card:focus-within::before {
+  opacity: 1;
+}
+
+.intro-card:hover {
+  border: 3px solid var(--mint);
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(13, 50, 103, 0.18);
+}
+.intro-card:focus-within {
+  border: 3px solid var(--mint);
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(13, 50, 103, 0.18);
+}
+.intro-card:hover .btn {
+  color: #fff;
+  box-shadow: 0 13px 26px rgba(0, 169, 157, 0.18);
+}
+.intro-card:focus-within .btn {
+  color: #fff;
+  box-shadow: 0 13px 26px rgba(0, 169, 157, 0.18);
+}
+.intro-card .btn.variant-solid.color-gradient {
+  border: 0;
+}
+.intro-card .btn.variant-solid.color-gradient:hover {
+  border: 0;
+}
+.intro-card .btn.variant-solid.color-gradient:focus-visible {
+  border: 0;
+}
+.intro-card:hover .btn.variant-solid.color-gradient,
+.intro-card:focus-within .btn.variant-solid.color-gradient {
+  background-image: linear-gradient(90deg, var(--blue), var(--mint));
+}
+.intro-body {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.intro-title {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-width: 0;
+  display: block;
+}
+
+.intro-no {
+  position: relative;
+  width: auto;
+  display: inline-flex;
+  justify-content: flex-start;
+  padding-top: 32px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.intro-no::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 88px;
+  height: 6px;
+  border-radius: 999px;
+  background-image: linear-gradient(90deg, var(--blue), var(--blue));
+}
+
+.intro-card:hover .intro-no::before,
+.intro-card:focus-within .intro-no::before {
+  background-image: linear-gradient(90deg, var(--blue), var(--mint));
+}
+
+.intro-card h2 {
+  margin: 16px 0 0;
+  font-size: 38px;
+  line-height: 1.18;
+  letter-spacing: -0.085em;
+  color: var(--navy);
+}
+.intro-card .btn {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1280px) {
+  .intro-card {
+    min-height: 220px;
+    padding: 28px;
+  }
+  .intro-card h2 {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 960px) {
+  .intro-main {
+    padding: 34px 0 28px;
+  }
+
+  .intro-wrap {
+    padding: 0 22px;
+  }
+
+  .intro-brand {
+    margin-bottom: 20px;
+  }
+  .intro-brand .brand-logo-mark {
+    width: 96px;
+  }
+  .intro-brand .brand-logo-text {
+    font-size: 28px;
+  }
+
+  .intro-card-wrap {
+    gap: 12px;
+  }
+
+  .intro-card {
+    min-height: 160px;
+    gap: 20px;
+    padding: 20px 24px;
+    border-radius: 22px;
+  }
+
+  .intro-no {
+    padding-top: 24px;
+    font-size: 13px;
+  }
+
+  .intro-no::before {
+    width: 72px;
+    height: 5px;
+  }
+
+  .intro-card h2 {
+    margin-top: 12px;
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    min-height: 100dvh;
+  }
+  .intro-main {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 8px 0;
+  }
+  .intro-wrap {
+    padding: 0 18px;
+  }
+  .intro-brand {
+    margin-bottom: 10px;
+  }
+  .intro-brand .brand-logo {
+    gap: 8px;
+  }
+  .intro-brand .brand-logo-mark {
+    width: 72px;
+  }
+  .intro-brand .brand-logo-text {
+    font-size: 22px;
+  }
+
+  .intro-card-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-card {
+    min-height: auto;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .intro-card:hover,
+  .intro-card:focus-within {
+    transform: none;
+  }
+
+  .intro-card::before {
+    bottom: 40%;
+  }
+
+  .intro-title {
+    width: auto;
+    flex: 1 1 auto;
+  }
+
+  .intro-body {
+    width: auto;
+    flex: 0 0 auto;
+  }
+  .intro-no {
+    padding-top: 20px;
+    font-size: 12px;
+  }
+
+  .intro-no::before {
+    width: 40px;
+    height: 4px;
+  }
+
+  .intro-card h2 {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+  .intro-card .btn {
+    min-height: 34px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+}
