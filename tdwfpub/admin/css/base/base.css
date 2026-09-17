@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 
 /* ===== 폰트 ===== */
 @font-face {
@@ -7,8 +7,8 @@
   font-display: swap;
   src:
     local("Pretendard Thin"),
-    url("/common/fonts/Pretendard-Thin.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-Thin.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-Thin.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-Thin.woff") format("woff");
 }
 
 @font-face {
@@ -17,8 +17,8 @@
   font-display: swap;
   src:
     local("Pretendard ExtraLight"),
-    url("/common/fonts/Pretendard-ExtraLight.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-ExtraLight.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-ExtraLight.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-ExtraLight.woff") format("woff");
 }
 
 @font-face {
@@ -27,8 +27,8 @@
   font-display: swap;
   src:
     local("Pretendard Light"),
-    url("/common/fonts/Pretendard-Light.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-Light.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-Light.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-Light.woff") format("woff");
 }
 
 @font-face {
@@ -37,8 +37,8 @@
   font-display: swap;
   src:
     local("Pretendard Regular"),
-    url("/common/fonts/Pretendard-Regular.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-Regular.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-Regular.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-Regular.woff") format("woff");
 }
 
 @font-face {
@@ -47,8 +47,8 @@
   font-display: swap;
   src:
     local("Pretendard Medium"),
-    url("/common/fonts/Pretendard-Medium.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-Medium.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-Medium.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-Medium.woff") format("woff");
 }
 
 @font-face {
@@ -57,8 +57,8 @@
   font-display: swap;
   src:
     local("Pretendard SemiBold"),
-    url("/common/fonts/Pretendard-SemiBold.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-SemiBold.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-SemiBold.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-SemiBold.woff") format("woff");
 }
 
 @font-face {
@@ -67,8 +67,8 @@
   font-display: swap;
   src:
     local("Pretendard Bold"),
-    url("/common/fonts/Pretendard-Bold.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-Bold.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-Bold.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-Bold.woff") format("woff");
 }
 
 @font-face {
@@ -77,8 +77,8 @@
   font-display: swap;
   src:
     local("Pretendard ExtraBold"),
-    url("/common/fonts/Pretendard-ExtraBold.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-ExtraBold.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-ExtraBold.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-ExtraBold.woff") format("woff");
 }
 
 @font-face {
@@ -87,8 +87,8 @@
   font-display: swap;
   src:
     local("Pretendard Black"),
-    url("/common/fonts/Pretendard-Black.woff2") format("woff2"),
-    url("/common/fonts/Pretendard-Black.woff") format("woff");
+    url("/tdwfpub/common/fonts/Pretendard-Black.woff2") format("woff2"),
+    url("/tdwfpub/common/fonts/Pretendard-Black.woff") format("woff");
 }
 
 /* ===== 디폴트 ===== */

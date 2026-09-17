@@ -1,19 +1,19 @@
-(() => {
+﻿(() => {
   const componentFiles = {
-    "header": "/admin/include/header.html",
-    "footer": "/admin/include/footer.html",
-    "lnb-community": "/admin/include/lnb-community.html",
-    "lnb-partner": "/admin/include/lnb-partner.html",
-    "lnb-user": "/admin/include/lnb-user.html",
-    "lnb-system": "/admin/include/lnb-system.html",
-    "lnb-basic": "/admin/include/lnb-basic.html",
-    "lnb-recruitment": "/admin/include/lnb-recruitment.html",
-    "lnb-screening": "/admin/include/lnb-screening.html",
-    "lnb-followup": "/admin/include/lnb-followup.html",
-    "lnb-followup-ended": "/admin/include/lnb-followup-ended.html",
-    "lnb-transfer": "/admin/include/lnb-transfer.html",
-    "lnb-site": "/admin/include/lnb-site.html",
-    "lnb-report": "/admin/include/lnb-report.html",
+    "header": "/tdwfpub/admin/include/header.html",
+    "footer": "/tdwfpub/admin/include/footer.html",
+    "lnb-community": "/tdwfpub/admin/include/lnb-community.html",
+    "lnb-partner": "/tdwfpub/admin/include/lnb-partner.html",
+    "lnb-user": "/tdwfpub/admin/include/lnb-user.html",
+    "lnb-system": "/tdwfpub/admin/include/lnb-system.html",
+    "lnb-basic": "/tdwfpub/admin/include/lnb-basic.html",
+    "lnb-recruitment": "/tdwfpub/admin/include/lnb-recruitment.html",
+    "lnb-screening": "/tdwfpub/admin/include/lnb-screening.html",
+    "lnb-followup": "/tdwfpub/admin/include/lnb-followup.html",
+    "lnb-followup-ended": "/tdwfpub/admin/include/lnb-followup-ended.html",
+    "lnb-transfer": "/tdwfpub/admin/include/lnb-transfer.html",
+    "lnb-site": "/tdwfpub/admin/include/lnb-site.html",
+    "lnb-report": "/tdwfpub/admin/include/lnb-report.html",
   };
 
   /**

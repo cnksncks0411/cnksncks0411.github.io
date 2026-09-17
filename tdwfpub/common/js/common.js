@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 머티리얼 아이콘 노출 초기화
  */
 (() => {
@@ -602,7 +602,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const [width, height] = (item.dataset.size || "600,600").split(",").map(Number);
       // data-position: 관리자 팝업창위치(가로,세로) 입력값. 없으면 화면 가운데로 엽니다.
       const position = item.dataset.position ? item.dataset.position.split(",").map(Number) : null;
-      const url = new URL("/common/include/popup/popup.html", window.location.href);
+      const url = new URL("/tdwfpub/common/include/popup/popup.html", window.location.href);
 
       url.searchParams.set("site", site);
       url.searchParams.set("noticeId", item.dataset.noticeId);

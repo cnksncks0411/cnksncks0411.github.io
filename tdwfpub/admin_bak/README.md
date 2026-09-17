@@ -1,13 +1,13 @@
-# 관리자 사이트 개발 전달사항
+﻿# 관리자 사이트 개발 전달사항
 
 관리자모드 별도 산출물입니다.
-진입 파일은 `/admin_bak/admin-login.html`이며, 로그인 후 메인 화면은 `/admin_bak/admin-main.html`입니다.
+진입 파일은 `/tdwfpub/admin_bak/admin-login.html`이며, 로그인 후 메인 화면은 `/tdwfpub/admin_bak/admin-main.html`입니다.
 
 ## 기본 구조
 
-- 공통 JS: `/admin_bak/js/admin.js`
-- include 로드: `/admin_bak/js/include.js`
-- form 관련 JS: `/admin_bak/js/form.js` (퍼블리싱용으로 임의작업 한 내용이니 전부 제거 및 변경하셔도 무방합니다.)
+- 공통 JS: `/tdwfpub/admin_bak/js/admin.js`
+- include 로드: `/tdwfpub/admin_bak/js/include.js`
+- form 관련 JS: `/tdwfpub/admin_bak/js/form.js` (퍼블리싱용으로 임의작업 한 내용이니 전부 제거 및 변경하셔도 무방합니다.)
 - business-pages.js: 아직 화면 구현 되지 않은 페이지를 위한 js입니다. 추후 작업 완료 시 삭제 예정입니다.
 
 ## 페이지 활성화 규칙
@@ -24,7 +24,7 @@
 
 ## 방문 페이지 탭
 
-- 방문 페이지 탭은 `/admin_bak/js/admin.js`에서 `localStorage`에 저장합니다.
+- 방문 페이지 탭은 `/tdwfpub/admin_bak/js/admin.js`에서 `localStorage`에 저장합니다.
 - 저장 키는 `twf-admin-open-tabs`입니다.
 - 최대 8개까지만 유지합니다. 같은 메뉴를 다시 열면 기존 탭을 제거하고 최근 탭으로 다시 저장합니다.
 - 탭 판별은 페이지 경로만이 아니라 `data-page` 기준으로도 처리합니다.

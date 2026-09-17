@@ -91,10 +91,11 @@ const getAdminHomeHref = () => {
   const adminPathIndex = window.location.pathname.lastIndexOf(`/${adminSiteName}/`);
 
   if (adminPathIndex >= 0) {
-    return `${window.location.origin}/${adminSiteName}/${adminMainPageName}`;
+    const basePath = window.location.pathname.slice(0, adminPathIndex);
+    return `${window.location.origin}${basePath}/${adminSiteName}/${adminMainPageName}`;
   }
 
-  return new URL(`/${adminSiteName}/${adminMainPageName}`, window.location.origin).href;
+  return new URL(`/tdwfpub/${adminSiteName}/${adminMainPageName}`, window.location.origin).href;
 };
 
 /**

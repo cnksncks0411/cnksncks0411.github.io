@@ -1,11 +1,11 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 @import url("https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css");
 @import url("https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/themes/material_blue.css");
-@import url("/admin_bak/css/base/base.css");
-@import url("/admin_bak/css/base/btn.css");
-@import url("/admin_bak/css/base/board.css");
-@import url("/admin_bak/css/base/common.css");
-@import url("/admin_bak/css/base/layout.css");
+@import url("/tdwfpub/admin_bak/css/base/base.css");
+@import url("/tdwfpub/admin_bak/css/base/btn.css");
+@import url("/tdwfpub/admin_bak/css/base/board.css");
+@import url("/tdwfpub/admin_bak/css/base/common.css");
+@import url("/tdwfpub/admin_bak/css/base/layout.css");
 
 /* ===== 로그인 ===== */
 body:not(.login) {

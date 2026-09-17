@@ -1,10 +1,10 @@
-(() => {
+﻿(() => {
   const componentFiles = {
-    "header": "/cooperation/include/header.html",
-    "footer": "/cooperation/include/footer.html",
-    "lnb-recruitment": "/cooperation/include/lnb-recruitment.html",
-    "lnb-screening": "/cooperation/include/lnb-screening.html",
-    "lnb-partner": "/cooperation/include/lnb-partner.html",
+    "header": "/tdwfpub/cooperation/include/header.html",
+    "footer": "/tdwfpub/cooperation/include/footer.html",
+    "lnb-recruitment": "/tdwfpub/cooperation/include/lnb-recruitment.html",
+    "lnb-screening": "/tdwfpub/cooperation/include/lnb-screening.html",
+    "lnb-partner": "/tdwfpub/cooperation/include/lnb-partner.html",
   };
 
   /**

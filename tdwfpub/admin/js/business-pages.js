@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const pageTitles = {
     evaluation: "평가관리",
     "field-status": "선발부문별 지원현황",
@@ -22,9 +22,9 @@
     <div class="page-title">
       <h1>${pageTitle}</h1>
       <nav class="breadcrumb" aria-label="현재 위치">
-        <a href="/admin/admin-main.html">Home</a>
+        <a href="/tdwfpub/admin/admin-main.html">Home</a>
         <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
-        <a href="/admin/regular/evaluation-list.html">정기사업관리</a>
+        <a href="/tdwfpub/admin/regular/evaluation-list.html">정기사업관리</a>
         <span class="material-symbols-rounded" aria-hidden="true">chevron_forward</span>
         <span aria-current="page">${pageTitle}</span>
       </nav>

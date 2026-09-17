@@ -1,4 +1,4 @@
-(() => {
+﻿(() => {
   const componentFiles = {
     "header-main": "main/header.html",
     "sitemap-main": "main/sitemap.html",
@@ -66,7 +66,7 @@
 
     if (!fileName) return;
 
-    const response = await fetch(`/common/include/${fileName}`);
+    const response = await fetch(`/tdwfpub/common/include/${fileName}`);
     const html = await response.text();
 
     const template = document.createElement("template");

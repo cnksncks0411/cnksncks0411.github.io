@@ -84,13 +84,13 @@ const getAdminHomeHref = () => {
 
   if (homeLink) return homeLink.href;
 
-  const adminPathIndex = window.location.pathname.lastIndexOf('/admin_bak/');
+  const adminPathIndex = window.location.pathname.lastIndexOf('/tdwfpub/admin_bak/');
 
   if (adminPathIndex >= 0) {
-    return `${window.location.origin}/admin_bak/admin-main.html`;
+    return `${window.location.origin}/tdwfpub/admin_bak/admin-main.html`;
   }
 
-  return new URL('/admin_bak/admin-main.html', window.location.origin).href;
+  return new URL('/tdwfpub/admin_bak/admin-main.html', window.location.origin).href;
 };
 
 /**

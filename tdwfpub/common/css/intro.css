@@ -1,10 +1,10 @@
-@charset "utf-8";
-@import url("/common/css/base/base.css");
-@import url("/common/css/base/btn.css");
-@import url("/common/css/base/board.css");
-@import url("/common/css/base/common.css");
-@import url("/common/css/base/layout.css");
-@import url("/common/css/base/layout-sub.css");
+﻿@charset "utf-8";
+@import url("/tdwfpub/common/css/base/base.css");
+@import url("/tdwfpub/common/css/base/btn.css");
+@import url("/tdwfpub/common/css/base/board.css");
+@import url("/tdwfpub/common/css/base/common.css");
+@import url("/tdwfpub/common/css/base/layout.css");
+@import url("/tdwfpub/common/css/base/layout-sub.css");
 
 /* 인트로 페이지 */
 body {
