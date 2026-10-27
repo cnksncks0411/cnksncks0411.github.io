@@ -767,11 +767,11 @@ body.hide-plan .plan-tag {
 }
 
 .review-region-item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2px 8px;
-  align-items: baseline;
-  min-height: 56px;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 2px 8px;
+	align-items: baseline;
+	min-height: 56px;
   padding: 8px 10px;
   border: 1px solid var(--border);
   border-radius: 5px;
@@ -787,20 +787,24 @@ body.hide-plan .plan-tag {
   background: #f5f9fd;
 }
 
-.review-region-item span {
+.review-region-item > span {
   font-size: 14px;
   font-weight: 700;
 }
 
-.review-region-item b {
-  justify-self: end;
-  font-size: 13px;
+.review-region-item > b {
+	justify-self: end;
+	font-size: 13px;
 }
 
-.review-region-item small {
-  grid-column: 1 / -1;
-  color: var(--muted);
-  font-size: 11px;
+.review-region-item > b.is-complete {
+	color: #267744;
+}
+
+.review-region-item > small {
+	grid-column: 1 / -1;
+	color: var(--muted);
+	font-size: 11px;
 }
 
 .review-batch-preview {
@@ -883,6 +887,11 @@ body.hide-plan .plan-tag {
 .review-check.is-warn {
   background: #fff1e8;
   color: #c2410c;
+}
+
+.review-check.is-neutral {
+	background: #eef2f6;
+	color: #49586a;
 }
 
 .review-row-actions {
@@ -1074,6 +1083,10 @@ body.hide-plan .plan-tag {
   gap: 8px;
 }
 
+.review-detail-section[hidden] {
+	display: none;
+}
+
 .review-detail-section .board-section-title {
   margin: 0;
   padding-left: 10px;
@@ -1238,6 +1251,10 @@ body.hide-plan .plan-tag {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
+}
+
+.review-compare-grid.is-single {
+	grid-template-columns: minmax(0, 1fr);
 }
 
 .review-detail-page-actions {

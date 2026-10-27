@@ -442,7 +442,7 @@
 	}
 
 	function stdTotals() {
-		var t = { apply: 0, picked: 0, people: 0, partSum: 0, typeOver: [], left: 0 };
+		var t = { apply: 0, picked: 0, people: 0, partSum: 0, typeOver: [], left: 0, excess: 0 };
 		state.std.parts.forEach(function (part) {
 			var pp = partPeople(part);
 			var typeSum = part.types.reduce(function (sum, type) { return sum + typePeople(part, type); }, 0);
@@ -452,7 +452,9 @@
 		flatRows().forEach(function (row) {
 			t.apply += row.apply; t.picked += row.picked; t.people += row.picked * row.per;
 			/* 신청이 모자라 채우지 못하는 인원. 다른 유형·부문으로 옮길지는 담당자가 정한다. */
-			t.left += Math.max(0, row.people - row.picked * row.per);
+			var appliedPeople = row.apply * row.per;
+			t.left += Math.max(0, row.people - appliedPeople);
+			t.excess += Math.max(0, appliedPeople - row.people);
 		});
 		t.over = state.std.mode === "UNLIMITED" ? 0 : t.partSum - announcedPeople();
 		return t;
@@ -487,15 +489,24 @@
 			: '<span class="std-status is-over">' + (label || "") + "초과 " + num(diff) + "명</span>";
 	}
 
+	/* 배정 인원과 실제 신청인원을 비교한다. 부족은 미충원, 초과는 후순위 대기 가능 인원이다. */
+	function applicationPill(shortage, excess) {
+		if (shortage) return '<span class="std-status is-short">부족 ' + num(shortage) + '명</span>';
+		if (excess) return '<span class="std-status is-quiet">초과 ' + num(excess) + '명</span>';
+		return '<span class="std-status is-ok">일치</span>';
+	}
+
 	/* 부문 한 개의 계산 결과 */
 	function partSummary(part) {
 		var pp = partPeople(part);
-		var s = { people: pp, typeSum: 0, apply: 0, picked: 0, lack: 0, left: 0 };
+		var s = { people: pp, typeSum: 0, apply: 0, picked: 0, lack: 0, left: 0, excess: 0 };
 		part.types.forEach(function (type) {
 			var people = typePeople(part, type);
 			var tp = typePicked(part, type);
+			var appliedPeople = type.apply * type.per;
 			s.typeSum += people; s.apply += type.apply; s.picked += tp;
-			if (tp * type.per < people) { s.lack += 1; s.left += people - tp * type.per; }
+			if (appliedPeople < people) { s.lack += 1; s.left += people - appliedPeople; }
+			s.excess += Math.max(0, appliedPeople - people);
 		});
 		s.diff = s.typeSum - pp;
 		return s;
@@ -510,7 +521,6 @@
 		if (!state.std || state.std.code !== b.code) buildStdRows();
 		var parts = state.std.parts;
 		if (!(state.std.sel < parts.length)) state.std.sel = 0;
-		var issuesOnly = $("[data-std-issues-only]").checked;
 		var unlimited = state.std.mode === "UNLIMITED";
 		var modeNames = { FIXED: "직접 배정", AUTO: "신청현황 기준 배정", UNLIMITED: "인원 제한 없음" };
 		$("[data-std-source]").textContent = "· " + (b.dataNote || ("부문 " + parts.length + "개"));
@@ -523,18 +533,14 @@
 		$("[data-std-auto-button]").hidden = state.std.mode !== "AUTO";
 		$("[data-std-auto-button]").disabled = state.std.locked;
 		$("[data-std-unlimited]").hidden = !unlimited;
-		$("[data-std-issues-only]").disabled = unlimited;
 
-		var issueParts = 0;
 		$("[data-std-parts]").innerHTML = parts.map(function (part, p) {
 			var s = partSummary(part);
-			if (!unlimited && s.diff !== 0) issueParts += 1;
-			if (!unlimited && issuesOnly && s.diff === 0 && p !== state.std.sel) return "";
 			return '<tr class="std-part-item' + (p === state.std.sel ? " is-selected" : "") + (s.diff !== 0 ? " has-issue" : "") +
 				'" data-action="std-select" data-p="' + p + '" tabindex="0"><th scope="row">' + part.name + "</th>" +
 				'<td class="text-right">' + (unlimited ? '<span class="std-status is-unlimited">제한없음</span>' : (part.basis === "RATE" ? part.value + "%" : num(part.value) + "명")) + "</td>" +
 				'<td class="text-right"><b>' + num(s.people) + '</b></td><td class="text-center">' + (unlimited ? '<span class="std-status is-ok">전체 지원</span>' : statusPill(s.diff)) +
-				'</td><td class="text-right">' + (unlimited ? '-' : (s.left ? '<span class="std-left">' + num(s.left) + "</span>" : '<span class="std-muted">-</span>')) + "</td></tr>";
+				'</td><td class="text-center">' + (unlimited ? '-' : applicationPill(s.left, s.excess)) + "</td></tr>";
 		}).join("");
 
 		var tt = stdTotals();
@@ -542,17 +548,17 @@
 		$("[data-std-parts-foot]").innerHTML = unlimited
 			? '<tr><th scope="row">합계</th><td class="text-right std-muted">제한없음</td><td class="text-right"><b>' + num(tt.apply) + '</b></td><td class="text-center"><span class="std-status is-ok">전체 지원</span></td><td class="text-right">-</td></tr>'
 			: '<tr><th scope="row">합계</th><td class="text-right std-muted">모집 ' + num(announced) + '</td><td class="text-right"><b>' + num(tt.partSum) +
-			'</b></td><td class="text-center">' + statusPill(tt.over) + '</td><td class="text-right">' + (tt.left ? '<span class="std-left">' + num(tt.left) + "</span>" : "-") + "</td></tr>";
+			'</b></td><td class="text-center">' + statusPill(tt.over) + '</td><td class="text-center">' + applicationPill(tt.left, tt.excess) + "</td></tr>";
 
 		renderStdDetail();
 
 		$("[data-std-stats]").innerHTML = unlimited
-			? stat("인원 배정 기준", modeNames[state.std.mode], "") + stat("접수인원", num(tt.apply), "명") +
+			? stat("인원 배정 기준", modeNames[state.std.mode], "") + stat("전체 신청자", num(tt.apply), "명") +
 				stat("지원 예정", num(tt.picked), "명") + stat("순위 기준", state.std.sorts.length, "개")
 			: stat("인원 배정 기준", modeNames[state.std.mode], "") + stat("공고 모집인원", num(announced), "명") +
 				stat("부문 합계", num(tt.partSum), "명" + (tt.over === 0 ? " · 일치" : (tt.over > 0 ? " · 초과 " + num(tt.over) : " · 부족 " + num(-tt.over))),
 					tt.over > 0 ? "is-danger" : (tt.over < 0 ? "is-warn" : "")) +
-				stat("신청 부족 잔여", num(tt.left), "명", tt.left ? "is-warn" : "") + stat("확인 필요 부문", num(issueParts), "개", issueParts ? "is-danger" : "");
+				stat("전체 신청자", num(tt.apply), "명");
 
 		renderSorts();
 		renderStdSaveState();
@@ -571,7 +577,7 @@
 				'<td class="text-right">' + num(type.apply) + '</td><td class="text-center">' + (state.std.mode === "UNLIMITED" ? '<span class="std-muted">제한없음</span>' : basisToggle(p, t, type.basis)) +
 				'</td><td class="text-center">' + (state.std.mode === "UNLIMITED" ? '-' : valueInput("t", p, t, type)) + '</td><td class="text-right"><b>' + num(people) +
 				'</b></td><td class="text-right">' + num(tp) + '</td><td class="text-center">' +
-				(state.std.mode === "UNLIMITED" ? '<span class="std-status is-ok">전체 지원</span>' : (short ? '<span class="std-status is-short">신청 부족 ' + num(short) + "명</span>" : '<span class="std-status is-quiet">신청 충분</span>')) + "</td></tr>";
+				(state.std.mode === "UNLIMITED" ? '<span class="std-status is-ok">전체 지원</span>' : applicationPill(short, Math.max(0, type.apply * type.per - people))) + "</td></tr>";
 		}).join("");
 		var partControls = state.std.mode === "UNLIMITED"
 			? '<span class="std-status is-unlimited">제한없음</span><span class="std-muted">현재 신청 ' + num(s.apply) + '건을 모두 지원 예정으로 봅니다.</span>'
@@ -590,7 +596,7 @@
 			"<tbody>" + rows + "</tbody>" +
 			'<tfoot><tr><th scope="row">유형 합</th><td class="text-right">' + num(s.apply) + '</td><td colspan="2" class="text-right std-muted">' + (state.std.mode === "UNLIMITED" ? "전체 신청 지원" : "부문 인원 " + num(s.people) + "명과 비교") +
 			'</td><td class="text-right"><b>' + num(s.typeSum) + '</b></td><td class="text-right"><b>' + num(s.picked) +
-			'</b></td><td class="text-center">' + (state.std.mode === "UNLIMITED" ? '<span class="std-status is-ok">전체 지원</span>' : statusPill(s.diff) + (s.left ? '<br><span class="std-left">남는 ' + num(s.left) + "명</span>" : "")) +
+			'</b></td><td class="text-center">' + (state.std.mode === "UNLIMITED" ? '<span class="std-status is-ok">전체 지원</span>' : statusPill(s.diff) + '<br>' + applicationPill(s.left, s.excess)) +
 			"</td></tr></tfoot></table>";
 	}
 
@@ -650,15 +656,15 @@
 	/* ===== 2. 1차심사 ===== */
 	var REVIEW_ROWS = {
 		"0003": [
-			{ no: "00000124", rank: 1, part: "서울", type: "본인", driver: "김○수", driverBirth: "1974-03-12", target: "김○수", targetBirth: "1974-03-12", relation: "본인", phone: "010-24**-7812", address: "서울특별시 송파구", vehicle: "서울82바12**", license: "정상", fuel: "정상", docs: "해당없음", benefit: 0, hospital: "국민체력센터", status: "01", memo: "" },
-			{ no: "00000131", rank: 2, part: "서울", type: "배우자", driver: "이○호", driverBirth: "1970-10-28", target: "박○희", targetBirth: "1976-06-02", relation: "배우자", phone: "010-38**-1029", address: "서울특별시 강서구", vehicle: "서울80사43**", license: "정상", fuel: "정상", docs: "1/1", benefit: 0, hospital: "서울메디검진센터", status: "01", memo: "가족관계증명서 대상자 확인 필요" },
-			{ no: "00000148", rank: 3, part: "서울", type: "본인", driver: "최○진", driverBirth: "1968-08-17", target: "최○진", targetBirth: "1968-08-17", relation: "본인", phone: "010-77**-2041", address: "서울특별시 도봉구", vehicle: "서울83아71**", license: "정상", fuel: "정상", docs: "해당없음", benefit: 0, hospital: "한신메디피아", status: "03", memo: "신청정보와 검증정보 일치" },
-			{ no: "00000156", rank: 4, part: "서울", type: "배우자", driver: "정○철", driverBirth: "1972-01-09", target: "정○철", targetBirth: "1972-01-09", relation: "배우자", phone: "010-51**-6620", address: "서울특별시 중랑구", vehicle: "서울81자09**", license: "정상", fuel: "정상", docs: "1/1", benefit: 0, hospital: "한국건강관리협회 서울동부", status: "02", memo: "배우자 신청이나 대상자가 운전자와 동일하여 확인 중" },
-			{ no: "00000172", rank: 5, part: "서울", type: "본인", driver: "윤○태", driverBirth: "1975-11-21", target: "윤○태", targetBirth: "1975-11-21", relation: "본인", phone: "010-62**-9017", address: "서울특별시 영등포구", vehicle: "서울84바35**", license: "정상", fuel: "정상", docs: "해당없음", benefit: 0, hospital: "여의도성모병원", status: "99", memo: "2024년 출생연도 기준 불일치" },
-			{ no: "00000407", rank: 1, part: "경기", type: "본인", driver: "한○석", driverBirth: "1966-04-30", target: "한○석", targetBirth: "1966-04-30", relation: "본인", phone: "010-19**-3408", address: "경기도 수원시", vehicle: "경기90바18**", license: "정상", fuel: "정상", docs: "해당없음", benefit: 1, hospital: "KMI 수원센터", status: "01", memo: "2022년 건강검진 수혜 이력 1회" },
-			{ no: "00000423", rank: 2, part: "경기", type: "배우자", driver: "문○식", driverBirth: "1978-12-11", target: "서○경", targetBirth: "1980-02-24", relation: "배우자", phone: "010-83**-5516", address: "경기도 성남시", vehicle: "경기91사62**", license: "정상", fuel: "정상", docs: "1/1", benefit: 0, hospital: "분당제생병원", status: "03", memo: "가족관계 및 대상연도 확인 완료" },
-			{ no: "00000791", rank: 1, part: "인천", type: "본인", driver: "강○민", driverBirth: "1972-07-08", target: "강○민", targetBirth: "1972-07-08", relation: "본인", phone: "010-44**-7823", address: "인천광역시 남동구", vehicle: "인천80바55**", license: "정상", fuel: "확인필요", docs: "해당없음", benefit: 0, hospital: "미선택", status: "01", memo: "유가 검증 결과와 검진병원 선택 여부 확인" },
-			{ no: "00000183", rank: 6, part: "서울", type: "본인", driver: "오○환", driverBirth: "1964-05-18", target: "오○환", targetBirth: "1964-05-18", relation: "본인", phone: "010-35**-4481", address: "서울특별시 관악구", vehicle: "서울86아41**", license: "정상", fuel: "정상", docs: "해당없음", benefit: 0, hospital: "한국의학연구소 강남", status: "01", memo: "", visible: false }
+			{ no: "00000124", rank: 1, part: "서울", type: "본인", driver: "김○수", driverBirth: "1974-03-12", target: "김○수", targetBirth: "1974-03-12", relation: "본인", phone: "010-24**-7812", address: "서울특별시 송파구", vehicle: "서울82바12**", license: "정상", fuel: "정상(본인: 김○수)", docs: "해당없음", benefit: 0, hospital: "국민체력센터", status: "01", memo: "" },
+			{ no: "00000131", rank: 2, part: "서울", type: "배우자", driver: "이○호", driverBirth: "1970-10-28", target: "박○희", targetBirth: "1976-06-02", relation: "배우자", phone: "010-38**-1029", address: "서울특별시 강서구", vehicle: "서울80사43**", license: "정상", fuel: "정상(가족: 박○희)", docs: "1/1", benefit: 0, hospital: "서울메디검진센터", status: "01", memo: "가족관계증명서 대상자 확인 필요" },
+			{ no: "00000148", rank: 3, part: "서울", type: "본인", driver: "최○진", driverBirth: "1968-08-17", target: "최○진", targetBirth: "1968-08-17", relation: "본인", phone: "010-77**-2041", address: "서울특별시 도봉구", vehicle: "서울83아71**", license: "정상", fuel: "정상(본인: 최○진)", docs: "해당없음", benefit: 0, hospital: "한신메디피아", status: "03", memo: "신청정보와 검증정보 일치" },
+			{ no: "00000156", rank: 4, part: "서울", type: "배우자", driver: "정○철", driverBirth: "1972-01-09", target: "정○철", targetBirth: "1972-01-09", relation: "배우자", phone: "010-51**-6620", address: "서울특별시 중랑구", vehicle: "서울81자09**", license: "정상", fuel: "정상(타인: 정○철)", docs: "1/1", benefit: 0, hospital: "한국건강관리협회 서울동부", status: "02", memo: "배우자 신청이나 대상자가 운전자와 동일하여 확인 중" },
+			{ no: "00000172", rank: 5, part: "서울", type: "본인", driver: "윤○태", driverBirth: "1975-11-21", target: "윤○태", targetBirth: "1975-11-21", relation: "본인", phone: "010-62**-9017", address: "서울특별시 영등포구", vehicle: "서울84바35**", license: "정상", fuel: "법인", docs: "해당없음", benefit: 0, hospital: "여의도성모병원", status: "99", memo: "2024년 출생연도 기준 불일치" },
+			{ no: "00000407", rank: 1, part: "경기", type: "본인", driver: "한○석", driverBirth: "1966-04-30", target: "한○석", targetBirth: "1966-04-30", relation: "본인", phone: "010-19**-3408", address: "경기도 수원시", vehicle: "경기90바18**", license: "정상", fuel: "정상(본인: 한○석)", docs: "해당없음", benefit: 1, hospital: "KMI 수원센터", status: "01", memo: "2022년 건강검진 수혜 이력 1회" },
+			{ no: "00000423", rank: 2, part: "경기", type: "배우자", driver: "문○식", driverBirth: "1978-12-11", target: "서○경", targetBirth: "1980-02-24", relation: "배우자", phone: "010-83**-5516", address: "경기도 성남시", vehicle: "경기91사62**", license: "정상", fuel: "정상(가족: 서○경)", docs: "1/1", benefit: 0, hospital: "분당제생병원", status: "03", memo: "가족관계 및 대상연도 확인 완료" },
+			{ no: "00000791", rank: 1, part: "인천", type: "본인", driver: "강○민", driverBirth: "1972-07-08", target: "강○민", targetBirth: "1972-07-08", relation: "본인", phone: "010-44**-7823", address: "인천광역시 남동구", vehicle: "인천80바55**", license: "정상", fuel: "실패", docs: "해당없음", benefit: 0, hospital: "미선택", status: "01", memo: "유가 검증 결과와 검진병원 선택 여부 확인" },
+			{ no: "00000183", rank: 6, part: "서울", type: "본인", driver: "오○환", driverBirth: "1964-05-18", target: "오○환", targetBirth: "1964-05-18", relation: "본인", phone: "010-35**-4481", address: "서울특별시 관악구", vehicle: "서울86아41**", license: "정상", fuel: "정상(본인: 오○환)", docs: "해당없음", benefit: 0, hospital: "한국의학연구소 강남", status: "01", memo: "", visible: false }
 		]
 	};
 
@@ -666,11 +672,13 @@
 		var units = quotaRows();
 		return [0, 1, 2, 3, 4, 5, 6, 7].map(function (index) {
 			var unit = units[index % units.length];
+			var driver = ["김○수", "이○호", "박○진", "최○철", "정○태", "강○석", "윤○민", "한○식"][index];
+			var target = ["김○수", "이○희", "박○진", "최○철", "정○태", "강○석", "윤○민", "한○경"][index];
 			return { no: String(4100 + index * 37).padStart(8, "0"), rank: index + 1, part: unit.part, type: unit.type,
-				driver: ["김○수", "이○호", "박○진", "최○철", "정○태", "강○석", "윤○민", "한○식"][index], driverBirth: "197" + (index % 9) + "-0" + ((index % 8) + 1) + "-12",
-				target: ["김○수", "이○희", "박○진", "최○철", "정○태", "강○석", "윤○민", "한○경"][index], targetBirth: "200" + (index % 9) + "-04-18",
+				driver: driver, driverBirth: "197" + (index % 9) + "-0" + ((index % 8) + 1) + "-12",
+				target: target, targetBirth: "200" + (index % 9) + "-04-18",
 				relation: index % 3 === 1 ? "배우자" : "본인", phone: "010-****-" + String(1200 + index * 17), address: "등록 주소", vehicle: "서울8" + index + "바****",
-				license: index === 6 ? "확인필요" : "정상", fuel: index === 5 ? "확인필요" : "정상", docs: index === 3 ? "확인필요" : "완료", benefit: index === 4 ? 1 : 0,
+				license: index === 6 ? "확인필요" : "정상", fuel: index === 5 ? "실패" : (index === 4 ? "법인" : "정상(본인: " + driver + ")"), docs: index === 3 ? "확인필요" : "완료", benefit: index === 4 ? 1 : 0,
 				hospital: "-", status: ["01", "03", "01", "02", "99", "01", "03", "01"][index], memo: index === 3 ? "보완서류 확인 대기" : "" };
 		});
 	}
@@ -689,6 +697,12 @@
 		return '<span class="review-check is-warn">' + value + "</span>";
 	}
 
+	function reviewFuel(value) {
+		if (/^정상\(/.test(value)) return '<span class="review-check is-ok">' + value + "</span>";
+		if (value === "법인") return '<span class="review-check is-neutral">법인</span>';
+		return '<span class="review-check is-warn">' + value + "</span>";
+	}
+
 	function setReviewOptions(selector, values, allLabel) {
 		var select = $(selector);
 		select.innerHTML = '<option value="">' + allLabel + "</option>" + values.filter(function (value, index, self) { return self.indexOf(value) === index; })
@@ -698,10 +712,10 @@
 	function filteredReviewRows() {
 		var part = $("[data-review-part]").value, type = $("[data-review-type]").value;
 		var status = $("[data-review-status]").value, driver = $("[data-review-driver]").value.trim(), target = $("[data-review-target]").value.trim();
-		var number = $("[data-review-number]").value.trim();
+		var vehicle = $("[data-review-vehicle]").value.trim();
 		return reviewRows().filter(function (row) {
 			return row.visible !== false && (!part || row.part === part) && (!type || row.type === type) && (!status || row.status === status) &&
-				(!driver || row.driver.indexOf(driver) >= 0) && (!target || row.target.indexOf(target) >= 0) && (!number || row.no.indexOf(number) >= 0);
+				(!driver || row.driver.indexOf(driver) >= 0) && (!target || row.target.indexOf(target) >= 0) && (!vehicle || row.vehicle.indexOf(vehicle) >= 0);
 		});
 	}
 
@@ -710,8 +724,14 @@
 		panel.hidden = state.biz !== "0003";
 		if (panel.hidden) return;
 		$("[data-review-region-grid]").innerHTML = biz().parts.map(function (part, index) {
-			var quota = part[1] + part[2], applied = part[3] + part[4], completed = Math.round(applied * (0.78 + (index % 4) * 0.04));
-			return '<button type="button" class="review-region-item" data-action="review-region" data-region="' + part[0] + '"><span>' + part[0] + '</span><b>' + num(completed) + ' / ' + num(applied) + '</b><small>정원 ' + num(quota) + "명</small></button>";
+			var selected = part[1] + part[2], applied = part[3] + part[4];
+			if (part[0] === "세종") applied = selected;
+			var reviewed = part[0] === "세종" ? selected : Math.round(applied * (0.78 + (index % 4) * 0.04));
+			var remaining = Math.max(0, selected - reviewed);
+			var selectionStatus = remaining === 0
+				? '<b class="is-complete">' + num(selected) + '명 선발완료</b>'
+				: '<b>' + num(remaining) + ' / ' + num(selected) + '</b>';
+			return '<button type="button" class="review-region-item" data-action="review-region" data-region="' + part[0] + '"><span>' + part[0] + '</span>' + selectionStatus + '<small>신청 인원 ' + num(applied) + "명</small></button>";
 		}).join("");
 	}
 
@@ -722,7 +742,7 @@
 		var previous = {
 			part: $("[data-review-part]").value, type: $("[data-review-type]").value,
 			status: $("[data-review-status]").value, driver: $("[data-review-driver]").value, target: $("[data-review-target]").value,
-			number: $("[data-review-number]").value
+			vehicle: $("[data-review-vehicle]").value
 		};
 		setReviewOptions("[data-review-part]", b.parts.map(function (part) { return part[0]; }), "전체 부문");
 		setReviewOptions("[data-review-type]", b.types.map(function (type) { return type[0]; }), "전체 유형");
@@ -743,9 +763,9 @@
 			var sourceIndex = rows.indexOf(row), status = reviewStatus(row.status), excluded = row.status === "02" || row.status === "99";
 			var memo = row.memo ? '<button type="button" class="review-memo-button" data-action="review-memo" data-review-index="' + sourceIndex + '" aria-label="메모 보기"><span class="material-symbols-rounded" aria-hidden="true">sticky_note_2</span><span class="review-memo-tooltip">' + row.memo + "</span></button>" : "-";
 			return '<tr class="' + (excluded ? "review-row-excluded" : (row.autoFilled ? "review-row-auto" : "review-row-ranked")) + '"><td class="text-center"><label class="check-label"><input type="checkbox" data-review-row-check data-review-index="' + sourceIndex + '" /><span class="check-label-text"></span></label></td>' +
-				'<td class="text-center"><b>' + (excluded ? "-" : row.rank) + '</b>' + (row.autoFilled ? '<span class="review-auto-badge">자동충원</span>' : '') + '</td><td class="text-center">' + row.no + '</td><td class="text-center">' + row.part + '</td><td class="text-center">' + row.type + '</td>' +
-				'<td class="text-center">' + row.driver + '</td><td class="text-center">' + row.target + '</td><td class="text-center">' + row.targetBirth + '</td><td class="text-center">' + reviewCheck(row.license) + '</td><td class="text-center">' + reviewCheck(row.fuel) + '</td><td class="text-center">' + reviewCheck(row.docs) + '</td>' +
-				'<td class="text-center">' + (row.benefit ? '<b class="text-red">' + row.benefit + "회</b>" : "-") + '</td><td class="text-center">' + badge(status[0], status[1]) + '</td><td class="text-center">' + memo + '</td><td class="text-center"><div class="review-row-actions">' +
+				'<td class="text-center"><b>' + (excluded ? "-" : row.rank) + '</b>' + (row.autoFilled ? '<span class="review-auto-badge">자동충원</span>' : '') + '</td><td class="text-center">' + row.vehicle + '</td><td class="text-center">' + row.part + '</td><td class="text-center">' + row.type + '</td>' +
+				'<td class="text-center">' + row.driver + '</td><td class="text-center">' + row.driverBirth + '</td><td class="text-center">' + (row.type === "배우자" ? row.target : "-") + '</td><td class="text-center">' + (row.type === "배우자" ? row.targetBirth : "-") + '</td><td class="text-center">' + reviewCheck(row.license) + '</td><td class="text-center">' + reviewFuel(row.fuel) + '</td><td class="text-center">' + reviewCheck(row.docs) + '</td>' +
+				'<td class="text-center">' + badge(status[0], status[1]) + '</td><td class="text-center">' + memo + '</td><td class="text-center"><div class="review-row-actions">' +
 				btn("상세", 'data-action="review-detail" data-review-index="' + sourceIndex + '"') + btn("심사", 'data-action="review-eval" data-review-index="' + sourceIndex + '"', "variant-solid color-navy") + "</div></td></tr>";
 		}).join("") || '<tr><td colspan="15" class="text-center review-empty">조회된 심사대상이 없습니다.</td></tr>';
 		$("[data-review-count]").textContent = "총 " + num(filtered.length) + "건 (화면 표본)";
@@ -758,13 +778,12 @@
 		$("[data-review-popup-subtitle]").textContent = biz().notice + " · 접수번호 " + row.no;
 		var status = reviewStatus(row.status);
 		$("[data-review-detail-summary]").innerHTML = '<div><span>선발순위</span><b>' + (row.status === "02" || row.status === "99" ? "순위 제외" : row.part + " · " + row.type + " " + row.rank + "위") + '</b></div><div><span>접수구분</span><b>' + badge(status[0], status[1]) + '</b></div><div><span>신청일</span><b>2024-02-' + String(10 + index).padStart(2, "0") + '</b></div><div><span>선택병원</span><b>' + row.hospital + "</b></div>";
-		$("[data-review-driver-detail]").innerHTML = '<tr><th scope="row">성명</th><td>' + row.driver + '</td><th scope="row">생년월일</th><td>' + row.driverBirth + '</td><th scope="row">휴대전화</th><td>' + row.phone + '</td></tr>' +
-			'<tr><th scope="row">자택주소</th><td colspan="3">' + row.address + '</td><th scope="row">차량번호</th><td>' + row.vehicle + "</td></tr>";
-		$("[data-review-target-detail]").innerHTML = '<tr><th scope="row">신청구분</th><td>' + row.type + '</td><th scope="row">대상자 성명</th><td>' + row.target + '</td><th scope="row">생년월일</th><td>' + row.targetBirth + '</td></tr>' +
-			'<tr><th scope="row">운전자와 관계</th><td>' + row.relation + '</td><th scope="row">선발부문</th><td>' + row.part + '</td><th scope="row">과거 수혜</th><td>' + (row.benefit ? row.benefit + "회" : "없음") + "</td></tr>";
-		var targetMatch = row.type === "본인" ? row.driver === row.target : row.driver !== row.target;
-		var evenYear = Number(row.targetBirth.slice(0, 4)) % 2 === 0;
-		var checks = [["운송종사자격", row.license, row.license === "정상"], ["유가보조금", row.fuel, row.fuel === "정상"], ["신청구분·대상자", targetMatch ? "일치" : "불일치", targetMatch], ["2024 검진 대상연도", evenYear ? "해당" : "비해당", evenYear], ["검진병원", row.hospital, row.hospital !== "미선택"], ["중복 식별값", "중복 없음", true]];
+		$("[data-review-driver-detail]").innerHTML = '<tr><th scope="row">성명</th><td>' + row.driver + '</td><th scope="row">생년월일</th><td>' + row.driverBirth + '</td><th scope="row">성별</th><td>' + (row.driverGender || "남성") + '</td></tr>' +
+			'<tr><th scope="row">휴대전화</th><td>' + row.phone + '</td><th scope="row">신청구분</th><td>' + row.type + '</td><th scope="row">차량번호</th><td>' + row.vehicle + "</td></tr>";
+		var spouseApplication = row.type === "배우자";
+		$("[data-review-target-section]").hidden = !spouseApplication;
+		$("[data-review-target-detail]").innerHTML = spouseApplication ? '<tr><th scope="row">성명</th><td>' + row.target + '</td><th scope="row">생년월일</th><td>' + row.targetBirth + '</td><th scope="row">성별</th><td>' + (row.targetGender || "여성") + "</td></tr>" : "";
+		var checks = [["운송종사자격", row.license, row.license === "정상"], ["유가보조금", row.fuel, /^정상\(/.test(row.fuel)], ["과거 수혜", row.benefit ? row.benefit + "회" : "없음", row.benefit === 0], ["검진병원", row.hospital, row.hospital !== "미선택"], ["중복 식별값", "중복 없음", true]];
 		$("[data-review-check-grid]").innerHTML = checks.map(function (check) { return '<div class="review-check-card ' + (check[2] ? "is-ok" : "is-warn") + '"><span class="material-symbols-rounded" aria-hidden="true">' + (check[2] ? "check_circle" : "error") + '</span><div><small>' + check[0] + "</small><b>" + check[1] + "</b></div></div>"; }).join("");
 		var documents = row.type === "배우자" ? [["가족관계증명서", "family_relation_" + row.no + ".pdf", row.docs === "1/1"]] : [["공고상 별도 제출서류 없음", "온라인 검증값으로 심사", true]];
 		$("[data-review-document-list]").innerHTML = documents.map(function (doc) { return '<div class="review-document-item"><span class="material-symbols-rounded" aria-hidden="true">description</span><div><b>' + doc[0] + "</b><small>" + doc[1] + '</small></div><span class="review-check ' + (doc[2] ? "is-ok" : "is-warn") + '">' + (doc[2] ? "제출완료" : "확인필요") + '</span>' + (doc[0].indexOf("없음") < 0 ? '<div class="review-document-actions">' + btn('<span class="material-symbols-rounded" aria-hidden="true">visibility</span> 미리보기', 'data-action="review-document-preview"') + btn('<span class="material-symbols-rounded" aria-hidden="true">download</span> 다운로드', 'data-action="review-document-download"') + "</div>" : "") + "</div>"; }).join("");
@@ -798,7 +817,7 @@
 		var candidate = rows.find(function (row) { return row.visible === false && row.part === rejected.part && row.type === rejected.type; });
 		if (!candidate) {
 			var maxRank = rows.filter(function (row) { return row.part === rejected.part && row.type === rejected.type; }).reduce(function (max, row) { return Math.max(max, Number(row.rank || 0)); }, 0);
-			candidate = { no: String(90000000 + rows.length + 1), rank: maxRank + 1, part: rejected.part, type: rejected.type, driver: "차○순", driverBirth: "1970-06-18", target: "차○순", targetBirth: "1970-06-18", relation: rejected.type === "배우자" ? "배우자" : "본인", phone: "010-****-9051", address: rejected.part + " 등록 주소", vehicle: "지역80바****", license: "정상", fuel: "정상", docs: rejected.type === "배우자" ? "1/1" : "해당없음", benefit: 0, hospital: "미선택", status: "01", memo: "" };
+			candidate = { no: String(90000000 + rows.length + 1), rank: maxRank + 1, part: rejected.part, type: rejected.type, driver: "차○순", driverBirth: "1970-06-18", target: "차○순", targetBirth: "1970-06-18", relation: rejected.type === "배우자" ? "배우자" : "본인", phone: "010-****-9051", address: rejected.part + " 등록 주소", vehicle: "지역80바****", license: "정상", fuel: "정상(본인: 차○순)", docs: rejected.type === "배우자" ? "1/1" : "해당없음", benefit: 0, hospital: "미선택", status: "01", memo: "" };
 			rows.push(candidate);
 		}
 		candidate.visible = true;
@@ -1362,7 +1381,6 @@
 			if (event.target.matches("[data-review-check-all]")) {
 				$$('[data-review-row-check]').forEach(function (box) { box.checked = event.target.checked; });
 			}
-			if (event.target.matches("[data-std-issues-only]")) renderStandard();
 			if (event.target.matches("[data-std-mode]")) {
 				state.std.mode = event.target.value;
 				state.std.saved = false;

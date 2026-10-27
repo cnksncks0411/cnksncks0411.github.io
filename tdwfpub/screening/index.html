@@ -113,7 +113,6 @@
 		<div class="board-info-row mb-0">
 			<h2 class="board-list-title" id="std-title">부문·유형별 선발인원 <span class="board-info-text" data-std-source></span></h2>
 			<div class="board-info-actions">
-				<label class="check-label"><input type="checkbox" data-std-issues-only /><span class="check-label-text">확인 필요만 보기</span></label>
 				<button type="button" class="btn variant-outline color-navy rounded-md size-board-auto" data-action="std-auto-distribute" data-std-auto-button>신청현황으로 다시 계산</button>
 			</div>
 		</div>
@@ -126,8 +125,8 @@
 				<div class="board-table-wrap std-part-scroll">
 					<table class="board-table std-part-list">
 						<caption>선발부문 목록</caption>
-						<colgroup><col width="22%" /><col width="20%" /><col width="18%" /><col width="22%" /><col width="18%" /></colgroup>
-						<thead><tr><th scope="col">선발부문</th><th scope="col">입력값</th><th scope="col">부문 인원</th><th scope="col">유형 합</th><th scope="col">남는 인원</th></tr></thead>
+						<colgroup><col width="22%" /><col width="20%" /><col width="18%" /><col width="20%" /><col width="20%" /></colgroup>
+						<thead><tr><th scope="col">선발부문</th><th scope="col">입력값</th><th scope="col">부문 인원</th><th scope="col">유형 합</th><th scope="col">신청 대비</th></tr></thead>
 						<tbody data-std-parts></tbody>
 						<tfoot data-std-parts-foot></tfoot>
 					</table>
@@ -197,7 +196,7 @@
 					<tr><th scope="row">사업명</th><td><div class="flex items-center gap-2 row-type-field"><input type="text" class="form-control w-full" data-review-biz-name readonly /><button type="button" class="btn variant-outline color-navy rounded-md size-search-input" data-action="announce-open" data-announce-target="review">공고조회</button></div></td>
 						<th scope="row">공고제목</th><td><input type="text" class="form-control w-full" data-review-notice-title readonly /></td>
 						<th scope="row">접수구분</th><td><select class="form-control w-full" data-review-status><option value="">전체</option><option value="01">심사대기자</option><option value="03">심사완료자</option><option value="02">보류자</option><option value="99">탈락처리</option></select></td>
-						<th scope="row">접수번호</th><td><input type="text" class="form-control w-full" data-review-number /></td></tr>
+						<th scope="row">차량번호</th><td><input type="text" class="form-control w-full" data-review-vehicle /></td></tr>
 					<tr><th scope="row">선발부문</th><td><select class="form-control w-full" data-review-part></select></td>
 						<th scope="row">전형유형</th><td><select class="form-control w-full" data-review-type></select></td>
 						<th scope="row">운전자명</th><td><input type="text" class="form-control w-full" data-review-driver /></td>
@@ -214,8 +213,8 @@
 
 	<section class="panel review-region-panel" aria-labelledby="review-region-title" data-review-region-panel>
 		<div class="board-info-row mb-0">
-			<h2 class="board-list-title" id="review-region-title">선발부문 별 현황</h2>
-			<div class="board-info-actions"><span class="board-info-text">선발부문별 정원과 심사 진행률을 함께 확인합니다.</span></div>
+			<h2 class="board-list-title" id="review-region-title">선발부문별 현황</h2>
+			<div class="board-info-actions"><span class="board-info-text">잔여 인원 / 선발 인원</span></div>
 		</div>
 		<div class="review-region-grid" data-review-region-grid></div>
 	</section>
@@ -242,9 +241,9 @@
 				<caption>1차심사 대상 목록</caption>
 				<thead><tr>
 					<th scope="col"><label class="check-label"><input type="checkbox" data-review-check-all /><span class="check-label-text"></span></label></th>
-					<th scope="col">선발순위</th><th scope="col">접수번호</th><th scope="col">선발부문</th><th scope="col">전형유형</th>
-					<th scope="col">운전자</th><th scope="col">검진대상자</th><th scope="col">대상 생년월일</th>
-					<th scope="col">자격</th><th scope="col">유가</th><th scope="col">서류</th><th scope="col">과거수혜</th>
+					<th scope="col">선발순위</th><th scope="col">차량번호</th><th scope="col">선발부문</th><th scope="col">전형유형</th>
+					<th scope="col">운전자</th><th scope="col">운전자 생년월일</th><th scope="col">배우자</th><th scope="col">배우자 생년월일</th>
+					<th scope="col">자격</th><th scope="col">유가</th><th scope="col">서류</th>
 					<th scope="col">접수구분</th><th scope="col">메모</th><th scope="col">확인</th>
 				</tr></thead>
 				<tbody data-review-body></tbody>
@@ -803,19 +802,19 @@
 			<div class="review-detail-summary" data-review-detail-summary></div>
 
 			<section class="review-detail-section" aria-labelledby="review-driver-title">
-				<h3 class="board-section-title" id="review-driver-title">신청자 인적사항</h3>
-				<table class="board-form-table"><caption>신청자 인적사항</caption><colgroup><col width="13%" /><col width="20%" /><col width="13%" /><col width="20%" /><col width="13%" /><col width="21%" /></colgroup>
+				<h3 class="board-section-title" id="review-driver-title">운전자 인적사항</h3>
+				<table class="board-form-table"><caption>운전자 인적사항</caption><colgroup><col width="13%" /><col width="20%" /><col width="13%" /><col width="20%" /><col width="13%" /><col width="21%" /></colgroup>
 					<tbody data-review-driver-detail></tbody></table>
 			</section>
 
-			<section class="review-detail-section" aria-labelledby="review-target-title">
-				<h3 class="board-section-title" id="review-target-title">검진대상자 인적사항</h3>
-				<table class="board-form-table"><caption>검진대상자 인적사항</caption><colgroup><col width="13%" /><col width="20%" /><col width="13%" /><col width="20%" /><col width="13%" /><col width="21%" /></colgroup>
+			<section class="review-detail-section" aria-labelledby="review-target-title" data-review-target-section>
+				<h3 class="board-section-title" id="review-target-title">배우자 인적사항</h3>
+				<table class="board-form-table"><caption>배우자 인적사항</caption><colgroup><col width="13%" /><col width="20%" /><col width="13%" /><col width="20%" /><col width="13%" /><col width="21%" /></colgroup>
 					<tbody data-review-target-detail></tbody></table>
 			</section>
 
 			<section class="review-detail-section" aria-labelledby="review-check-title">
-				<h3 class="board-section-title" id="review-check-title">자격·접수 점검</h3>
+				<h3 class="board-section-title" id="review-check-title">자격·검수 점검</h3>
 				<div class="review-check-grid" data-review-check-grid></div>
 			</section>
 
@@ -850,7 +849,7 @@
 				<tr><th scope="row">대상 접수</th><td data-review-eval-target></td></tr>
 				<tr><th scope="row">심사 결과<span class="required-mark">*</span></th><td><div class="flex flex-wrap items-center gap-4"><label class="radio-label"><input type="radio" name="reviewResult" value="03" checked /><span class="radio-label-text">심사완료</span></label><label class="radio-label"><input type="radio" name="reviewResult" value="02" /><span class="radio-label-text">보류(후순위 이동)</span></label><label class="radio-label"><input type="radio" name="reviewResult" value="99" /><span class="radio-label-text">탈락</span></label></div></td></tr>
 				<tr><th scope="row">서류 보완</th><td><label class="check-label"><input type="checkbox" data-review-supplement /><span class="check-label-text">신청자에게 서류 보완을 요청합니다.</span></label></td></tr>
-				<tr><th scope="row">처리 사유<span class="required-mark">*</span></th><td><select class="form-control w-full" data-review-reason><option value="">선택</option><option>자격요건 충족</option><option>검진대상자 정보 불일치</option><option>출생연도 기준 불일치</option><option>필수서류 미제출</option><option>기수혜자</option><option>중복신청</option><option>기타</option></select></td></tr>
+				<tr><th scope="row">처리 사유</th><td><select class="form-control w-full" data-review-reason><option value="">선택</option><option>자격요건 충족</option><option>검진대상자 정보 불일치</option><option>출생연도 기준 불일치</option><option>필수서류 미제출</option><option>기수혜자</option><option>중복신청</option><option>기타</option></select></td></tr>
 				<tr><th scope="row">처리 메모</th><td><textarea class="textarea w-full" rows="3" data-review-eval-memo placeholder="판단 근거를 입력해 주세요."></textarea></td></tr>
 			</tbody></table>
 			<p class="popup-notice">보류자는 현재 순위에서 제외되어 같은 부문·유형의 맨 뒤로 이동합니다. 탈락자는 목록의 자리를 유지하되 순위 계산에서는 제외됩니다.</p>

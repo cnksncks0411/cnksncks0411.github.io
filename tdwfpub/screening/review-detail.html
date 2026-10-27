@@ -21,18 +21,18 @@
 		</header>
 		<div class="review-detail-page-body">
 			<div class="review-detail-summary" data-detail-summary></div>
-			<div class="review-compare-grid">
+			<div class="review-compare-grid" data-detail-identity-grid>
 				<section class="review-detail-section" aria-labelledby="detail-driver-title">
-					<h2 class="board-section-title" id="detail-driver-title">신청자 인적사항</h2>
-					<table class="board-form-table"><caption>신청자 인적사항</caption><colgroup><col width="24%" /><col width="26%" /><col width="24%" /><col width="26%" /></colgroup><tbody data-detail-driver></tbody></table>
+					<h2 class="board-section-title" id="detail-driver-title">운전자 인적사항</h2>
+					<table class="board-form-table"><caption>운전자 인적사항</caption><colgroup><col width="24%" /><col width="26%" /><col width="24%" /><col width="26%" /></colgroup><tbody data-detail-driver></tbody></table>
 				</section>
-				<section class="review-detail-section" aria-labelledby="detail-target-title">
-					<h2 class="board-section-title" id="detail-target-title">검진대상자 인적사항</h2>
-					<table class="board-form-table"><caption>검진대상자 인적사항</caption><colgroup><col width="24%" /><col width="26%" /><col width="24%" /><col width="26%" /></colgroup><tbody data-detail-target></tbody></table>
+				<section class="review-detail-section" aria-labelledby="detail-target-title" data-detail-target-section>
+					<h2 class="board-section-title" id="detail-target-title">배우자 인적사항</h2>
+					<table class="board-form-table"><caption>배우자 인적사항</caption><colgroup><col width="24%" /><col width="26%" /><col width="24%" /><col width="26%" /></colgroup><tbody data-detail-target></tbody></table>
 				</section>
 			</div>
 			<section class="review-detail-section" aria-labelledby="detail-check-title">
-				<div class="board-info-row mb-0"><h2 class="board-section-title" id="detail-check-title">자격·접수 점검</h2><span class="board-info-text">신청정보와 자격검증 결과를 같은 화면에서 대조합니다.</span></div>
+				<div class="board-info-row mb-0"><h2 class="board-section-title" id="detail-check-title">자격·검수 점검</h2><span class="board-info-text">신청정보와 자격검증 결과를 같은 화면에서 대조합니다.</span></div>
 				<div class="review-check-grid" data-detail-checks></div>
 			</section>
 			<section class="review-detail-section" aria-labelledby="detail-document-title">
@@ -81,7 +81,7 @@
 				<table class="board-form-table"><caption>1차심사 처리</caption><colgroup><col width="22%" /><col width="78%" /></colgroup><tbody>
 					<tr><th scope="row">대상 접수</th><td data-detail-review-target></td></tr>
 					<tr><th scope="row">심사 결과<span class="required-mark">*</span></th><td><div class="flex flex-wrap items-center gap-4"><label class="radio-label"><input type="radio" name="detailReviewResult" value="03" /><span class="radio-label-text">심사완료</span></label><label class="radio-label"><input type="radio" name="detailReviewResult" value="02" /><span class="radio-label-text">보류(후순위 이동)</span></label><label class="radio-label"><input type="radio" name="detailReviewResult" value="99" /><span class="radio-label-text">탈락</span></label></div></td></tr>
-					<tr><th scope="row">처리 사유<span class="required-mark">*</span></th><td><select class="form-control w-full" data-detail-review-reason><option value="">선택</option><option>자격요건 충족</option><option>검진대상자 정보 불일치</option><option>출생연도 기준 불일치</option><option>필수서류 미제출</option><option>기수혜자</option><option>중복신청</option><option>기타</option></select></td></tr>
+					<tr><th scope="row">처리 사유</th><td><select class="form-control w-full" data-detail-review-reason><option value="">선택</option><option>자격요건 충족</option><option>검진대상자 정보 불일치</option><option>출생연도 기준 불일치</option><option>필수서류 미제출</option><option>기수혜자</option><option>중복신청</option><option>기타</option></select></td></tr>
 					<tr><th scope="row">처리 메모</th><td><textarea class="textarea w-full" rows="4" data-detail-review-memo placeholder="심사 판단 근거를 입력해 주세요."></textarea></td></tr>
 				</tbody></table>
 			</div>
