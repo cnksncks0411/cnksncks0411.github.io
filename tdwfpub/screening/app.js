@@ -169,7 +169,11 @@
 		"0002": { mode: "UNLIMITED", guide: "교통사고생계 · 예산 범위 내 접수순", keys: ["RCPT"], sorts: [["RCPT", "ASC"]] }
 	};
 
-	var state = { biz: "0003", extra: "none", noshow: "none", approved: false };
+	var state = {
+		biz: "0003", extra: "none", noshow: "none", approved: false,
+		reviewAllocations: {}, reviewReallocationHistory: {}, reviewReallocationDraft: null, reviewReallocationSeq: 0,
+		reviewPage: 1, reviewPageUnit: 20, reviewSamplesBuilt: {}
+	};
 
 	/* ===== 공통 도구 ===== */
 	function $(selector, root) { return (root || document).querySelector(selector); }
@@ -263,6 +267,7 @@
 	function selectBiz(code) {
 		state.biz = code;
 		state.extra = "none"; state.noshow = "none"; state.approved = false;
+		state.reviewPage = 1;
 		renderAll();
 	}
 
@@ -683,9 +688,50 @@
 		});
 	}
 
+	/* 기본 화면에서도 페이지 이동과 그룹별 순위를 충분히 확인할 수 있는 건강검진 표본을 만든다. */
+	function appendCheckupReviewSamples(rows) {
+		if (state.reviewSamplesBuilt[state.biz] || state.biz !== "0003") return;
+		var familyNames = ["김○현", "이○진", "박○수", "최○영", "정○호", "한○희", "오○석", "윤○경"];
+		biz().parts.forEach(function (part, partIndex) {
+			biz().types.forEach(function (type, typeIndex) {
+				for (var offset = 0; offset < 2; offset += 1) {
+					var sampleIndex = partIndex * 4 + typeIndex * 2 + offset;
+					var driver = familyNames[sampleIndex % familyNames.length];
+					var spouse = type[0] === "배우자";
+					var target = spouse ? familyNames[(sampleIndex + 3) % familyNames.length] : driver;
+					rows.push({
+						no: String(50000001 + sampleIndex).padStart(8, "0"), part: part[0], type: type[0],
+						driver: driver, driverBirth: (1962 + (sampleIndex % 19)) + "-" + String((sampleIndex % 12) + 1).padStart(2, "0") + "-" + String((sampleIndex % 20) + 5).padStart(2, "0"),
+						target: target, targetBirth: spouse ? (1965 + (sampleIndex % 17)) + "-05-18" : (1962 + (sampleIndex % 19)) + "-06-12",
+						relation: spouse ? "배우자" : "본인", phone: "010-****-" + String(3000 + sampleIndex), address: part[0] + " 등록 주소",
+						vehicle: part[0] + "8" + (sampleIndex % 10) + "바" + String(2000 + sampleIndex), license: sampleIndex % 17 === 0 ? "확인필요" : "정상",
+						fuel: sampleIndex % 19 === 0 ? "실패" : (sampleIndex % 13 === 0 ? "법인" : "정상(" + (spouse ? "가족: " + target : "본인: " + driver) + ")"),
+						docs: spouse ? (sampleIndex % 11 === 0 ? "확인필요" : "1/1") : "해당없음", benefit: sampleIndex % 4,
+						hospital: sampleIndex % 9 === 0 ? "미선택" : part[0] + " 협약검진센터", status: ["01", "01", "03", "01", "02", "01", "99", "03"][sampleIndex % 8],
+						memo: sampleIndex % 10 === 0 ? "검증 결과 확인 필요" : "", receivedAt: "2024-02-" + String((sampleIndex % 16) + 1).padStart(2, "0") + " " + String(9 + (sampleIndex % 9)).padStart(2, "0") + ":00",
+						prevSelected: sampleIndex % 5 === 0
+					});
+				}
+			});
+		});
+		state.reviewSamplesBuilt[state.biz] = true;
+	}
+
+	function enrichReviewPriority(row, index) {
+		if (!row.receivedAt) row.receivedAt = "2024-02-" + String((index % 16) + 1).padStart(2, "0") + " 09:" + String(index % 60).padStart(2, "0");
+		if (typeof row.prevSelected === "undefined") row.prevSelected = Number(row.benefit || 0) > 0;
+		if (typeof row.selectedChild === "undefined") row.selectedChild = index % 4 === 0;
+		if (typeof row.percentile === "undefined") row.percentile = 98 - (index % 23) * 0.7;
+		if (typeof row.credits === "undefined") row.credits = 12 + (index % 10);
+		if (typeof row.grade === "undefined") row.grade = (index % 4) + 1;
+		row.sourceOrder = typeof row.sourceOrder === "number" ? row.sourceOrder : index;
+		return row;
+	}
+
 	function reviewRows() {
 		if (!REVIEW_ROWS[state.biz]) REVIEW_ROWS[state.biz] = makeGenericReviewRows();
-		return REVIEW_ROWS[state.biz];
+		appendCheckupReviewSamples(REVIEW_ROWS[state.biz]);
+		return REVIEW_ROWS[state.biz].map(enrichReviewPriority);
 	}
 
 	function reviewStatus(code) {
@@ -697,9 +743,12 @@
 		return '<span class="review-check is-warn">' + value + "</span>";
 	}
 
+	function isFuelValid(value) {
+		return /^정상\(/.test(value) || value === "법인";
+	}
+
 	function reviewFuel(value) {
-		if (/^정상\(/.test(value)) return '<span class="review-check is-ok">' + value + "</span>";
-		if (value === "법인") return '<span class="review-check is-neutral">법인</span>';
+		if (isFuelValid(value)) return '<span class="review-check is-ok">' + value + "</span>";
 		return '<span class="review-check is-warn">' + value + "</span>";
 	}
 
@@ -709,14 +758,116 @@
 			.map(function (value) { return '<option value="' + value + '">' + value + "</option>"; }).join("");
 	}
 
+	function reviewGroupKey(row) {
+		return (row.part || "__NO_PART__") + "\u0000" + (row.type || "__NO_TYPE__");
+	}
+
+	function compareReviewValue(a, b, sort) {
+		var key = sort.key;
+		var av, bv;
+		if (key === "SELF_APPLY") { av = a.type === "본인"; bv = b.type === "본인"; }
+		else if (key === "PREV_NOT_SELECTED") { av = !a.prevSelected; bv = !b.prevSelected; }
+		else if (key === "NO_SELECTED_CHILD") { av = !a.selectedChild; bv = !b.selectedChild; }
+		else if (key === "BENEFIT_COUNT") { av = Number(a.benefit || 0); bv = Number(b.benefit || 0); }
+		else if (key === "AGE") {
+			/* 생년월일이 빠를수록 나이가 많으므로 음수로 바꿔 DESC=나이 많은 순이 되게 한다. */
+			av = -Number((a.driverBirth || "9999-12-31").replace(/-/g, ""));
+			bv = -Number((b.driverBirth || "9999-12-31").replace(/-/g, ""));
+		}
+		else if (key === "PERCENTILE") { av = Number(a.percentile || 0); bv = Number(b.percentile || 0); }
+		else if (key === "CREDITS") { av = Number(a.credits || 0); bv = Number(b.credits || 0); }
+		else if (key === "GRADE" || key === "TOP_GRADE") { av = Number(a.grade || 0); bv = Number(b.grade || 0); }
+		else if (key === "LICENSE_VALID") { av = a.license === "정상"; bv = b.license === "정상"; }
+		else if (key === "FUEL_VALID") { av = isFuelValid(a.fuel); bv = isFuelValid(b.fuel); }
+		else if (key === "TYPE_ORDER") {
+			var order = (sort.order || "").split(/\s*→\s*/);
+			av = order.indexOf(a.part); bv = order.indexOf(b.part);
+			if (av < 0) av = order.length; if (bv < 0) bv = order.length;
+		}
+		else { av = a.receivedAt || a.no; bv = b.receivedAt || b.no; }
+		if (sort.dir === "MATCH_FIRST") return av === bv ? 0 : (av ? -1 : 1);
+		if (typeof av === "number" && typeof bv === "number") return sort.dir === "DESC" ? bv - av : av - bv;
+		return sort.dir === "DESC" ? String(bv).localeCompare(String(av)) : String(av).localeCompare(String(bv));
+	}
+
+	/* 우선순위는 공고 전체가 아니라 선발부문·전형유형 조합마다 독립적으로 계산한다. */
+	function rankedReviewRows() {
+		var b = biz();
+		var sorts = state.std && state.std.code === b.code ? state.std.sorts : defaultSorts(b);
+		var groups = {};
+		reviewRows().forEach(function (row) {
+			if (row.visible === false) return;
+			var key = reviewGroupKey(row);
+			if (!groups[key]) groups[key] = [];
+			groups[key].push(row);
+		});
+		var partOrder = b.parts.map(function (part) { return part[0]; });
+		var typeOrder = b.types.map(function (type) { return type[0]; });
+		return Object.keys(groups).sort(function (left, right) {
+			var l = left.split("\u0000"), r = right.split("\u0000");
+			return (partOrder.indexOf(l[0]) - partOrder.indexOf(r[0])) || (typeOrder.indexOf(l[1]) - typeOrder.indexOf(r[1]));
+		}).reduce(function (result, key) {
+			var rank = 0;
+			groups[key].sort(function (a, bRow) {
+				for (var index = 0; index < sorts.length; index += 1) {
+					var compared = compareReviewValue(a, bRow, sorts[index]);
+					if (compared) return compared;
+				}
+				return a.sourceOrder - bRow.sourceOrder;
+			}).forEach(function (row) {
+				row.displayRank = row.status === "02" || row.status === "99" ? null : ++rank;
+				result.push(row);
+			});
+			return result;
+		}, []);
+	}
+
 	function filteredReviewRows() {
 		var part = $("[data-review-part]").value, type = $("[data-review-type]").value;
 		var status = $("[data-review-status]").value, driver = $("[data-review-driver]").value.trim(), target = $("[data-review-target]").value.trim();
 		var vehicle = $("[data-review-vehicle]").value.trim();
-		return reviewRows().filter(function (row) {
-			return row.visible !== false && (!part || row.part === part) && (!type || row.type === type) && (!status || row.status === status) &&
+		return rankedReviewRows().filter(function (row) {
+			return (!part || row.part === part) && (!type || row.type === type) && (!status || row.status === status) &&
 				(!driver || row.driver.indexOf(driver) >= 0) && (!target || row.target.indexOf(target) >= 0) && (!vehicle || row.vehicle.indexOf(vehicle) >= 0);
 		});
+	}
+
+	function reviewAllocationMap() {
+		if (!state.reviewAllocations[state.biz]) state.reviewAllocations[state.biz] = {};
+		return state.reviewAllocations[state.biz];
+	}
+
+	function reviewReallocationHistory() {
+		if (!state.reviewReallocationHistory[state.biz]) state.reviewReallocationHistory[state.biz] = [];
+		return state.reviewReallocationHistory[state.biz];
+	}
+
+	function reviewRegionStats(part, index) {
+		var baseSelected = part[1] + part[2];
+		var selected = baseSelected + Number(reviewAllocationMap()[part[0]] || 0);
+		var applied = part[3] + part[4];
+		if (part[0] === "세종") applied = baseSelected;
+		var reviewed = part[0] === "세종" ? baseSelected : Math.round(applied * (0.78 + (index % 4) * 0.04));
+		return {
+			name: part[0], index: index, baseSelected: baseSelected, selected: selected, applied: applied, reviewed: reviewed,
+			remaining: Math.max(0, selected - reviewed), waiting: Math.max(0, applied - reviewed)
+		};
+	}
+
+	function reviewRegionStatsByName(name) {
+		var partIndex = biz().parts.findIndex(function (part) { return part[0] === name; });
+		return partIndex < 0 ? null : reviewRegionStats(biz().parts[partIndex], partIndex);
+	}
+
+	function renderReviewReallocationHistory() {
+		var box = $("[data-review-reallocation-history]");
+		if (!box) return;
+		var history = reviewReallocationHistory();
+		box.hidden = !history.length;
+		if (!history.length) { box.innerHTML = ""; return; }
+		var latest = history[0];
+		box.innerHTML = '<div><span class="material-symbols-rounded" aria-hidden="true">history</span><p><b>최근 선발인원 조정</b> ' + latest.source + ' -' + num(latest.count) + '명 → ' + latest.target + ' +' + num(latest.count) + '명 <small>· ' + latest.time + ' · ' + latest.operator + ' · 기존 심사결과 유지</small></p></div>' +
+			btn("최근 변경 취소", 'data-action="review-reallocation-undo"');
 	}
 
 	function renderReviewRegion() {
@@ -724,15 +875,146 @@
 		panel.hidden = state.biz !== "0003";
 		if (panel.hidden) return;
 		$("[data-review-region-grid]").innerHTML = biz().parts.map(function (part, index) {
-			var selected = part[1] + part[2], applied = part[3] + part[4];
-			if (part[0] === "세종") applied = selected;
-			var reviewed = part[0] === "세종" ? selected : Math.round(applied * (0.78 + (index % 4) * 0.04));
-			var remaining = Math.max(0, selected - reviewed);
-			var selectionStatus = remaining === 0
-				? '<b class="is-complete">' + num(selected) + '명 선발완료</b>'
-				: '<b>' + num(remaining) + ' / ' + num(selected) + '</b>';
-			return '<button type="button" class="review-region-item" data-action="review-region" data-region="' + part[0] + '"><span>' + part[0] + '</span>' + selectionStatus + '<small>신청 인원 ' + num(applied) + "명</small></button>";
+			var stats = reviewRegionStats(part, index);
+			var selectionStatus = stats.remaining === 0
+				? '<b class="is-complete">' + num(stats.selected) + '명 선발완료</b>'
+				: '<b>' + num(stats.remaining) + ' / ' + num(stats.selected) + '</b>';
+			return '<button type="button" class="review-region-item" data-action="review-region" data-region="' + part[0] + '"><span>' + part[0] + '</span>' + selectionStatus + '<small>신청 인원 ' + num(stats.applied) + "명</small></button>";
 		}).join("");
+		renderReviewReallocationHistory();
+	}
+
+	function reallocationMetrics(stats, source) {
+		var thirdLabel = source ? "줄일 수 있는 인원" : "추가 심사 후보";
+		var thirdValue = source ? stats.remaining : stats.waiting;
+		return '<span>선발인원<b>' + num(stats.selected) + '명</b></span><span>심사완료<b>' + num(stats.reviewed) + '명</b></span><span>' + thirdLabel + '<b>' + num(thirdValue) + '명</b></span>';
+	}
+
+	function resetReviewReallocationPreview() {
+		state.reviewReallocationDraft = null;
+		$("[data-reallocation-preview]").hidden = true;
+		$('[data-action="review-reallocation-confirm"]').hidden = true;
+	}
+
+	function populateReallocationTargets(preferred) {
+		var source = $("[data-reallocation-source]").value;
+		var target = $("[data-reallocation-target]");
+		var candidates = biz().parts.map(reviewRegionStats).filter(function (stats) { return stats.name !== source && stats.waiting > 0; });
+		target.innerHTML = candidates.map(function (stats) { return '<option value="' + stats.name + '">' + stats.name + ' (추가 심사 후보 ' + num(stats.waiting) + '명)</option>'; }).join("");
+		if (preferred && candidates.some(function (stats) { return stats.name === preferred; })) target.value = preferred;
+	}
+
+	function updateReviewReallocationMetrics() {
+		var source = reviewRegionStatsByName($("[data-reallocation-source]").value);
+		var target = reviewRegionStatsByName($("[data-reallocation-target]").value);
+		$("[data-reallocation-source-metrics]").innerHTML = source ? reallocationMetrics(source, true) : "-";
+		$("[data-reallocation-target-metrics]").innerHTML = target ? reallocationMetrics(target, false) : "-";
+		var count = $("[data-reallocation-count]");
+		if (source && target) count.max = String(Math.min(source.remaining, target.waiting));
+	}
+
+	function openReviewReallocation() {
+		var sources = biz().parts.map(reviewRegionStats).filter(function (stats) { return stats.remaining > 0; });
+		var source = $("[data-reallocation-source]");
+		source.innerHTML = sources.map(function (stats) { return '<option value="' + stats.name + '">' + stats.name + ' (줄일 수 있는 인원 ' + num(stats.remaining) + '명)</option>'; }).join("");
+		if (sources.some(function (stats) { return stats.name === "서울"; })) source.value = "서울";
+		populateReallocationTargets("경기");
+		$("[data-reallocation-count]").value = 10;
+		resetReviewReallocationPreview();
+		updateReviewReallocationMetrics();
+		openPopup("popup-review-reallocation");
+	}
+
+	function previewReviewReallocation() {
+		var source = reviewRegionStatsByName($("[data-reallocation-source]").value);
+		var target = reviewRegionStatsByName($("[data-reallocation-target]").value);
+		var count = Number($("[data-reallocation-count]").value || 0);
+		if (!source || !target || source.name === target.name) { alert("서로 다른 두 부문을 선택해 주세요."); return; }
+		if (!Number.isInteger(count) || count < 1) { alert("옮길 인원을 1명 이상 입력해 주세요."); return; }
+		if (count > source.remaining) { alert(source.name + " 부문에서는 최대 " + num(source.remaining) + "명까지 줄일 수 있습니다."); return; }
+		if (count > target.waiting) { alert(target.name + " 부문의 추가 심사 후보는 " + num(target.waiting) + "명입니다. 후보 인원 이하로 입력해 주세요."); return; }
+		state.reviewReallocationDraft = { source: source.name, target: target.name, count: count };
+		var preview = $("[data-reallocation-preview]");
+		preview.hidden = false;
+		preview.innerHTML = '<div class="review-reallocation-change"><strong>' + source.name + ' 부문</strong><span>현재 선발인원<b>' + num(source.selected) + '명</b></span><span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span><span>변경 후<b>' + num(source.selected - count) + '명</b></span></div>' +
+			'<span class="material-symbols-rounded review-reallocation-direction" aria-hidden="true">swap_horiz</span>' +
+			'<div class="review-reallocation-change"><strong>' + target.name + ' 부문</strong><span>현재 선발인원<b>' + num(target.selected) + '명</b></span><span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span><span>변경 후<b>' + num(target.selected + count) + '명</b></span></div>' +
+			'<p><b>' + target.name + ' 부문의 다음 순위 ' + num(count) + '명</b>이 심사대상 목록에 추가됩니다. 기존 심사대상자의 순위와 개별 심사결과는 변경되지 않습니다.</p>';
+		$('[data-action="review-reallocation-confirm"]').hidden = false;
+	}
+
+	function appendReallocatedReviewRows(entry) {
+		var rows = reviewRows();
+		var maxRank = rows.filter(function (row) { return row.part === entry.target; }).reduce(function (max, row) { return Math.max(max, Number(row.rank || 0)); }, 0);
+		var names = ["김○민", "이○진", "박○수", "최○경", "정○호", "한○희", "오○석", "윤○영", "강○철", "문○아"];
+		for (var index = 0; index < entry.count; index += 1) {
+			var name = names[index % names.length];
+			var spouse = index % 3 === 1;
+			rows.push({
+				no: String(91000000 + entry.id * 1000 + index + 1), rank: maxRank + index + 1, part: entry.target, type: spouse ? "배우자" : "본인",
+				driver: name, driverBirth: "197" + (index % 9) + "-" + String((index % 12) + 1).padStart(2, "0") + "-18",
+				target: spouse ? "배○" + String(index + 1).padStart(2, "0") : name, targetBirth: spouse ? "1975-05-12" : "197" + (index % 9) + "-06-18",
+				relation: spouse ? "배우자" : "본인", phone: "010-****-" + String(6100 + index), address: entry.target + " 등록 주소",
+				vehicle: entry.target + "8" + (index % 10) + "바" + String(4100 + index), license: "정상", fuel: "정상(본인: " + name + ")",
+				docs: spouse ? "1/1" : "해당없음", benefit: 0, hospital: "미선택", status: "01",
+				memo: "[부문별 선발인원 조정] " + entry.source + " → " + entry.target + " 차순위 심사대상 편입", reallocated: true, reallocationId: entry.id
+			});
+		}
+	}
+
+	function confirmReviewReallocation() {
+		var draft = state.reviewReallocationDraft;
+		if (!draft) return;
+		var allocation = reviewAllocationMap();
+		allocation[draft.source] = Number(allocation[draft.source] || 0) - draft.count;
+		allocation[draft.target] = Number(allocation[draft.target] || 0) + draft.count;
+		var entry = {
+			id: ++state.reviewReallocationSeq, source: draft.source, target: draft.target, count: draft.count,
+			time: "2026-10-28 14:30", operator: "screening01"
+		};
+		reviewReallocationHistory().unshift(entry);
+		appendReallocatedReviewRows(entry);
+		closePopup($("#popup-review-reallocation"));
+		$("[data-review-part]").value = entry.target;
+		state.reviewReallocationDraft = null;
+		renderReview();
+		showAppToast(entry.source + " 선발인원 " + num(entry.count) + "명을 " + entry.target + " 부문으로 옮겼습니다. 기존 심사결과는 유지됩니다.");
+	}
+
+	function undoReviewReallocation() {
+		var history = reviewReallocationHistory();
+		if (!history.length) return;
+		var entry = history.shift();
+		var allocation = reviewAllocationMap();
+		allocation[entry.source] = Number(allocation[entry.source] || 0) + entry.count;
+		allocation[entry.target] = Number(allocation[entry.target] || 0) - entry.count;
+		REVIEW_ROWS[state.biz] = reviewRows().filter(function (row) { return row.reallocationId !== entry.id; });
+		renderReview();
+		showAppToast(entry.source + " → " + entry.target + " 선발인원 변경을 취소했습니다. 심사결과는 변경되지 않았습니다.");
+	}
+
+	function renderReviewPagination(totalRows) {
+		var unit = Number(state.reviewPageUnit || 20);
+		var totalPages = Math.max(1, Math.ceil(totalRows / unit));
+		state.reviewPage = Math.min(Math.max(1, state.reviewPage), totalPages);
+		var current = state.reviewPage;
+		var start = Math.max(1, Math.min(current - 4, totalPages - 9));
+		var end = Math.min(totalPages, start + 9);
+		function link(page, label, icon, disabled, currentPage) {
+			var attrs = disabled ? ' aria-disabled="true" tabindex="-1"' : "";
+			if (currentPage) attrs += ' aria-current="page"';
+			var body = icon ? '<span class="material-symbols-rounded board-page-icon" aria-hidden="true">' + icon + '</span>' : (label || page);
+			return '<a href="#" class="board-page-button"' + (label ? ' aria-label="' + label + '"' : "") + attrs + ' data-action="review-page" data-page="' + page + '">' + body + '</a>';
+		}
+		var pages = [];
+		for (var page = start; page <= end; page += 1) pages.push('<li>' + link(page, "", "", page === current, page === current) + '</li>');
+		$("[data-review-pagination]").innerHTML =
+			link(1, "처음 페이지로 이동", "keyboard_double_arrow_left", current === 1, false) +
+			link(Math.max(1, current - 1), "이전 페이지로 이동", "chevron_left", current === 1, false) +
+			'<ol class="board-pagination-list">' + pages.join("") + "</ol>" +
+			link(Math.min(totalPages, current + 1), "다음 페이지로 이동", "chevron_right", current === totalPages, false) +
+			link(totalPages, "마지막 페이지로 이동", "keyboard_double_arrow_right", current === totalPages, false);
+		return { page: current, unit: unit, totalPages: totalPages, start: (current - 1) * unit, end: current * unit };
 	}
 
 	function renderReview() {
@@ -755,20 +1037,23 @@
 		var done = b.code === "0003" ? 2814 : Math.round(total * 0.72), hold = b.code === "0003" ? 48 : Math.round(total * 0.02), rejected = b.code === "0003" ? 125 : Math.round(total * 0.04);
 		$("[data-review-stats]").innerHTML = stat("1차심사 대상", num(total), "명") + stat("심사완료", num(done), "명") + stat("심사대기", num(Math.max(0, total - done - hold - rejected)), "명") + stat("보류", num(hold), "명", "is-warn") + stat("탈락", num(rejected), "명", "is-danger");
 		var reviewSorts = state.std && state.std.code === b.code ? state.std.sorts : defaultSorts(b);
-		$("[data-review-standard-summary]").innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">rule</span><strong>적용 선발기준</strong><span>부문·유형별 배정 인원 적용</span><i></i>' + reviewSorts.map(function (sort, index) { return '<b>' + (index + 1) + '순위 ' + SORT_KEYS[sort.key].label + '</b>'; }).join('<span class="material-symbols-rounded review-standard-arrow" aria-hidden="true">chevron_right</span>');
+		$("[data-review-standard-summary]").innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">rule</span><strong>적용 선발기준</strong><span>각 선발부문·전형유형 안에서 순위 산정</span><i></i>' + reviewSorts.map(function (sort, index) { return '<b>' + (index + 1) + '순위 ' + SORT_KEYS[sort.key].label + '</b>'; }).join('<span class="material-symbols-rounded review-standard-arrow" aria-hidden="true">chevron_right</span>');
 		renderReviewRegion();
 		$("[data-review-list-copy]").textContent = b.code === "0003" ? "선발기준 순서대로 표시합니다. 보류·탈락자는 목록 위치를 유지하고 순위 계산에서 제외합니다." : "선발기준설정에서 저장한 순서대로 심사대상을 표시합니다.";
 		var filtered = filteredReviewRows();
-		$("[data-review-body]").innerHTML = filtered.map(function (row) {
+		var paging = renderReviewPagination(filtered.length);
+		var pageRows = filtered.slice(paging.start, paging.end);
+		$("[data-review-body]").innerHTML = pageRows.map(function (row) {
 			var sourceIndex = rows.indexOf(row), status = reviewStatus(row.status), excluded = row.status === "02" || row.status === "99";
 			var memo = row.memo ? '<button type="button" class="review-memo-button" data-action="review-memo" data-review-index="' + sourceIndex + '" aria-label="메모 보기"><span class="material-symbols-rounded" aria-hidden="true">sticky_note_2</span><span class="review-memo-tooltip">' + row.memo + "</span></button>" : "-";
-			return '<tr class="' + (excluded ? "review-row-excluded" : (row.autoFilled ? "review-row-auto" : "review-row-ranked")) + '"><td class="text-center"><label class="check-label"><input type="checkbox" data-review-row-check data-review-index="' + sourceIndex + '" /><span class="check-label-text"></span></label></td>' +
-				'<td class="text-center"><b>' + (excluded ? "-" : row.rank) + '</b>' + (row.autoFilled ? '<span class="review-auto-badge">자동충원</span>' : '') + '</td><td class="text-center">' + row.vehicle + '</td><td class="text-center">' + row.part + '</td><td class="text-center">' + row.type + '</td>' +
+			return '<tr class="' + (excluded ? "review-row-excluded" : (row.reallocated ? "review-row-reallocated" : (row.autoFilled ? "review-row-auto" : "review-row-ranked"))) + '"><td class="text-center"><label class="check-label"><input type="checkbox" data-review-row-check data-review-index="' + sourceIndex + '" /><span class="check-label-text"></span></label></td>' +
+				'<td class="text-center"><b>' + (excluded ? "-" : row.displayRank) + '</b>' + (row.autoFilled ? '<span class="review-auto-badge">자동충원</span>' : '') + (row.reallocated ? '<span class="review-reallocated-badge">추가배정</span>' : '') + '</td><td class="text-center">' + row.vehicle + '</td><td class="text-center">' + row.part + '</td><td class="text-center">' + row.type + '</td>' +
 				'<td class="text-center">' + row.driver + '</td><td class="text-center">' + row.driverBirth + '</td><td class="text-center">' + (row.type === "배우자" ? row.target : "-") + '</td><td class="text-center">' + (row.type === "배우자" ? row.targetBirth : "-") + '</td><td class="text-center">' + reviewCheck(row.license) + '</td><td class="text-center">' + reviewFuel(row.fuel) + '</td><td class="text-center">' + reviewCheck(row.docs) + '</td>' +
 				'<td class="text-center">' + badge(status[0], status[1]) + '</td><td class="text-center">' + memo + '</td><td class="text-center"><div class="review-row-actions">' +
 				btn("상세", 'data-action="review-detail" data-review-index="' + sourceIndex + '"') + btn("심사", 'data-action="review-eval" data-review-index="' + sourceIndex + '"', "variant-solid color-navy") + "</div></td></tr>";
 		}).join("") || '<tr><td colspan="15" class="text-center review-empty">조회된 심사대상이 없습니다.</td></tr>';
-		$("[data-review-count]").textContent = "총 " + num(filtered.length) + "건 (화면 표본)";
+		$("[data-review-count]").textContent = "총 " + num(filtered.length) + "건 (화면 표본) · " + paging.page + "/" + paging.totalPages + "페이지";
+		$("[data-review-check-all]").checked = false;
 		$("[data-review-preview]").hidden = true;
 	}
 
@@ -783,7 +1068,7 @@
 		var spouseApplication = row.type === "배우자";
 		$("[data-review-target-section]").hidden = !spouseApplication;
 		$("[data-review-target-detail]").innerHTML = spouseApplication ? '<tr><th scope="row">성명</th><td>' + row.target + '</td><th scope="row">생년월일</th><td>' + row.targetBirth + '</td><th scope="row">성별</th><td>' + (row.targetGender || "여성") + "</td></tr>" : "";
-		var checks = [["운송종사자격", row.license, row.license === "정상"], ["유가보조금", row.fuel, /^정상\(/.test(row.fuel)], ["과거 수혜", row.benefit ? row.benefit + "회" : "없음", row.benefit === 0], ["검진병원", row.hospital, row.hospital !== "미선택"], ["중복 식별값", "중복 없음", true]];
+		var checks = [["운송종사자격", row.license, row.license === "정상"], ["유가보조금", row.fuel, isFuelValid(row.fuel)], ["과거 수혜", row.benefit ? row.benefit + "회" : "없음", row.benefit === 0], ["검진병원", row.hospital, row.hospital !== "미선택"], ["중복 식별값", "중복 없음", true]];
 		$("[data-review-check-grid]").innerHTML = checks.map(function (check) { return '<div class="review-check-card ' + (check[2] ? "is-ok" : "is-warn") + '"><span class="material-symbols-rounded" aria-hidden="true">' + (check[2] ? "check_circle" : "error") + '</span><div><small>' + check[0] + "</small><b>" + check[1] + "</b></div></div>"; }).join("");
 		var documents = row.type === "배우자" ? [["가족관계증명서", "family_relation_" + row.no + ".pdf", row.docs === "1/1"]] : [["공고상 별도 제출서류 없음", "온라인 검증값으로 심사", true]];
 		$("[data-review-document-list]").innerHTML = documents.map(function (doc) { return '<div class="review-document-item"><span class="material-symbols-rounded" aria-hidden="true">description</span><div><b>' + doc[0] + "</b><small>" + doc[1] + '</small></div><span class="review-check ' + (doc[2] ? "is-ok" : "is-warn") + '">' + (doc[2] ? "제출완료" : "확인필요") + '</span>' + (doc[0].indexOf("없음") < 0 ? '<div class="review-document-actions">' + btn('<span class="material-symbols-rounded" aria-hidden="true">visibility</span> 미리보기', 'data-action="review-document-preview"') + btn('<span class="material-symbols-rounded" aria-hidden="true">download</span> 다운로드', 'data-action="review-document-download"') + "</div>" : "") + "</div>"; }).join("");
@@ -832,6 +1117,14 @@
 		url.searchParams.set("bizId", state.biz);
 		url.searchParams.set("yearDeg", biz().yearDeg);
 		url.searchParams.set("acceptNo", row.no);
+		url.searchParams.set("part", row.part);
+		url.searchParams.set("type", row.type);
+		url.searchParams.set("driver", row.driver);
+		url.searchParams.set("driverBirth", row.driverBirth);
+		url.searchParams.set("target", row.target);
+		url.searchParams.set("targetBirth", row.targetBirth);
+		url.searchParams.set("vehicle", row.vehicle);
+		url.searchParams.set("docs", row.docs || "해당없음");
 		var detailWindow = window.open(url.href, "tdwfReviewDetail_" + row.no, "width=1280,height=920,scrollbars=yes,resizable=yes");
 		if (detailWindow) detailWindow.focus();
 		else alert("접수내역 상세창을 열 수 없습니다. 브라우저의 팝업 차단 설정을 확인해 주세요.");
@@ -867,52 +1160,207 @@
 	}
 
 	/* ===== 3. 1차선발 ===== */
-	function renderSelection() {
-		var rows = quotaRows();
-		var totals = { quota: 0, reserve: 0, pass: 0, fix: 0, fail: 0, vacancy: 0 };
-		var vacancies = rows.map(function (row, index) {
-			var quota = row.quota;
-			var pass = Math.round(quota * 0.86);
-			var fix = Math.round(quota * 0.03);
-			var reserve = Math.round(quota * 0.08);
-			var fail = Math.round(quota * 0.04) + (index % 3);
-			if (state.extra === "confirmed") reserve += Math.max(0, quota - pass - fix - reserve);
-			var vacancy = Math.max(0, quota - pass - fix - reserve);
-			totals.quota += quota; totals.reserve += reserve; totals.pass += pass; totals.fix += fix; totals.fail += fail; totals.vacancy += vacancy;
-			return { row: row, quota: quota, pass: pass, fix: fix, reserve: reserve, fail: fail, vacancy: vacancy, wait: Math.max(0, row.apply * row.per - quota) };
+	var FIRST_SELECTION_ROWS = {
+		"0003": [
+			{ no: "00000148", rank: 3, part: "서울", type: "본인", driver: "최○진", driverBirth: "1968-08-17", target: "최○진", targetBirth: "1968-08-17", vehicle: "서울83아71**", reviewDate: "2024-03-04", status: "07", selectedAt: "2024-03-06", hospital: "한신메디피아", checkStatus: "예약완료", reserveDate: "2024-03-18", examDate: "" },
+			{ no: "00000191", rank: 7, part: "서울", type: "배우자", driver: "서○우", driverBirth: "1973-09-24", target: "한○경", targetBirth: "1977-05-08", vehicle: "서울85자23**", reviewDate: "2024-03-04", status: "03", selectedAt: "", hospital: "KMI 강남센터", checkStatus: "미검진", reserveDate: "", examDate: "" },
+			{ no: "00000423", rank: 2, part: "경기", type: "배우자", driver: "문○식", driverBirth: "1978-12-11", target: "서○경", targetBirth: "1980-02-24", vehicle: "경기91사62**", reviewDate: "2024-03-05", status: "07", selectedAt: "2024-03-06", hospital: "분당제생병원", checkStatus: "검진완료", reserveDate: "2024-03-15", examDate: "2024-04-02" },
+			{ no: "00000431", rank: 3, part: "경기", type: "본인", driver: "임○호", driverBirth: "1965-02-19", target: "임○호", targetBirth: "1965-02-19", vehicle: "경기92바14**", reviewDate: "2024-03-05", status: "03", selectedAt: "", hospital: "KMI 수원센터", checkStatus: "미검진", reserveDate: "", examDate: "" },
+			{ no: "00000798", rank: 2, part: "인천", type: "본인", driver: "노○민", driverBirth: "1971-11-03", target: "노○민", targetBirth: "1971-11-03", vehicle: "인천82바37**", reviewDate: "2024-03-05", status: "03", selectedAt: "", hospital: "한국건강관리협회 인천", checkStatus: "미검진", reserveDate: "", examDate: "" },
+			{ no: "00000912", rank: 1, part: "광주", type: "배우자", driver: "안○석", driverBirth: "1976-01-30", target: "정○희", targetBirth: "1979-07-16", vehicle: "광주80사42**", reviewDate: "2024-03-06", status: "03", selectedAt: "", hospital: "광주한국병원", checkStatus: "미검진", reserveDate: "", examDate: "" },
+			{ no: "00001207", rank: 1, part: "부산", type: "본인", driver: "배○철", driverBirth: "1969-06-14", target: "배○철", targetBirth: "1969-06-14", vehicle: "부산84바91**", reviewDate: "2024-03-06", status: "03", selectedAt: "", hospital: "한국건강관리협회 부산", checkStatus: "미검진", reserveDate: "", examDate: "" },
+			{ no: "00001842", rank: 1, part: "세종", type: "배우자", driver: "유○환", driverBirth: "1974-10-21", target: "김○미", targetBirth: "1978-03-09", vehicle: "세종81자08**", reviewDate: "2024-03-06", status: "07", selectedAt: "2024-03-06", hospital: "세종충남대학교병원", checkStatus: "미검진", reserveDate: "", examDate: "" }
+		]
+	};
+
+	function makeSelectionRows() {
+		return makeGenericReviewRows().map(function (row, index) {
+			return {
+				no: row.no, rank: row.rank, part: row.part, type: row.type, driver: row.driver, driverBirth: row.driverBirth,
+				target: row.target, targetBirth: row.targetBirth, vehicle: row.vehicle, reviewDate: "2026-04-" + String(index + 2).padStart(2, "0"),
+				status: index < 2 ? "07" : "03", selectedAt: index < 2 ? "2026-04-10" : "", hospital: "-", checkStatus: "-", reserveDate: "", examDate: ""
+			};
 		});
-		$("[data-sel-stats]").innerHTML = stat("정원", num(totals.quota), "명") + stat("예비선발", num(totals.reserve), "명") +
-			stat("서류 합격", num(totals.pass), "명") + stat("보완", num(totals.fix), "명") + stat("탈락", num(totals.fail), "명", "is-danger") +
-			stat("결원", num(totals.vacancy), "명", totals.vacancy ? "is-warn" : "");
-		$("[data-vacancy-body]").innerHTML = vacancies.map(function (v) {
-			var add = state.extra === "preview" && v.vacancy ? '<b class="text-blue">+' + num(Math.floor(v.vacancy / v.row.per) * v.row.per) + "</b>" : "-";
-			return '<tr><td class="text-center">' + v.row.part + '</td><td class="text-center">' + v.row.type + '</td><td class="text-right">' + num(v.quota) +
-				'</td><td class="text-right">' + num(v.reserve) + '</td><td class="text-right">' + num(v.pass) + '</td><td class="text-right">' + num(v.fix) +
-				'</td><td class="text-right">' + num(v.fail) + '</td><td class="text-right">' + (v.vacancy ? '<b class="text-red">' + num(v.vacancy) + "</b>" : 0) +
-				'</td><td class="text-right">' + num(v.wait) + '</td><td class="text-center">' + add + "</td></tr>";
-		}).join("");
+	}
 
-		var banner = $("[data-extra-banner]");
-		banner.hidden = state.extra === "none";
-		banner.classList.toggle("is-confirmed", state.extra === "confirmed");
-		banner.innerHTML = state.extra === "preview"
-			? "<span>3차 추가선발 미리보기 — 결원만큼 대기자에서 뽑았습니다. 아직 저장되지 않았습니다.</span>"
-			: "<span>3차 추가선발이 확정되었습니다. 추가된 인원은 1차심사(서류심사) 대상으로 넘어갑니다.</span>";
-		$('[data-action="extra-confirm"]').hidden = state.extra !== "preview";
-		$('[data-action="extra-preview"]').hidden = state.extra === "confirmed";
+	function selectionRows() {
+		if (!FIRST_SELECTION_ROWS[state.biz]) FIRST_SELECTION_ROWS[state.biz] = makeSelectionRows();
+		if (state.biz === "0003" && !FIRST_SELECTION_ROWS[state.biz].coverageAdded) {
+			var rows = FIRST_SELECTION_ROWS[state.biz];
+			var names = ["김○현", "이○준", "박○숙", "최○일", "정○진", "한○수", "오○경", "유○호"];
+			quotaRows().forEach(function (quota, index) {
+				var exists = rows.some(function (row) { return row.part === quota.part && row.type === quota.type; });
+				if (exists) return;
+				var name = names[index % names.length], spouse = quota.type === "배우자";
+				rows.push({
+					no: String(82000000 + index + 1), rank: 1 + (index % 8), part: quota.part, type: quota.type,
+					driver: name, driverBirth: "197" + (index % 9) + "-" + String((index % 12) + 1).padStart(2, "0") + "-12",
+					target: spouse ? "배○" + String(index + 1).padStart(2, "0") : name,
+					targetBirth: spouse ? "1978-05-17" : "197" + (index % 9) + "-06-12",
+					vehicle: quota.part + "8" + (index % 10) + "바" + String(5100 + index), reviewDate: "2024-03-" + String(7 + (index % 8)).padStart(2, "0"),
+					status: "03", selectedAt: "", hospital: quota.part + " 협약검진기관", checkStatus: "미검진", reserveDate: "", examDate: ""
+				});
+			});
+			FIRST_SELECTION_ROWS[state.biz].coverageAdded = true;
+		}
+		return FIRST_SELECTION_ROWS[state.biz];
+	}
 
-		var first = rows[0];
-		var rounds = [
-			["1차", "2026-04-02 14:20", "1차심사 완료자 최초 선발", num(totals.quota) + "명", biz().mode === "RANK" ? "-" : "48213", "pass004", "확정"],
-			["2차", "2026-05-11 10:05", first.part + "·" + first.type + (rows.length > 1 ? " 외 " + (rows.length - 1) + "개" : ""), num(Math.max(2, Math.round(totals.quota * 0.013))) + "명", biz().mode === "RANK" ? "-" : "77105", "pass004", "확정"]
-		];
-		if (state.extra === "confirmed") rounds.push(["3차", "2026-10-20 10:31", "결원 발생 부문·전형 전체", num(totals.vacancy || 37) + "명", "90321", "pass004", "확정"]);
-		$("[data-round-body]").innerHTML = rounds.map(function (round, index) {
-			var last = index === rounds.length - 1;
-			return '<tr><td class="text-center">' + round[0] + '</td><td class="text-center">' + round[1] + "</td><td>" + round[2] + '</td><td class="text-right">' +
-				round[3] + '</td><td class="text-center">' + round[4] + '</td><td class="text-center">' + round[5] + '</td><td class="text-center">' +
-				badge(round[6], "green") + (last && index > 0 ? " " + btn("되돌리기") : "") + "</td></tr>";
+	function filteredSelectionRows() {
+		var part = $("[data-selection-part]").value, type = $("[data-selection-type]").value;
+		var status = $("[data-selection-status]").value, vehicle = $("[data-selection-vehicle]").value.trim();
+		var driver = $("[data-selection-driver]").value.trim(), target = $("[data-selection-target]").value.trim();
+		return selectionRows().filter(function (row) {
+			return (!part || row.part === part) && (!type || row.type === type) && (!status || row.status === status) &&
+				(!vehicle || row.vehicle.indexOf(vehicle) >= 0) && (!driver || row.driver.indexOf(driver) >= 0) && (!target || row.target.indexOf(target) >= 0);
+		});
+	}
+
+	function selectionQuotaRows() {
+		var selectedDeltas = {};
+		selectionRows().forEach(function (row) {
+			if (row.status !== "07" || !row.confirmedInScreen) return;
+			var key = row.part + "|" + row.type;
+			selectedDeltas[key] = Number(selectedDeltas[key] || 0) + 1;
+		});
+		return quotaRows().map(function (row, index) {
+			var reviewDone = Math.min(row.apply, Math.max(0, Math.round(row.apply * (0.8 + (index % 3) * 0.04))));
+			var selected = Math.min(row.quota || reviewDone, Math.round(reviewDone * 0.88)) + Number(selectedDeltas[row.part + "|" + row.type] || 0);
+			if (!row.quota) selected = Math.min(reviewDone, selected);
+			return { part: row.part, type: row.type, quota: row.quota, reviewDone: reviewDone, selected: selected, remaining: Math.max(0, row.quota - selected) };
+		});
+	}
+
+	function renderSelectionQuota() {
+		var rows = selectionQuotaRows();
+		var selectedPart = $("[data-selection-part]").value;
+		var selectedType = $("[data-selection-type]").value;
+		$("[data-selection-quota-body]").innerHTML = rows.map(function (row) {
+			var complete = row.quota > 0 && row.remaining === 0;
+			var partActive = selectedPart === row.part && !selectedType;
+			var typeActive = selectedPart === row.part && selectedType === row.type;
+			return '<tr class="' + (typeActive ? "is-filtered" : "") + '"><td class="text-center"><button type="button" class="selection-quota-link' + (partActive ? " is-active" : "") + '" data-action="selection-quota-filter" data-selection-filter-part="' + row.part + '" data-selection-filter-type="">' + row.part + '</button></td><td class="text-center"><button type="button" class="selection-quota-link' + (typeActive ? " is-active" : "") + '" data-action="selection-quota-filter" data-selection-filter-part="' + row.part + '" data-selection-filter-type="' + row.type + '">' + row.type + '</button></td><td class="text-right">' + (row.quota ? num(row.quota) : "제한없음") +
+				'</td><td class="text-right">' + num(row.reviewDone) + '</td><td class="text-right"><b>' + num(row.selected) + '</b></td><td class="text-right">' + (row.quota ? num(row.remaining) : "-") +
+				'</td><td class="text-center">' + badge(complete ? "선발완료" : (row.selected ? "선발중" : "대기"), complete ? "green" : "") + '</td></tr>';
 		}).join("");
+		return rows;
+	}
+
+	function selectionStatusLabel(code) {
+		return code === "07" ? badge("1차선발", "green") : badge("선발대기", "");
+	}
+
+	function renderSelectionManagement() {
+		var b = biz(), title = $("[data-selection-management-title]"), copy = $("[data-selection-management-copy]");
+		var actions = $("[data-selection-management-actions]"), body = $("[data-selection-management-body]");
+		var selected = selectionRows().filter(function (row) { return row.status === "07"; });
+		if (state.biz === "0003") {
+			title.textContent = "건강검진 선발자 관리";
+			copy.textContent = "1차선발 확정자의 검진병원과 진행상태를 관리합니다. 청구완료 건은 후속심사에서 검토합니다.";
+			actions.innerHTML = btn('<span class="material-symbols-rounded" aria-hidden="true">download</span> 엑셀 다운로드', 'data-action="selection-management-excel"') + btn("선택 병원변경", 'data-action="selection-management-hospital"');
+			body.innerHTML = '<div class="board-table-wrap scroll-x"><table class="board-table selection-management-table"><caption>건강검진 선발자 관리 목록</caption><thead><tr><th scope="col">선택</th><th scope="col">접수번호</th><th scope="col">구분</th><th scope="col">대상자</th><th scope="col">차량번호</th><th scope="col">검진병원</th><th scope="col">검진상태</th><th scope="col">예약일</th><th scope="col">검진일</th><th scope="col">병원변경</th><th scope="col">상세</th></tr></thead><tbody>' +
+				(selected.map(function (row, index) { var targetName = row.type === "배우자" ? row.target : row.driver; var editable = !row.examDate; return '<tr><td class="text-center"><label class="check-label"><input type="checkbox" data-selection-management-check data-selection-index="' + selectionRows().indexOf(row) + '" /><span class="check-label-text"></span></label></td><td class="text-center">' + row.no + '</td><td class="text-center">' + row.type + '</td><td class="text-center">' + targetName + '</td><td class="text-center">' + row.vehicle + '</td><td>' + row.hospital + '</td><td class="text-center">' + badge(row.checkStatus, row.checkStatus === "검진완료" ? "green" : "") + '</td><td class="text-center">' + (row.reserveDate || "-") + '</td><td class="text-center">' + (row.examDate || "-") + '</td><td class="text-center">' + (editable ? btn("변경", 'data-action="selection-hospital" data-selection-index="' + selectionRows().indexOf(row) + '"') : '<span class="board-form-note">변경불가</span>') + '</td><td class="text-center">' + btn("접수내역", 'data-action="selection-detail" data-selection-index="' + selectionRows().indexOf(row) + '"') + '</td></tr>'; }).join("") || '<tr><td colspan="11" class="text-center review-empty">1차선발 확정자가 없습니다.</td></tr>') + '</tbody></table></div>';
+			return;
+		}
+
+		var management = {
+			"0016": ["예방접종 선발자 관리", "회차별 접종병원과 접종·청구 상태를 관리합니다.", "회차별 관리"],
+			"0021": ["멤버십카드 발급 관리", "엑셀 업로드로 발급일자와 처리상태를 일괄 반영합니다.", "엑셀 업로드"],
+			"0014": ["차량 구입 관리", "승인코드·결제금액·지급금액·지급일자를 일괄 반영합니다.", "엑셀 업로드"],
+			"0022": ["DTG 선발자 관리", "교통안전장치 장착 및 지급 진행상태를 관리합니다.", "선발자 관리"],
+			"0023": ["BSD 선발자 관리", "교통안전장치 장착 및 지급 진행상태를 관리합니다.", "선발자 관리"],
+			"0025": ["지급대기자 관리", "1차심사를 마치고 지급대기 상태가 된 대상자를 관리합니다.", "지급대기자 관리"]
+		}[state.biz];
+		if (management) {
+			title.textContent = management[0]; copy.textContent = management[1];
+			actions.innerHTML = btn(management[2], 'data-action="selection-management-open"', "variant-solid color-navy");
+			body.innerHTML = '<div class="selection-next-panel"><span class="material-symbols-rounded" aria-hidden="true">assignment_turned_in</span><div><b>' + num(selected.length) + '명이 1차선발 확정되었습니다.</b><p>' + management[1] + '</p></div></div>';
+		} else {
+			title.textContent = "다음 단계"; copy.textContent = "1차선발 확정자는 최종선발 대상 목록에서 확인할 수 있습니다.";
+			actions.innerHTML = '<a href="#final" class="btn variant-solid color-navy rounded-md size-board-auto">최종선발 이동</a>';
+			body.innerHTML = '<div class="selection-next-panel"><span class="material-symbols-rounded" aria-hidden="true">arrow_circle_right</span><div><b>후속심사 없이 최종선발로 이동</b><p>1차선발 상태는 유지되며 최종선발 확정 전까지 사용자에게 결과가 공개되지 않습니다.</p></div></div>';
+		}
+	}
+
+	function renderSelection() {
+		var b = biz(), rows = selectionRows();
+		$("[data-selection-biz-name]").value = b.name;
+		$("[data-selection-notice-title]").value = b.notice;
+		var previous = { part: $("[data-selection-part]").value, type: $("[data-selection-type]").value };
+		setReviewOptions("[data-selection-part]", b.parts.map(function (part) { return part[0]; }), "전체 부문");
+		setReviewOptions("[data-selection-type]", b.types.map(function (type) { return type[0]; }), "전체 유형");
+		if (Array.prototype.some.call($("[data-selection-part]").options, function (option) { return option.value === previous.part; })) $("[data-selection-part]").value = previous.part;
+		if (Array.prototype.some.call($("[data-selection-type]").options, function (option) { return option.value === previous.type; })) $("[data-selection-type]").value = previous.type;
+
+		var quota = renderSelectionQuota();
+		var totals = quota.reduce(function (sum, row) { sum.quota += row.quota; sum.review += row.reviewDone; sum.selected += row.selected; sum.remaining += row.remaining; return sum; }, { quota: 0, review: 0, selected: 0, remaining: 0 });
+		var waiting = Math.max(0, totals.review - totals.selected);
+		$("[data-sel-stats]").innerHTML = stat("1차심사 완료", num(totals.review), "명") + stat("선발대기", num(waiting), "명", waiting ? "is-warn" : "") + stat("1차선발 확정", num(totals.selected), "명") + stat("남은 선발인원", num(totals.remaining), "명") + stat("탈락·보류", state.biz === "0003" ? "173" : num(Math.max(1, Math.round(rows.length * 0.18))), "명", "is-danger");
+		$("[data-selection-route]").innerHTML = '<span class="material-symbols-rounded" aria-hidden="true">route</span><strong>확정 후 처리</strong><span>' + (b.followup === "none" ? "최종선발 대상" : (state.biz === "0003" ? "건강검진 선발자 관리" : "사업별 선발자 관리")) + '</span><i></i><b>사용자 결과는 최종발표 전까지 공개되지 않습니다.</b>';
+
+		var filtered = filteredSelectionRows();
+		var filterLabel = $("[data-selection-list-filter]");
+		var filterParts = [];
+		if ($("[data-selection-part]").value) filterParts.push($("[data-selection-part]").value);
+		if ($("[data-selection-type]").value) filterParts.push($("[data-selection-type]").value);
+		filterLabel.hidden = !filterParts.length;
+		filterLabel.textContent = filterParts.length ? "조회조건 " + filterParts.join(" · ") : "";
+		$("[data-selection-body]").innerHTML = filtered.map(function (row) {
+			var index = rows.indexOf(row), selected = row.status === "07";
+			return '<tr class="' + (selected ? "selection-row-confirmed" : "") + '"><td class="text-center"><label class="check-label"><input type="checkbox" data-selection-row-check data-selection-index="' + index + '"' + (selected ? " disabled" : "") + ' /><span class="check-label-text"></span></label></td><td class="text-center"><b>' + row.rank + '</b></td><td class="text-center">' + row.vehicle + '</td><td class="text-center">' + row.part + '</td><td class="text-center">' + row.type + '</td><td class="text-center">' + row.driver + '</td><td class="text-center">' + row.driverBirth + '</td><td class="text-center">' + (row.type === "배우자" ? row.target : "-") + '</td><td class="text-center">' + (row.type === "배우자" ? row.targetBirth : "-") + '</td><td class="text-center">' + row.reviewDate + '</td><td class="text-center">' + selectionStatusLabel(row.status) + '</td><td class="text-center">' + btn("접수내역", 'data-action="selection-detail" data-selection-index="' + index + '"') + '</td></tr>';
+		}).join("") || '<tr><td colspan="12" class="text-center review-empty">조회된 1차선발 대상자가 없습니다.</td></tr>';
+		$("[data-selection-count]").textContent = "총 " + num(filtered.length) + "건 (화면 표본)";
+		$("[data-selection-preview]").hidden = true;
+		state.selectionBatch = null;
+		renderSelectionManagement();
+	}
+
+	function selectedSelectionIndexes() {
+		return $$('[data-selection-row-check]:checked').map(function (box) { return Number(box.dataset.selectionIndex); });
+	}
+
+	function previewFirstSelection() {
+		var indexes = selectedSelectionIndexes();
+		if (!indexes.length) { alert("1차선발할 대상을 선택해 주세요."); return; }
+		state.selectionBatch = indexes;
+		var byPart = {};
+		indexes.forEach(function (index) {
+			var row = selectionRows()[index], key = row.part + " · " + row.type;
+			byPart[key] = Number(byPart[key] || 0) + 1;
+		});
+		var preview = $("[data-selection-preview]");
+		preview.hidden = false;
+		preview.innerHTML = '<div><b>' + num(indexes.length) + '명을 1차선발자로 확정합니다.</b><span>' + Object.keys(byPart).map(function (key) { return key + " " + num(byPart[key]) + "명"; }).join(" · ") + ' · 기존 심사결과는 유지됩니다.</span></div><div class="flex gap-1">' +
+			btn("확정", 'data-action="selection-confirm"', "variant-solid color-red") + btn("취소", 'data-action="selection-cancel"') + '</div>';
+	}
+
+	function openSelectionDetail(index) {
+		var row = selectionRows()[index];
+		var url = new URL("review-detail.html", location.href);
+		url.searchParams.set("bizId", state.biz);
+		url.searchParams.set("yearDeg", biz().yearDeg);
+		url.searchParams.set("acceptNo", row.no);
+		url.searchParams.set("part", row.part);
+		url.searchParams.set("type", row.type);
+		url.searchParams.set("driver", row.driver);
+		url.searchParams.set("driverBirth", row.driverBirth);
+		url.searchParams.set("target", row.target);
+		url.searchParams.set("targetBirth", row.targetBirth);
+		url.searchParams.set("vehicle", row.vehicle);
+		url.searchParams.set("docs", row.docs || (row.type === "배우자" ? "1/1" : "해당없음"));
+		var detailWindow = window.open(url.href, "tdwfSelectionDetail_" + row.no, "width=1280,height=920,scrollbars=yes,resizable=yes");
+		if (detailWindow) detailWindow.focus();
+		else alert("접수내역 상세창을 열 수 없습니다. 브라우저의 팝업 차단 설정을 확인해 주세요.");
+	}
+
+	function openSelectionHospital(index) {
+		var row = selectionRows()[index];
+		state.selectionHospitalIndex = index;
+		$("[data-hospital-target]").textContent = row.no + " · " + row.type + " " + (row.type === "배우자" ? row.target : row.driver);
+		$("[data-hospital-current]").textContent = row.hospital;
+		$("[data-hospital-status]").textContent = row.checkStatus;
+		$("[data-hospital-guide]").textContent = "검진 전인 대상만 변경할 수 있습니다. 변경 시 예약정보를 초기화하고 신청자에게 변경 병원을 문자로 안내합니다.";
+		openPopup("popup-hospital");
 	}
 
 	/* ===== 4. 후속심사 ===== */
@@ -1154,7 +1602,19 @@
 			}
 			if (target.matches("[data-hospital-save]")) {
 				closePopup(target.closest(".popup"));
-				alert("병원을 바꿨습니다. 변경 이력이 남고 신청자에게 안내문자가 나갑니다. (기획 화면 — 실제로 저장되지 않습니다)");
+				if (state.selectionHospitalIndex !== undefined && state.selectionHospitalIndex !== null) {
+					var hospitalRow = selectionRows()[state.selectionHospitalIndex];
+					var hospitalSelects = $$("#popup-hospital select");
+					hospitalRow.hospital = hospitalSelects[1] ? hospitalSelects[1].value : hospitalRow.hospital;
+					hospitalRow.checkStatus = "미검진";
+					hospitalRow.reserveDate = "";
+					hospitalRow.examDate = "";
+					state.selectionHospitalIndex = null;
+					renderSelection();
+					showAppToast("검진병원을 변경했습니다. 변경 이력과 신청자 안내문자가 생성됩니다.");
+				} else {
+					alert("병원을 바꿨습니다. 변경 이력이 남고 신청자에게 안내문자가 나갑니다. (기획 화면)");
+				}
 				return;
 			}
 
@@ -1175,26 +1635,29 @@
 			case "review-page":
 				event.preventDefault();
 				if (target.getAttribute("aria-disabled") === "true") break;
-				var reviewPage = Number(target.dataset.page || 1);
-				var reviewPagination = target.closest("[data-review-pagination]");
-				$$('.board-pagination-list .board-page-button', reviewPagination).forEach(function (link) {
-					var active = Number(link.dataset.page) === reviewPage;
-					if (active) { link.setAttribute("aria-current", "page"); link.setAttribute("aria-disabled", "true"); link.tabIndex = -1; }
-					else { link.removeAttribute("aria-current"); link.removeAttribute("aria-disabled"); link.removeAttribute("tabindex"); }
-				});
-				var navLinks = $$('.board-page-button[aria-label]', reviewPagination);
-				[[0, 1, reviewPage > 1], [1, reviewPage - 1, reviewPage > 1], [2, reviewPage + 1, reviewPage < 3], [3, 3, reviewPage < 3]].forEach(function (item) {
-					var link = navLinks[item[0]]; link.dataset.page = item[1];
-					if (item[2]) { link.removeAttribute("aria-disabled"); link.removeAttribute("tabindex"); }
-					else { link.setAttribute("aria-disabled", "true"); link.tabIndex = -1; }
-				});
+				state.reviewPage = Number(target.dataset.page || 1);
+				renderReview();
 				break;
 			case "review-search":
+				state.reviewPage = 1;
 				renderReview();
 				break;
 			case "review-region":
 				$("[data-review-part]").value = target.dataset.region;
+				state.reviewPage = 1;
 				renderReview();
+				break;
+			case "review-reallocation-open":
+				openReviewReallocation();
+				break;
+			case "review-reallocation-preview":
+				previewReviewReallocation();
+				break;
+			case "review-reallocation-confirm":
+				confirmReviewReallocation();
+				break;
+			case "review-reallocation-undo":
+				askConfirm("최근 선발인원 변경 취소", "추가된 심사대상자와 변경된 부문별 선발인원을 이전 상태로 되돌립니다.", "기존 개별 심사결과는 변경되지 않습니다.", undoReviewReallocation);
 				break;
 			case "review-detail":
 				openReviewWindow(Number(target.dataset.reviewIndex));
@@ -1220,7 +1683,6 @@
 			case "review-eval-save":
 				var reviewResult = $('input[name="reviewResult"]:checked').value;
 				var reviewReason = $("[data-review-reason]").value;
-				if (!reviewReason) { alert("처리 사유를 선택해 주세요."); break; }
 				var reviewRow = reviewRows()[state.reviewIndex];
 				var previousReviewStatus = reviewRow.status;
 				reviewRow.status = reviewResult;
@@ -1229,6 +1691,9 @@
 				closePopup(target.closest(".popup"));
 				if ($("#popup-review-detail").classList.contains("is-open")) openReviewDetail(state.reviewIndex);
 				renderReview();
+				if (!(reviewResult === "99" && previousReviewStatus !== "99")) {
+					showAppToast("접수번호 " + reviewRow.no + "을(를) " + reviewStatus(reviewRow.status)[0] + " 처리했습니다.");
+				}
 				break;
 			case "review-memo-save":
 				reviewRows()[state.reviewIndex].memo = $("[data-review-memo-text]").value.trim();
@@ -1269,6 +1734,68 @@
 					state.reviewBatch = null;
 					renderReview();
 				});
+				break;
+			case "selection-search":
+				renderSelection();
+				break;
+			case "selection-quota-filter":
+				var selectionPart = target.dataset.selectionFilterPart || "";
+				var selectionType = target.dataset.selectionFilterType || "";
+				var partSelect = $("[data-selection-part]");
+				var typeSelect = $("[data-selection-type]");
+				var sameSelectionFilter = partSelect.value === selectionPart && typeSelect.value === selectionType;
+
+				partSelect.value = sameSelectionFilter ? "" : selectionPart;
+				typeSelect.value = sameSelectionFilter ? "" : selectionType;
+				renderSelection();
+				document.getElementById("selection-list-title").scrollIntoView({ behavior: "smooth", block: "start" });
+				break;
+			case "selection-preview":
+				previewFirstSelection();
+				break;
+			case "selection-cancel":
+				state.selectionBatch = null;
+				$("[data-selection-preview]").hidden = true;
+				break;
+			case "selection-confirm":
+				var selectionBatch = state.selectionBatch || [];
+				if (!selectionBatch.length) break;
+				askConfirm("1차선발 확정", num(selectionBatch.length) + "명 · 선발대기 → 1차선발", "후속심사 또는 최종선발이 시작되기 전까지 취소할 수 있습니다.", function () {
+					selectionBatch.forEach(function (index) {
+						var row = selectionRows()[index];
+						row.status = "07";
+						row.selectedAt = "2026-10-28";
+						row.confirmedInScreen = true;
+					});
+					state.selectionBatch = null;
+					renderSelection();
+					showAppToast(num(selectionBatch.length) + "명을 1차선발자로 확정했습니다. 기존 심사결과는 유지됩니다.");
+				});
+				break;
+			case "selection-detail":
+				openSelectionDetail(Number(target.dataset.selectionIndex));
+				break;
+			case "selection-excel":
+				alert("현재 조회 조건의 1차선발 대상 목록을 엑셀로 생성합니다. (기획 화면)");
+				break;
+			case "selection-sms":
+				var selectionSms = selectedSelectionIndexes();
+				alert(selectionSms.length ? "선택한 " + selectionSms.length + "명에게 보낼 문자 작성 화면을 엽니다. (기획 화면)" : "문자를 보낼 대상을 선택해 주세요.");
+				break;
+			case "selection-hospital":
+				openSelectionHospital(Number(target.dataset.selectionIndex));
+				break;
+			case "selection-management-hospital":
+				var hospitalTargets = $$('[data-selection-management-check]:checked');
+				if (!hospitalTargets.length) { alert("병원을 변경할 선발자를 선택해 주세요."); break; }
+				if (hospitalTargets.length > 1) { alert("기획 화면에서는 한 명씩 병원을 변경할 수 있습니다."); break; }
+				openSelectionHospital(Number(hospitalTargets[0].dataset.selectionIndex));
+				break;
+			case "selection-management-excel":
+				alert("건강검진 선발자 관리 목록을 엑셀로 생성합니다. (기획 화면)");
+				break;
+			case "selection-management-open":
+				alert(biz().name + "의 전용 선발자 관리 기능을 엽니다. (기획 화면)");
 				break;
 			case "copy-previous":
 				state.std.saved = false;
@@ -1349,12 +1876,6 @@
 				if (biz().dup) { alert("중복수혜 판정 대기 9쌍이 남아 있어 1차심사를 완료할 수 없습니다."); }
 				else { alert("1차심사를 완료합니다. (기획 화면)"); }
 				break;
-			case "extra-preview":
-				state.extra = "preview"; renderSelection();
-				break;
-			case "extra-confirm":
-				askConfirm("3차 추가선발", "결원 부문·전형에 대기자 추가", "추가된 인원의 서류심사가 시작되기 전까지 되돌릴 수 있습니다.", function () { state.extra = "confirmed"; renderSelection(); });
-				break;
 			case "noshow-preview":
 				state.noshow = "preview"; renderCheckup();
 				break;
@@ -1378,8 +1899,28 @@
 		});
 
 		document.addEventListener("change", function (event) {
+			if (event.target.matches("[data-review-page-unit]")) {
+				state.reviewPageUnit = Number(event.target.value || 20);
+				state.reviewPage = 1;
+				renderReview();
+				return;
+			}
 			if (event.target.matches("[data-review-check-all]")) {
 				$$('[data-review-row-check]').forEach(function (box) { box.checked = event.target.checked; });
+			}
+			if (event.target.matches("[data-selection-check-all]")) {
+				$$('[data-selection-row-check]:not(:disabled)').forEach(function (box) { box.checked = event.target.checked; });
+			}
+			if (event.target.matches("[data-reallocation-source]")) {
+				populateReallocationTargets();
+				resetReviewReallocationPreview();
+				updateReviewReallocationMetrics();
+				return;
+			}
+			if (event.target.matches("[data-reallocation-target],[data-reallocation-count]")) {
+				resetReviewReallocationPreview();
+				updateReviewReallocationMetrics();
+				return;
 			}
 			if (event.target.matches("[data-std-mode]")) {
 				state.std.mode = event.target.value;

@@ -214,9 +214,15 @@
 	<section class="panel review-region-panel" aria-labelledby="review-region-title" data-review-region-panel>
 		<div class="board-info-row mb-0">
 			<h2 class="board-list-title" id="review-region-title">선발부문별 현황</h2>
-			<div class="board-info-actions"><span class="board-info-text">잔여 인원 / 선발 인원</span></div>
+			<div class="board-info-actions">
+				<span class="board-info-text">잔여 인원 / 선발 인원</span>
+				<button type="button" class="btn variant-outline color-navy rounded-md size-board-auto" data-action="review-reallocation-open">
+					<span class="material-symbols-rounded" aria-hidden="true">swap_horiz</span> 부문별 선발인원 조정
+				</button>
+			</div>
 		</div>
 		<div class="review-region-grid" data-review-region-grid></div>
+		<div class="review-reallocation-history" data-review-reallocation-history hidden></div>
 	</section>
 
 	<section class="panel" aria-labelledby="review-list-title">
@@ -277,58 +283,70 @@
 			<span aria-current="page">1차선발</span>
 		</nav>
 	</div>
-	<div data-announce-bar></div>
-
-	<div class="plan-note">
-		<span class="material-symbols-rounded" aria-hidden="true">lightbulb</span>
-		<div>
-			<strong>As-Is 「추가선발.sql」 「재단인원_추가선발.sql」 「순위변경.sql」 을 이 화면으로 옮겼습니다.</strong>
-			서류 탈락으로 빈자리가 생기면 업체가 공고를 예비선발 단계로 되돌리고, 사업과가 준 표를 보며 전형별 정원을 고치고, 체크박스로 추가 인원을 고른 뒤
-			예비선발일자를 SQL 로 따로 넣었습니다. 순위 조정(새치기)도 두 사람의 순위를 SQL 로 맞바꿨습니다.
-			<ul>
-				<li><strong>결원 = 정원 − (예비선발 + 합격 + 보완)</strong> 으로 자동 계산합니다. 탈락한 사람은 정원에서 빠집니다.</li>
-				<li>⚠ 현재 To-Be 는 선발확정을 다시 누르면 진행된 인원을 빼지 않고 정원 전체를 다시 뽑아 <strong>초과선발</strong>이 납니다. 이 화면이 그 문제를 대신합니다.</li>
-				<li>추가선발은 <strong>차수</strong>로 기록하고, 미리보기 → 확정으로 처리합니다. 예비선발일자는 확정할 때 자동으로 들어갑니다.</li>
-			</ul>
+	<section class="panel selection-search-panel" aria-label="1차선발 조회 조건">
+		<div class="review-search-layout">
+			<table class="board-search-table">
+				<caption>1차선발 대상 조회</caption>
+				<colgroup><col width="8%" /><col width="22%" /><col width="8%" /><col width="20%" /><col width="8%" /><col width="12%" /><col width="8%" /><col width="14%" /></colgroup>
+				<tbody>
+					<tr><th scope="row">사업명</th><td><div class="flex items-center gap-2 row-type-field"><input type="text" class="form-control w-full" data-selection-biz-name readonly /><button type="button" class="btn variant-outline color-navy rounded-md size-search-input" data-action="announce-open" data-announce-target="selection">공고조회</button></div></td>
+						<th scope="row">공고제목</th><td><input type="text" class="form-control w-full" data-selection-notice-title readonly /></td>
+						<th scope="row">선발상태</th><td><select class="form-control w-full" data-selection-status><option value="">전체</option><option value="03">선발대기</option><option value="07">1차선발</option></select></td>
+						<th scope="row">차량번호</th><td><input type="text" class="form-control w-full" data-selection-vehicle /></td></tr>
+					<tr><th scope="row">선발부문</th><td><select class="form-control w-full" data-selection-part></select></td>
+						<th scope="row">전형유형</th><td><select class="form-control w-full" data-selection-type></select></td>
+						<th scope="row">운전자명</th><td><input type="text" class="form-control w-full" data-selection-driver /></td>
+						<th scope="row">대상자명</th><td><input type="text" class="form-control w-full" data-selection-target /></td></tr>
+				</tbody>
+			</table>
+			<button type="button" class="btn variant-solid color-navy rounded-md review-search-button" data-action="selection-search">조회</button>
 		</div>
-	</div>
-
-	<section class="panel" aria-label="1차선발 인원 현황">
-		<div class="stat-row" data-sel-stats></div>
 	</section>
 
-	<section class="panel" aria-labelledby="sel-vacancy-title">
+	<div class="selection-route-strip" data-selection-route></div>
+	<div class="stat-row" data-sel-stats></div>
+
+	<section class="panel" aria-labelledby="selection-quota-title">
 		<div class="board-info-row">
-			<h2 class="board-list-title" id="sel-vacancy-title">부문·전형별 결원 현황</h2>
+			<div><h2 class="board-list-title" id="selection-quota-title">부문·전형별 선발 현황</h2><p class="board-info-text mt-1">선발기준설정에서 저장한 인원과 현재 확정 인원을 비교합니다.</p></div>
+			<span class="board-info-text">남은 인원 = 선발인원 - 1차선발 확정</span>
+		</div>
+		<div class="board-table-wrap selection-quota-wrap">
+			<table class="board-table selection-quota-table">
+				<caption>부문 및 전형별 1차선발 현황</caption>
+				<thead><tr><th scope="col">선발부문</th><th scope="col">전형유형</th><th scope="col">선발인원</th><th scope="col">1차심사 완료</th><th scope="col">1차선발 확정</th><th scope="col">남은 인원</th><th scope="col">상태</th></tr></thead>
+				<tbody data-selection-quota-body></tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="panel" aria-labelledby="selection-list-title">
+		<div class="board-info-row">
+			<div><h2 class="board-list-title" id="selection-list-title">1차선발 대상 목록</h2><p class="board-info-text mt-1">1차심사에서 심사완료된 대상만 확정할 수 있습니다. <span class="selection-filter-label" data-selection-list-filter hidden></span> <b data-selection-count></b></p></div>
 			<div class="board-info-actions">
-				<button type="button" class="btn variant-outline color-navy rounded-md size-board-auto" data-popup-open="popup-rank">순위 조정</button>
-				<button type="button" class="btn variant-solid color-navy rounded-md size-board-auto" data-action="extra-preview">추가선발 미리보기</button>
-				<button type="button" class="btn variant-solid color-red rounded-md size-board-auto" data-action="extra-confirm" hidden>추가선발 확정</button>
+				<button type="button" class="btn variant-outline color-navy rounded-md size-board-auto" data-action="selection-excel"><span class="material-symbols-rounded" aria-hidden="true">download</span> 엑셀 다운로드</button>
+				<button type="button" class="btn variant-outline color-navy rounded-md size-board-auto" data-action="selection-sms"><span class="material-symbols-rounded" aria-hidden="true">sms</span> 선택 문자발송</button>
+				<button type="button" class="btn variant-solid color-navy rounded-md size-board-auto" data-action="selection-preview">선택 1차선발</button>
+				<select class="form-control" aria-label="목록 표시 개수" data-selection-page-unit><option>10개 보기</option><option selected>20개 보기</option><option>30개 보기</option><option>50개 보기</option><option>100개 보기</option></select>
 			</div>
 		</div>
-		<div class="preview-banner mb-2" data-extra-banner hidden></div>
-		<div class="board-table-wrap scroll-x">
-			<table class="board-table">
-				<caption>부문·전형별 결원 현황</caption>
-				<colgroup><col width="12%" /><col width="14%" /><col width="9%" /><col width="9%" /><col width="9%" /><col width="9%" /><col width="9%" /><col width="9%" /><col width="10%" /><col width="10%" /></colgroup>
-				<thead><tr><th scope="col">선발부문</th><th scope="col">전형유형</th><th scope="col">정원</th><th scope="col">예비선발</th><th scope="col">합격</th><th scope="col">보완</th><th scope="col">탈락</th><th scope="col">결원</th><th scope="col">대기자</th><th scope="col">추가선발</th></tr></thead>
-				<tbody data-vacancy-body></tbody>
+		<div class="review-batch-preview" data-selection-preview hidden></div>
+		<div class="board-table-wrap scroll-x selection-list-wrap">
+			<table class="board-table selection-list-table">
+				<caption>1차선발 대상 목록</caption>
+				<thead><tr><th scope="col"><label class="check-label"><input type="checkbox" data-selection-check-all /><span class="check-label-text"></span></label></th><th scope="col">선발순위</th><th scope="col">차량번호</th><th scope="col">선발부문</th><th scope="col">전형유형</th><th scope="col">운전자</th><th scope="col">운전자 생년월일</th><th scope="col">배우자</th><th scope="col">배우자 생년월일</th><th scope="col">심사완료일</th><th scope="col">선발상태</th><th scope="col">확인</th></tr></thead>
+				<tbody data-selection-body></tbody>
 			</table>
 		</div>
+		<nav class="board-pagination" aria-label="1차선발 목록 페이지 이동"><a href="#" class="board-page-button" aria-disabled="true" tabindex="-1"><span class="material-symbols-rounded board-page-icon" aria-hidden="true">keyboard_double_arrow_left</span></a><a href="#" class="board-page-button" aria-disabled="true" tabindex="-1"><span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_left</span></a><ol class="board-pagination-list"><li><a href="#" class="board-page-button" aria-current="page" aria-disabled="true" tabindex="-1">1</a></li></ol><a href="#" class="board-page-button" aria-disabled="true" tabindex="-1"><span class="material-symbols-rounded board-page-icon" aria-hidden="true">chevron_right</span></a><a href="#" class="board-page-button" aria-disabled="true" tabindex="-1"><span class="material-symbols-rounded board-page-icon" aria-hidden="true">keyboard_double_arrow_right</span></a></nav>
 	</section>
 
-	<section class="panel" aria-labelledby="sel-round-title">
+	<section class="panel selection-management" aria-labelledby="selection-management-title" data-selection-management>
 		<div class="board-info-row">
-			<h2 class="board-list-title" id="sel-round-title">추가선발 차수 이력</h2>
+			<div><h2 class="board-list-title" id="selection-management-title" data-selection-management-title>선발자 관리</h2><p class="board-info-text mt-1" data-selection-management-copy></p></div>
+			<div class="board-info-actions" data-selection-management-actions></div>
 		</div>
-		<div class="board-table-wrap">
-			<table class="board-table">
-				<caption>추가선발 차수 이력</caption>
-				<colgroup><col width="8%" /><col width="16%" /><col width="30%" /><col width="12%" /><col width="12%" /><col width="10%" /><col width="12%" /></colgroup>
-				<thead><tr><th scope="col">차수</th><th scope="col">확정일시</th><th scope="col">대상 부문·전형</th><th scope="col">추가 인원</th><th scope="col">추첨 번호</th><th scope="col">처리자</th><th scope="col">상태</th></tr></thead>
-				<tbody data-round-body></tbody>
-			</table>
-		</div>
+		<div data-selection-management-body></div>
 	</section>
 </div>
 
@@ -848,7 +866,6 @@
 			<table class="board-form-table"><caption>1차심사 처리</caption><colgroup><col width="22%" /><col width="78%" /></colgroup><tbody>
 				<tr><th scope="row">대상 접수</th><td data-review-eval-target></td></tr>
 				<tr><th scope="row">심사 결과<span class="required-mark">*</span></th><td><div class="flex flex-wrap items-center gap-4"><label class="radio-label"><input type="radio" name="reviewResult" value="03" checked /><span class="radio-label-text">심사완료</span></label><label class="radio-label"><input type="radio" name="reviewResult" value="02" /><span class="radio-label-text">보류(후순위 이동)</span></label><label class="radio-label"><input type="radio" name="reviewResult" value="99" /><span class="radio-label-text">탈락</span></label></div></td></tr>
-				<tr><th scope="row">서류 보완</th><td><label class="check-label"><input type="checkbox" data-review-supplement /><span class="check-label-text">신청자에게 서류 보완을 요청합니다.</span></label></td></tr>
 				<tr><th scope="row">처리 사유</th><td><select class="form-control w-full" data-review-reason><option value="">선택</option><option>자격요건 충족</option><option>검진대상자 정보 불일치</option><option>출생연도 기준 불일치</option><option>필수서류 미제출</option><option>기수혜자</option><option>중복신청</option><option>기타</option></select></td></tr>
 				<tr><th scope="row">처리 메모</th><td><textarea class="textarea w-full" rows="3" data-review-eval-memo placeholder="판단 근거를 입력해 주세요."></textarea></td></tr>
 			</tbody></table>
@@ -868,6 +885,53 @@
 			<div class="review-memo-history"><strong>메모 이력</strong><ul data-review-memo-history></ul></div>
 		</div>
 		<div class="popup-actions"><button type="button" class="btn variant-solid color-navy rounded-md size-board-action" data-action="review-memo-save">저장</button><button type="button" class="btn variant-outline color-navy rounded-md size-board-action" data-popup-close>취소</button></div>
+	</section>
+</div>
+
+<div id="popup-review-reallocation" class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-review-reallocation-title" aria-hidden="true">
+	<div class="popup-backdrop" data-popup-close></div>
+	<section class="popup-panel size-lg review-reallocation-popup" role="document">
+		<div class="popup-header">
+			<div>
+				<h2 class="popup-title" id="popup-review-reallocation-title">부문별 선발인원 조정</h2>
+				<p class="popup-subtitle">선발하지 못한 인원을 신청자가 더 많은 다른 부문에 배정합니다.</p>
+			</div>
+			<button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기"><span class="material-symbols-rounded" aria-hidden="true">close</span></button>
+		</div>
+		<div class="popup-body flex flex-col gap-3">
+			<div class="review-reallocation-rule">
+				<span class="material-symbols-rounded" aria-hidden="true">info</span>
+				<p>이미 저장된 개별 심사결과는 변경하지 않습니다. 인원을 늘린 부문에는 다음 순위 신청자가 심사대상으로 추가되며, 1차선발이 시작되면 선발인원을 조정할 수 없습니다.</p>
+			</div>
+			<table class="board-form-table review-reallocation-form">
+				<caption>부문별 선발인원 조정 입력</caption>
+				<colgroup><col width="17%" /><col width="33%" /><col width="17%" /><col width="33%" /></colgroup>
+				<tbody>
+					<tr>
+						<th scope="row">선발인원을 줄일 부문<span class="required-mark">*</span></th>
+						<td><select class="form-control w-full" data-reallocation-source></select></td>
+						<th scope="row">선발인원을 늘릴 부문<span class="required-mark">*</span></th>
+						<td><select class="form-control w-full" data-reallocation-target></select></td>
+					</tr>
+					<tr>
+						<th scope="row">현재 현황</th>
+						<td><div class="review-reallocation-metrics" data-reallocation-source-metrics></div></td>
+						<th scope="row">현재 현황</th>
+						<td><div class="review-reallocation-metrics" data-reallocation-target-metrics></div></td>
+					</tr>
+					<tr>
+						<th scope="row">옮길 인원<span class="required-mark">*</span></th>
+						<td colspan="3"><div class="review-reallocation-count"><input type="number" class="form-control" min="1" value="10" data-reallocation-count /><span>명</span></div></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="review-reallocation-preview" data-reallocation-preview hidden></div>
+		</div>
+		<div class="popup-actions">
+			<button type="button" class="btn variant-solid color-navy rounded-md size-board-action" data-action="review-reallocation-preview">변경 내용 확인</button>
+			<button type="button" class="btn variant-solid color-red rounded-md size-board-action" data-action="review-reallocation-confirm" hidden>선발인원 변경</button>
+			<button type="button" class="btn variant-outline color-navy rounded-md size-board-action" data-popup-close>취소</button>
+		</div>
 	</section>
 </div>
 
@@ -898,37 +962,6 @@
 		</div>
 		<div class="popup-actions">
 			<button type="button" class="btn variant-solid color-navy rounded-md size-board-action" data-action="dup-save">판정 저장</button>
-			<button type="button" class="btn variant-outline color-navy rounded-md size-board-action" data-popup-close>닫기</button>
-		</div>
-	</section>
-</div>
-
-<div id="popup-rank" class="popup" role="dialog" aria-modal="true" aria-labelledby="popup-rank-title" aria-hidden="true">
-	<div class="popup-backdrop" data-popup-close></div>
-	<section class="popup-panel" role="document">
-		<div class="popup-header">
-			<h2 class="popup-title" id="popup-rank-title">순위 조정</h2>
-			<button type="button" class="popup-close" data-popup-close aria-label="팝업 닫기"><span class="material-symbols-rounded" aria-hidden="true">close</span></button>
-		</div>
-		<div class="popup-body flex flex-col gap-2">
-			<div class="plan-note">
-				<span class="material-symbols-rounded" aria-hidden="true">lightbulb</span>
-				<div>As-Is 「순위변경.sql」 은 두 사람의 순위를 SQL 로 맞바꾸고(414 ↔ 416) 처리상태와 예비선발일자를 따로 고쳤습니다. 사유가 남지 않았습니다.
-				여기서는 <strong>사유가 필수</strong>이고 바뀐 두 건이 이력에 남습니다. 같은 부문·전형 안에서만 바꿀 수 있습니다.</div>
-			</div>
-			<table class="board-form-table">
-				<caption>순위 조정</caption>
-				<colgroup><col width="22%" /><col width="78%" /></colgroup>
-				<tbody>
-					<tr><th scope="row">부문·전형</th><td>본청 · 다자녀가정 중학교 1학년</td></tr>
-					<tr><th scope="row">올릴 신청자</th><td><div class="flex gap-2"><input type="text" class="form-control w-half" value="00006905 김○○ (현재 416위)" /><button type="button" class="btn variant-outline color-navy rounded-md size-search-input">찾기</button></div></td></tr>
-					<tr><th scope="row">목표 순위</th><td><div class="flex items-center gap-2"><input type="text" class="form-control w-quarter" value="414" /><span class="board-form-note">414위 00005829 이○○ 는 416위로 밀립니다</span></div></td></tr>
-					<tr><th scope="row">사유<span class="required-mark">*</span></th><td><textarea class="textarea w-full" rows="3" placeholder="사업과 요청 문서번호, 요청자 등을 남겨 주세요"></textarea></td></tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="popup-actions">
-			<button type="button" class="btn variant-solid color-navy rounded-md size-board-action">순위 조정</button>
 			<button type="button" class="btn variant-outline color-navy rounded-md size-board-action" data-popup-close>닫기</button>
 		</div>
 	</section>
